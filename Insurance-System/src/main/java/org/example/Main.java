@@ -1,50 +1,26 @@
 package org.example;
 
-import java.util.Map;
 import org.example.common.MainSystemConfig;
+import org.example.user.AuthProcessType;
 import org.example.view.SystemView;
 
 public class Main {
 
-  private static final int LOGIN_NUMBER = 1;
-  private static final int SIGNUP_NUMBER = 2;
-  private static final int EXIT = 3;
-
+  private static boolean PROGRAM_TRIGGER = false;
 
   public static void main(String[] args) {
     MainSystemConfig mainSystemConfig = new MainSystemConfig();
     Program program = mainSystemConfig.program();
     SystemView systemView = mainSystemConfig.systemView();
     systemView.introduce();
-    int selectNumber = systemView.selectAuthOption();
-
-    switch (selectNumber) {
-      case LOGIN_NUMBER -> {
-        try {
-          Map<String, String> loginInfo = systemView.getLoginInfo();
-          String userId = program.login(loginInfo);
-          systemView.successLogin();
-          program.start(userId);
-        } catch (IllegalArgumentException e) {
-          System.out.println(e.getMessage());
-        }
+    while(!PROGRAM_TRIGGER){
+      int selectNumber = systemView.selectAuthOption();
+      AuthProcessType authProcessType = AuthProcessType.findProcessType(selectNumber).orElse(null);
+      if(selectNumber == 3 && authProcessType == null) {
+        PROGRAM_TRIGGER = true;
+        continue;
       }
-      case SIGNUP_NUMBER -> {
-        try {
-          Map<String, String> signUpInfo = systemView.getSignUpInfo();
-          program.signUp(signUpInfo);
-          systemView.successSignUp();
-          Map<String, String> loginInfo = systemView.getLoginInfo();
-          String userId = program.login(loginInfo);
-          systemView.successLogin();
-          program.start(userId);
-        } catch (IllegalArgumentException e) {
-          System.out.println(e.getMessage());
-        }
-      }
-      case EXIT -> {
-        systemView.exitSystem();
-      }
+      authProcessType.getProcess().execute(systemView, program);
     }
   }
 }
