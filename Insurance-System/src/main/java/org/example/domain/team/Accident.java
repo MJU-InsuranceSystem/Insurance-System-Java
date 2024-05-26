@@ -13,7 +13,7 @@ public class Accident {
     private int accidentID;
     private ClaimInsurance ClaimInsurance;
     private String content;
-    private org.example.Customer Customer;
+    private org.example.user.Customer Customer;
     private int customerId;
     private String customerName;
 
@@ -46,11 +46,11 @@ public class Accident {
         this.content = content;
     }
 
-    public org.example.Customer getCustomer() {
+    public org.example.user.Customer getCustomer() {
         return Customer;
     }
 
-    public void setCustomer(org.example.Customer customer) {
+    public void setCustomer(org.example.user.Customer customer) {
         Customer = customer;
     }
 

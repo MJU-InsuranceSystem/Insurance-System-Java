@@ -1,7 +1,7 @@
 package org.example.domain.insurance;
 
 import org.example.InsuranceListImpl;
-
+import org.example.Reward;
 /**
  * @author USER
  * @version 1.0
@@ -12,7 +12,7 @@ public class Insurance {
 	private String insuranceName;
 	private int MonthPaymentFee;
 	private String RestrictionRegulation;
-	private org.example.Reward Reward;
+	private Reward Reward;
 	public InsuranceListImpl m_InsuranceListImpl;
 
 	public Insurance(){
