@@ -8,13 +8,13 @@ public interface SystemView {
 
   int selectAuthOption();
 
-  Map<String, String> guideAuth(int selectNumber);
+  Map<String, String> getLoginInfo();
 
-  Map<String, String> loginGuide();
-
-  Map<String, String> signUpGuide();
+  Map<String, String> getSignUpInfo();
 
   void successLogin();
 
   void successSignUp();
+
+  void exitSystem();
 }
