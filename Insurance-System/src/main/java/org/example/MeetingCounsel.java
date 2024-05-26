@@ -6,7 +6,7 @@ package org.example;
  */
 public class MeetingCounsel {
 
-	private Customer Customer;
+	private org.example.user.Customer Customer;
 	private RequestMeetingInfo RequestMeetingInfo;
 	public RequestMeetingInfo m_RequestMeetingInfo;
 

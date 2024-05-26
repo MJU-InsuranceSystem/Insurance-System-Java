@@ -1,4 +1,7 @@
 package org.example;
+
+import org.example.user.Customer;
+
 /**
  * @author USER
  * @version 1.0
