@@ -30,11 +30,11 @@ public class Customer extends User {
 
   public static Customer create(Map<String, String> authInfo) {
     String name = authInfo.get(AuthGuideMessage.AUTH_NAME_KEY);
-    String age = authInfo.get(AuthGuideMessage.AUTH_NAME_KEY);
-    String sex = authInfo.get(AuthGuideMessage.AUTH_NAME_KEY);
-    String phoneNumber = authInfo.get(AuthGuideMessage.AUTH_NAME_KEY);
-    String id = authInfo.get(AuthGuideMessage.AUTH_NAME_KEY);
-    String password = authInfo.get(AuthGuideMessage.AUTH_NAME_KEY);
+    String age = authInfo.get(AuthGuideMessage.AUTH_AGE_KEY);
+    String sex = authInfo.get(AuthGuideMessage.AUTH_SEX_KEY);
+    String phoneNumber = authInfo.get(AuthGuideMessage.AUTH_PHONE_NUMBER_KEY);
+    String id = authInfo.get(AuthGuideMessage.AUTH_ID_KEY);
+    String password = authInfo.get(AuthGuideMessage.AUTH_PASSWORD_KEY);
 
     return new Customer(name, age, sex, phoneNumber, id, password);
   }

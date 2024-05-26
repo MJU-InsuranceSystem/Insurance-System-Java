@@ -17,27 +17,12 @@ public class InsuranceSystemView implements SystemView {
   @Override
   public int selectAuthOption() {
     println("아래 선택지 중 원하는 것을 선택해주세요");
-    println("1. 로그인 / 2. 회원가입");
+    println("1. 로그인 / 2. 회원가입 / 3. 종료");
     return writeInt(); // 예외처리?
   }
 
   @Override
-  public Map<String, String> guideAuth(int selectNumber) {
-    switch (selectNumber) {
-      case 1 -> {
-        return loginGuide();
-      }
-      case 2 -> {
-        return signUpGuide();
-      }
-      default -> {
-        throw new IllegalArgumentException("입력을 잘못하였습니다");
-      }
-    }
-  }
-
-  @Override
-  public Map<String, String> loginGuide() {
+  public Map<String, String> getLoginInfo() {
     Map<String, String> loginInfo = new HashMap<>();
     println("아래 로그인 위한 정보를 입력해주세요");
     print("아이디 : ");
@@ -48,7 +33,7 @@ public class InsuranceSystemView implements SystemView {
   }
 
   @Override
-  public Map<String, String> signUpGuide() {
+  public Map<String, String> getSignUpInfo() {
     Map<String, String> signUpInfo = new HashMap<>();
     println("아래 회원가입을 위한 정보를 입력해주세요");
     print("이름 : ");
@@ -76,6 +61,11 @@ public class InsuranceSystemView implements SystemView {
   @Override
   public void successSignUp() {
     println("회원가입에 성공하였습니다.");
+  }
+
+  @Override
+  public void exitSystem() {
+    println("시스템이 종료됩니다");
   }
 
   private String writeString() {
