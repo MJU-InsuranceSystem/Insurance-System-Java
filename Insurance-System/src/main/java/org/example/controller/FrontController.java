@@ -1,35 +1,25 @@
 package org.example.controller;
 
-import java.util.Objects;
-import java.util.Optional;
-import org.example.InsuranceProgram;
 import org.example.Program;
 import org.example.common.MainSystemConfig;
-import org.example.config.LoginConfig;
 import org.example.login.LoginService;
 import org.example.user.User;
-import org.example.user.User.Role;
 import org.example.view.SystemView;
 
 public class FrontController {
 
     private static boolean PROGRAM_TRIGGER = false;
-    private final LoginConfig loginConfig;
-    private final SystemView systemView;
     private final LoginService loginService;
     private MainSystemConfig mainSystemConfig;
-
-    private InsuranceProgram insuranceProgram;
-
-    private CustomerSystem customerSystem;
+    private final CustomerSystem customerSystem;
+    private final WorkerSystem workerSystem;
 
     public FrontController() {
         mainSystemConfig = new MainSystemConfig();
         Program program = mainSystemConfig.program();
-        this.loginConfig = new LoginConfig();
-        systemView = this.loginConfig.loginView();
-        loginService = new LoginService(program, systemView);
+        loginService = new LoginService(program, mainSystemConfig.systemView());
         customerSystem = new CustomerSystem();
+        workerSystem = new WorkerSystem();
     }
 
     public void run() {
@@ -44,12 +34,11 @@ public class FrontController {
                         customerSystem.process();
                         break;
                     case worker:
+                        workerSystem.process();
                         break;
                     default:
                         break;
                 }
-            } else {
-                // user가 null인 경우 처리
             }
         }
     }

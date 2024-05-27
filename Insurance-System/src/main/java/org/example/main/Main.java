@@ -8,8 +8,4 @@ public class Main {
         FrontController frontController = new FrontController();
         frontController.run();
     }
-
-    private void run() {
-
-    }
 }
