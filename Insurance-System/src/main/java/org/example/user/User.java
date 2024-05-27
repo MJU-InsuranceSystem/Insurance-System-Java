@@ -2,17 +2,13 @@ package org.example.user;
 
 public abstract class User {
 
-    public enum Role {
-        customer, worker
-    }
-
     String name;
     String age;
     String sex;
     String phoneNumber;
     String id;
     String password;
-    Role role;
+    UserType userType;
 
     public String getName() {
         return name;
@@ -38,7 +34,7 @@ public abstract class User {
         return id;
     }
 
-    public Role getRole() {
-        return role;
+    public UserType getUserType() {
+        return userType;
     }
 }

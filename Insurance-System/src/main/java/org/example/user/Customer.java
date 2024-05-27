@@ -27,7 +27,7 @@ public class Customer extends User {
         this.phoneNumber = phoneNumber;
         this.id = id;
         this.password = password;
-        this.role = Role.customer;
+        this.userType = UserType.CUSTOMER;
     }
 
     public static Customer create(Map<String, String> authInfo) {

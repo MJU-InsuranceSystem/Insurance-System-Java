@@ -1,44 +1,41 @@
 package org.example.controller;
 
-import org.example.Program;
-import org.example.common.MainSystemConfig;
-import org.example.login.LoginService;
+import org.example.login.AuthController;
 import org.example.user.User;
 import org.example.view.SystemView;
 
 public class FrontController {
 
-    private static boolean PROGRAM_TRIGGER = false;
-    private final LoginService loginService;
-    private MainSystemConfig mainSystemConfig;
+    private final SystemView systemView;
+    private final AuthController authController;
     private final CustomerSystem customerSystem;
     private final WorkerSystem workerSystem;
 
-    public FrontController() {
-        mainSystemConfig = new MainSystemConfig();
-        Program program = mainSystemConfig.program();
-        loginService = new LoginService(program, mainSystemConfig.systemView());
-        customerSystem = new CustomerSystem();
-        workerSystem = new WorkerSystem();
+    private static boolean PROGRAM_TRIGGER = false;
+
+    public FrontController(SystemView systemView, AuthController authController,
+        CustomerSystem customerSystem, WorkerSystem workerSystem) {
+        this.systemView = systemView;
+        this.authController = authController;
+        this.customerSystem = customerSystem;
+        this.workerSystem = workerSystem;
     }
 
     public void run() {
-
-        SystemView systemView = mainSystemConfig.systemView();
         systemView.introduce();
         while (!PROGRAM_TRIGGER) {
-            User user = loginService.process();
-            if (user != null) {
-                switch (user.getRole()) {
-                    case customer:
-                        customerSystem.process();
-                        break;
-                    case worker:
-                        workerSystem.process();
-                        break;
-                    default:
-                        break;
+            try {
+                User user = authController.process();
+                if (user == null) {
+                    continue;
                 }
+                switch (user.getUserType()) {
+                    case CUSTOMER -> customerSystem.process();
+                    case WORKER -> workerSystem.process();
+                    default -> throw new IllegalArgumentException("올바른 유저 유형을 찾을 수 없습니다.");
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
         }
     }
