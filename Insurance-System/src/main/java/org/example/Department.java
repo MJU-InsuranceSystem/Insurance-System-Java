@@ -5,7 +5,12 @@ import org.example.designPlanTeam.view.DesignInspectionView;
 
 public enum Department {
     DESIGN_PLAN_TEAM(1, new DesignInspectionView(), "상품 기획팀"),
-    UNDER_WRITE_TEAM(2, null, "U/W팀");
+    UNDER_WRITE_TEAM(2, null, "U/W팀"),
+    BUSINESS_EDUCATION_TEAM(3, null, "영업 교육 팀"),
+    MARKETING_TEAM(4, null, "마케팅 팀"),
+    EMPLOYEE_MANAGEMENT_TEAM(5, null, "영업 관리 팀"),
+    RECRUITMENT_TEAM(6, null, "채용 관리 팀"),
+    SALARY_MANAGEMENT_TEAM(7, null, "급여 관리 팀");
     private final int order;
     private final TeamView teamView;
     private final String name;
