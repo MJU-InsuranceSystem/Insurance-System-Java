@@ -2,7 +2,7 @@ package org.example.business.salary;
 
 import org.example.Team;
 
-public class SalaryManageTeam extends Team {
+public class SalaryManagementTeam extends Team {
 
     public SalaryApplication m_SalaryApplication;
     public SalaryApplicationListImpl m_SalaryApplicationListImpl;
