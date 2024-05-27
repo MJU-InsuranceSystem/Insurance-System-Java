@@ -16,11 +16,8 @@ public class BusinessEducationTeam extends Team {
 
 	}
 
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
-
-	public void manage(){
+	@Override
+	public void manage() {
 
 	}
 
@@ -29,19 +26,18 @@ public class BusinessEducationTeam extends Team {
 
 	}
 
-	public void process(){
+	@Override
+	public void register() {
 
 	}
 
-	public void register(){
+	@Override
+	public void remove() {
 
 	}
 
-	public void remove(){
-
-	}
-
-	public Object retrieve(){
+	@Override
+	public Object retrieve() {
 		return null;
 	}
 

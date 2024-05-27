@@ -16,33 +16,28 @@ public class RecruitmentTeam extends Team {
 
 	}
 
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
-
-	public void manage(){
+	@Override
+	public void manage() {
 
 	}
 
 	@Override
 	public void process(int processNum, int domainId) {
-		
-	}
-
-	public void process(){
 
 	}
 
-	public void register(){
+	@Override
+	public void register() {
 
 	}
 
-	public void remove(){
+	@Override
+	public void remove() {
 
 	}
 
-	public Object retrieve(){
+	@Override
+	public Object retrieve() {
 		return null;
 	}
-
 }

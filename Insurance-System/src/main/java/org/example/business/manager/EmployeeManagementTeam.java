@@ -6,22 +6,19 @@ import org.example.Team;
  * @author USER
  * @version 1.0
  */
-public class EmployeeManager extends Team {
+public class EmployeeManagementTeam extends Team {
 
 	public OperationPolicyListImpl m_OperationPolicyListImpl;
 	public OperationPolicy m_OperationPolicy;
 	public EmployeeListImpl m_EmployeeListImpl;
 	public Employee m_Employee;
 
-	public EmployeeManager(){
+	public EmployeeManagementTeam(){
 
 	}
 
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
-
-	public void manage(){
+	@Override
+	public void manage() {
 
 	}
 
@@ -30,20 +27,18 @@ public class EmployeeManager extends Team {
 
 	}
 
-	public void process(){
+	@Override
+	public void register() {
 
 	}
 
-	public void register(){
+	@Override
+	public void remove() {
 
 	}
 
-	public void remove(){
-
-	}
-
-	public Object retrieve(){
+	@Override
+	public Object retrieve() {
 		return null;
 	}
-
 }
