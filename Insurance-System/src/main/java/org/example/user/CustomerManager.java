@@ -6,29 +6,32 @@ import java.util.Optional;
 
 public class CustomerManager {
 
-  private static final CustomerManager CUSTOMER_MANAGER = new CustomerManager();
-  private final List<Customer> customers = new ArrayList<>();
+    private static final CustomerManager CUSTOMER_MANAGER = new CustomerManager();
+    private final List<Customer> customers = new ArrayList<>();
 
-  private CustomerManager() {
+    private CustomerManager() {
 
-  }
+    }
 
-  public static CustomerManager getInstance() {
-    return CUSTOMER_MANAGER;
-  }
+    public static CustomerManager getInstance() {
+        return CUSTOMER_MANAGER;
+    }
 
-  public void add(Customer customer) {
-    customers.add((customer));
-  }
+    public void add(Customer customer) {
+        customers.add((customer));
+    }
 
-  public boolean isExistByIdAndPassword(String id, String password) {
-    return customers.stream()
-        .anyMatch(customer -> customer.getId().equals(id) && customer.getPassword().equals(password));
-  }
+    public boolean isExistByIdAndPassword(String id, String password) {
+        return customers.stream()
+            .anyMatch(
+                customer -> customer.getId().equals(id) && customer.getPassword().equals(password));
+    }
 
-  public Optional<Customer> findByIdAndPassword(String id, String password) {
-    return customers.stream()
-        .filter(customer -> customer.getId().equals(id) && customer.getPassword().equals(password))
-        .findFirst();
-  }
+    public Optional<Customer> findByIdAndPassword(String id, String password) {
+        return customers.stream()
+            .filter(
+                customer -> customer.getId().equals(id) && customer.getPassword().equals(password))
+            .findFirst();
+    }
+
 }

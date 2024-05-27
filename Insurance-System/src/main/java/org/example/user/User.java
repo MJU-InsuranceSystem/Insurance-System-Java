@@ -2,34 +2,43 @@ package org.example.user;
 
 public abstract class User {
 
-  String name;
-  String age;
-  String sex;
-  String phoneNumber;
-  String id;
-  String password;
+    public enum Role {
+        customer, worker
+    }
 
-  public String getName() {
-    return name;
-  }
+    String name;
+    String age;
+    String sex;
+    String phoneNumber;
+    String id;
+    String password;
+    Role role;
 
-  public String getAge() {
-    return age;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public String getSex() {
-    return sex;
-  }
+    public String getAge() {
+        return age;
+    }
 
-  public String getPhoneNumber() {
-    return phoneNumber;
-  }
+    public String getSex() {
+        return sex;
+    }
 
-  public String getPassword() {
-    return password;
-  }
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
-  public String getId() {
-    return id;
-  }
+    public String getPassword() {
+        return password;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public Role getRole() {
+        return role;
+    }
 }

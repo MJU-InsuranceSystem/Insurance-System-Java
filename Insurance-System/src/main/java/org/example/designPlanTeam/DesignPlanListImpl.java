@@ -1,4 +1,4 @@
-package org.example;
+package org.example.designPlanTeam;
 
 
 import java.util.List;
