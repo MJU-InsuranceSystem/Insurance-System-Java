@@ -1,4 +1,10 @@
-package org.example;
+package org.example.underwriteTeam;
+
+import org.example.InsuranceCompany;
+import org.example.InsuranceCompanyList;
+import org.example.Team;
+import org.example.UnderwritePolicy;
+import org.example.UnderwritePolicyListImpl;
 
 /**
  * @author USER
