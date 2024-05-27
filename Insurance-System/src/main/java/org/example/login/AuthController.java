@@ -1,7 +1,5 @@
 package org.example.login;
 
-import org.example.user.AuthProcessType;
-import org.example.user.Process;
 import org.example.user.User;
 import org.example.view.SystemView;
 
