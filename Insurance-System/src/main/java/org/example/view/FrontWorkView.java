@@ -1,2 +1,3 @@
-package org.example.view;public class FrontWorkVIew {
+package org.example.view;
+public class FrontWorkView {
 }
