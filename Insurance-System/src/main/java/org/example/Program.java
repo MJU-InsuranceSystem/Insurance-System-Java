@@ -1,12 +1,13 @@
 package org.example;
 
 import java.util.Map;
+import org.example.user.User;
 
 public interface Program {
 
-  String login(Map<String, String> authInfo);
+    User login(Map<String, String> authInfo);
 
-  void signUp(Map<String, String> authInfo);
+    User signUp(Map<String, String> authInfo);
 
-  void start(String userId);
+    void start(String userId);
 }
