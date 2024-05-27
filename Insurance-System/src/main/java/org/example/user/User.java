@@ -8,6 +8,7 @@ public abstract class User {
     String phoneNumber;
     String id;
     String password;
+    boolean loginStatus;
     UserType userType;
 
     public String getName() {
@@ -36,5 +37,17 @@ public abstract class User {
 
     public UserType getUserType() {
         return userType;
+    }
+
+    public void login() {
+        loginStatus = true;
+    }
+
+    public void logout() {
+        loginStatus = false;
+    }
+
+    public boolean isLogin() {
+        return loginStatus;
     }
 }

@@ -18,6 +18,7 @@ public class Worker extends User {
         this.id = id;
         this.password = password;
         this.userType = UserType.WORKER;
+        this.loginStatus = false;
     }
 
     public static Worker create(Map<String, String> authInfo) {

@@ -14,14 +14,11 @@ public class AuthController {
 
     public User process() {
         int selectNumber = systemView.selectAuthOption();
-        checkExitNumber(selectNumber);
-        Process process = AuthProcessType.findProcessType(selectNumber).getProcess();
-        return process.execute(systemView);
-    }
-
-    private void checkExitNumber(int selectNumber) {
         if(selectNumber == 3) {
             systemView.exitSystem();
+            return null;
         }
+        Process process = AuthProcessType.findProcessType(selectNumber).getProcess();
+        return process.execute(systemView);
     }
 }

@@ -16,24 +16,20 @@ public class LoginProcess implements Process {
 
     @Override
     public User execute(SystemView systemView) {
-        try {
             Map<String, String> loginInfo = systemView.getLoginInfo();
             User user = login(loginInfo);
+            user.login();
             systemView.successLogin();
             return user;
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
     }
 
     private User login(Map<String, String> loginInfo) {
         String id = loginInfo.get(AuthGuideMessage.AUTH_ID_KEY);
         String password = loginInfo.get(AuthGuideMessage.AUTH_PASSWORD_KEY);
-        return isExistUser(id, password);
+        return findUser(id, password);
     }
 
-    private User isExistUser(String id, String password) {
+    private User findUser(String id, String password) {
         if (workerManager.isExistByIdAndPassword(id, password)) {
             return workerManager.findByIdAndPassword(id, password).get();
         }

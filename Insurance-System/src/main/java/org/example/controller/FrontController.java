@@ -27,6 +27,9 @@ public class FrontController {
             try {
                 User user = authController.process();
                 if (user == null) {
+                    break;
+                }
+                if (!user.isLogin()) {
                     continue;
                 }
                 switch (user.getUserType()) {

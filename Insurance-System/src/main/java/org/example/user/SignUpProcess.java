@@ -16,15 +16,10 @@ public class SignUpProcess implements Process {
 
     @Override
     public User execute(SystemView systemView) {
-        try {
             Map<String, String> signUpInfo = systemView.getSignUpInfo();
             User user = signUp(signUpInfo);
             systemView.successSignUp();
             return user;
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
     }
 
     private User signUp(Map<String, String> signUpInfo) {
