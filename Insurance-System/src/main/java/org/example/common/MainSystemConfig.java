@@ -1,27 +1,32 @@
 package org.example.common;
 
-import org.example.InsuranceProgram;
-import org.example.Program;
-import org.example.user.CustomerManager;
-import org.example.user.WorkerManager;
+import org.example.controller.CustomerSystem;
+import org.example.controller.FrontController;
+import org.example.controller.WorkerSystem;
+import org.example.login.AuthController;
 import org.example.view.InsuranceSystemView;
 import org.example.view.SystemView;
 
 public class MainSystemConfig {
 
-  public SystemView systemView() {
+  public FrontController frontController() {
+    return new FrontController(systemView(), authController(), customerSystem(), workerSystem());
+  }
+
+  private SystemView systemView() {
     return new InsuranceSystemView();
   }
 
-  public Program program() {
-    return new InsuranceProgram(customerManager(), workerManager());
+  private AuthController authController() {
+    return new AuthController(systemView());
   }
 
-  public CustomerManager customerManager() {
-    return CustomerManager.getInstance();
+  private CustomerSystem customerSystem() {
+    return new CustomerSystem(systemView());
   }
 
-  public WorkerManager workerManager() {
-    return WorkerManager.getInstance();
+  private WorkerSystem workerSystem() {
+    return new WorkerSystem(systemView());
   }
+
 }

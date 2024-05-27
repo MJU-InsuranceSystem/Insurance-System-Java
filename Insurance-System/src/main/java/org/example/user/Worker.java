@@ -17,7 +17,8 @@ public class Worker extends User {
         this.phoneNumber = phoneNumber;
         this.id = id;
         this.password = password;
-        this.role = Role.worker;
+        this.userType = UserType.WORKER;
+        this.loginStatus = false;
     }
 
     public static Worker create(Map<String, String> authInfo) {

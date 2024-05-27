@@ -3,6 +3,7 @@ package org.example.view;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import org.example.Department;
 import org.example.common.AuthGuideMessage;
 
 public class InsuranceSystemView implements SystemView {
@@ -19,6 +20,15 @@ public class InsuranceSystemView implements SystemView {
         println("아래 선택지 중 원하는 것을 선택해주세요");
         println("1. 로그인 / 2. 회원가입 / 3. 종료");
         return writeInt(); // 예외처리?
+    }
+
+    @Override
+    public int selectTeam() {
+        println("직원용 보험사 시스템입니다. 작업하실 팀을 고르세용");
+        for (Department department : Department.values()) {
+            System.out.println(department.getOrder() + "번 :" + department.getName());
+        }
+        return writeInt();
     }
 
     @Override

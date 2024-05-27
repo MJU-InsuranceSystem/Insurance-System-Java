@@ -2,17 +2,14 @@ package org.example.user;
 
 public abstract class User {
 
-    public enum Role {
-        customer, worker
-    }
-
     String name;
     String age;
     String sex;
     String phoneNumber;
     String id;
     String password;
-    Role role;
+    boolean loginStatus;
+    UserType userType;
 
     public String getName() {
         return name;
@@ -38,7 +35,19 @@ public abstract class User {
         return id;
     }
 
-    public Role getRole() {
-        return role;
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public void login() {
+        loginStatus = true;
+    }
+
+    public void logout() {
+        loginStatus = false;
+    }
+
+    public boolean isLogin() {
+        return loginStatus;
     }
 }

@@ -1,11 +1,10 @@
 package org.example.user;
 
 import java.util.Arrays;
-import java.util.Optional;
 
 public enum AuthProcessType {
-  LOGIN(1, LoginProcess.getInstance()),
-  SIGN_UP(2, SignUpProcess.getInstance());
+  LOGIN(1, new LoginProcess(CustomerManager.getInstance(), WorkerManager.getInstance())),
+  SIGN_UP(2, new SignUpProcess(CustomerManager.getInstance(), WorkerManager.getInstance()));
 
   private final int processNumber;
   private final Process process;
@@ -23,9 +22,10 @@ public enum AuthProcessType {
     return this.process;
   }
 
-  public static Optional<AuthProcessType> findProcessType(int processNumber) {
+  public static AuthProcessType findProcessType(int processNumber) {
     return Arrays.stream(AuthProcessType.values())
         .filter(process -> process.getProcessNumber() == processNumber)
-        .findFirst();
+        .findFirst()
+        .orElseThrow(() -> new IllegalArgumentException("해당 프로세스 번호는 존재하지 않습니다."));
   }
 }
