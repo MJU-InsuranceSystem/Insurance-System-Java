@@ -1,11 +1,13 @@
 package org.example;
 
+import org.example.business.design.controller.dto.Request;
+import org.example.business.design.controller.dto.Response;
+import org.example.business.design.view.DesignInspectionController.Function;
 import org.example.domain.insurance.Insurance;
 
 /**
  * @author yoon
  * @version 1.0
- *
  */
 public abstract class Team {
 
@@ -23,7 +25,7 @@ public abstract class Team {
 
     public abstract void manage();
 
-    public abstract void process(int processNum, int domainId);
+    public abstract Response process(Function function, Request request);
 
     public abstract void register();
 
