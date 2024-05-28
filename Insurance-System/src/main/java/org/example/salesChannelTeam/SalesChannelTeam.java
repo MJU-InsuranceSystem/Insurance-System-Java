@@ -1,5 +1,6 @@
-package org.example;
+package org.example.salesChannelTeam;
 
+import org.example.salesChannelTeam.*;
 import org.example.user.Customer;
 
 /**

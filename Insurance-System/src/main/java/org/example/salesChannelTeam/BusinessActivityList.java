@@ -1,10 +1,9 @@
-package org.example;
-
+package org.example.salesChannelTeam;
 /**
  * @author USER
  * @version 1.0
  */
-public interface MeetingCounselList {
+public interface BusinessActivityList {
 
 	public void add();
 

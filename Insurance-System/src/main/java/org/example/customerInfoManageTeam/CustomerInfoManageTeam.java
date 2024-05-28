@@ -1,4 +1,7 @@
-package org.example;
+package org.example.customerInfoManageTeam;
+
+import org.example.customerInfoManageTeam.Counselee;
+import org.example.customerInfoManageTeam.CounseleeListImpl;
 
 /**
  * @author USER

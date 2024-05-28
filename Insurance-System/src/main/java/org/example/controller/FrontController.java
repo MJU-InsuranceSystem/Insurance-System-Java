@@ -14,7 +14,7 @@ public class FrontController {
     private static boolean PROGRAM_TRIGGER = false;
 
     public FrontController(SystemView systemView, AuthController authController,
-        CustomerSystem customerSystem, WorkerSystem workerSystem) {
+                           CustomerSystem customerSystem, WorkerSystem workerSystem) {
         this.systemView = systemView;
         this.authController = authController;
         this.customerSystem = customerSystem;

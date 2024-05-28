@@ -1,5 +1,6 @@
-package org.example;
+package org.example.rewardSupportTeam;
 
+import org.example.RewardPaymentMethod;
 import org.example.domain.insurance.InsuranceKind;
 
 /**

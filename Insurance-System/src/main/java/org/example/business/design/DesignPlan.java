@@ -12,7 +12,7 @@ public class DesignPlan {
     private String InsuranceName;
     private String Manager;
     private org.example.business.design.Proposal Proposal;
-    private org.example.Reward Reward;
+    private org.example.rewardSupportTeam.Reward Reward;
     private SaleTarget saleTarget;
 
     public DesignPlan() {

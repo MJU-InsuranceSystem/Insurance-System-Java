@@ -1,13 +1,13 @@
-package org.example;
+package org.example.salesChannelTeam;
 /**
  * @author USER
  * @version 1.0
  */
-public class MeetingCounselListImpl implements MeetingCounselList {
+public class BusinessActivityListImpl implements BusinessActivityList {
 
-	public MeetingCounsel m_MeetingCounsel;
+	public BusinessActivity m_BusinessActivity;
 
-	public MeetingCounselListImpl(){
+	public BusinessActivityListImpl(){
 
 	}
 
