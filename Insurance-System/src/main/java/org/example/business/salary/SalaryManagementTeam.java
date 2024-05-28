@@ -1,6 +1,9 @@
 package org.example.business.salary;
 
 import org.example.Team;
+import org.example.business.design.controller.dto.Request;
+import org.example.business.design.controller.dto.Response;
+import org.example.business.design.view.DesignInspectionController.Function;
 
 public class SalaryManagementTeam extends Team {
 
@@ -13,8 +16,8 @@ public class SalaryManagementTeam extends Team {
     }
 
     @Override
-    public void process(int processNum, int domainId) {
-
+    public Response process(Function function, Request request) {
+        return null;
     }
 
     @Override

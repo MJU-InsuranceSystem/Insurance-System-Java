@@ -8,9 +8,6 @@ import org.example.Department;
 import org.example.common.AuthGuideMessage;
 
 public class InsuranceSystemView implements SystemView {
-
-    private static final Scanner scanner = new Scanner(System.in);
-
     @Override
     public void introduce() {
         println("안녕하세요. MJU 보험사 시스템입니다.");
@@ -25,9 +22,9 @@ public class InsuranceSystemView implements SystemView {
 
     @Override
     public int selectTeam() {
-        println("직원용 보험사 시스템입니다. 작업하실 팀을 고르세용");
+        println("직원용 보험사 시스템입니다. 작업하실 팀을 고르세요");
         for (Department department : Department.values()) {
-            System.out.println(department.getOrder() + "번 :" + department.getName());
+            println(department.getOrder() + "번 :" + department.getName());
         }
         return writeInt();
     }
@@ -80,11 +77,17 @@ public class InsuranceSystemView implements SystemView {
     }
 
     private String writeString() {
-        return scanner.next();
+        Scanner scanner = new Scanner(System.in);
+        String text = scanner.next();
+        scanner.close();
+        return text;
     }
 
     private int writeInt() {
-        return scanner.nextInt();
+        Scanner scanner = new Scanner(System.in);
+        int text = scanner.nextInt();
+        scanner.close();
+        return text;
     }
 
     private void println(String message) {

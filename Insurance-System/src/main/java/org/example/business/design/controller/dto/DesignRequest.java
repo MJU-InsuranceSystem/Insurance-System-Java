@@ -12,7 +12,6 @@ public class DesignRequest implements Request {
     private String insurancePayment;
     private String saleTarget;
 
-
     public String getProductOverView() {
         return productOverView;
     }
