@@ -1,6 +1,9 @@
 package org.example.damageAssessmentTeam;
 
 import org.example.Team;
+import org.example.business.design.controller.dto.Request;
+import org.example.business.design.controller.dto.Response;
+import org.example.business.design.view.DesignInspectionController;
 
 /**
  * @author USER
@@ -21,9 +24,14 @@ public class DamageAssessmentTeam extends Team {
 	}
 
 	@Override
-	public void process(int processNum, int domainId) {
-
+	public Response process(DesignInspectionController.Function function, Request request) {
+		return null;
 	}
+
+//	@Override
+//	public void process(int processNum, int domainId) {
+//
+//	}
 
 	public void process(){
 
