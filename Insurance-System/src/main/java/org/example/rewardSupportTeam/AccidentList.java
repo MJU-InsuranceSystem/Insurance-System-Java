@@ -1,4 +1,4 @@
-package org.example.domain.team;
+package org.example.rewardSupportTeam;
 
 
 /**

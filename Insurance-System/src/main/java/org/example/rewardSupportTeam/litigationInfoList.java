@@ -1,9 +1,10 @@
-package org.example;
+package org.example.rewardSupportTeam;
+
 /**
  * @author USER
  * @version 1.0
  */
-public interface BusinessActivityList {
+public interface litigationInfoList {
 
 	public void add();
 

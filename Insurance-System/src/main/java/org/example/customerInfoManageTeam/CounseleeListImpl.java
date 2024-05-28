@@ -1,4 +1,4 @@
-package org.example;
+package org.example.customerInfoManageTeam;
 /**
  * @author USER
  * @version 1.0

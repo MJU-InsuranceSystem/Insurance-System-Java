@@ -1,4 +1,7 @@
-package org.example;
+package org.example.damageAssessmentTeam;
+
+import org.example.Team;
+
 /**
  * @author USER
  * @version 1.0

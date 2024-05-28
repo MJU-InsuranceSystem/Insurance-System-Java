@@ -1,8 +1,6 @@
-package org.example.domain.team;
+package org.example.rewardSupportTeam;
 
 import org.example.Team;
-import org.example.litigationInfo;
-import org.example.litigationInfoListImpl;
 
 /**
  * @author USER

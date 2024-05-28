@@ -3,7 +3,6 @@ package org.example.user;
 import java.util.Map;
 import org.example.Contract;
 import org.example.common.AuthGuideMessage;
-import org.example.IncomeInfo;
 
 /**
  * @author USER

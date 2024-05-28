@@ -1,6 +1,6 @@
 package org.example.business.design;
 
-import org.example.Reward;
+import org.example.rewardSupportTeam.Reward;
 import org.example.business.design.controller.dto.Request;
 
 /**

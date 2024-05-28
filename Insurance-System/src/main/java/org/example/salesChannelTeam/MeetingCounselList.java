@@ -1,10 +1,10 @@
-package org.example;
+package org.example.salesChannelTeam;
 
 /**
  * @author USER
  * @version 1.0
  */
-public interface litigationInfoList {
+public interface MeetingCounselList {
 
 	public void add();
 

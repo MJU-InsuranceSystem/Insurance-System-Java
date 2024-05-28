@@ -3,6 +3,7 @@ package org.example.view;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+
 import org.example.Department;
 import org.example.common.AuthGuideMessage;
 
