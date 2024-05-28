@@ -1,11 +1,13 @@
 package org.example.rewardSupportTeam;
 
 import org.example.Team;
+import org.example.business.design.controller.dto.Request;
+import org.example.business.design.controller.dto.Response;
+import org.example.business.design.view.DesignInspectionController;
 
 /**
  * @author USER
  * @version 1.0
- *
  */
 public class RewardSupportTeam extends Team {
 
@@ -20,7 +22,7 @@ public class RewardSupportTeam extends Team {
         this.accidentListImpl = accidentListImpl;
         this.litigationInfoListImpl = litigationInfoListImpl;
     }
-    
+
     public void finalize() throws Throwable {
 
     }
@@ -31,22 +33,27 @@ public class RewardSupportTeam extends Team {
 
     }
 
-
     @Override
-    public void process(int processNum, int domainId) {
-        switch (processNum) {
-            case 1:
-
-                Accident nowAccident = accidentListImpl.read(domainId);
-
-                break;
-            case 2:
-
-                break;
-            default:
-                break;
-        }
+    public Response process(DesignInspectionController.Function function, Request request) {
+        return null;
     }
+
+
+//    @Override
+//    public void process(int processNum, int domainId) {
+//        switch (processNum) {
+//            case 1:
+//
+//                Accident nowAccident = accidentListImpl.read(domainId);
+//
+//                break;
+//            case 2:
+//
+//                break;
+//            default:
+//                break;
+//        }
+//    }
 
     @Override
     public void register() {
