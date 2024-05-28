@@ -1,6 +1,6 @@
 package org.example;
 
-public interface TeamView {
+public interface TeamController {
 
     void process();
 }

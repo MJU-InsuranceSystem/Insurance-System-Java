@@ -1,10 +1,10 @@
 package org.example;
 
 import java.util.Arrays;
-import org.example.designPlanTeam.view.DesignInspectionView;
+import org.example.business.design.view.DesignInspectionController;
 
 public enum Department {
-    DESIGN_PLAN_TEAM(1, new DesignInspectionView(), "상품 기획팀"),
+    DESIGN_PLAN_TEAM(1, new DesignInspectionController(), "상품 기획팀"),
     UNDER_WRITE_TEAM(2, null, "U/W팀"),
     BUSINESS_EDUCATION_TEAM(3, null, "영업 교육 팀"),
     MARKETING_TEAM(4, null, "마케팅 팀"),
@@ -12,12 +12,12 @@ public enum Department {
     RECRUITMENT_TEAM(6, null, "채용 관리 팀"),
     SALARY_MANAGEMENT_TEAM(7, null, "급여 관리 팀");
     private final int order;
-    private final TeamView teamView;
+    private final TeamController teamView;
     private final String name;
 
-    Department(int order, TeamView teamView, String name) {
+    Department(int order, TeamController teamController, String name) {
         this.order = order;
-        this.teamView = teamView;
+        this.teamView = teamController;
         this.name = name;
     }
 
@@ -32,7 +32,7 @@ public enum Department {
         return order;
     }
 
-    public TeamView getTeamController() {
+    public TeamController getTeamController() {
         return teamView;
     }
 
