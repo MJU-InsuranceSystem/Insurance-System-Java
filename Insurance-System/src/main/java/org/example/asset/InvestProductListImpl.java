@@ -1,18 +1,16 @@
-package org.example;
+package org.example.asset;
 
 import java.util.List;
 
 /**
- * @author USER
+ * @author eirch
  * @version 1.0
  */
-public class LoanHistoryListImpl implements LoanHistoryList {
+public class InvestProductListImpl implements InvestProductList {
 
-	private List<LoanHistory> loanHistorys;
+	private List<InvestProduct> InvestProducts;
+	public InvestProduct m_InvestProduct;
 
-	public LoanHistoryListImpl(){
-
-	}
 
 	public void finalize() throws Throwable {
 

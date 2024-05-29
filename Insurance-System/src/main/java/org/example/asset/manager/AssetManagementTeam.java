@@ -1,8 +1,8 @@
 package org.example.asset.manager;
 
-import org.example.InvestScenario;
-import org.example.InvestScenarioListImpl;
-import org.example.LoanHistoryListImpl;
+import org.example.asset.InvestScenario;
+import org.example.asset.InvestScenarioListImpl;
+import org.example.asset.LoanHistoryListImpl;
 import org.example.Team;
 
 public class AssetManagementTeam extends Team {

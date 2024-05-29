@@ -1,10 +1,9 @@
-package org.example;
-
+package org.example.asset;
 /**
- * @author eirch
+ * @author yoon
  * @version 1.0
  */
-public interface LoanHistoryList {
+public interface InvestScenarioList {
 
 	public void add();
 
