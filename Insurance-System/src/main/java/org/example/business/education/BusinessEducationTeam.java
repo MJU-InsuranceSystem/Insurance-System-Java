@@ -3,7 +3,8 @@ package org.example.business.education;
 import org.example.Team;
 import org.example.business.design.controller.dto.Request;
 import org.example.business.design.controller.dto.Response;
-import org.example.business.design.view.DesignInspectionController.Function;
+import org.example.business.education.model.Education;
+import org.example.business.education.model.EducationListImpl;
 
 /**
  * @author USER
@@ -25,7 +26,7 @@ public class BusinessEducationTeam extends Team {
 	}
 
 	@Override
-	public Response process(Function function, Request request) {
+	public Response process(int function, Request request) {
 		return null;
 	}
 

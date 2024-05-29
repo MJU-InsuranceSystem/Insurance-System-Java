@@ -17,4 +17,5 @@ public class DepartmentConfig {
   private static BusinessEducationTeam businessEducationTeam() {
     return new BusinessEducationTeam();
   }
+
 }

@@ -1,11 +1,11 @@
-package org.example.business.education.controller;
+package org.example.common.dto;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class RequestDto {
 
-  protected final Map<String, String> requestInfo = new HashMap<>();
+  private final Map<String, String> requestInfo = new HashMap<>();
 
   public void add(String key, String value) {
     requestInfo.put(key, value);

@@ -1,7 +1,7 @@
 package org.example.business.education.view;
 
 import java.util.Scanner;
-import org.example.business.education.controller.RequestDto;
+import org.example.common.dto.RequestDto;
 import org.example.business.education.usecase.EducationUseCase;
 
 public class EducationView {

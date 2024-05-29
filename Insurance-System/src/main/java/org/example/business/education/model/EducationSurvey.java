@@ -1,4 +1,4 @@
-package org.example.business.education;
+package org.example.business.education.model;
 /**
  * @author USER
  * @version 1.0

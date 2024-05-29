@@ -1,8 +1,7 @@
 package org.example;
 
-import org.example.business.design.controller.dto.Request;
-import org.example.business.design.controller.dto.Response;
-import org.example.business.design.view.DesignInspectionController.Function;
+import org.example.common.dto.RequestDto;
+import org.example.common.dto.ResponseDto;
 import org.example.domain.insurance.Insurance;
 
 /**
@@ -19,18 +18,13 @@ public abstract class Team {
 
     }
 
-    public void finalize() throws Throwable {
-
-    }
-
     public abstract void manage();
 
-    public abstract Response process(Function function, Request request);
+    public abstract ResponseDto process(int usecaseNumber, RequestDto request);
 
     public abstract void register();
 
     public abstract void remove();
 
-    public abstract Object retrieve();
-
+    public abstract ResponseDto retrieve();
 }

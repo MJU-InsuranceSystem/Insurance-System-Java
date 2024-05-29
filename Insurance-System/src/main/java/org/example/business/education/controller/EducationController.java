@@ -4,6 +4,7 @@ import org.example.TeamController;
 import org.example.business.education.BusinessEducationTeam;
 import org.example.business.education.usecase.EducationUseCase;
 import org.example.business.education.view.EducationView;
+import org.example.common.dto.RequestDto;
 
 public class EducationController implements TeamController {
 
@@ -21,7 +22,7 @@ public class EducationController implements TeamController {
     int selectNumber = educationView.selectUsecase();
     EducationUseCase useCase = EducationUseCase.findByNumber(selectNumber);
     RequestDto requestDto = showUsecaseRequireInfo(useCase);
-    businessEducationTeam.process(useCase, requestDto);
+    businessEducationTeam.process(selectNumber, requestDto);
   }
 
   private RequestDto showUsecaseRequireInfo(EducationUseCase useCase) {
