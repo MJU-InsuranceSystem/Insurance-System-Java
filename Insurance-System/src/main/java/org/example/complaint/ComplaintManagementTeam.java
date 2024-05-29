@@ -1,6 +1,6 @@
-package org.example.customerInfoManageTeam;
+package org.example.complaint;
 
-import org.example.Complaint;
+import org.example.complaint.Complaint;
 
 /**
  * @author USER

@@ -1,15 +1,16 @@
-package org.example;
+package org.example.asset;
+
+import java.util.List;
 
 /**
  * @author USER
  * @version 1.0
  */
-public class InvestResultListImpl implements InvestResultList {
+public class LoanHistoryListImpl implements LoanHistoryList {
 
-	private InvestResult investResults;
-	public InvestResult m_InvestResult;
+	private List<LoanHistory> loanHistorys;
 
-	public InvestResultListImpl(){
+	public LoanHistoryListImpl(){
 
 	}
 

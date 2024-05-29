@@ -1,9 +1,10 @@
-package org.example;
+package org.example.asset;
+
 /**
- * @author yoon
+ * @author USER
  * @version 1.0
  */
-public interface InvestScenarioList {
+public interface InvestResultList {
 
 	public void add();
 
