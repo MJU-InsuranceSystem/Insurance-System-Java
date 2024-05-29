@@ -17,4 +17,6 @@ public interface SystemView {
   void successSignUp();
 
   void exitSystem();
+
+  int selectTeam();
 }

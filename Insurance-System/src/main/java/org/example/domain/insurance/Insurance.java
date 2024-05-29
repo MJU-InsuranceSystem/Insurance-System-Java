@@ -1,7 +1,7 @@
 package org.example.domain.insurance;
 
 import org.example.InsuranceListImpl;
-import org.example.Reward;
+import org.example.rewardSupportTeam.Reward;
 /**
  * @author USER
  * @version 1.0

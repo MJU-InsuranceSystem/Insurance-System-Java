@@ -1,5 +1,10 @@
 package org.example;
 
+import org.example.business.design.Proposal;
+import org.example.business.design.ProposalListImpl;
+import org.example.designPlanTeam.DesignPlan;
+import org.example.designPlanTeam.DesignPlanListImpl;
+
 /**
  * @author USER
  * @version 1.0
