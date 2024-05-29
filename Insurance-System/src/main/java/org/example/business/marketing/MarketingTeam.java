@@ -1,6 +1,9 @@
 package org.example.business.marketing;
 
 import org.example.Team;
+import org.example.business.design.controller.dto.Request;
+import org.example.business.design.controller.dto.Response;
+import org.example.business.design.view.DesignInspectionController.Function;
 
 /**
  * @author USER
@@ -21,8 +24,8 @@ public class MarketingTeam extends Team {
 	}
 
 	@Override
-	public void process(int processNum, int domainId) {
-
+	public Response process(Function function, Request request) {
+		return null;
 	}
 
 	@Override

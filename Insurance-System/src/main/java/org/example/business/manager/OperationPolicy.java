@@ -1,7 +1,7 @@
 package org.example.business.manager;
 
 import java.util.List;
-import org.example.business.education.EducationSurvey;
+import org.example.business.education.model.EducationSurvey;
 
 /**
  * @author USER
