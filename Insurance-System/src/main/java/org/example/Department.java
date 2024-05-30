@@ -1,11 +1,12 @@
 package org.example;
 
 import java.util.Arrays;
-import org.example.business.design.view.DesignInspectionController;
+import org.example.planTeam.design.controller.DesignInspectionController;
 import org.example.common.DepartmentConfig;
 
 public enum Department {
-    DESIGN_PLAN_TEAM(1, new DesignInspectionController(), "상품 기획팀"),
+    DESIGN_PLAN_TEAM(1,
+        (DepartmentConfig.designInspectionController()), "상품 기획팀"),
     UNDER_WRITE_TEAM(2, null, "U/W팀"),
     BUSINESS_EDUCATION_TEAM(3, DepartmentConfig.educationController(), "영업 교육 팀"),
     MARKETING_TEAM(4, null, "마케팅 팀"),
