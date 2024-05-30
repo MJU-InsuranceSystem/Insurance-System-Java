@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 public class DepartmentView {
 
+    public void intro(String teamName) {
+        System.out.println(teamName + "입니다. 업무를 선택해주세요.");
+    }
 
     protected String writeString() {
         Scanner scanner = new Scanner(System.in);
