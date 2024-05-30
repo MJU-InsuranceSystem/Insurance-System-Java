@@ -11,6 +11,13 @@ import org.example.planTeam.design.model.DesignPlanListImpl;
 import org.example.planTeam.design.model.ProposalList;
 import org.example.planTeam.design.model.ProposalListImpl;
 import org.example.planTeam.design.view.DesignTeamView;
+import org.example.rewardSupportTeam.RewardSupportTeam;
+import org.example.rewardSupportTeam.controller.RewardSupportController;
+import org.example.rewardSupportTeam.model.AccidentList;
+import org.example.rewardSupportTeam.model.AccidentListImpl;
+import org.example.rewardSupportTeam.model.litigationInfoList;
+import org.example.rewardSupportTeam.model.litigationInfoListImpl;
+import org.example.rewardSupportTeam.view.RewardSupportView;
 
 public class DepartmentConfig {
 
@@ -28,7 +35,6 @@ public class DepartmentConfig {
 
     public static TeamController designInspectionController() {
         return new DesignInspectionController(designTeamView(), designInspectionTeam());
-
     }
 
     private static DesignTeamView designTeamView() {
@@ -47,4 +53,24 @@ public class DepartmentConfig {
         return new ProposalListImpl();
     }
 
+    // reward
+    public static RewardSupportController rewardSupportController() {
+        return new RewardSupportController(rewardSupportView(), rewardSupportTeam());
+    }
+
+    private static RewardSupportView rewardSupportView() {
+        return new RewardSupportView();
+    }
+
+    private static RewardSupportTeam rewardSupportTeam() {
+        return new RewardSupportTeam(accidentList(), litigationInfoList());
+    }
+
+    private static AccidentList accidentList() {
+        return new AccidentListImpl();
+    }
+
+    private static litigationInfoList litigationInfoList() {
+        return new litigationInfoListImpl();
+    }
 }

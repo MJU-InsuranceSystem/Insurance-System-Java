@@ -18,9 +18,9 @@ public class EducationView extends DepartmentView {
     }
 
 
-    private void print(String message) {
-        System.out.print(message);
-    }
+//    private void print(String message) {
+//        System.out.print(message);
+//    }
 
     public RequestDto manageEducation() {
         return null;

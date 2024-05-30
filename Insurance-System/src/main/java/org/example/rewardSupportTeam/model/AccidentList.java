@@ -1,4 +1,4 @@
-package org.example.rewardSupportTeam;
+package org.example.rewardSupportTeam.model;
 
 
 /**
