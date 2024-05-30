@@ -1,4 +1,5 @@
-package org.example.business.design;
+package org.example.planTeam.design.model;
+
 
 import java.util.List;
 
@@ -6,12 +7,12 @@ import java.util.List;
  * @author yoon
  * @version 1.0
  */
-public class ProposalListImpl implements ProposalList {
+public class DesignPlanListImpl implements DesignPlanList {
 
-    private List<Proposal> proposalList;
-    public Proposal proposal;
+    private List<DesignPlan> designPlanList;
+    public DesignPlan m_DesignPlan;
 
-    public ProposalListImpl() {
+    public DesignPlanListImpl() {
 
     }
 

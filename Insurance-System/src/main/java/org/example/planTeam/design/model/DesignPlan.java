@@ -1,6 +1,4 @@
-package org.example.business.design;
-
-import org.example.SaleTarget;
+package org.example.planTeam.design.model;
 
 /**
  * @author USER
@@ -11,7 +9,7 @@ public class DesignPlan {
     private String Description;
     private String InsuranceName;
     private String Manager;
-    private org.example.business.design.Proposal Proposal;
+    private org.example.planTeam.design.model.Proposal Proposal;
     private org.example.rewardSupportTeam.Reward Reward;
     private SaleTarget saleTarget;
 

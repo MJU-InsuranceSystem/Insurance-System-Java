@@ -1,11 +1,11 @@
-package org.example.business.design;
+package org.example.planTeam.design.model;
 
 
 /**
  * @author yoon
  * @version 1.0
  */
-public interface ProposalList {
+public interface DesignPlanList {
 
     public void add();
 
