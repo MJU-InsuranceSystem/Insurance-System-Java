@@ -20,7 +20,7 @@ public abstract class Team {
 
     public abstract void manage();
 
-    public abstract ResponseDto process(int usecaseNumber, RequestDto request);
+    public abstract ResponseDto process(RequestDto request);
 
     public abstract void register();
 
