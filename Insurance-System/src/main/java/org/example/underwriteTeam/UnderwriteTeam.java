@@ -5,13 +5,17 @@ import org.example.InsuranceCompanyList;
 import org.example.Team;
 import org.example.common.dto.RequestDto;
 import org.example.common.dto.ResponseDto;
+import org.example.planTeam.Status;
+import org.example.underwriteTeam.model.UnderwritePolicy;
+import org.example.underwriteTeam.model.UnderwritePolicyListImpl;
+import org.example.underwriteTeam.view.UnderwriteView;
 
 /**
  * @author USER
  * @version 1.0
  */
 
-public class UnderWriteTeam extends Team {
+public class UnderwriteTeam extends Team {
 
     public InsuranceCompany m_InsuranceCompany;
     public InsuranceCompanyList m_InsuranceCompanyList;
@@ -30,7 +34,14 @@ public class UnderWriteTeam extends Team {
 
     @Override
     public ResponseDto register(RequestDto request) {
-        return null;
+        int policyId = Integer.parseInt(request.get(UnderwriteView.POLICY_NUMBER));
+        String policyName = request.get(UnderwriteView.POLICY_NAME);
+        String content = request.get(UnderwriteView.POLICY_CONTENTS);
+        UnderwritePolicy underwritePolicy = UnderwritePolicy.create(policyId, policyName, content);
+
+        ResponseDto responseDto = new ResponseDto();
+        responseDto.add(Status.key(), Status.SUCCESS.getStatus());
+        return responseDto;
     }
 
     @Override

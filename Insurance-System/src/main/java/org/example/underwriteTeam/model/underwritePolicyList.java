@@ -1,4 +1,4 @@
-package org.example.underwriteTeam;
+package org.example.underwriteTeam.model;
 
 /**
  * @author yoon
