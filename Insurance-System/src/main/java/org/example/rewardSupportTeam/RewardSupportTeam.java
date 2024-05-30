@@ -1,9 +1,15 @@
 package org.example.rewardSupportTeam;
 
 import org.example.Team;
-import org.example.business.design.controller.dto.Request;
-import org.example.business.design.controller.dto.Response;
-import org.example.business.design.view.DesignInspectionController;
+import org.example.common.dto.RequestDto;
+import org.example.common.dto.ResponseDto;
+import org.example.planTeam.Status;
+import org.example.rewardSupportTeam.model.Accident;
+import org.example.rewardSupportTeam.model.AccidentList;
+import org.example.rewardSupportTeam.model.ClaimInsurance;
+import org.example.rewardSupportTeam.model.litigationInfoList;
+
+import static org.example.rewardSupportTeam.view.RewardSupportView.*;
 
 /**
  * @author USER
@@ -11,16 +17,13 @@ import org.example.business.design.view.DesignInspectionController;
  */
 public class RewardSupportTeam extends Team {
 
-    public Accident accident;
-    public litigationInfo litigationInfo;
-    public AccidentListImpl accidentListImpl;
-    public litigationInfoListImpl litigationInfoListImpl;
+    public AccidentList accidentList;
+    public litigationInfoList litigationInfoList;
 
-    public RewardSupportTeam(Accident accident, litigationInfo litigationInfo, AccidentListImpl accidentListImpl, litigationInfoListImpl litigationInfoListImpl) {
-        this.accident = accident;
-        this.litigationInfo = litigationInfo;
-        this.accidentListImpl = accidentListImpl;
-        this.litigationInfoListImpl = litigationInfoListImpl;
+
+    public RewardSupportTeam(AccidentList accidentList, litigationInfoList litigationInfoList) {
+        this.accidentList = accidentList;
+        this.litigationInfoList = litigationInfoList;
     }
 
     public void finalize() throws Throwable {
@@ -29,44 +32,43 @@ public class RewardSupportTeam extends Team {
 
 
     @Override
-    public void manage() {
-
-    }
-
-    @Override
-    public Response process(DesignInspectionController.Function function, Request request) {
+    public ResponseDto manage(RequestDto request) {
         return null;
     }
 
-
-//    @Override
-//    public void process(int processNum, int domainId) {
-//        switch (processNum) {
-//            case 1:
-//
-//                Accident nowAccident = accidentListImpl.read(domainId);
-//
-//                break;
-//            case 2:
-//
-//                break;
-//            default:
-//                break;
-//        }
-//    }
-
     @Override
-    public void register() {
-
+    public ResponseDto process(RequestDto request) {
+        return null;
     }
 
     @Override
-    public void remove() {
+    public ResponseDto register(RequestDto request) {
+        Accident accident = new Accident();
+        accident.setContent(request.get(ACCIDENT_CONTENT));
+        accident.setCustomerName(request.get(ACCIDENT_NAME));
 
+        ClaimInsurance claimInsurance = new ClaimInsurance();
+        claimInsurance.setAccount(request.get(CLAIMINSURANCE_ACCOUNT));
+        claimInsurance.setAddress(request.get(CLAIMINSURANCE_ADDRESS));
+        claimInsurance.setPhoneNumber(request.get(CLAIMINSURANCE_PHONENUMBER));
+        claimInsurance.setResidentNumber(request.get(CLAIMINSURANCE_RESIDENTNUMBER));
+        claimInsurance.setSupportingFile(request.get(CLAIMINSURANCE_SUPPORTINGFILE));
+
+        accident.setClaimInsurance(claimInsurance);
+        accidentList.add(accident);
+
+        ResponseDto responseDto = new ResponseDto();
+        responseDto.add(Status.key(), Status.SUCCESS.getStatus());
+        return responseDto;
     }
 
     @Override
-    public Object retrieve() {
+    public ResponseDto remove(RequestDto request) {
+        return null;
+    }
+
+    @Override
+    public ResponseDto retrieve(RequestDto request) {
         return null;
     }
 }

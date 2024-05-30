@@ -1,8 +1,8 @@
 package org.example;
 
-import java.util.Arrays;
-import org.example.planTeam.design.controller.DesignInspectionController;
 import org.example.common.DepartmentConfig;
+
+import java.util.Arrays;
 
 public enum Department {
     DESIGN_PLAN_TEAM(1,
@@ -12,7 +12,9 @@ public enum Department {
     MARKETING_TEAM(4, null, "마케팅 팀"),
     EMPLOYEE_MANAGEMENT_TEAM(5, null, "영업 관리 팀"),
     RECRUITMENT_TEAM(6, null, "채용 관리 팀"),
-    SALARY_MANAGEMENT_TEAM(7, null, "급여 관리 팀");
+    SALARY_MANAGEMENT_TEAM(7, null, "급여 관리 팀"),
+    REWARD_SUPPORT_TEAM(8, DepartmentConfig.rewardSupportController(), "보상 지원 팀")
+    ;
     private final int order;
     private final TeamController teamView;
     private final String name;

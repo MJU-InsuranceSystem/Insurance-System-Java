@@ -1,15 +1,14 @@
 package org.example.planTeam.design.controller;
 
 
-import static org.example.planTeam.design.view.ProposalConstant.DESIGN_TEAM_NAME;
-
 import org.example.Team;
 import org.example.TeamController;
 import org.example.common.dto.RequestDto;
-
 import org.example.common.dto.ResponseDto;
 import org.example.planTeam.design.usecase.DesignUseCase;
 import org.example.planTeam.design.view.DesignTeamView;
+
+import static org.example.planTeam.design.view.ProposalConstant.DESIGN_TEAM_NAME;
 
 public class DesignInspectionController implements TeamController {
 

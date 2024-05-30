@@ -26,6 +26,10 @@ public class DepartmentView {
         System.out.println(message);
     }
 
+    protected void print(String message) {
+        System.out.println(message);
+    }
+
     public <E extends Enum<E> & Usecase> int selectUsecase(Class<E> enumType) {
         println("아래 중 수행하실 번호를 입력해주세요.");
         for (E usecase : enumType.getEnumConstants()) {
