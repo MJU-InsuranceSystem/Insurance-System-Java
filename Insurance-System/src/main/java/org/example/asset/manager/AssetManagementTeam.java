@@ -4,6 +4,8 @@ import org.example.asset.InvestScenario;
 import org.example.asset.InvestScenarioListImpl;
 import org.example.asset.LoanHistoryListImpl;
 import org.example.Team;
+import org.example.common.dto.RequestDto;
+import org.example.common.dto.ResponseDto;
 
 public class AssetManagementTeam extends Team {
 
@@ -15,24 +17,36 @@ public class AssetManagementTeam extends Team {
 
 	}
 
+	@Override
+	public ResponseDto manage(RequestDto request) {
+		return null;
+	}
+
+	@Override
+	public ResponseDto process(RequestDto request) {
+		return null;
+	}
+
+	@Override
+	public ResponseDto register(RequestDto request) {
+		return null;
+	}
+
+	@Override
+	public ResponseDto remove(RequestDto request) {
+		return null;
+	}
+
+	@Override
+	public ResponseDto retrieve(RequestDto request) {
+		return null;
+	}
+
 	public void finalize() throws Throwable {
 		super.finalize();
 	}
 
 	public void createStatistic(){
-
-	}
-
-	public void manage(){
-
-	}
-
-	@Override
-	public void process(int processNum, int domainId) {
-
-	}
-
-	public void process(){
 
 	}
 
@@ -42,19 +56,6 @@ public class AssetManagementTeam extends Team {
 
 	public void readStatisticHistory(){
 
-	}
-
-	public void register(){
-
-	}
-
-	public void remove(){
-
-	}
-
-	public Object retrieve(){
-
-		return null;
 	}
 
 	public void saveSimulationResult(){

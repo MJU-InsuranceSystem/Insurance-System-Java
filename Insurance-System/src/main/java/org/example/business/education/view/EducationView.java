@@ -17,11 +17,6 @@ public class EducationView extends DepartmentView {
         println("안녕하세요. 영업 교육팀입니다.");
     }
 
-
-    private void print(String message) {
-        System.out.print(message);
-    }
-
     public RequestDto manageEducation() {
         return null;
     }
