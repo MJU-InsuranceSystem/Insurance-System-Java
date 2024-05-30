@@ -7,12 +7,12 @@ package org.example.planTeam.design.model;
  */
 public interface DesignPlanList {
 
-    public void add();
+    void add();
 
-    public void delete();
+    void delete();
 
-    public Object read();
+    Object read();
 
-    public void update();
+    void update();
 
 }

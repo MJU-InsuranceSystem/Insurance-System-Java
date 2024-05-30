@@ -1,7 +1,6 @@
 package org.example.planTeam.design;
 
 import static org.example.planTeam.design.view.ProposalConstant.Insurance_Payment;
-import static org.example.planTeam.design.view.ProposalConstant.KIND;
 import static org.example.planTeam.design.view.ProposalConstant.MARKET_RESEARCH;
 import static org.example.planTeam.design.view.ProposalConstant.PRODUCT_OVERVIEW;
 import static org.example.planTeam.design.view.ProposalConstant.PROPOSAL_TITLE;

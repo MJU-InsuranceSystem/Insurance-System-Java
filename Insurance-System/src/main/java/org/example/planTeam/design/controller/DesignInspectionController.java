@@ -8,7 +8,6 @@ import org.example.TeamController;
 import org.example.common.dto.RequestDto;
 
 import org.example.common.dto.ResponseDto;
-import org.example.planTeam.Status;
 import org.example.planTeam.design.usecase.DesignUseCase;
 import org.example.planTeam.design.view.DesignTeamView;
 

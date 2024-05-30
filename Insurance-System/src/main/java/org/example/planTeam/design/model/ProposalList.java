@@ -7,14 +7,14 @@ package org.example.planTeam.design.model;
  */
 public interface ProposalList {
 
-    public void add(Proposal proposal);
+    void add(Proposal proposal);
 
-    public void delete();
+    void delete();
 
-    public Object read();
+    Object read();
 
-    public void update();
+    void update();
 
-    public int getSize();
+    int getSize();
 
 }
