@@ -55,9 +55,13 @@ public class RewardSupportTeam extends Team {
         claimInsurance.setSupportingFile(request.get(CLAIMINSURANCE_SUPPORTINGFILE));
 
         accident.setClaimInsurance(claimInsurance);
-        accidentList.add(accident);
 
         ResponseDto responseDto = new ResponseDto();
+        if (!accidentList.add(accident)) {
+            responseDto.add(Status.key(), Status.FAIL.getStatus());
+            return responseDto;
+        }
+
         responseDto.add(Status.key(), Status.SUCCESS.getStatus());
         return responseDto;
     }

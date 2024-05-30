@@ -7,6 +7,8 @@ package org.example.rewardSupportTeam.model;
  */
 public class Accident {
 
+
+    private int accidentID;
     private String content;
     private String customerName;
     private ClaimInsurance claimInsurance;
@@ -15,6 +17,13 @@ public class Accident {
 
     }
 
+    public int getAccidentID() {
+        return accidentID;
+    }
+
+    public void setAccidentID(int accidentID) {
+        this.accidentID = accidentID;
+    }
 
     public String getContent() {
         return content;
