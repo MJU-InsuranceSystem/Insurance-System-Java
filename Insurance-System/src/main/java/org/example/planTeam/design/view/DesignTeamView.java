@@ -1,19 +1,29 @@
 package org.example.planTeam.design.view;
 
+import static org.example.planTeam.design.view.ProposalConstant.Insurance_Payment;
+import static org.example.planTeam.design.view.ProposalConstant.KIND;
+import static org.example.planTeam.design.view.ProposalConstant.MARKET_RESEARCH;
+import static org.example.planTeam.design.view.ProposalConstant.PRODUCT_OVERVIEW;
+import static org.example.planTeam.design.view.ProposalConstant.PROPOSAL;
+import static org.example.planTeam.design.view.ProposalConstant.PROPOSAL_TITLE;
+import static org.example.planTeam.design.view.ProposalConstant.REWARD;
+import static org.example.planTeam.design.view.ProposalConstant.SALE_STRATEGY;
+import static org.example.planTeam.design.view.ProposalConstant.SALE_TARGET;
+
 import java.util.Scanner;
+import org.example.Team;
 import org.example.common.DepartmentView;
 import org.example.common.dto.RequestDto;
 import org.example.common.dto.ResponseDto;
+import org.example.planTeam.Status;
 
 
 public class DesignTeamView extends DepartmentView {
 
+
     public DesignTeamView() {
     }
 
-    public void intro() {
-        System.out.println("보험 기획팀입니다. 업무를 선택해주세요.");
-    }
 
     public RequestDto manageProposal() {
         return null;
@@ -24,22 +34,37 @@ public class DesignTeamView extends DepartmentView {
     }
 
     public RequestDto createProposal() {
-//        System.out.println("상품 기획서 제목을 입력하세요.");
-//        RequestDto designRequest = new RequestDto();
-//        designRequest.setTitle(sc.next());
-//        System.out.println("상품 개요를 입력하세요.");
-//        designRequest.setProductOverView(sc.nextLine());
-//        System.out.println("조사한 시장 상황을 입력하세요.");
-//        designRequest.setMarketReserach(sc.nextLine());
-//        System.out.println("판매 전략을 입력하세요.");
-//        designRequest.setSaleStrategy(sc.nextLine());
-//        System.out.println("보험 납부 방법에 대해서 입력하세요.");
-//        designRequest.setInsurancePayment(sc.nextLine());
-//        System.out.println("예상되는 판매 대상을 입력하세요.");
-//        designRequest.setSaleTarget(sc.nextLine());
-//        System.out.println("제출하시겠습니까?");
-//        return sc.nextInt() == 1 ? yes(designRequest) : no();
-        return null;
+        RequestDto designRequest = new RequestDto();
+        designRequest.add(KIND, PROPOSAL);
+
+        println("상품 기획서 제목을 입력하세요.");
+        designRequest.add(PROPOSAL_TITLE, writeString());
+
+        println("상품 개요를 입력하세요.");
+        designRequest.add("productOverview", writeString());
+
+        println("조사한 시장 상황을 입력하세요.");
+        designRequest.add(MARKET_RESEARCH, writeString());
+
+        println("판매 전략을 입력하세요.");
+        designRequest.add(SALE_STRATEGY, writeString());
+
+        println("보험 납부 방법에 대해서 입력하세요.");
+        designRequest.add(Insurance_Payment, writeString());
+
+        println("예상되는 판매 대상을 입력하세요.");
+        designRequest.add(SALE_TARGET, writeString());
+
+        println("보상에 대한 정보를 입력하세요.");
+        designRequest.add(REWARD, writeString());
+
+        return askSubmit(designRequest);
+
+    }
+
+    private RequestDto askSubmit(RequestDto requestDto) {
+        println("제출하시겠습니까?");
+        return writeInt() == 1 ? yes(requestDto) : no();
     }
 
 
@@ -48,18 +73,20 @@ public class DesignTeamView extends DepartmentView {
     }
 
     public RequestDto yes(RequestDto request) {
-        System.out.println("제출이 완료되었습니다.");
+        println("제출이 완료되었습니다.");
         return request;
     }
-
-
-    public boolean manageProposal2(ResponseDto response) {
-        System.out.println("반환값에 필요한 거 꺼내서 출력");
-        return true;
-    }
+    
 
     public void completeObect(RequestDto requestDto) {
         System.out.println("완성");
     }
 
+    public void completeCreateProposal(ResponseDto responseDto) {
+        if (responseDto.get(Status.key()).equals(Status.success.getStatus())) {
+            System.out.println("일단 기획서 추가 완료요~");
+        } else {
+            System.out.println("나중에 responseDTO에 에러메시지 상태를 담도록 만들어야겠당.");
+        }
+    }
 }

@@ -18,13 +18,13 @@ public abstract class Team {
 
     }
 
-    public abstract void manage();
+    public abstract ResponseDto manage(RequestDto request);
 
     public abstract ResponseDto process(RequestDto request);
 
-    public abstract void register();
+    public abstract ResponseDto register(RequestDto request);
 
-    public abstract void remove();
+    public abstract ResponseDto remove(RequestDto request);
 
-    public abstract ResponseDto retrieve();
+    public abstract ResponseDto retrieve(RequestDto request);
 }

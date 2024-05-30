@@ -6,6 +6,10 @@ import org.example.business.education.controller.EducationController;
 import org.example.business.education.view.EducationView;
 import org.example.planTeam.design.DesignInspectionTeam;
 import org.example.planTeam.design.controller.DesignInspectionController;
+import org.example.planTeam.design.model.DesignPlanList;
+import org.example.planTeam.design.model.DesignPlanListImpl;
+import org.example.planTeam.design.model.ProposalList;
+import org.example.planTeam.design.model.ProposalListImpl;
 import org.example.planTeam.design.view.DesignTeamView;
 
 public class DepartmentConfig {
@@ -32,7 +36,15 @@ public class DepartmentConfig {
     }
 
     private static DesignInspectionTeam designInspectionTeam() {
-        return new DesignInspectionTeam();
+        return new DesignInspectionTeam(designPlanList(), proposalList());
+    }
+
+    private static DesignPlanList designPlanList() {
+        return new DesignPlanListImpl();
+    }
+
+    private static ProposalList proposalList() {
+        return new ProposalListImpl();
     }
 
 }
