@@ -1,4 +1,4 @@
-package org.example.common.view;
+package org.example.common;
 
 import java.util.Scanner;
 import org.example.common.usecase.Usecase;
@@ -24,10 +24,6 @@ public class DepartmentView {
     }
 
     protected void println(String message) {
-        System.out.println(message);
-    }
-
-    protected void print(String message) {
         System.out.println(message);
     }
 

@@ -30,9 +30,18 @@ public class RewardSupportTeam extends Team {
 
     }
 
-
     @Override
     public ResponseDto manage(RequestDto request) {
+        return null;
+    }
+
+    @Override
+    public ResponseDto process(RequestDto request) {
+        return null;
+    }
+
+    @Override
+    public ResponseDto manage(RequestDto requestDto) {
         return null;
     }
 

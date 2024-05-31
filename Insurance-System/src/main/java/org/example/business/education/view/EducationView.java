@@ -1,9 +1,7 @@
 package org.example.business.education.view;
 
-import org.example.common.view.DepartmentView;
+import org.example.common.DepartmentView;
 import org.example.common.dto.RequestDto;
-import org.example.common.dto.ResponseDto;
-import org.example.planTeam.Status;
 
 public class EducationView extends DepartmentView {
 
@@ -13,7 +11,11 @@ public class EducationView extends DepartmentView {
     public static final String EDUCATION_TEACHER = "teacher";
     public static final String EDUCATION_CONTENTS = "contents";
     public static final String EDUCATION_TEXTBOOK = "textbook";
-    public static final String COMPLETE = "complete";
+
+
+    public void intro() {
+        println("안녕하세요. 영업 교육팀입니다.");
+    }
 
     public void completeMessage(ResponseDto responseDto) {
         println("성공적으로 업무를 완료하였습니다");

@@ -25,7 +25,7 @@ public class DesignInspectionController implements TeamController {
     @Override
     public void process() {
         this.designTeamView.intro(DESIGN_TEAM_NAME);
-        int selectInt = this.designTeamView.selectUsecase(DesignUseCase.class);
+        int selectInt = this.designTeamView.selectUseCase(DesignUseCase.class);
         DesignUseCase useCase = DesignUseCase.findByNumber(selectInt);
         RequestDto requestDto = useCase.viewAction(designTeamView);
         ResponseDto responseDto = useCase.teamAction(designInspectionTeam, requestDto);
