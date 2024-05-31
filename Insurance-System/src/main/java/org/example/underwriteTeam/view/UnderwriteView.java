@@ -1,8 +1,8 @@
 package org.example.underwriteTeam.view;
 
-import org.example.common.view.DepartmentView;
 import org.example.common.dto.RequestDto;
 import org.example.common.dto.ResponseDto;
+import org.example.common.view.DepartmentView;
 import org.example.planTeam.Status;
 
 public class UnderwriteView extends DepartmentView {
@@ -18,7 +18,11 @@ public class UnderwriteView extends DepartmentView {
     requestDto.add(POLICY_NUMBER, writeString());
     print("정책 이름 : ");
     requestDto.add(POLICY_NAME, writeString());
-    print("정책 내용 : ");
+    print("위험 평가 기준 : ");
+    requestDto.add(POLICY_CONTENTS, writeString());
+    print("보험료 책정 기준 : ");
+    requestDto.add(POLICY_CONTENTS, writeString());
+    print("가입 심사 기준 : ");
     requestDto.add(POLICY_CONTENTS, writeString());
     return requestDto;
   }
@@ -36,5 +40,14 @@ public class UnderwriteView extends DepartmentView {
   public RequestDto requireCoUnderwriting() {
     RequestDto requestDto = new RequestDto();
     return requestDto;
+  }
+
+  public void showCreatePolicyResult(ResponseDto responseDto) {
+  }
+
+  public void showPerformUnderwritingResult(ResponseDto responseDto) {
+  }
+
+  public void showRequireCoUnderwritingResult(ResponseDto responseDto) {
   }
 }
