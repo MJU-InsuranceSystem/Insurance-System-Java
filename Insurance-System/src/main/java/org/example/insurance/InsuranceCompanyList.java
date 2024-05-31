@@ -1,4 +1,4 @@
-package org.example;
+package org.example.insurance;
 
 import java.util.List;
 

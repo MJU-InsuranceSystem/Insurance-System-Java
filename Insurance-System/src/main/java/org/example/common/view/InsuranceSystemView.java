@@ -1,11 +1,13 @@
 package org.example.common.view;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
-
 import org.example.Department;
 import org.example.auth.AuthGuideMessage;
+import org.example.user.CustomerProcess;
 
 public class InsuranceSystemView implements SystemView {
     @Override
@@ -25,6 +27,16 @@ public class InsuranceSystemView implements SystemView {
         println("직원용 보험사 시스템입니다. 작업하실 팀을 고르세요");
         for (Department department : Department.values()) {
             println(department.getOrder() + "번 :" + department.getName());
+        }
+        return writeInt();
+    }
+
+    @Override
+    public int selectCustomerProcess() {
+        println("고객용 보험사 시스템입니다. 원하시는 업무를 고르세요");
+        println("0번 : 종료하기");
+        for (CustomerProcess process : CustomerProcess.values()) {
+            println(process.getProcessNumber() + "번 :" + process.getDescription());
         }
         return writeInt();
     }
@@ -77,17 +89,21 @@ public class InsuranceSystemView implements SystemView {
     }
 
     private String writeString() {
-        Scanner scanner = new Scanner(System.in);
-        String text = scanner.next();
-        scanner.close();
-        return text;
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+          return br.readLine();
+        } catch (IOException e) {
+            throw new IllegalArgumentException("잘못 입력하였습니다.");
+        }
     }
 
     private int writeInt() {
-        Scanner scanner = new Scanner(System.in);
-        int text = scanner.nextInt();
-        scanner.close();
-        return text;
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            return Integer.parseInt(br.readLine());
+        } catch (IOException e) {
+            throw new IllegalArgumentException("잘못 입력하였습니다.");
+        }
     }
 
     private void println(String message) {

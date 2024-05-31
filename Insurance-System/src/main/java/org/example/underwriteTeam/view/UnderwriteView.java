@@ -7,9 +7,11 @@ import org.example.planTeam.Status;
 
 public class UnderwriteView extends DepartmentView {
 
-  public static final String POLICY_NUMBER = "policyNumber";
-  public static final String POLICY_NAME = "policyName";
-  public static final String POLICY_CONTENTS = "policyContents";
+  public static final String POLICY_NUMBER = "number";
+  public static final String POLICY_NAME = "name";
+  public static final String POLICY_RISK = "riskAssessmentCriteria";
+  public static final String POLICY_PREMIUM = "premiumCalculationCriteria";
+  public static final String POLICY_SUBSCRIPTION = "subscriptionReviewCriteria";
 
   public RequestDto createPolicy() {
     RequestDto requestDto = new RequestDto();
@@ -19,11 +21,11 @@ public class UnderwriteView extends DepartmentView {
     print("정책 이름 : ");
     requestDto.add(POLICY_NAME, writeString());
     print("위험 평가 기준 : ");
-    requestDto.add(POLICY_CONTENTS, writeString());
+    requestDto.add(POLICY_RISK, writeString());
     print("보험료 책정 기준 : ");
-    requestDto.add(POLICY_CONTENTS, writeString());
+    requestDto.add(POLICY_PREMIUM, writeString());
     print("가입 심사 기준 : ");
-    requestDto.add(POLICY_CONTENTS, writeString());
+    requestDto.add(POLICY_SUBSCRIPTION, writeString());
     return requestDto;
   }
 

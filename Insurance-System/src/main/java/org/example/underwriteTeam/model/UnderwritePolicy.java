@@ -8,15 +8,47 @@ package org.example.underwriteTeam.model;
 public class UnderwritePolicy {
 	private int policyId;
 	private String policyName;
-	private String content;
+	private String riskInfo;
+	private String premiumInfo;
+	private String subscriptionInfo;
 
-	public UnderwritePolicy(int policyId, String policyName, String content) {
-		this.policyId = policyId;
-		this.policyName = policyName;
-		this.content = content;
+	public int getPolicyId() {
+		return policyId;
 	}
 
-	public static UnderwritePolicy create(int policyId, String policyName, String content) {
-		return new UnderwritePolicy(policyId, policyName, content);
+	public String getPolicyName() {
+		return policyName;
+	}
+
+	public String getRiskInfo() {
+		return riskInfo;
+	}
+
+	public String getPremiumInfo() {
+		return premiumInfo;
+	}
+
+	public String getSubscriptionInfo() {
+		return subscriptionInfo;
+	}
+
+	public void setPolicyId(int policyId) {
+		this.policyId = policyId;
+	}
+
+	public void setPolicyName(String policyName) {
+		this.policyName = policyName;
+	}
+
+	public void setRiskInfo(String riskInfo) {
+		this.riskInfo = riskInfo;
+	}
+
+	public void setPremiumInfo(String premiumInfo) {
+		this.premiumInfo = premiumInfo;
+	}
+
+	public void setSubscriptionInfo(String subscriptionInfo) {
+		this.subscriptionInfo = subscriptionInfo;
 	}
 }

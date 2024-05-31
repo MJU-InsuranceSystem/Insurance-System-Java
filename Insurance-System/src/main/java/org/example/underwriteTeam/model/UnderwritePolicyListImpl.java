@@ -1,5 +1,6 @@
 package org.example.underwriteTeam.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,33 +8,29 @@ import java.util.List;
  * @version 1.0
  *
  */
-public class UnderwritePolicyListImpl implements underwritePolicyList {
+public class UnderwritePolicyListImpl implements UnderwritePolicyList {
 
-	private List<UnderwritePolicy> UWPolicyList;
-	public UnderwritePolicy underwritePolicy;
+	private static final List<UnderwritePolicy> underwritePolicyList = new ArrayList<>();
 
-	public UnderwritePolicyListImpl(){
+	@Override
+	public void add(UnderwritePolicy underwritePolicy) {
+		if (underwritePolicy != null) {
+			underwritePolicyList.add(underwritePolicy);
+		}
+	}
+
+	@Override
+	public void delete(UnderwritePolicy underwritePolicy) {
 
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-
-	public void add(){
-
-	}
-
-	public void delete(){
-
-	}
-
-	public Object read(){
+	@Override
+	public UnderwritePolicy read(int policyId) {
 		return null;
 	}
 
-	public void update(){
+	@Override
+	public void update(UnderwritePolicy underwritePolicy) {
 
 	}
-
 }

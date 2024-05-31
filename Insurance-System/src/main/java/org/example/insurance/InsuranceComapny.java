@@ -1,11 +1,10 @@
-package org.example.underwriteTeam.model;
+package org.example.insurance;
 
 /**
  * @author yoon
  * @version 1.0
- *
  */
-public interface underwritePolicyList {
+public interface InsuranceComapny {
 
 	public void add();
 

@@ -19,4 +19,6 @@ public interface SystemView {
   void exitSystem();
 
   int selectTeam();
+
+  int selectCustomerProcess();
 }

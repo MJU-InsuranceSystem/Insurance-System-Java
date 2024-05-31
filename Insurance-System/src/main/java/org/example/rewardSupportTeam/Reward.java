@@ -1,7 +1,6 @@
 package org.example.rewardSupportTeam;
 
-import org.example.RewardPaymentMethod;
-import org.example.domain.insurance.InsuranceKind;
+import org.example.insurance.InsuranceType;
 
 /**
  * @author yoon
@@ -10,11 +9,10 @@ import org.example.domain.insurance.InsuranceKind;
  */
 public class Reward {
 
-	private InsuranceKind insuranceKind;
+	private InsuranceType insuranceType;
 	private int MaxReward;
 	private int MonthPaymentFee;
 	private String RestrictionRegulation;
-	private RewardPaymentMethod rewardPaymentMethod;
 
 	public Reward(){
 
