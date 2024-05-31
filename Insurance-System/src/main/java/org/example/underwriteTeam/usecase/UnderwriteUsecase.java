@@ -5,9 +5,9 @@ import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import org.example.Team;
-import org.example.common.Usecase;
 import org.example.common.dto.RequestDto;
 import org.example.common.dto.ResponseDto;
+import org.example.common.usecase.Usecase;
 import org.example.underwriteTeam.view.UnderwriteView;
 
 public enum UnderwriteUsecase implements Usecase {

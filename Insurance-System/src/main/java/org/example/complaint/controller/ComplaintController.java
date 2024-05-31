@@ -19,7 +19,7 @@ public class ComplaintController implements TeamController {
     @Override
     public void process() {
         complaintView.intro("민원 관리");
-        int selectNumber = complaintView.selectUseCase(ComplaintUseCase.class);
+        int selectNumber = complaintView.selectUsecase(ComplaintUseCase.class);
         ComplaintUseCase useCase = ComplaintUseCase.findByNumber(selectNumber);
         RequestDto requestDto = showUseCaseRequireInfo(useCase);
         complaintManagementTeam.register(requestDto);

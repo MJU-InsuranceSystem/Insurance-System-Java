@@ -37,16 +37,6 @@ public class RewardSupportTeam extends Team {
 
     @Override
     public ResponseDto process(RequestDto request) {
-        return null;
-    }
-
-    @Override
-    public ResponseDto manage(RequestDto requestDto) {
-        return null;
-    }
-
-    @Override
-    public ResponseDto process(RequestDto request) {
         ResponseDto responseDto = new ResponseDto();
         if (request.get(JUDGE_ANSWER).equals("Y") || request.get(JUDGE_ANSWER).equals("y")) {
             // 면부책을 판단한다

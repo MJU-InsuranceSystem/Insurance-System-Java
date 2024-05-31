@@ -1,4 +1,4 @@
-package org.example.common;
+package org.example.common.view;
 
 import java.util.Scanner;
 import org.example.common.usecase.Usecase;
@@ -26,6 +26,8 @@ public class DepartmentView {
     protected void println(String message) {
         System.out.println(message);
     }
+
+    protected void print(String message) { System.out.print(message); }
 
     public <E extends Enum<E> & Usecase> int selectUsecase(Class<E> enumType) {
         println("아래 중 수행하실 번호를 입력해주세요.");
