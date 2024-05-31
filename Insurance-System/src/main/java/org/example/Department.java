@@ -7,7 +7,7 @@ import java.util.Arrays;
 public enum Department {
     DESIGN_PLAN_TEAM(1,
         (DepartmentConfig.designInspectionController()), "상품 기획팀"),
-    UNDER_WRITE_TEAM(2, null, "U/W팀"),
+    UNDER_WRITE_TEAM(2, DepartmentConfig.underwriteController(), "U/W팀"),
     BUSINESS_EDUCATION_TEAM(3, DepartmentConfig.educationController(), "영업 교육 팀"),
     MARKETING_TEAM(4, null, "마케팅 팀"),
     EMPLOYEE_MANAGEMENT_TEAM(5, null, "영업 관리 팀"),

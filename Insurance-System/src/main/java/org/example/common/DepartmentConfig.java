@@ -18,11 +18,26 @@ import org.example.rewardSupportTeam.model.AccidentListImpl;
 import org.example.rewardSupportTeam.model.litigationInfoList;
 import org.example.rewardSupportTeam.model.litigationInfoListImpl;
 import org.example.rewardSupportTeam.view.RewardSupportView;
+import org.example.underwriteTeam.UnderwriteTeam;
+import org.example.underwriteTeam.view.UnderwriteView;
+import org.example.underwriteTeam.controller.UnderwriteController;
 
 public class DepartmentConfig {
 
     public static EducationController educationController() {
         return new EducationController(educationView(), businessEducationTeam());
+    }
+
+    public static UnderwriteController underwriteController() {
+        return new UnderwriteController();
+    }
+
+    private static UnderwriteView underwriteView() {
+        return new UnderwriteView();
+    }
+
+    private static UnderwriteTeam underwriteTeam() {
+        return new UnderwriteTeam();
     }
 
     private static EducationView educationView() {
