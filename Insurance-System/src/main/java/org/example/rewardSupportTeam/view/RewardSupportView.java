@@ -7,18 +7,17 @@ import org.example.planTeam.Status;
 
 public class RewardSupportView extends DepartmentView {
 
+    // accident
     public static final String ACCIDENT_CONTENT = "content";
     public static final String ACCIDENT_NAME = "name";
+    // claimInsurance
     public static final String CLAIMINSURANCE_ACCOUNT = "account";
     public static final String CLAIMINSURANCE_ADDRESS = "address";
     public static final String CLAIMINSURANCE_PHONENUMBER = "phoneNumber";
     public static final String CLAIMINSURANCE_RESIDENTNUMBER = "residentNumber";
     public static final String CLAIMINSURANCE_SUPPORTINGFILE = "supportingFile";
-
-
-    public void intro() {
-        println("안녕하세요. 보상 지원팀입니다.");
-    }
+    //judgeAnswer
+    public static final String JUDGE_ANSWER = "answer";
 
     public RequestDto submitAccident() {
         RequestDto requestDto = new RequestDto();
@@ -51,11 +50,18 @@ public class RewardSupportView extends DepartmentView {
 
     public RequestDto judgeFault() {
         RequestDto requestDto = new RequestDto();
+        println("면/부책을 판단하시겠습니까? (Y/N) ");
+        requestDto.add("JUDGE_ANSWER", writeString());
         return requestDto;
     }
 
-    public ResponseDto completeJudgeFault(ResponseDto responseDto) {
-        return responseDto;
+    public void completeJudgeFault(ResponseDto responseDto) {
+        if (responseDto.get(Status.key()).equals(Status.SUCCESS.getStatus())) {
+            println("면/부책 판단에 성공하셨습니다.");
+        } else if (responseDto.get(Status.key()).equals(Status.FAIL.getStatus())) {
+            println("면/부책 판단을 취소하였습니다.");
+        } else {
+            println("잘못된 입력값입니다. 다시 시도해주세요.");
+        }
     }
-
 }

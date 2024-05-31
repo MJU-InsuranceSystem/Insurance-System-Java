@@ -38,7 +38,17 @@ public class RewardSupportTeam extends Team {
 
     @Override
     public ResponseDto process(RequestDto request) {
-        return null;
+        ResponseDto responseDto = new ResponseDto();
+        if (request.get(JUDGE_ANSWER).equals("Y") || request.get(JUDGE_ANSWER).equals("y")) {
+            // 면부책을 판단한다
+            // list에 정보가 다 있고 계약에서 어떤 보험에 가입했는지에 따라 면부책 판단을 내려주면 될듯
+            responseDto.add(Status.key(), Status.SUCCESS.getStatus());
+        } else if (request.get(JUDGE_ANSWER).equals("N") || request.get(JUDGE_ANSWER).equals("n")) {
+            responseDto.add(Status.key(), Status.FAIL.getStatus());
+        } else {
+            responseDto.add(Status.key(), Status.INPUT_INVALID.getStatus());
+        }
+        return responseDto;
     }
 
     @Override

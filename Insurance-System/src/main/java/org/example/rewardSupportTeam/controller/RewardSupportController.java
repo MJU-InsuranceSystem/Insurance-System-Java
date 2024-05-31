@@ -19,6 +19,7 @@ public class RewardSupportController implements TeamController {
 
     @Override
     public void process() {
+        this.rewardSupportView.intro("보상 지원팀");
         int selectInt = this.rewardSupportView.selectUsecase(RewardSupportUseCase.class);
         RewardSupportUseCase usecase = RewardSupportUseCase.findByNumber(selectInt);
         RequestDto requestDto = usecase.viewAction(rewardSupportView);

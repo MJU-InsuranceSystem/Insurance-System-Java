@@ -14,7 +14,7 @@ import java.util.function.Function;
 public enum RewardSupportUseCase implements Usecase {
 
     SUBMIT_ACCIDENT(1, "사고 접수하기", RewardSupportView::submitAccident, Team::register, RewardSupportView::completeSubmitAccident),
-    JUDGE_FAULT(2, "면/부책을 판단한다.", RewardSupportView::judgeFault, Team::process, RewardSupportView::completeJudgeFault);
+    JUDGE_FAULT(2, "면/부책을 판단하기", RewardSupportView::judgeFault, Team::process, RewardSupportView::completeJudgeFault);
 //    EXECUTE_LAWSUIT(3, "소송업무를 처리한다.");
 
     private final int order;
