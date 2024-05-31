@@ -3,11 +3,12 @@ package org.example.user;
 import org.example.common.dto.RequestDto;
 import org.example.domain.insurance.Insurance;
 import org.example.insurance.InsuranceApplyList;
+import org.example.insurance.InsuranceList;
 import org.example.insurance.InsuranceType;
 
 public class CustomerProcessManager {
 
-  private final InsuranceApplyList insuranceApplyList;
+  private final InsuranceList insuranceApplyList;
 
   public CustomerProcessManager(InsuranceApplyList insuranceApplyList) {
     this.insuranceApplyList = insuranceApplyList;

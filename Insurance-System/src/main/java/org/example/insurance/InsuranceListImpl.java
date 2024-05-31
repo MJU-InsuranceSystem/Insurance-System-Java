@@ -23,7 +23,17 @@ public class InsuranceListImpl implements InsuranceList {
 	}
 
 	@Override
+	public void remove(int index) {
+
+	}
+
+	@Override
 	public Insurance findById(int insuranceId) {
+		return null;
+	}
+
+	@Override
+	public Insurance findFirst() {
 		return null;
 	}
 
