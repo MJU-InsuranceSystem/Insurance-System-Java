@@ -1,14 +1,12 @@
 package org.example.underwriteTeam;
 
-import org.example.InsuranceCompany;
-import org.example.InsuranceCompanyList;
 import org.example.Team;
 import org.example.common.dto.RequestDto;
 import org.example.common.dto.ResponseDto;
-import org.example.planTeam.Status;
+import org.example.insurance.InsuranceCompany;
+import org.example.insurance.InsuranceCompanyList;
 import org.example.underwriteTeam.model.UnderwritePolicy;
 import org.example.underwriteTeam.model.UnderwritePolicyListImpl;
-import org.example.underwriteTeam.view.UnderwriteView;
 
 /**
  * @author USER
@@ -34,13 +32,13 @@ public class UnderwriteTeam extends Team {
 
     @Override
     public ResponseDto register(RequestDto request) {
-        int policyId = Integer.parseInt(request.get(UnderwriteView.POLICY_NUMBER));
-        String policyName = request.get(UnderwriteView.POLICY_NAME);
-        String content = request.get(UnderwriteView.POLICY_CONTENTS);
-        UnderwritePolicy underwritePolicy = UnderwritePolicy.create(policyId, policyName, content);
-
+//        int policyId = Integer.parseInt(request.get(UnderwriteView.POLICY_NUMBER));
+//        String policyName = request.get(UnderwriteView.POLICY_NAME);
+//        String content = request.get(UnderwriteView.POLICY_CONTENTS);
+//        UnderwritePolicy underwritePolicy = UnderwritePolicy.create(policyId, policyName, content);
+//
         ResponseDto responseDto = new ResponseDto();
-        responseDto.add(Status.key(), Status.SUCCESS.getStatus());
+//        responseDto.add(Status.key(), Status.SUCCESS.getStatus());
         return responseDto;
     }
 

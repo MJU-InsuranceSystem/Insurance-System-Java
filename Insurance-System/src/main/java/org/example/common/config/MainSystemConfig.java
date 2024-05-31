@@ -1,11 +1,14 @@
 package org.example.common.config;
 
+import org.example.auth.AuthController;
 import org.example.common.controller.CustomerSystem;
 import org.example.common.controller.FrontController;
 import org.example.common.controller.WorkerSystem;
-import org.example.auth.AuthController;
 import org.example.common.view.InsuranceSystemView;
 import org.example.common.view.SystemView;
+import org.example.insurance.InsuranceApplyList;
+import org.example.user.CustomerProcessManager;
+import org.example.user.CustomerView;
 
 public class MainSystemConfig {
 
@@ -13,7 +16,7 @@ public class MainSystemConfig {
     return new FrontController(systemView(), authController(), customerSystem(), workerSystem());
   }
 
-  private SystemView systemView() {
+  private static SystemView systemView() {
     return new InsuranceSystemView();
   }
 
@@ -22,7 +25,15 @@ public class MainSystemConfig {
   }
 
   private CustomerSystem customerSystem() {
-    return new CustomerSystem(systemView());
+    return new CustomerSystem(systemView(), customerView(), customerProcessManager());
+  }
+
+  private CustomerView customerView() {
+    return new CustomerView();
+  }
+
+  private CustomerProcessManager customerProcessManager() {
+    return new CustomerProcessManager(new InsuranceApplyList());
   }
 
   private WorkerSystem workerSystem() {
