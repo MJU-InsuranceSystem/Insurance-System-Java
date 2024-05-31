@@ -2,7 +2,9 @@ package org.example.planTeam;
 
 public enum Status {
 
-    success("200"), fail("400");
+    SUCCESS("200"),
+    FAIL("400"),
+    INPUT_INVALID("invalid");
     private final String status;
     private static final String KEY = "status";
 

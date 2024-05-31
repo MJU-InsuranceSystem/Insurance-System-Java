@@ -17,6 +17,11 @@ public class EducationView extends DepartmentView {
         println("안녕하세요. 영업 교육팀입니다.");
     }
 
+    public void completeMessage(ResponseDto responseDto) {
+        println("성공적으로 업무를 완료하였습니다");
+        println("상태 메시지 : " + responseDto.get(Status.key()));
+    }
+
     public RequestDto manageEducation() {
         return null;
     }

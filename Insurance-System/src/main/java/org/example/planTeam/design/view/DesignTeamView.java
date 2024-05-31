@@ -1,21 +1,11 @@
 package org.example.planTeam.design.view;
 
-import static org.example.planTeam.design.view.ProposalConstant.Insurance_Payment;
-import static org.example.planTeam.design.view.ProposalConstant.KIND;
-import static org.example.planTeam.design.view.ProposalConstant.MARKET_RESEARCH;
-import static org.example.planTeam.design.view.ProposalConstant.PRODUCT_OVERVIEW;
-import static org.example.planTeam.design.view.ProposalConstant.PROPOSAL;
-import static org.example.planTeam.design.view.ProposalConstant.PROPOSAL_TITLE;
-import static org.example.planTeam.design.view.ProposalConstant.REWARD;
-import static org.example.planTeam.design.view.ProposalConstant.SALE_STRATEGY;
-import static org.example.planTeam.design.view.ProposalConstant.SALE_TARGET;
-
-import java.util.Scanner;
-import org.example.Team;
-import org.example.common.DepartmentView;
+import org.example.common.view.DepartmentView;
 import org.example.common.dto.RequestDto;
 import org.example.common.dto.ResponseDto;
 import org.example.planTeam.Status;
+
+import static org.example.planTeam.design.view.ProposalConstant.*;
 
 
 public class DesignTeamView extends DepartmentView {
@@ -83,7 +73,7 @@ public class DesignTeamView extends DepartmentView {
     }
 
     public void completeCreateProposal(ResponseDto responseDto) {
-        if (responseDto.get(Status.key()).equals(Status.success.getStatus())) {
+        if (responseDto.get(Status.key()).equals(Status.SUCCESS.getStatus())) {
             System.out.println("일단 기획서 추가 완료요~");
         } else {
             System.out.println("나중에 responseDTO에 에러메시지 상태를 담도록 만들어야겠당.");
