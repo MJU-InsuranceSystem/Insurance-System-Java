@@ -1,4 +1,4 @@
-package org.example.login;
+package org.example.auth;
 
 import java.util.Arrays;
 import org.example.user.CustomerManager;

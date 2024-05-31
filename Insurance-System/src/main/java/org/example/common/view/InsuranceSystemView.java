@@ -1,11 +1,11 @@
-package org.example.view;
+package org.example.common.view;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 import org.example.Department;
-import org.example.common.AuthGuideMessage;
+import org.example.auth.AuthGuideMessage;
 
 public class InsuranceSystemView implements SystemView {
     @Override

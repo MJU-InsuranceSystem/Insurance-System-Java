@@ -1,4 +1,4 @@
-package org.example.common;
+package org.example.common.config;
 
 import org.example.TeamController;
 import org.example.business.education.BusinessEducationTeam;
@@ -29,7 +29,7 @@ public class DepartmentConfig {
     }
 
     public static UnderwriteController underwriteController() {
-        return new UnderwriteController();
+        return new UnderwriteController(underwriteTeam(), underwriteView());
     }
 
     private static UnderwriteView underwriteView() {

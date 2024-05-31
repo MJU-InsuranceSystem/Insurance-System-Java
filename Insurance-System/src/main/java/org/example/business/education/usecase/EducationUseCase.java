@@ -6,7 +6,7 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 import org.example.Team;
 import org.example.business.education.view.EducationView;
-import org.example.common.Usecase;
+import org.example.common.usecase.Usecase;
 import org.example.common.dto.RequestDto;
 import org.example.common.dto.ResponseDto;
 

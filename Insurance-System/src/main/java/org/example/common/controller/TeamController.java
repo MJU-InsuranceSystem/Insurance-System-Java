@@ -1,4 +1,4 @@
-package org.example.controller;
+package org.example.common.controller;
 
 import java.util.Map;
 

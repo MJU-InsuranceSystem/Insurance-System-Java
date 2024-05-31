@@ -1,7 +1,7 @@
 package org.example.user;
 
 import java.util.Map;
-import org.example.common.AuthGuideMessage;
+import org.example.auth.AuthGuideMessage;
 
 public class Worker extends User {
 

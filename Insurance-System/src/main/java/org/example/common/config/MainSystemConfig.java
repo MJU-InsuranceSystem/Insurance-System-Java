@@ -1,11 +1,11 @@
-package org.example.common;
+package org.example.common.config;
 
-import org.example.controller.CustomerSystem;
-import org.example.controller.FrontController;
-import org.example.controller.WorkerSystem;
-import org.example.login.AuthController;
-import org.example.view.InsuranceSystemView;
-import org.example.view.SystemView;
+import org.example.common.controller.CustomerSystem;
+import org.example.common.controller.FrontController;
+import org.example.common.controller.WorkerSystem;
+import org.example.auth.AuthController;
+import org.example.common.view.InsuranceSystemView;
+import org.example.common.view.SystemView;
 
 public class MainSystemConfig {
 

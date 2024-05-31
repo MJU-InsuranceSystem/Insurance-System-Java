@@ -1,6 +1,7 @@
-package org.example.common;
+package org.example.common.view;
 
 import java.util.Scanner;
+import org.example.common.usecase.Usecase;
 
 public class DepartmentView {
 

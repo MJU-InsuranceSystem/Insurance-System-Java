@@ -1,11 +1,10 @@
-package org.example.login;
+package org.example.auth;
 
 import java.util.Map;
-import org.example.common.AuthGuideMessage;
 import org.example.user.CustomerManager;
 import org.example.user.User;
 import org.example.user.WorkerManager;
-import org.example.view.SystemView;
+import org.example.common.view.SystemView;
 
 public class LoginProcess implements Process {
 

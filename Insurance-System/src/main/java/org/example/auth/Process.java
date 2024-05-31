@@ -1,7 +1,7 @@
-package org.example.login;
+package org.example.auth;
 
 import org.example.user.User;
-import org.example.view.SystemView;
+import org.example.common.view.SystemView;
 
 public interface Process {
 
