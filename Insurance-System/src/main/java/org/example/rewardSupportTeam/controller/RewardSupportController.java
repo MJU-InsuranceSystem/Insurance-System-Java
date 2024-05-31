@@ -22,8 +22,44 @@ public class RewardSupportController implements TeamController {
         this.rewardSupportView.intro("보상 지원팀");
         int selectInt = this.rewardSupportView.selectUsecase(RewardSupportUseCase.class);
         RewardSupportUseCase usecase = RewardSupportUseCase.findByNumber(selectInt);
-        RequestDto requestDto = usecase.viewAction(rewardSupportView);
-        ResponseDto responseDto = usecase.teamAction(rewardSupportTeam, requestDto);
-        usecase.showResult(rewardSupportView, responseDto);
+        RequestDto requestDto = requireInputInfo(usecase);
+        ResponseDto responseDto = teamAction(usecase, requestDto);
+        showResult(usecase, responseDto);
+    }
+
+    private RequestDto requireInputInfo(RewardSupportUseCase usecase) {
+        switch (usecase) {
+            case SUBMIT_ACCIDENT -> {
+                return rewardSupportView.submitAccident();
+            }
+            case JUDGE_FAULT -> {
+                return rewardSupportView.judgeFault();
+            }
+            default -> throw new IllegalArgumentException("해당하는 usecase가 없습니다.");
+        }
+    }
+
+    private ResponseDto teamAction(RewardSupportUseCase usecase, RequestDto requestDto) {
+        switch (usecase) {
+            case SUBMIT_ACCIDENT -> {
+                return rewardSupportTeam.register(requestDto);
+            }
+            case JUDGE_FAULT -> {
+                return rewardSupportTeam.process(requestDto);
+            }
+            default -> throw new IllegalArgumentException("해당하는 usecase가 없습니다.");
+        }
+    }
+
+    private void showResult(RewardSupportUseCase usecase, ResponseDto responseDto) {
+        switch (usecase) {
+            case SUBMIT_ACCIDENT -> {
+                rewardSupportView.completeSubmitAccident(responseDto);
+            }
+            case JUDGE_FAULT -> {
+                rewardSupportView.completeJudgeFault(responseDto);
+            }
+            default -> throw new IllegalArgumentException("해당하는 usecase가 없습니다.");
+        }
     }
 }
