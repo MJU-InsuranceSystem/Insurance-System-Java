@@ -1,9 +1,8 @@
 package org.example.rewardSupportTeam;
 
 import org.example.Team;
-import org.example.business.design.controller.dto.Request;
-import org.example.business.design.controller.dto.Response;
-import org.example.business.design.view.DesignInspectionController;
+import org.example.common.dto.RequestDto;
+import org.example.common.dto.ResponseDto;
 
 /**
  * @author USER
@@ -27,14 +26,28 @@ public class RewardSupportTeam extends Team {
 
     }
 
-
     @Override
-    public void manage() {
-
+    public ResponseDto manage(RequestDto request) {
+        return null;
     }
 
     @Override
-    public Response process(DesignInspectionController.Function function, Request request) {
+    public ResponseDto process(RequestDto request) {
+        return null;
+    }
+
+    @Override
+    public ResponseDto register(RequestDto request) {
+        return null;
+    }
+
+    @Override
+    public ResponseDto remove(RequestDto request) {
+        return null;
+    }
+
+    @Override
+    public ResponseDto retrieve(RequestDto request) {
         return null;
     }
 
@@ -54,19 +67,4 @@ public class RewardSupportTeam extends Team {
 //                break;
 //        }
 //    }
-
-    @Override
-    public void register() {
-
-    }
-
-    @Override
-    public void remove() {
-
-    }
-
-    @Override
-    public Object retrieve() {
-        return null;
-    }
 }

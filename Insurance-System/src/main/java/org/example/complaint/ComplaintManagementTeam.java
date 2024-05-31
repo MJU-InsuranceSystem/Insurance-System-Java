@@ -3,7 +3,7 @@ package org.example.complaint;
 import org.example.Team;
 import org.example.common.dto.RequestDto;
 import org.example.common.dto.ResponseDto;
-import org.example.complaint.Complaint;
+import org.example.complaint.model.Complaint;
 import org.example.complaint.model.ComplaintList;
 import org.example.complaint.model.ComplaintListImpl;
 

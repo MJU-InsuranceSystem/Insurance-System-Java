@@ -1,5 +1,8 @@
-package org.example.complaint;
+package org.example.complaint.model;
 
+import org.example.complaint.ComplaintCategory;
+import org.example.complaint.ComplaintEvaluation;
+import org.example.complaint.ComplaintStatus;
 import org.example.user.Customer;
 
 /**

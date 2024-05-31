@@ -18,11 +18,11 @@ public class EducationController implements TeamController {
 
   @Override
   public void process() {
-    educationView.intro();
-    int selectNumber = educationView.selectUsecase();
-    EducationUseCase useCase = EducationUseCase.findByNumber(selectNumber);
-    RequestDto requestDto = showUsecaseRequireInfo(useCase);
-    businessEducationTeam.process(selectNumber, requestDto);
+//    educationView.intro();
+//    int selectNumber = educationView.selectUseCase();
+//    EducationUseCase useCase = EducationUseCase.findByNumber(selectNumber);
+//    RequestDto requestDto = showUsecaseRequireInfo(useCase);
+//    businessEducationTeam.process(selectNumber, requestDto);
   }
 
   private RequestDto showUsecaseRequireInfo(EducationUseCase useCase) {

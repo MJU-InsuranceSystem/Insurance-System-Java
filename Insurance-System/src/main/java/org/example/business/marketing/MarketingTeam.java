@@ -1,9 +1,8 @@
 package org.example.business.marketing;
 
 import org.example.Team;
-import org.example.business.design.controller.dto.Request;
-import org.example.business.design.controller.dto.Response;
-import org.example.business.design.view.DesignInspectionController.Function;
+import org.example.common.dto.RequestDto;
+import org.example.common.dto.ResponseDto;
 
 /**
  * @author USER
@@ -19,28 +18,29 @@ public class MarketingTeam extends Team {
 	}
 
 	@Override
-	public void manage() {
-
-	}
-
-	@Override
-	public Response process(Function function, Request request) {
+	public ResponseDto manage(RequestDto request) {
 		return null;
 	}
 
 	@Override
-	public void register() {
-
-	}
-
-	@Override
-	public void remove() {
-
-	}
-
-	@Override
-	public Object retrieve() {
+	public ResponseDto process(RequestDto request) {
 		return null;
 	}
+
+	@Override
+	public ResponseDto register(RequestDto request) {
+		return null;
+	}
+
+	@Override
+	public ResponseDto remove(RequestDto request) {
+		return null;
+	}
+
+	@Override
+	public ResponseDto retrieve(RequestDto request) {
+		return null;
+	}
+
 
 }

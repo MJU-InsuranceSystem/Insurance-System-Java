@@ -1,9 +1,10 @@
 package org.example.business.salary;
 
 import org.example.Team;
-import org.example.business.design.controller.dto.Request;
-import org.example.business.design.controller.dto.Response;
-import org.example.business.design.view.DesignInspectionController.Function;
+import org.example.common.dto.RequestDto;
+import org.example.common.dto.ResponseDto;
+
+import java.util.function.Function;
 
 public class SalaryManagementTeam extends Team {
 
@@ -11,27 +12,27 @@ public class SalaryManagementTeam extends Team {
     public SalaryApplicationListImpl m_SalaryApplicationListImpl;
 
     @Override
-    public void manage() {
-
-    }
-
-    @Override
-    public Response process(Function function, Request request) {
+    public ResponseDto manage(RequestDto request) {
         return null;
     }
 
     @Override
-    public void register() {
-
+    public ResponseDto process(RequestDto request) {
+        return null;
     }
 
     @Override
-    public void remove() {
-
+    public ResponseDto register(RequestDto request) {
+        return null;
     }
 
     @Override
-    public Object retrieve() {
+    public ResponseDto remove(RequestDto request) {
+        return null;
+    }
+
+    @Override
+    public ResponseDto retrieve(RequestDto request) {
         return null;
     }
 }

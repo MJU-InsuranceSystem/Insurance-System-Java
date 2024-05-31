@@ -1,7 +1,5 @@
 package org.example.complaint.model;
 
-import org.example.complaint.Complaint;
-
 import java.util.ArrayList;
 import java.util.List;
 

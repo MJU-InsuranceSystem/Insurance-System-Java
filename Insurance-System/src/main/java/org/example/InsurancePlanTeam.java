@@ -1,9 +1,11 @@
 package org.example;
 
-import org.example.business.design.Proposal;
-import org.example.business.design.ProposalListImpl;
-import org.example.designPlanTeam.DesignPlan;
-import org.example.designPlanTeam.DesignPlanListImpl;
+import org.example.common.dto.RequestDto;
+import org.example.common.dto.ResponseDto;
+import org.example.planTeam.design.model.DesignPlan;
+import org.example.planTeam.design.model.DesignPlanListImpl;
+import org.example.planTeam.design.model.Proposal;
+import org.example.planTeam.design.model.ProposalListImpl;
 
 /**
  * @author USER
@@ -20,36 +22,37 @@ public class InsurancePlanTeam extends Team {
 
 	}
 
+	@Override
+	public ResponseDto manage(RequestDto request) {
+		return null;
+	}
+
+	@Override
+	public ResponseDto process(RequestDto request) {
+		return null;
+	}
+
+	@Override
+	public ResponseDto register(RequestDto request) {
+		return null;
+	}
+
+	@Override
+	public ResponseDto remove(RequestDto request) {
+		return null;
+	}
+
+	@Override
+	public ResponseDto retrieve(RequestDto request) {
+		return null;
+	}
+
 	public void finalize() throws Throwable {
 		super.finalize();
 	}
 
-	public void manage(){
-
-	}
-
-	@Override
-	public void process(int processNum, int domainId) {
-
-	}
-
-	public void process(){
-
-	}
-
-	public void register(){
-	}
-
-	public void remove(){
-
-	}
-
 	public void requestInspection(){
 
-	}
-
-	public Object retrieve(){
-		return null;
 	}
 
 	public void suspendInsurance(){
