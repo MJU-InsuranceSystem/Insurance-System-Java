@@ -1,6 +1,6 @@
 package org.example.complaint.view;
 
-import org.example.common.DepartmentView;
+import org.example.common.view.DepartmentView;
 import org.example.common.dto.RequestDto;
 
 public class ComplaintView extends DepartmentView {

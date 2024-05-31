@@ -1,8 +1,9 @@
 package org.example.business.education.view;
 
-import org.example.common.DepartmentView;
+
 import org.example.common.dto.RequestDto;
 import org.example.common.dto.ResponseDto;
+import org.example.common.view.DepartmentView;
 import org.example.planTeam.Status;
 
 public class EducationView extends DepartmentView {
