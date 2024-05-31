@@ -12,7 +12,11 @@ public interface InsuranceList {
 
   void remove(Insurance insurance);
 
+  void remove(int index);
+
   Insurance findById(int insuranceId);
+
+  Insurance findFirst();
 
   void update(Insurance insurance);
 }

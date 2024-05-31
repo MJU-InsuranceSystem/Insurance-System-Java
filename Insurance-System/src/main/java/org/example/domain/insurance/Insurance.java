@@ -11,8 +11,8 @@ public class Insurance {
 	private int insuranceID;
 	private String subscriberName;
 	private int monthPaymentFee;
-	private String RestrictionRegulation;
-	private Reward Reward;
+	private String restrictionRegulation;
+	private Reward reward;
 	private InsuranceType insuranceType;
 	private String details;
 	private String accountNumber;
@@ -38,11 +38,11 @@ public class Insurance {
 	}
 
 	public String getRestrictionRegulation() {
-		return RestrictionRegulation;
+		return restrictionRegulation;
 	}
 
 	public org.example.rewardSupportTeam.Reward getReward() {
-		return Reward;
+		return reward;
 	}
 
 	public InsuranceType getInsuranceType() {
@@ -62,11 +62,11 @@ public class Insurance {
 	}
 
 	public void setRestrictionRegulation(String restrictionRegulation) {
-		RestrictionRegulation = restrictionRegulation;
+		this.restrictionRegulation = restrictionRegulation;
 	}
 
-	public void setReward(org.example.rewardSupportTeam.Reward reward) {
-		Reward = reward;
+	public void setReward(Reward reward) {
+		this.reward = reward;
 	}
 
 	public void setInsuranceType(InsuranceType insuranceType) {
@@ -79,5 +79,17 @@ public class Insurance {
 
 	public void setAccountNumber(String accountNumber) {
 		this.accountNumber = accountNumber;
+	}
+
+	@Override
+	public String toString() {
+		return "insuranceID=" + insuranceID + "\n" +
+				"insuranceType=" + insuranceType + "\n" +
+				"subscriberName='" + subscriberName + "\n" +
+				"accountNumber='" + accountNumber + "\n" +
+				"monthPaymentFee=" + monthPaymentFee + "\n" +
+				"details='" + details + "\n" +
+				"restrictionRegulation='" + restrictionRegulation + "\n" +
+				"reward=" + reward + "\n";
 	}
 }
