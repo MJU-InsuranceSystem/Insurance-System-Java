@@ -12,35 +12,18 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public enum DesignUseCase implements Usecase {
-    PLAN_INSURANCE(1, "상품을 기획한다.",
-            DesignTeamView::createProposal, Team::register, DesignTeamView::completeCreateProposal),
-    DESIGN_INSURANCE(2,
-            "상품을 설계한다.", DesignTeamView::manageProposal, Team::process,
-            DesignTeamView::completeCreateProposal),
-    APPLY_RATE_TEST(3,
-            "상품 요율 분석을 요청한다.", DesignTeamView::modifyProposal, Team::process,
-            DesignTeamView::completeCreateProposal),
-    ASK_INSURANCE_AUTHORIZATION(4,
-            "상품 인가를 요청한다.", DesignTeamView::createProposal, Team::process,
-            DesignTeamView::completeCreateProposal),
-    MANAGE_INSURANCE(5, "상품을 사후 관리하다.", DesignTeamView::manageProposal,
-            Team::process, DesignTeamView::completeCreateProposal);
+    PLAN_INSURANCE(1, "상품을 기획한다."),
+    DESIGN_INSURANCE(2, "상품을 설계한다."),
+    APPLY_RATE_TEST(3, "상품 요율 분석을 요청한다."),
+    ASK_INSURANCE_AUTHORIZATION(4, "상품 인가를 요청한다."),
+    MANAGE_INSURANCE(5, "상품을 사후 관리하다.");
     private final int order;
     private final String description;
 
-    private final Function<DesignTeamView, RequestDto> action;
-    private final BiFunction<Team, RequestDto, ResponseDto> teamAction;
-    private final BiConsumer<DesignTeamView, ResponseDto> showResult;
 
-
-    DesignUseCase(int order, String description, Function<DesignTeamView, RequestDto> action,
-                  BiFunction<Team, RequestDto, ResponseDto> teamAction,
-                  BiConsumer<DesignTeamView, ResponseDto> showResult) {
+    DesignUseCase(int order, String description) {
         this.order = order;
         this.description = description;
-        this.action = action;
-        this.teamAction = teamAction;
-        this.showResult = showResult;
     }
 
     public String getDescription() {
@@ -51,22 +34,10 @@ public enum DesignUseCase implements Usecase {
         return order;
     }
 
-    public RequestDto viewAction(DesignTeamView designTeamView) {
-        return action.apply(designTeamView);
-    }
-
-    public ResponseDto teamAction(Team team, RequestDto responseDto) {
-        return teamAction.apply(team, responseDto);
-    }
-
-    public void showResult(DesignTeamView team, ResponseDto responseDto) {
-        this.showResult.accept(team, responseDto);
-    }
-
     public static DesignUseCase findByNumber(int selectNumber) {
         return Arrays.stream(DesignUseCase.values())
-                .filter(usecase -> usecase.getOrder() == selectNumber)
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("해당 유스케이스 번호를 찾을 수 없습니다."));
+            .filter(usecase -> usecase.getOrder() == selectNumber)
+            .findFirst()
+            .orElseThrow(() -> new IllegalArgumentException("해당 유스케이스 번호를 찾을 수 없습니다."));
     }
 }
