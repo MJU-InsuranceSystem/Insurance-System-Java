@@ -1,7 +1,7 @@
 package org.example.planTeam.design.usecase;
 
 import org.example.Team;
-import org.example.common.Usecase;
+import org.example.common.usecase.Usecase;
 import org.example.common.dto.RequestDto;
 import org.example.common.dto.ResponseDto;
 import org.example.planTeam.design.view.DesignTeamView;

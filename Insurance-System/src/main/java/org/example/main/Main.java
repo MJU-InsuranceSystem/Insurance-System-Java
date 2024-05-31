@@ -1,7 +1,7 @@
 package org.example.main;
 
-import org.example.common.MainSystemConfig;
-import org.example.controller.FrontController;
+import org.example.common.config.MainSystemConfig;
+import org.example.common.controller.FrontController;
 
 public class Main {
 

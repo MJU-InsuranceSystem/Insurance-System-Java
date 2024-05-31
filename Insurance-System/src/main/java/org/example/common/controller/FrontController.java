@@ -1,8 +1,8 @@
-package org.example.controller;
+package org.example.common.controller;
 
-import org.example.login.AuthController;
+import org.example.auth.AuthController;
 import org.example.user.User;
-import org.example.view.SystemView;
+import org.example.common.view.SystemView;
 
 public class FrontController {
 

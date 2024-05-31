@@ -1,6 +1,6 @@
 package org.example.rewardSupportTeam.view;
 
-import org.example.common.DepartmentView;
+import org.example.common.view.DepartmentView;
 import org.example.common.dto.RequestDto;
 import org.example.common.dto.ResponseDto;
 import org.example.planTeam.Status;

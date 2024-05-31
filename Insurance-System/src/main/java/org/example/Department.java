@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.common.DepartmentConfig;
+import org.example.common.config.DepartmentConfig;
 
 import java.util.Arrays;
 
