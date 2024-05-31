@@ -1,7 +1,7 @@
 package org.example.complaint.usecase;
 
-import org.example.business.education.usecase.EducationUseCase;
-import org.example.common.Usecase;
+
+import org.example.common.usecase.Usecase;
 
 import java.util.Arrays;
 
