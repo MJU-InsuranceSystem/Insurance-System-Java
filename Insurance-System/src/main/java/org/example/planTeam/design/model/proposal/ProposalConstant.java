@@ -1,4 +1,4 @@
-package org.example.planTeam.design.view;
+package org.example.planTeam.design.model.proposal;
 
 public class ProposalConstant {
 
