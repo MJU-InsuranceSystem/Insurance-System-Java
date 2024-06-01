@@ -1,11 +1,11 @@
 package org.example.auth;
 
-import org.example.user.User;
 import org.example.common.view.SystemView;
+import org.example.user.User;
 
 public class AuthController {
 
-    private SystemView systemView;
+    private final SystemView systemView;
     public AuthController(SystemView systemView) {
         this.systemView = systemView;
     }

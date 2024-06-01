@@ -1,5 +1,6 @@
-package org.example;
+package org.example.insurance;
 
+import org.example.Team;
 import org.example.common.dto.RequestDto;
 import org.example.common.dto.ResponseDto;
 import org.example.planTeam.design.model.designPlan.DesignPlan;

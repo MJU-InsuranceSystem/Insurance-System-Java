@@ -2,7 +2,6 @@ package org.example;
 
 import org.example.common.dto.RequestDto;
 import org.example.common.dto.ResponseDto;
-import org.example.domain.insurance.Insurance;
 
 /**
  * @author yoon
@@ -12,7 +11,6 @@ public abstract class Team {
 
     private int team_Id;
     private String team_name;
-    public Insurance m_Insurance;
 
     public Team() {
 

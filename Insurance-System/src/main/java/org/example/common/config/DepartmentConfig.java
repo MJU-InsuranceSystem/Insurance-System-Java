@@ -4,6 +4,10 @@ import org.example.TeamController;
 import org.example.business.education.BusinessEducationTeam;
 import org.example.business.education.controller.EducationController;
 import org.example.business.education.view.EducationView;
+import org.example.contract.ContractListImpl;
+import org.example.contract.ContractManagementTeam;
+import org.example.insurance.InsuranceApplyList;
+import org.example.insurance.InsuranceCompanyList;
 import org.example.planTeam.design.DesignInspectionTeam;
 import org.example.planTeam.design.controller.DesignInspectionController;
 import org.example.planTeam.design.model.designPlan.DesignPlanList;
@@ -19,6 +23,7 @@ import org.example.rewardSupportTeam.model.litigationInfoList;
 import org.example.rewardSupportTeam.model.litigationInfoListImpl;
 import org.example.rewardSupportTeam.view.RewardSupportView;
 import org.example.underwriteTeam.UnderwriteTeam;
+import org.example.underwriteTeam.model.UnderwritePolicyListImpl;
 import org.example.underwriteTeam.view.UnderwriteView;
 import org.example.underwriteTeam.controller.UnderwriteController;
 
@@ -29,7 +34,7 @@ public class DepartmentConfig {
     }
 
     public static UnderwriteController underwriteController() {
-        return new UnderwriteController(underwriteTeam(), underwriteView());
+        return new UnderwriteController(underwriteTeam(), underwriteView(), contractManagementTeam());
     }
 
     private static UnderwriteView underwriteView() {
@@ -37,7 +42,11 @@ public class DepartmentConfig {
     }
 
     private static UnderwriteTeam underwriteTeam() {
-        return new UnderwriteTeam();
+        return new UnderwriteTeam(new InsuranceCompanyList(), new InsuranceApplyList(), new UnderwritePolicyListImpl());
+    }
+
+    private static ContractManagementTeam contractManagementTeam() {
+        return new ContractManagementTeam(new ContractListImpl(), new InsuranceApplyList());
     }
 
     private static EducationView educationView() {

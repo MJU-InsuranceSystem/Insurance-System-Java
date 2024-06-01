@@ -16,9 +16,4 @@ public class CarInsurance extends Insurance {
 	public CarInsurance(){
 
 	}
-
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
-
 }

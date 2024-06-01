@@ -1,6 +1,8 @@
 package org.example.common.view;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import org.example.common.usecase.Usecase;
 
 public class DepartmentView {
@@ -10,17 +12,21 @@ public class DepartmentView {
     }
 
     protected String writeString() {
-        Scanner scanner = new Scanner(System.in);
-        String text = scanner.next();
-        scanner.close();
-        return text;
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            return br.readLine();
+        } catch (IOException e) {
+            throw new IllegalArgumentException("잘못 입력하였습니다.");
+        }
     }
 
     protected int writeInt() {
-        Scanner scanner = new Scanner(System.in);
-        int text = scanner.nextInt();
-        scanner.close();
-        return text;
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            return Integer.parseInt(br.readLine());
+        } catch (IOException e) {
+            throw new IllegalArgumentException("잘못 입력하였습니다.");
+        }
     }
 
     protected void println(String message) {

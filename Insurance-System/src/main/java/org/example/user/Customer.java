@@ -1,7 +1,7 @@
 package org.example.user;
 
 import java.util.Map;
-import org.example.Contract;
+import org.example.contract.Contract;
 import org.example.auth.AuthGuideMessage;
 
 /**
