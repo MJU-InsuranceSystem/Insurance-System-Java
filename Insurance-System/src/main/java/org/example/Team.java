@@ -25,4 +25,6 @@ public abstract class Team {
     public abstract ResponseDto remove(RequestDto request);
 
     public abstract ResponseDto retrieve(RequestDto request);
+
+
 }

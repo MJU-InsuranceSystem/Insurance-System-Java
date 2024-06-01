@@ -7,7 +7,7 @@ import org.example.common.dto.ResponseDto;
 import org.example.domain.insurance.Insurance;
 import org.example.insurance.InsuranceApplyList;
 import org.example.insurance.InsuranceCompanyList;
-import org.example.insurance.InsuranceList;
+import org.example.planTeam.design.model.insurance.InsuranceList;
 import org.example.planTeam.Status;
 import org.example.underwriteTeam.model.UnderwritePolicy;
 import org.example.underwriteTeam.model.UnderwritePolicyListImpl;
@@ -41,15 +41,17 @@ public class UnderwriteTeam extends Team {
     public ResponseDto process(RequestDto request) {
         String result = request.get(UnderwriteView.UNDERWRITING_RESULT);
         ResponseDto responseDto = new ResponseDto();
-        Insurance insurance = insuranceApplyList.findFirst();
-        if (Objects.equals(result, "N") && insurance != null) {
-            insuranceApplyList.remove(insurance);
-        }
-        responseDto.add(UnderwriteView.UNDERWRITING_RESULT, result);
-        if (insurance != null) {
-            responseDto.add(UnderwriteView.FINISH_INSURANCE_CUSTOMER_NAME, insurance.getSubscriberName());
-            responseDto.add(UnderwriteView.FINISH_INSURANCE_ID, String.valueOf(insurance.getInsuranceID()));
-        }
+//        Insurance insurance = insuranceApplyList.findFirst();
+//        if (Objects.equals(result, "N") && insurance != null) {
+//            insuranceApplyList.remove(insurance);
+//        }
+//        responseDto.add(UnderwriteView.UNDERWRITING_RESULT, result);
+//        if (insurance != null) {
+//            responseDto.add(UnderwriteView.FINISH_INSURANCE_CUSTOMER_NAME,
+//                insurance.getSubscriberName());
+//            responseDto.add(UnderwriteView.FINISH_INSURANCE_ID,
+//                String.valueOf(insurance.getInsuranceID()));
+//        }
         return responseDto;
     }
 
@@ -83,18 +85,18 @@ public class UnderwriteTeam extends Team {
     public ResponseDto retrieve(RequestDto request) {
         int usecaseNumber = Integer.parseInt(request.get(UnderwriteView.USECASE_NUMBER));
         UnderwriteUsecase usecase = UnderwriteUsecase.findByNumber(usecaseNumber);
-      if (usecase == UnderwriteUsecase.PERFORM_UNDERWRITING) {
-        return findFirstInsurance();
-      }
-      throw new IllegalArgumentException("해당하는 유스케이스는 없습니다.");
+        if (usecase == UnderwriteUsecase.PERFORM_UNDERWRITING) {
+            return findFirstInsurance();
+        }
+        throw new IllegalArgumentException("해당하는 유스케이스는 없습니다.");
     }
 
     private ResponseDto findFirstInsurance() {
         ResponseDto responseDto = new ResponseDto();
-        Insurance insurance = insuranceApplyList.findFirst();
-        if (insurance != null) {
-            responseDto.add(UnderwriteView.FIRST_INSURANCE_APPLY, insurance.toString());
-        }
+//        Insurance insurance = insuranceApplyList.findFirst();
+//        if (insurance != null) {
+//            responseDto.add(UnderwriteView.FIRST_INSURANCE_APPLY, insurance.toString());
+//        }
         return responseDto;
     }
 }

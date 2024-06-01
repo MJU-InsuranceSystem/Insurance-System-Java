@@ -1,25 +1,58 @@
 package org.example.planTeam.design.model.reward;
 
-import org.example.RewardPaymentMethod;
-import org.example.domain.insurance.InsuranceKind;
-
 /**
  * @author yoon
  * @version 1.0
  */
 public class Reward {
 
+    private int rewardId;
     private int MaxReward;
     private int MonthPaymentFee;
+    private int insuranceRate;
     private String RestrictionRegulation;
-    private RewardPaymentMethod rewardPaymentMethod;
 
     public Reward() {
 
     }
 
-    public void finalize() throws Throwable {
-
+    public int getRewardId() {
+        return rewardId;
     }
 
+    public void setRewardId(int rewardId) {
+        this.rewardId = rewardId;
+    }
+
+    public int getMaxReward() {
+        return MaxReward;
+    }
+
+    public void setMaxReward(int maxReward) {
+        MaxReward = maxReward;
+    }
+
+    public int getMonthPaymentFee() {
+        return MonthPaymentFee;
+    }
+
+    public void setMonthPaymentFee(int monthPaymentFee) {
+        MonthPaymentFee = monthPaymentFee;
+    }
+
+    public String getRestrictionRegulation() {
+        return RestrictionRegulation;
+    }
+
+    public void setRestrictionRegulation(String restrictionRegulation) {
+        RestrictionRegulation = restrictionRegulation;
+    }
+
+    public int getInsuranceRate() {
+        return insuranceRate;
+    }
+
+    public void setInsuranceRate(int insuranceRate) {
+        this.insuranceRate = insuranceRate;
+    }
 }

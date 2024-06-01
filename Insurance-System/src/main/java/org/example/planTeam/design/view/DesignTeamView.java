@@ -3,6 +3,7 @@ package org.example.planTeam.design.view;
 import org.example.common.view.DepartmentView;
 import org.example.common.dto.RequestDto;
 import org.example.common.dto.ResponseDto;
+import org.example.insurance.InsuranceType;
 import org.example.planTeam.Status;
 import org.example.planTeam.design.model.reward.RewardConstant;
 
@@ -89,6 +90,12 @@ public class DesignTeamView extends DepartmentView {
     public RequestDto createInsurance() {
         RequestDto requestDto = new RequestDto();
         requestDto.add(KIND, INSURANCE);
+        println("보험 종류를 선택하세요.");
+        for (InsuranceType insuranceType : InsuranceType.values()) {
+            println(insuranceType.getInsuranceNumber() + "번 " + insuranceType.getDescription());
+        }
+        requestDto.add(INSURANCE_KIND, writeIntToString(InsuranceType.values().length));
+
         println("보험 이름을 입력하세요.");
         requestDto.add(INSURANCE_NAME, writeString());
         println("만든 사람의 이름을 입력하세요.");
@@ -98,8 +105,9 @@ public class DesignTeamView extends DepartmentView {
         println("계약시에 제약사항을 입력해주세요.");
         requestDto.add(RESTRICTION_REGULATION, writeString());
         println("매달 내야하는 보험료를 입력해주세요.");
-        //  고객의 시나리오로 만들어야 함.
         requestDto.add(RewardConstant.MONTH_PAYMENT_FEE, writeString());
+        println("보험요율을 입력해주세요.");
+        requestDto.add(RewardConstant.INSURANCE_RATE, writeString());
         println("보험 가입자의 권리와 의무를 입력해주세요.");
         requestDto.add(SUBSCRIBER_RIGHTS_AND_OBLIGATION, writeString());
         return requestDto;
@@ -107,5 +115,31 @@ public class DesignTeamView extends DepartmentView {
 
     public RequestDto designProduct() {
         return null;
+    }
+
+    public void createInsurance(ResponseDto responseDto) {
+        if (responseDto.get(Status.key()).equals(Status.SUCCESS.getStatus())) {
+            System.out.println("보험 생성이 완료되었습니다.");
+        }
+    }
+
+    public RequestDto requestAuthorization() {
+        RequestDto requestDto = new RequestDto();
+        System.out.println("만들어진 보험 리스트입니다.\n인가 요청을 할 보험 번호를 입력하세요.");
+        requestDto.add("객체리스트", "전체");
+
+        return requestDto;
+    }
+
+    public RequestDto requestAuthorization(ResponseDto responseDto) {
+        RequestDto requestDto = new RequestDto();
+        requestDto.add(KIND, "인가요청");
+
+        responseDto.getTotalInfo().forEach(
+            (key, value) -> System.out.println("보험 번호: " + key + "번 " + value));
+        requestDto.add("객체리스트", "한개");
+        requestDto.add("선택번호",
+            responseDto.getTotalInfo().get(writeIntToString(responseDto.getTotalInfo().size())));
+        return requestDto;
     }
 }

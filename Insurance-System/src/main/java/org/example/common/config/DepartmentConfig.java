@@ -1,5 +1,6 @@
 package org.example.common.config;
 
+import org.example.Team;
 import org.example.TeamController;
 import org.example.business.education.BusinessEducationTeam;
 import org.example.business.education.controller.EducationController;
@@ -8,13 +9,17 @@ import org.example.contract.ContractListImpl;
 import org.example.contract.ContractManagementTeam;
 import org.example.insurance.InsuranceApplyList;
 import org.example.insurance.InsuranceCompanyList;
-import org.example.planTeam.design.DesignInspectionTeam;
-import org.example.planTeam.design.controller.DesignInspectionController;
+import org.example.planTeam.inspection.InsuranceInspectionView;
+import org.example.planTeam.design.model.insurance.InsuranceList;
+import org.example.planTeam.design.model.insurance.InsuranceListImpl;
+import org.example.planTeam.design.InsurancePlanTeam;
+import org.example.planTeam.design.controller.InsurancePlanController;
 import org.example.planTeam.design.model.designPlan.DesignPlanList;
 import org.example.planTeam.design.model.designPlan.DesignPlanListImpl;
 import org.example.planTeam.design.model.proposal.ProposalList;
 import org.example.planTeam.design.model.proposal.ProposalListImpl;
 import org.example.planTeam.design.view.DesignTeamView;
+import org.example.planTeam.inspection.InsuranceInspectionTeam;
 import org.example.rewardSupportTeam.RewardSupportTeam;
 import org.example.rewardSupportTeam.controller.RewardSupportController;
 import org.example.rewardSupportTeam.model.AccidentList;
@@ -34,7 +39,8 @@ public class DepartmentConfig {
     }
 
     public static UnderwriteController underwriteController() {
-        return new UnderwriteController(underwriteTeam(), underwriteView(), contractManagementTeam());
+        return new UnderwriteController(underwriteTeam(), underwriteView(),
+            contractManagementTeam());
     }
 
     private static UnderwriteView underwriteView() {
@@ -42,7 +48,8 @@ public class DepartmentConfig {
     }
 
     private static UnderwriteTeam underwriteTeam() {
-        return new UnderwriteTeam(new InsuranceCompanyList(), new InsuranceApplyList(), new UnderwritePolicyListImpl());
+        return new UnderwriteTeam(new InsuranceCompanyList(), new InsuranceApplyList(),
+            new UnderwritePolicyListImpl());
     }
 
     private static ContractManagementTeam contractManagementTeam() {
@@ -58,15 +65,25 @@ public class DepartmentConfig {
     }
 
     public static TeamController designInspectionController() {
-        return new DesignInspectionController(designTeamView(), designInspectionTeam());
+        return new InsurancePlanController(designTeamView(), insuranceInspectionTeamView(),
+            designInspectionTeam(),
+            insuranceInspectionTeam());
+    }
+
+    private static InsuranceInspectionView insuranceInspectionTeamView() {
+        return new InsuranceInspectionView();
+    }
+
+    private static Team insuranceInspectionTeam() {
+        return new InsuranceInspectionTeam();
     }
 
     private static DesignTeamView designTeamView() {
         return new DesignTeamView();
     }
 
-    private static DesignInspectionTeam designInspectionTeam() {
-        return new DesignInspectionTeam(designPlanList(), proposalList());
+    private static InsurancePlanTeam designInspectionTeam() {
+        return new InsurancePlanTeam(designPlanList(), proposalList(), insuranceList());
     }
 
     private static DesignPlanList designPlanList() {
@@ -75,6 +92,10 @@ public class DepartmentConfig {
 
     private static ProposalList proposalList() {
         return new ProposalListImpl();
+    }
+
+    private static InsuranceList insuranceList() {
+        return new InsuranceListImpl();
     }
 
     // reward
