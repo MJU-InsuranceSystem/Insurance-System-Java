@@ -2,10 +2,10 @@ package org.example;
 
 import org.example.common.dto.RequestDto;
 import org.example.common.dto.ResponseDto;
-import org.example.planTeam.design.model.DesignPlan;
-import org.example.planTeam.design.model.DesignPlanListImpl;
-import org.example.planTeam.design.model.Proposal;
-import org.example.planTeam.design.model.ProposalListImpl;
+import org.example.planTeam.design.model.designPlan.DesignPlan;
+import org.example.planTeam.design.model.designPlan.DesignPlanListImpl;
+import org.example.planTeam.design.model.proposal.Proposal;
+import org.example.planTeam.design.model.proposal.ProposalListImpl;
 
 /**
  * @author USER
@@ -13,51 +13,51 @@ import org.example.planTeam.design.model.ProposalListImpl;
  */
 public class InsurancePlanTeam extends Team {
 
-	public Proposal proposal;
-	public ProposalListImpl m_ProposalListImpl;
-	public DesignPlan designPlan;
-	public DesignPlanListImpl m_DesignPlanListImpl;
+    public Proposal proposal;
+    public ProposalListImpl m_ProposalListImpl;
+    public DesignPlan designPlan;
+    public DesignPlanListImpl m_DesignPlanListImpl;
 
-	public InsurancePlanTeam(){
+    public InsurancePlanTeam() {
 
-	}
+    }
 
-	@Override
-	public ResponseDto manage(RequestDto request) {
-		return null;
-	}
+    @Override
+    public ResponseDto manage(RequestDto request) {
+        return null;
+    }
 
-	@Override
-	public ResponseDto process(RequestDto request) {
-		return null;
-	}
+    @Override
+    public ResponseDto process(RequestDto request) {
+        return null;
+    }
 
-	@Override
-	public ResponseDto register(RequestDto request) {
-		return null;
-	}
+    @Override
+    public ResponseDto register(RequestDto request) {
+        return null;
+    }
 
-	@Override
-	public ResponseDto remove(RequestDto request) {
-		return null;
-	}
+    @Override
+    public ResponseDto remove(RequestDto request) {
+        return null;
+    }
 
-	@Override
-	public ResponseDto retrieve(RequestDto request) {
-		return null;
-	}
+    @Override
+    public ResponseDto retrieve(RequestDto request) {
+        return null;
+    }
 
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
+    public void finalize() throws Throwable {
+        super.finalize();
+    }
 
-	public void requestInspection(){
+    public void requestInspection() {
 
-	}
+    }
 
-	public void suspendInsurance(){
+    public void suspendInsurance() {
 
-	}
+    }
 
 //	public Proposal makeProrosal(InputManager inputManager, OutputManager outputManager) {
 //		System.out.println("기획안 이름을 입력하세요.");

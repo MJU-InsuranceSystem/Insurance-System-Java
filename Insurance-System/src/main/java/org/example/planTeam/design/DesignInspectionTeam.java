@@ -4,12 +4,17 @@ import org.example.Team;
 import org.example.common.dto.RequestDto;
 import org.example.common.dto.ResponseDto;
 import org.example.planTeam.Status;
-import org.example.planTeam.design.model.DesignPlanList;
-import org.example.planTeam.design.model.Proposal;
-import org.example.planTeam.design.model.Proposal.ProposalBuilder;
-import org.example.planTeam.design.model.ProposalList;
+import org.example.planTeam.design.model.designPlan.DesignPlanList;
+import org.example.planTeam.design.model.insurance.Insurance;
+import org.example.planTeam.design.model.proposal.Proposal;
+import org.example.planTeam.design.model.proposal.Proposal.ProposalBuilder;
+import org.example.planTeam.design.model.proposal.ProposalList;
 
-import static org.example.planTeam.design.view.ProposalConstant.*;
+import static org.example.planTeam.design.model.insurance.InsuranceConstant.INSURANCE;
+import static org.example.planTeam.design.model.insurance.InsuranceConstant.INSURANCE_NAME;
+import static org.example.planTeam.design.model.insurance.InsuranceConstant.RESPONSIBLE_PERSON;
+import static org.example.planTeam.design.model.insurance.InsuranceConstant.SUBSCRIBER_RIGHTS_AND_OBLIGATION;
+import static org.example.planTeam.design.model.proposal.ProposalConstant.*;
 
 /**
  * @author USER
@@ -37,14 +42,31 @@ public class DesignInspectionTeam extends Team {
 
     @Override
     public ResponseDto register(RequestDto request) {
-        Proposal proposal = new ProposalBuilder().proposalId(proposalList.getSize())
-            .title(request.get(PROPOSAL_TITLE)).productOverview(PRODUCT_OVERVIEW)
-            .marketResearch(MARKET_RESEARCH).insurancePayment(Insurance_Payment)
-            .saleStrategy(SALE_STRATEGY).saleTarget(SALE_TARGET).reward(REWARD).build();
-        proposalList.add(proposal);
-        ResponseDto responseDto = new ResponseDto();
-        responseDto.add(Status.key(), Status.SUCCESS.getStatus());
-        return responseDto;
+        switch (request.get(KIND)) {
+            case PROPOSAL -> {
+                Proposal proposal = new ProposalBuilder().proposalId(proposalList.getSize())
+                    .title(request.get(PROPOSAL_TITLE)).productOverview(PRODUCT_OVERVIEW)
+                    .marketResearch(MARKET_RESEARCH).insurancePayment(Insurance_Payment)
+                    .saleStrategy(SALE_STRATEGY).saleTarget(SALE_TARGET).reward(REWARD).build();
+
+                proposalList.add(proposal);
+                ResponseDto responseDto = new ResponseDto();
+                responseDto.add(Status.key(), Status.SUCCESS.getStatus());
+                return responseDto;
+            }
+            case INSURANCE -> {
+                Insurance insurance = new Insurance();
+                insurance.setInsuranceName(request.get(INSURANCE_NAME));
+                insurance.setResponsiblePerson(request.get(RESPONSIBLE_PERSON));
+                insurance.setReightObligation(request.get(SUBSCRIBER_RIGHTS_AND_OBLIGATION));
+                ResponseDto responseDto = new ResponseDto();
+                return responseDto;
+            }
+            default -> {
+                throw new IllegalArgumentException("해당 유스케이스 번호는 존재하지 않습니다.");
+            }
+        }
+
     }
 
     @Override
