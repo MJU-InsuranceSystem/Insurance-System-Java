@@ -1,6 +1,8 @@
 package org.example.auth;
 
 import java.util.Map;
+
+import org.example.common.AuthUtil;
 import org.example.user.CustomerManager;
 import org.example.user.User;
 import org.example.user.WorkerManager;
@@ -20,6 +22,7 @@ public class LoginProcess implements Process {
     public User execute(SystemView systemView) {
             Map<String, String> loginInfo = systemView.getLoginInfo();
             User user = login(loginInfo);
+            AuthUtil.user = user;
             user.login();
             systemView.successLogin();
             return user;

@@ -2,6 +2,7 @@ package org.example.common.controller;
 
 import org.example.common.dto.RequestDto;
 import org.example.common.view.SystemView;
+import org.example.contract.ContractList;
 import org.example.insurance.InsuranceType;
 import org.example.user.CustomerProcess;
 import org.example.user.CustomerProcessManager;
@@ -50,6 +51,10 @@ public class CustomerSystem {
             case REQUIRE_INSURANCE_BENEFIT -> {
                 RequestDto requestDto = customerView.requireInsuranceBenefitInfo();
                 customerProcessManager.requireInsuranceBenefit(requestDto);
+                customerView.successTask();
+            }
+            case RETRIEVE_CONTRACT -> {
+                customerView.retrieveContract(customerProcessManager.retrieveContract());
                 customerView.successTask();
             }
             default -> throw new IllegalArgumentException("선택하신 업무가 존재하지 않습니다");

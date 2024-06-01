@@ -1,6 +1,8 @@
 package org.example.user;
 
+import org.example.common.AuthUtil;
 import org.example.common.dto.RequestDto;
+import org.example.contract.ContractList;
 import org.example.domain.insurance.Insurance;
 import org.example.insurance.InsuranceApplyList;
 import org.example.insurance.InsuranceList;
@@ -12,6 +14,11 @@ public class CustomerProcessManager {
 
   public CustomerProcessManager(InsuranceApplyList insuranceApplyList) {
     this.insuranceApplyList = insuranceApplyList;
+  }
+
+  public ContractList retrieveContract() {
+    Customer loginUser = (Customer) AuthUtil.user;
+    return loginUser.getContractList();
   }
 
   public void applyInsurance(RequestDto requestDto) {
