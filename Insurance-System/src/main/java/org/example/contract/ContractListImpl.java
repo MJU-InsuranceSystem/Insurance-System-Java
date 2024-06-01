@@ -29,6 +29,11 @@ public class ContractListImpl implements ContractList {
   }
 
   @Override
+  public List<Contract> getContracts() {
+    return CONTRACTS;
+  }
+
+  @Override
   public void update(Contract contract) {
 
   }
