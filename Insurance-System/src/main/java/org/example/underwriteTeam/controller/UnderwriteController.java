@@ -39,6 +39,9 @@ public class UnderwriteController implements TeamController {
       }
       case PERFORM_UNDERWRITING -> {
         String insuranceInfo = findFirstInsuranceInfo(usecase.getOrder());
+        if (insuranceInfo == null) {
+          underwriteView.inNotExistInsuranceApply();
+        }
         RequestDto requestDto = underwriteView.performUnderwriting(insuranceInfo);
         ResponseDto responseDto = underwriteTeam.process(requestDto);
         if (Objects.equals(responseDto.get(UnderwriteView.UNDERWRITING_RESULT), "Y")) {

@@ -1,16 +1,6 @@
 package org.example.planTeam.design.model.insurance;
 
-import static org.example.planTeam.design.model.insurance.InsuranceConstant.INSURANCE_NAME;
-import static org.example.planTeam.design.model.insurance.InsuranceConstant.RESPONSIBLE_PERSON;
-import static org.example.planTeam.design.model.insurance.InsuranceConstant.RESTRICTION_REGULATION;
-import static org.example.planTeam.design.model.proposal.ProposalConstant.INSURANCE_KIND;
-import static org.example.planTeam.design.model.reward.RewardConstant.INSURANCE_RATE;
-import static org.example.planTeam.design.model.reward.RewardConstant.MAX_REWARD;
-import static org.example.planTeam.design.model.reward.RewardConstant.MONTH_PAYMENT_FEE;
-import static org.example.user.CustomerView.INSURANCE_ID;
-
 import org.example.insurance.InsuranceType;
-import org.example.planTeam.design.model.SaleTarget;
 import org.example.planTeam.design.model.reward.Reward;
 
 public class Insurance {
@@ -25,7 +15,6 @@ public class Insurance {
     private String responsiblePerson;
     private Reward reward;
     private String reightObligation;
-
     private String date;
     private String authorizedPerson;
     private String reason;

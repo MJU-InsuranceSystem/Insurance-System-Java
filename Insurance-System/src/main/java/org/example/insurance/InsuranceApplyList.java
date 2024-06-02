@@ -1,50 +1,17 @@
 package org.example.insurance;
 
-import java.util.ArrayList;
-import java.util.List;
-import org.example.domain.insurance.Insurance;
-import org.example.planTeam.design.model.insurance.InsuranceList;
+import org.example.domain.insurance.InsuranceApplication;
 
-public class InsuranceApplyList implements InsuranceList {
+public interface InsuranceApplyList {
+  void add(InsuranceApplication insurance);
 
-    private static final List<Insurance> INSURANCES = new ArrayList<>();
+  void remove(InsuranceApplication insurance);
 
+  void remove(int index);
 
-    @Override
-    public void add(org.example.planTeam.design.model.insurance.Insurance insurance) {
+  InsuranceApplication findById(int insuranceId);
 
-    }
+  InsuranceApplication findFirst();
 
-    @Override
-    public void remove(org.example.planTeam.design.model.insurance.Insurance insurance) {
-
-    }
-
-    @Override
-    public void remove(int index) {
-
-    }
-
-    @Override
-    public org.example.planTeam.design.model.insurance.Insurance findById(int insuranceId) {
-        return null;
-    }
-
-    @Override
-    public org.example.planTeam.design.model.insurance.Insurance findFirst() {
-        return null;
-    }
-
-
-    @Override
-    public void update(org.example.planTeam.design.model.insurance.Insurance insurance) {
-
-    }
-
-    @Override
-    public List<org.example.planTeam.design.model.insurance.Insurance> getList() {
-        return null;
-    }
-    
-
+  void update(InsuranceApplication insurance);
 }

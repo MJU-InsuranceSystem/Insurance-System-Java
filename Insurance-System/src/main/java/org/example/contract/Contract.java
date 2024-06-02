@@ -1,19 +1,19 @@
 package org.example.contract;
 
-import org.example.domain.insurance.Insurance;
+import org.example.domain.insurance.InsuranceApplication;
 
 public class Contract {
 
 	private String customerName;
-	private Insurance insurance;
+	private InsuranceApplication insuranceApplication;
 	private String managerName;
 
 	public String getCustomerName() {
 		return customerName;
 	}
 
-	public Insurance getInsurance() {
-		return insurance;
+	public InsuranceApplication getInsurance() {
+		return insuranceApplication;
 	}
 
 	public String getManagerName() {
@@ -24,8 +24,8 @@ public class Contract {
 		this.customerName = customerName;
 	}
 
-	public void setInsurance(Insurance insurance) {
-		this.insurance = insurance;
+	public void setInsurance(InsuranceApplication insuranceApplication) {
+		this.insuranceApplication = insuranceApplication;
 	}
 
 	public void setManagerName(String managerName) {
@@ -36,7 +36,7 @@ public class Contract {
 	public String toString() {
 		return
 				"customerName = " + customerName + '\n' +
-				"insurance ID = " + insurance.getInsuranceID() + '\n' +
+				"insurance ID = " + insuranceApplication.getInsuranceApplicationID() + '\n' +
 				"managerName = " + managerName ;
 	}
 }

@@ -1,4 +1,4 @@
-package org.example;
+package org.example.business.education.model;
 
 /**
  * @author kosun

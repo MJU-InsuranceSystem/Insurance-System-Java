@@ -81,4 +81,8 @@ public class UnderwriteView extends DepartmentView {
     println("등록된 계약의 정보는 아래와 같습니다.");
     println(contractResult.get(CONTRACT_INFO));
   }
+
+  public void inNotExistInsuranceApply() {
+    println("인수 심사할 대상이 존재하지 않습니다.");
+  }
 }

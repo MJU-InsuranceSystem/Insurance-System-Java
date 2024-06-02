@@ -3,12 +3,12 @@ package org.example.domain.insurance;
  * @author USER
  * @version 1.0
  */
-public class FireInsurance extends Insurance {
+public class FireInsuranceApplication extends InsuranceApplication {
 
 	private String coverageItems;
 	private String fireExclusions;
 
-	public FireInsurance(){
+	public FireInsuranceApplication(){
 
 	}
 
