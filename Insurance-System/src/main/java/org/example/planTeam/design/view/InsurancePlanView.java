@@ -13,9 +13,12 @@ import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGN
 import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGN_CONTENT;
 import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGN_MANAGER;
 import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGN_TITLE;
+import static org.example.planTeam.design.model.insurance.InsuranceConstant.ALL;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.ENTITY_KIND;
+import static org.example.planTeam.design.model.insurance.InsuranceConstant.ENTITY_LIST;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.INSURANCE;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.INSURANCE_NAME;
+import static org.example.planTeam.design.model.insurance.InsuranceConstant.ONE;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.RESPONSIBLE_PERSON;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.RESTRICTION_REGULATION;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.SUBSCRIBER_RIGHTS_AND_OBLIGATION;
@@ -101,8 +104,9 @@ public class InsurancePlanView extends DepartmentView {
         for (InsuranceType insuranceType : InsuranceType.values()) {
             println(insuranceType.getInsuranceNumber() + "번 " + insuranceType.getDescription());
         }
-        requestDto.add(INSURANCE_KIND, writeIntToString(InsuranceType.values().length));
 
+        String insuranceKind = writeIntToString(InsuranceType.values().length);
+        requestDto.add(INSURANCE_KIND, insuranceKind);
         println("보험 이름을 입력하세요.");
         requestDto.add(INSURANCE_NAME, writeString());
         println("만든 사람의 이름을 입력하세요.");
@@ -117,6 +121,27 @@ public class InsurancePlanView extends DepartmentView {
         requestDto.add(RewardConstant.INSURANCE_RATE, writeString());
         println("보험 가입자의 권리와 의무를 입력해주세요.");
         requestDto.add(SUBSCRIBER_RIGHTS_AND_OBLIGATION, writeString());
+
+        switch (InsuranceType.findByNumber(Integer.parseInt(insuranceKind))) {
+            case FIRE -> {
+
+            }
+            case LIFE -> {
+
+            }
+
+            case TRAVEL -> {
+
+            }
+            case CAR -> {
+                println("적용되는 차 종류를 입력해주세요.");
+                // car enum으로 써서 선택하기.
+//                requestDto.add();
+            }
+            case CANCER -> {
+
+            }
+        }
         return requestDto;
     }
 
@@ -133,8 +158,8 @@ public class InsurancePlanView extends DepartmentView {
     public RequestDto requestAuthorization() {
         RequestDto requestDto = new RequestDto();
         System.out.println("만들어진 보험 리스트입니다.\n인가 요청을 할 보험 번호를 입력하세요.");
-        requestDto.add("객체리스트", "전체");
-
+        requestDto.add(ENTITY_LIST, ALL);
+        requestDto.add(ENTITY_KIND, INSURANCE);
         return requestDto;
     }
 
@@ -144,9 +169,10 @@ public class InsurancePlanView extends DepartmentView {
 
         responseDto.getTotalInfo().forEach(
             (key, value) -> System.out.println("보험 번호: " + key + " " + value));
-        requestDto.add("객체리스트", "한개");
+        requestDto.add(ENTITY_LIST, ONE);
         requestDto.add("선택번호",
             writeIntToString(responseDto.getTotalInfo().size()));
+        requestDto.add(ENTITY_KIND, INSURANCE);
         return requestDto;
     }
 

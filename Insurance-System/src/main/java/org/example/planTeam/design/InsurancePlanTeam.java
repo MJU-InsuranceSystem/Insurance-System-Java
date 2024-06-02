@@ -167,7 +167,7 @@ public class InsurancePlanTeam extends Team {
             }
             case ONE -> {
                 switch (request.get(ENTITY_KIND)) {
-                    case "보험" -> {
+                    case INSURANCE -> {
                         Insurance insurance = insuranceList.findById(
                             Integer.parseInt(request.get("선택번호")));
                         responseDto.add(INSURANCE_ID, insurance.getInsuranceId());
