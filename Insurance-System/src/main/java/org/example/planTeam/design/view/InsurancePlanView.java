@@ -14,6 +14,7 @@ import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGN
 import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGN_MANAGER;
 import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGN_TITLE;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.ALL;
+import static org.example.planTeam.design.model.insurance.InsuranceConstant.ENTITY;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.ENTITY_KIND;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.ENTITY_LIST;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.INSURANCE;
@@ -70,8 +71,8 @@ public class InsurancePlanView extends DepartmentView {
     }
 
     private RequestDto askSubmit(RequestDto requestDto) {
-        println("제출하시겠습니까?");
-        return writeInt() == 1 ? yes(requestDto) : no();
+        println("제출하시겠습니까?\ny/n");
+        return writeString().equalsIgnoreCase("y") ? yes(requestDto) : no();
     }
 
 
@@ -197,9 +198,7 @@ public class InsurancePlanView extends DepartmentView {
 
     public RequestDto createDesign(ResponseDto responseDto) {
         RequestDto requestDto = new RequestDto();
-        String[] proposal = responseDto.get("entity").split(" ");
-        println("기획서 번호 | 제목 | 상품 개요| 시장 조사 | 보험 납부 방법 | 판매 전략 | 보상");
-        println(Arrays.toString(proposal));
+        println(responseDto.get(ENTITY));
         println("설계안 제목을 입력해주세요.");
         requestDto.add(DESIGN_TITLE, writeString());
         println("설계안 내용을 입력해주세요.");
@@ -207,7 +206,7 @@ public class InsurancePlanView extends DepartmentView {
         println("설계안 책임자를 입력해주세요.");
         requestDto.add(DESIGN_MANAGER, writeString());
 
-        requestDto.add("기획서번호", proposal[0]);
+        requestDto.add("기획서번호", responseDto.get(ENTITY).split(" ")[0]);
         requestDto.add(KIND, "설계안");
         return requestDto;
     }

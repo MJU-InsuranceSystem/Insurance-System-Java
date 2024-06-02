@@ -1,5 +1,6 @@
 package org.example.planTeam.inspection;
 
+import static org.example.planTeam.design.model.insurance.InsuranceConstant.ENTITY;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.INSURANCE_NAME;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.RESPONSIBLE_PERSON;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.RESTRICTION_REGULATION;
@@ -42,7 +43,7 @@ public class InsuranceInspectionView extends DepartmentView {
         requestDto.add("책임자이름", writeString());
         println("결정에 대한 사유를 입력해주세요.");
         requestDto.add("reason", writeString());
-        requestDto.add("값", responseDto.get("값"));
+        requestDto.add(ENTITY, responseDto.get(ENTITY));
         return requestDto;
     }
 

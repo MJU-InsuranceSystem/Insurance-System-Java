@@ -11,5 +11,6 @@ public class InsuranceConstant {
     public static final String ALL = "전체";
     public static final String ENTITY_LIST = "객체리스트";
     public static final String ONE = "한개";
+    public static final String ENTITY = "entity";
 
 }

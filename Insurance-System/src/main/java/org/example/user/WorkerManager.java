@@ -10,7 +10,11 @@ public class WorkerManager {
     private final List<Worker> workers = new ArrayList<>();
 
     private WorkerManager() {
-
+        Worker worker = new Worker();
+        worker.id = String.valueOf(1);
+        worker.password = String.valueOf(1);
+        worker.userType = UserType.WORKER;
+        workers.add(worker);
     }
 
     public static WorkerManager getInstance() {

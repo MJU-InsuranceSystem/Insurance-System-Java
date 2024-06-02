@@ -20,6 +20,7 @@ import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGN
 import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGN_MANAGER;
 import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGN_TITLE;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.ALL;
+import static org.example.planTeam.design.model.insurance.InsuranceConstant.ENTITY;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.ENTITY_KIND;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.ENTITY_LIST;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.INSURANCE;
@@ -182,12 +183,12 @@ public class InsurancePlanTeam extends Team {
                         responseDto.add(INSURANCE_RATE,
                             Integer.toString(reward.getInsuranceRate()));
                         responseDto.add(RESTRICTION_REGULATION, reward.getRestrictionRegulation());
-                        responseDto.add("값", insurance.toEntity());
+                        responseDto.add(ENTITY, insurance.toEntity());
                     }
                     case PROPOSAL -> {
                         Proposal proposal = proposalList.findById(
                             Integer.parseInt(request.get("선택번호")));
-                        responseDto.add("entity", proposal.toEntity());
+                        responseDto.add(ENTITY, proposal.toEntity());
                     }
                     case DESIGNPLAN -> {
 
