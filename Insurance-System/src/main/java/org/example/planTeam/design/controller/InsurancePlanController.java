@@ -10,6 +10,8 @@ import org.example.planTeam.design.usecase.DesignUseCase;
 import org.example.planTeam.design.view.InsurancePlanView;
 
 import static org.example.planTeam.design.model.proposal.ProposalConstant.DESIGN_TEAM_NAME;
+import static org.example.planTeam.design.model.proposal.ProposalConstant.KIND;
+import static org.example.planTeam.design.model.proposal.ProposalConstant.PROPOSAL;
 
 public class InsurancePlanController implements TeamController {
 
@@ -54,6 +56,24 @@ public class InsurancePlanController implements TeamController {
                 requestDto = insuranceInspectionView.authorizationInsurance(responseDto);
                 responseDto = insurancePlanTeam.process(requestDto);
                 insurancePlanView.showAuthrizationResult(responseDto);
+            }
+            case PLAN_INSURANCE -> {
+                RequestDto requestDto = insurancePlanView.createProposal();
+                ResponseDto responseDto = insurancePlanTeam.register(requestDto);
+                insurancePlanView.completeCreateProposal(responseDto);
+            }
+            case DESIGN_INSURANCE -> {
+                RequestDto requestDto = new RequestDto();
+                ResponseDto responseDto;
+                requestDto.add("객체리스트", "전체");
+                requestDto.add(KIND, PROPOSAL);
+
+                requestDto = insurancePlanView.selectProposal(
+                    insurancePlanTeam.retrieve(requestDto));
+                responseDto = insurancePlanTeam.retrieve(requestDto);
+                requestDto = insurancePlanView.createDesign(responseDto);
+                responseDto = insurancePlanTeam.register(requestDto);
+                insurancePlanView.completeCreateDesignPlan(responseDto);
             }
             default -> throw new IllegalArgumentException("해당 유스케이스 번호는 존재하지 않습니다.");
         }
