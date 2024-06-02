@@ -1,4 +1,4 @@
-package org.example.planTeam.design.model;
+package org.example.planTeam.design.model.proposal;
 
 import java.util.ArrayList;
 import java.util.List;

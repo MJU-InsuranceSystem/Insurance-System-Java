@@ -9,17 +9,17 @@ import org.example.insurance.InsuranceType;
  */
 public class Reward {
 
-	private InsuranceType insuranceType;
-	private int MaxReward;
-	private int MonthPaymentFee;
-	private String RestrictionRegulation;
+    private InsuranceType insuranceType;
+    private int MaxReward;
+    private int MonthPaymentFee;
+    private String RestrictionRegulation;
 
-	public Reward(){
+    public Reward(){
 
-	}
+    }
 
-	public void finalize() throws Throwable {
+    public void finalize() throws Throwable {
 
-	}
+    }
 
 }

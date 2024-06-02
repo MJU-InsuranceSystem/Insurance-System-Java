@@ -14,4 +14,8 @@ public class ResponseDto {
     public String get(String key) {
         return requestInfo.get(key);
     }
+
+    public Map<String, String> getTotalInfo() {
+        return this.requestInfo;
+    }
 }
