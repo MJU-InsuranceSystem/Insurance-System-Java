@@ -44,14 +44,15 @@ public class RewardSupportView extends DepartmentView {
     public void completeSubmitAccident(ResponseDto responseDto) {
         if (responseDto.get(Status.key()).equals(Status.SUCCESS.getStatus())) {
             println("성공적으로 사고가 접수되었습니다.");
+        } else {
+            println("사고 접수에 실패하였습니다. 다시 시도해주세요.");
         }
-        println("사고 접수에 실패하였습니다. 다시 시도해주세요.");
     }
 
     public RequestDto judgeFault() {
         RequestDto requestDto = new RequestDto();
         println("면/부책을 판단하시겠습니까? (Y/N) ");
-        requestDto.add("JUDGE_ANSWER", writeString());
+        requestDto.add(JUDGE_ANSWER, writeString());
         return requestDto;
     }
 
