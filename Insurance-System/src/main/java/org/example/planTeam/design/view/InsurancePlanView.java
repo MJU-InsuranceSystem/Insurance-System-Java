@@ -9,9 +9,11 @@ import org.example.planTeam.Status;
 import org.example.planTeam.design.model.proposal.Proposal;
 import org.example.planTeam.design.model.reward.RewardConstant;
 
+import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGNPLAN;
 import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGN_CONTENT;
 import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGN_MANAGER;
 import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGN_TITLE;
+import static org.example.planTeam.design.model.insurance.InsuranceConstant.ENTITY_KIND;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.INSURANCE;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.INSURANCE_NAME;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.RESPONSIBLE_PERSON;
@@ -162,7 +164,7 @@ public class InsurancePlanView extends DepartmentView {
             (key, value) -> System.out.println("기획안 번호: " + key + " " + value));
         println("만들어진 기획안 리스트입니다.\n설계할 기획안 번호를 입력하세요. ");
         requestDto.add("객체리스트", "한개");
-        requestDto.add(KIND, "설계");
+        requestDto.add(ENTITY_KIND, PROPOSAL);
         requestDto.add("선택번호", writeIntToString(responseDto.getTotalInfo().size()));
         return requestDto;
     }

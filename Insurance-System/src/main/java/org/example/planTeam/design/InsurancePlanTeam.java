@@ -19,8 +19,12 @@ import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGN
 import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGN_CONTENT;
 import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGN_MANAGER;
 import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGN_TITLE;
+import static org.example.planTeam.design.model.insurance.InsuranceConstant.ALL;
+import static org.example.planTeam.design.model.insurance.InsuranceConstant.ENTITY_KIND;
+import static org.example.planTeam.design.model.insurance.InsuranceConstant.ENTITY_LIST;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.INSURANCE;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.INSURANCE_NAME;
+import static org.example.planTeam.design.model.insurance.InsuranceConstant.ONE;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.RESPONSIBLE_PERSON;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.RESTRICTION_REGULATION;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.SUBSCRIBER_RIGHTS_AND_OBLIGATION;
@@ -86,9 +90,12 @@ public class InsurancePlanTeam extends Team {
         switch (request.get(KIND)) {
             case PROPOSAL -> {
                 Proposal proposal = new ProposalBuilder().proposalId(proposalList.getSize())
-                    .title(request.get(PROPOSAL_TITLE)).productOverview(PRODUCT_OVERVIEW)
-                    .marketResearch(MARKET_RESEARCH).insurancePayment(Insurance_Payment)
-                    .saleStrategy(SALE_STRATEGY).saleTarget(SALE_TARGET).reward(REWARD).build();
+                    .title(request.get(PROPOSAL_TITLE))
+                    .productOverview(request.get(PRODUCT_OVERVIEW))
+                    .marketResearch(request.get(MARKET_RESEARCH))
+                    .insurancePayment(request.get(Insurance_Payment))
+                    .saleStrategy(request.get(SALE_STRATEGY)).saleTarget(request.get(SALE_TARGET))
+                    .reward(request.get(REWARD)).build();
 
                 proposalList.add(proposal);
                 responseDto.add(Status.key(), Status.SUCCESS.getStatus());
@@ -140,15 +147,15 @@ public class InsurancePlanTeam extends Team {
     @Override
     public ResponseDto retrieve(RequestDto request) {
         ResponseDto responseDto = new ResponseDto();
-        switch (request.get("객체리스트")) {
-            case "전체" -> {
-                switch (request.get("객체종류")) {
-                    case "보험" -> {
+        switch (request.get(ENTITY_LIST)) {
+            case ALL -> {
+                switch (request.get(ENTITY_KIND)) {
+                    case INSURANCE -> {
                         for (Insurance insurance : insuranceList.getList()) {
                             responseDto.add(insurance.getInsuranceId(), insurance.toString());
                         }
                     }
-                    case "기획서" -> {
+                    case PROPOSAL -> {
                         for (Proposal proposal : proposalList.getList()) {
                             responseDto.add(Integer.toString(proposal.getProposalId()),
                                 proposal.toString());
@@ -158,8 +165,8 @@ public class InsurancePlanTeam extends Team {
 
 
             }
-            case "한개" -> {
-                switch (request.get("객체종류")) {
+            case ONE -> {
+                switch (request.get(ENTITY_KIND)) {
                     case "보험" -> {
                         Insurance insurance = insuranceList.findById(
                             Integer.parseInt(request.get("선택번호")));
@@ -177,10 +184,13 @@ public class InsurancePlanTeam extends Team {
                         responseDto.add(RESTRICTION_REGULATION, reward.getRestrictionRegulation());
                         responseDto.add("값", insurance.toEntity());
                     }
-                    case "기획" -> {
+                    case PROPOSAL -> {
                         Proposal proposal = proposalList.findById(
                             Integer.parseInt(request.get("선택번호")));
                         responseDto.add("entity", proposal.toEntity());
+                    }
+                    case DESIGNPLAN -> {
+
                     }
                 }
             }
