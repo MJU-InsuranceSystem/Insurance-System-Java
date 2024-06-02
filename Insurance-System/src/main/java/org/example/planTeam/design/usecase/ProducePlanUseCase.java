@@ -4,7 +4,7 @@ import org.example.Team;
 import org.example.common.dto.RequestDto;
 import org.example.common.dto.ResponseDto;
 import org.example.common.usecase.Usecase;
-import org.example.planTeam.design.view.DesignTeamView;
+import org.example.planTeam.design.view.InsurancePlanView;
 
 import java.util.Arrays;
 import java.util.function.BiConsumer;
@@ -13,29 +13,31 @@ import java.util.function.Function;
 
 public enum ProducePlanUseCase implements Usecase {
     PLAN_INSURANCE(1, "상품을 기획한다.",
-        DesignTeamView::createProposal, Team::register, DesignTeamView::completeCreateProposal),
+        InsurancePlanView::createProposal, Team::register,
+        InsurancePlanView::completeCreateProposal),
     DESIGN_INSURANCE(2,
-        "상품을 설계한다.", DesignTeamView::designProduct, Team::process,
-        DesignTeamView::completeCreateProposal),
+        "상품을 설계한다.", InsurancePlanView::designProduct, Team::process,
+        InsurancePlanView::completeCreateProposal),
     APPLY_RATE_TEST(3,
-        "상품 요율 분석을 요청한다.", DesignTeamView::modifyProposal, Team::process,
-        DesignTeamView::completeCreateProposal),
+        "상품 요율 분석을 요청한다.", InsurancePlanView::modifyProposal, Team::process,
+        InsurancePlanView::completeCreateProposal),
     ASK_INSURANCE_AUTHORIZATION(4,
-        "상품 인가를 요청한다.", DesignTeamView::createProposal, Team::process,
-        DesignTeamView::completeCreateProposal),
-    MANAGE_INSURANCE(5, "상품을 사후 관리하다.", DesignTeamView::manageProposal,
-        Team::process, DesignTeamView::completeCreateProposal);
+        "상품 인가를 요청한다.", InsurancePlanView::createProposal, Team::process,
+        InsurancePlanView::completeCreateProposal),
+    MANAGE_INSURANCE(5, "상품을 사후 관리하다.", InsurancePlanView::manageProposal,
+        Team::process, InsurancePlanView::completeCreateProposal);
     private final int order;
     private final String description;
 
-    private final Function<DesignTeamView, RequestDto> action;
+    private final Function<InsurancePlanView, RequestDto> action;
     private final BiFunction<Team, RequestDto, ResponseDto> teamAction;
-    private final BiConsumer<DesignTeamView, ResponseDto> showResult;
+    private final BiConsumer<InsurancePlanView, ResponseDto> showResult;
 
 
-    ProducePlanUseCase(int order, String description, Function<DesignTeamView, RequestDto> action,
+    ProducePlanUseCase(int order, String description,
+        Function<InsurancePlanView, RequestDto> action,
         BiFunction<Team, RequestDto, ResponseDto> teamAction,
-        BiConsumer<DesignTeamView, ResponseDto> showResult) {
+        BiConsumer<InsurancePlanView, ResponseDto> showResult) {
         this.order = order;
         this.description = description;
         this.action = action;
@@ -51,15 +53,15 @@ public enum ProducePlanUseCase implements Usecase {
         return order;
     }
 
-    public RequestDto viewAction(DesignTeamView designTeamView) {
-        return action.apply(designTeamView);
+    public RequestDto viewAction(InsurancePlanView insurancePlanView) {
+        return action.apply(insurancePlanView);
     }
 
     public ResponseDto teamAction(Team team, RequestDto responseDto) {
         return teamAction.apply(team, responseDto);
     }
 
-    public void showResult(DesignTeamView team, ResponseDto responseDto) {
+    public void showResult(InsurancePlanView team, ResponseDto responseDto) {
         this.showResult.accept(team, responseDto);
     }
 

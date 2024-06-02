@@ -15,10 +15,10 @@ import static org.example.planTeam.design.model.insurance.InsuranceConstant.SUBS
 import static org.example.planTeam.design.model.proposal.ProposalConstant.*;
 
 
-public class DesignTeamView extends DepartmentView {
+public class InsurancePlanView extends DepartmentView {
 
 
-    public DesignTeamView() {
+    public InsurancePlanView() {
     }
 
 
@@ -136,10 +136,18 @@ public class DesignTeamView extends DepartmentView {
         requestDto.add(KIND, "인가요청");
 
         responseDto.getTotalInfo().forEach(
-            (key, value) -> System.out.println("보험 번호: " + key + "번 " + value));
+            (key, value) -> System.out.println("보험 번호: " + key + " " + value));
         requestDto.add("객체리스트", "한개");
         requestDto.add("선택번호",
-            responseDto.getTotalInfo().get(writeIntToString(responseDto.getTotalInfo().size())));
+            writeIntToString(responseDto.getTotalInfo().size()));
         return requestDto;
+    }
+
+    public void showAuthrizationResult(ResponseDto responseDto) {
+        switch (responseDto.get(Status.key())) {
+            case Status.SUCCESS_NUMBER -> {
+                System.out.println("보험에 대한 인가가 통과되었습니다.");
+            }
+        }
     }
 }

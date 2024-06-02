@@ -1,5 +1,6 @@
 package org.example.planTeam.design;
 
+import java.util.Objects;
 import org.example.Team;
 import org.example.common.dto.RequestDto;
 import org.example.common.dto.ResponseDto;
@@ -35,12 +36,15 @@ public class InsurancePlanTeam extends Team {
 
     private final InsuranceList insuranceList;
 
+    private final InsuranceList authrizationInsuranceList;
+
 
     public InsurancePlanTeam(DesignPlanList designPlanList, ProposalList proposalList,
-        InsuranceList insuranceList) {
+        InsuranceList insuranceList, InsuranceList authrizationInsuranceList) {
         this.designPlanList = designPlanList;
         this.proposalList = proposalList;
         this.insuranceList = insuranceList;
+        this.authrizationInsuranceList = authrizationInsuranceList;
     }
 
     @Override
@@ -50,6 +54,24 @@ public class InsurancePlanTeam extends Team {
 
     @Override
     public ResponseDto process(RequestDto request) {
+        ResponseDto responseDto = new ResponseDto();
+        switch (request.get(KIND)) {
+            case "인가" -> {
+                if (request.get("인가응답").equalsIgnoreCase("y")) {
+                    Insurance insurance = insuranceList.findById(
+                        Integer.parseInt(request.get(INSURANCE_ID)));
+                    insurance.setDate(request.get("날짜"));
+                    insurance.setAuthorizedPerson(request.get("책임자이름"));
+                    insurance.setReason(request.get("reason"));
+                    authrizationInsuranceList.add(insurance);
+                    if (!Objects.isNull(authrizationInsuranceList.findById(
+                        Integer.parseInt(request.get(INSURANCE_ID))))) {
+                        responseDto.add(Status.key(), Status.SUCCESS.getStatus());
+                        return responseDto;
+                    }
+                }
+            }
+        }
         return null;
     }
 

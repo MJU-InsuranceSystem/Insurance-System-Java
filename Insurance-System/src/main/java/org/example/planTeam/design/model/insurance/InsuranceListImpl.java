@@ -29,7 +29,8 @@ public class InsuranceListImpl implements InsuranceList {
 
     @Override
     public Insurance findById(int insuranceId) {
-        return null;
+
+        return insurances.get(insuranceId);
     }
 
     @Override

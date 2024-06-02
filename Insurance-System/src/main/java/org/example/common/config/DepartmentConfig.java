@@ -18,7 +18,7 @@ import org.example.planTeam.design.model.designPlan.DesignPlanList;
 import org.example.planTeam.design.model.designPlan.DesignPlanListImpl;
 import org.example.planTeam.design.model.proposal.ProposalList;
 import org.example.planTeam.design.model.proposal.ProposalListImpl;
-import org.example.planTeam.design.view.DesignTeamView;
+import org.example.planTeam.design.view.InsurancePlanView;
 import org.example.planTeam.inspection.InsuranceInspectionTeam;
 import org.example.rewardSupportTeam.RewardSupportTeam;
 import org.example.rewardSupportTeam.controller.RewardSupportController;
@@ -78,12 +78,13 @@ public class DepartmentConfig {
         return new InsuranceInspectionTeam();
     }
 
-    private static DesignTeamView designTeamView() {
-        return new DesignTeamView();
+    private static InsurancePlanView designTeamView() {
+        return new InsurancePlanView();
     }
 
     private static InsurancePlanTeam designInspectionTeam() {
-        return new InsurancePlanTeam(designPlanList(), proposalList(), insuranceList());
+        return new InsurancePlanTeam(designPlanList(), proposalList(), insuranceList(),
+            authrizationInsuranceList());
     }
 
     private static DesignPlanList designPlanList() {
@@ -95,6 +96,10 @@ public class DepartmentConfig {
     }
 
     private static InsuranceList insuranceList() {
+        return new InsuranceListImpl();
+    }
+
+    private static InsuranceList authrizationInsuranceList() {
         return new InsuranceListImpl();
     }
 
