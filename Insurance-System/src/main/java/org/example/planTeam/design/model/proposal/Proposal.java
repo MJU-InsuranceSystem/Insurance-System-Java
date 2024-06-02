@@ -26,6 +26,7 @@ public class Proposal {
         this.reward = proposalBuilder.reward;
     }
 
+
     public static class ProposalBuilder {
 
         private int proposalId;
@@ -85,5 +86,50 @@ public class Proposal {
     @Override
     protected void finalize() throws Throwable {
         // Cleanup logic
+    }
+
+    public int getProposalId() {
+        return proposalId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getProductOverview() {
+        return productOverview;
+    }
+
+    public String getMarketResearch() {
+        return marketResearch;
+    }
+
+    public String getInsurancePayment() {
+        return insurancePayment;
+    }
+
+    public String getSaleStrategy() {
+        return saleStrategy;
+    }
+
+    public String getSaleTarget() {
+        return saleTarget;
+    }
+
+    public String getReward() {
+        return reward;
+    }
+
+    @Override
+    public String toString() {
+        return "title: " + title + " productOverview: "
+            + productOverview + " marketResearch: " + marketResearch + " insurancePayment"
+            + insurancePayment + " saleStrategy: " + saleStrategy + " saleTarget: " + saleTarget
+            + " reward: " + reward;
+    }
+
+    public String toEntity() {
+        return proposalId + " " + title + " " + productOverview + " " + marketResearch + " "
+            + insurancePayment + " " + saleStrategy + " " + saleTarget + " " + reward;
     }
 }

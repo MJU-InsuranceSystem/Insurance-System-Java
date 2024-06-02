@@ -4,6 +4,7 @@ import java.util.Objects;
 import org.example.Team;
 import org.example.common.dto.RequestDto;
 import org.example.common.dto.ResponseDto;
+import org.example.planTeam.design.model.designPlan.DesignPlan;
 import org.example.planTeam.design.model.insurance.InsuranceList;
 import org.example.planTeam.Status;
 import org.example.planTeam.design.model.designPlan.DesignPlanList;
@@ -14,6 +15,10 @@ import org.example.planTeam.design.model.proposal.ProposalList;
 import org.example.planTeam.design.model.reward.Reward;
 import org.example.planTeam.inspection.InsuranceInspectionTeam;
 
+import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGNPLAN;
+import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGN_CONTENT;
+import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGN_MANAGER;
+import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGN_TITLE;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.INSURANCE;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.INSURANCE_NAME;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.RESPONSIBLE_PERSON;
@@ -77,6 +82,7 @@ public class InsurancePlanTeam extends Team {
 
     @Override
     public ResponseDto register(RequestDto request) {
+        ResponseDto responseDto = new ResponseDto();
         switch (request.get(KIND)) {
             case PROPOSAL -> {
                 Proposal proposal = new ProposalBuilder().proposalId(proposalList.getSize())
@@ -85,7 +91,6 @@ public class InsurancePlanTeam extends Team {
                     .saleStrategy(SALE_STRATEGY).saleTarget(SALE_TARGET).reward(REWARD).build();
 
                 proposalList.add(proposal);
-                ResponseDto responseDto = new ResponseDto();
                 responseDto.add(Status.key(), Status.SUCCESS.getStatus());
                 return responseDto;
             }
@@ -105,7 +110,18 @@ public class InsurancePlanTeam extends Team {
                 reward.setRestrictionRegulation(request.get(RESTRICTION_REGULATION));
 
                 this.insuranceList.add(insurance);
-                ResponseDto responseDto = new ResponseDto();
+
+                responseDto.add(Status.key(), Status.SUCCESS.getStatus());
+                return responseDto;
+            }
+            case DESIGNPLAN -> {
+                DesignPlan designPlan = new DesignPlan();
+                designPlan.setProposal(
+                    proposalList.findById(Integer.parseInt(request.get("기획서번호"))));
+                designPlan.setDesingPlanTitle(request.get(DESIGN_TITLE));
+                designPlan.setContent(request.get(DESIGN_CONTENT));
+                designPlan.setManager(request.get(DESIGN_MANAGER));
+                designPlanList.add(designPlan);
                 responseDto.add(Status.key(), Status.SUCCESS.getStatus());
                 return responseDto;
             }
@@ -126,23 +142,47 @@ public class InsurancePlanTeam extends Team {
         ResponseDto responseDto = new ResponseDto();
         switch (request.get("객체리스트")) {
             case "전체" -> {
-                for (Insurance insurance : insuranceList.getList()) {
-                    responseDto.add(insurance.getInsuranceId(), insurance.toString());
+                switch (request.get("객체종류")) {
+                    case "보험" -> {
+                        for (Insurance insurance : insuranceList.getList()) {
+                            responseDto.add(insurance.getInsuranceId(), insurance.toString());
+                        }
+                    }
+                    case "기획서" -> {
+                        for (Proposal proposal : proposalList.getList()) {
+                            responseDto.add(Integer.toString(proposal.getProposalId()),
+                                proposal.toString());
+                        }
+                    }
                 }
+
 
             }
             case "한개" -> {
-                Insurance insurance = insuranceList.findById(Integer.parseInt(request.get("선택번호")));
-                responseDto.add(INSURANCE_ID, insurance.getInsuranceId());
-                responseDto.add(INSURANCE_NAME, insurance.getInsuranceName());
-                responseDto.add(INSURANCE_KIND, insurance.getInsuranceType().getDescription());
-                responseDto.add(RESPONSIBLE_PERSON, insurance.getResponsiblePerson());
-                Reward reward = insurance.getReward();
-                responseDto.add(MAX_REWARD, Integer.toString(reward.getMaxReward()));
-                responseDto.add(MONTH_PAYMENT_FEE, Integer.toString(reward.getMonthPaymentFee()));
-                responseDto.add(INSURANCE_RATE, Integer.toString(reward.getInsuranceRate()));
-                responseDto.add(RESTRICTION_REGULATION, reward.getRestrictionRegulation());
-                responseDto.add("값", insurance.toEntity());
+                switch (request.get("객체종류")) {
+                    case "보험" -> {
+                        Insurance insurance = insuranceList.findById(
+                            Integer.parseInt(request.get("선택번호")));
+                        responseDto.add(INSURANCE_ID, insurance.getInsuranceId());
+                        responseDto.add(INSURANCE_NAME, insurance.getInsuranceName());
+                        responseDto.add(INSURANCE_KIND,
+                            insurance.getInsuranceType().getDescription());
+                        responseDto.add(RESPONSIBLE_PERSON, insurance.getResponsiblePerson());
+                        Reward reward = insurance.getReward();
+                        responseDto.add(MAX_REWARD, Integer.toString(reward.getMaxReward()));
+                        responseDto.add(MONTH_PAYMENT_FEE,
+                            Integer.toString(reward.getMonthPaymentFee()));
+                        responseDto.add(INSURANCE_RATE,
+                            Integer.toString(reward.getInsuranceRate()));
+                        responseDto.add(RESTRICTION_REGULATION, reward.getRestrictionRegulation());
+                        responseDto.add("값", insurance.toEntity());
+                    }
+                    case "기획" -> {
+                        Proposal proposal = proposalList.findById(
+                            Integer.parseInt(request.get("선택번호")));
+                        responseDto.add("entity", proposal.toEntity());
+                    }
+                }
             }
         }
         return responseDto;

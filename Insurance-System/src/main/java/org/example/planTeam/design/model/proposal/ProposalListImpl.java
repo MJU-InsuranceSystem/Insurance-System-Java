@@ -41,4 +41,14 @@ public class ProposalListImpl implements ProposalList {
         return proposalList.size();
     }
 
+    @Override
+    public List<Proposal> getList() {
+        return proposalList;
+    }
+
+    @Override
+    public Proposal findById(int insuranceId) {
+        return proposalList.get(insuranceId);
+    }
+
 }

@@ -1,12 +1,17 @@
 package org.example.planTeam.design.view;
 
+import java.util.Arrays;
 import org.example.common.view.DepartmentView;
 import org.example.common.dto.RequestDto;
 import org.example.common.dto.ResponseDto;
 import org.example.insurance.InsuranceType;
 import org.example.planTeam.Status;
+import org.example.planTeam.design.model.proposal.Proposal;
 import org.example.planTeam.design.model.reward.RewardConstant;
 
+import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGN_CONTENT;
+import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGN_MANAGER;
+import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGN_TITLE;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.INSURANCE;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.INSURANCE_NAME;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.RESPONSIBLE_PERSON;
@@ -81,7 +86,7 @@ public class InsurancePlanView extends DepartmentView {
 
     public void completeCreateProposal(ResponseDto responseDto) {
         if (responseDto.get(Status.key()).equals(Status.SUCCESS.getStatus())) {
-            System.out.println("일단 기획서 추가 완료요~");
+            System.out.println("상품 기획이 완료 되었습니다.");
         } else {
             System.out.println("나중에 responseDTO에 에러메시지 상태를 담도록 만들어야겠당.");
         }
@@ -148,6 +153,40 @@ public class InsurancePlanView extends DepartmentView {
             case Status.SUCCESS_NUMBER -> {
                 System.out.println("보험에 대한 인가가 통과되었습니다.");
             }
+        }
+    }
+
+    public RequestDto selectProposal(ResponseDto responseDto) {
+        RequestDto requestDto = new RequestDto();
+        responseDto.getTotalInfo().forEach(
+            (key, value) -> System.out.println("기획안 번호: " + key + " " + value));
+        println("만들어진 기획안 리스트입니다.\n설계할 기획안 번호를 입력하세요. ");
+        requestDto.add("객체리스트", "한개");
+        requestDto.add(KIND, "설계");
+        requestDto.add("선택번호", writeIntToString(responseDto.getTotalInfo().size()));
+        return requestDto;
+    }
+
+    public RequestDto createDesign(ResponseDto responseDto) {
+        RequestDto requestDto = new RequestDto();
+        String[] proposal = responseDto.get("entity").split(" ");
+        println("기획서 번호 | 제목 | 상품 개요| 시장 조사 | 보험 납부 방법 | 판매 전략 | 보상");
+        println(Arrays.toString(proposal));
+        println("설계안 제목을 입력해주세요.");
+        requestDto.add(DESIGN_TITLE, writeString());
+        println("설계안 내용을 입력해주세요.");
+        requestDto.add(DESIGN_CONTENT, writeString());
+        println("설계안 책임자를 입력해주세요.");
+        requestDto.add(DESIGN_MANAGER, writeString());
+
+        requestDto.add("기획서번호", proposal[0]);
+        requestDto.add(KIND, "설계안");
+        return requestDto;
+    }
+
+    public void completeCreateDesignPlan(ResponseDto responseDto) {
+        if (responseDto.get(Status.key()).equals(Status.SUCCESS.getStatus())) {
+            System.out.println("설계안이 등록되었습니다!");
         }
     }
 }
