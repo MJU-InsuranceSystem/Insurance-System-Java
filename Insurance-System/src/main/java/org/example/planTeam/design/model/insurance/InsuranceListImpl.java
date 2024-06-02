@@ -3,6 +3,7 @@ package org.example.planTeam.design.model.insurance;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 /**
  * @author USER
@@ -31,9 +32,11 @@ public class InsuranceListImpl implements InsuranceList {
     @Override
     public Insurance findById(int insuranceId) {
         return insurances.stream()
-            .filter(insurance -> insurance.getInsuranceId() == String.valueOf(insuranceId))
+            .filter(insurance -> Objects.equals(insurance.getInsuranceId(),
+                String.valueOf(insuranceId)))
             .findFirst()
-            .orElseThrow(() -> new NoSuchElementException("Insurance not found with ID: " + insuranceId));
+            .orElseThrow(
+                () -> new NoSuchElementException("Insurance not found with ID: " + insuranceId));
     }
 
     @Override
