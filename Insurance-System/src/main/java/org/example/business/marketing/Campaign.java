@@ -1,6 +1,6 @@
 package org.example.business.marketing;
 
-import org.example.domain.insurance.Insurance;
+import org.example.domain.insurance.InsuranceApplication;
 
 /**
  * @author USER
@@ -11,7 +11,7 @@ public class Campaign {
 	private int budget;
 	private String expectedRate;
 	private String ExternalTeam;
-	private Insurance insurance;
+	private InsuranceApplication insuranceApplication;
 	private String period;
 	private Enum progressStatus;
 	private String realityRate;

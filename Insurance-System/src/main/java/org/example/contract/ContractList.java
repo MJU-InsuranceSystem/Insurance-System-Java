@@ -1,6 +1,6 @@
 package org.example.contract;
 
-import org.example.domain.insurance.Insurance;
+import org.example.domain.insurance.InsuranceApplication;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public interface ContractList {
 
   void remove(Contract contract);
 
-  Insurance findById(int contractId);
+  InsuranceApplication findById(int contractId);
 
   List<Contract> getContracts();
 

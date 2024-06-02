@@ -7,13 +7,13 @@ import org.example.CarKind;
  * @version 1.0
  *
  */
-public class CarInsurance extends Insurance {
+public class CarInsuranceApplication extends InsuranceApplication {
 
 	private CarKind carKind;
 	private int percentageOfBlame;
 	private int userDuration;
 
-	public CarInsurance(){
+	public CarInsuranceApplication(){
 
 	}
 }

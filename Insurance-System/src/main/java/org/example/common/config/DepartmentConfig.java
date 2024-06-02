@@ -7,19 +7,19 @@ import org.example.business.education.controller.EducationController;
 import org.example.business.education.view.EducationView;
 import org.example.contract.ContractListImpl;
 import org.example.contract.ContractManagementTeam;
-import org.example.insurance.InsuranceApplyList;
+import org.example.insurance.InsuranceApplyListImpl;
 import org.example.insurance.InsuranceCompanyList;
-import org.example.planTeam.inspection.InsuranceInspectionView;
-import org.example.planTeam.design.model.insurance.InsuranceList;
-import org.example.planTeam.design.model.insurance.InsuranceListImpl;
 import org.example.planTeam.design.InsurancePlanTeam;
 import org.example.planTeam.design.controller.InsurancePlanController;
 import org.example.planTeam.design.model.designPlan.DesignPlanList;
 import org.example.planTeam.design.model.designPlan.DesignPlanListImpl;
+import org.example.planTeam.design.model.insurance.InsuranceList;
+import org.example.planTeam.design.model.insurance.InsuranceListImpl;
 import org.example.planTeam.design.model.proposal.ProposalList;
 import org.example.planTeam.design.model.proposal.ProposalListImpl;
 import org.example.planTeam.design.view.InsurancePlanView;
 import org.example.planTeam.inspection.InsuranceInspectionTeam;
+import org.example.planTeam.inspection.InsuranceInspectionView;
 import org.example.rewardSupportTeam.RewardSupportTeam;
 import org.example.rewardSupportTeam.controller.RewardSupportController;
 import org.example.rewardSupportTeam.model.AccidentList;
@@ -28,9 +28,9 @@ import org.example.rewardSupportTeam.model.litigationInfoList;
 import org.example.rewardSupportTeam.model.litigationInfoListImpl;
 import org.example.rewardSupportTeam.view.RewardSupportView;
 import org.example.underwriteTeam.UnderwriteTeam;
+import org.example.underwriteTeam.controller.UnderwriteController;
 import org.example.underwriteTeam.model.UnderwritePolicyListImpl;
 import org.example.underwriteTeam.view.UnderwriteView;
-import org.example.underwriteTeam.controller.UnderwriteController;
 
 public class DepartmentConfig {
 
@@ -48,12 +48,12 @@ public class DepartmentConfig {
     }
 
     private static UnderwriteTeam underwriteTeam() {
-        return new UnderwriteTeam(new InsuranceCompanyList(), new InsuranceApplyList(),
+        return new UnderwriteTeam(new InsuranceCompanyList(), new InsuranceApplyListImpl(),
             new UnderwritePolicyListImpl());
     }
 
     private static ContractManagementTeam contractManagementTeam() {
-        return new ContractManagementTeam(new ContractListImpl(), new InsuranceApplyList());
+        return new ContractManagementTeam(new ContractListImpl(), new InsuranceApplyListImpl());
     }
 
     private static EducationView educationView() {

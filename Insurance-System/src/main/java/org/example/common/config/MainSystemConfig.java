@@ -6,7 +6,7 @@ import org.example.common.controller.FrontController;
 import org.example.common.controller.WorkerSystem;
 import org.example.common.view.InsuranceSystemView;
 import org.example.common.view.SystemView;
-import org.example.insurance.InsuranceApplyList;
+import org.example.insurance.InsuranceApplyListImpl;
 import org.example.user.CustomerProcessManager;
 import org.example.user.CustomerView;
 
@@ -33,7 +33,7 @@ public class MainSystemConfig {
   }
 
   private CustomerProcessManager customerProcessManager() {
-    return new CustomerProcessManager(new InsuranceApplyList());
+    return new CustomerProcessManager(new InsuranceApplyListImpl());
   }
 
   private WorkerSystem workerSystem() {

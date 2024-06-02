@@ -4,10 +4,9 @@ import java.util.Objects;
 import org.example.Team;
 import org.example.common.dto.RequestDto;
 import org.example.common.dto.ResponseDto;
-import org.example.domain.insurance.Insurance;
+import org.example.domain.insurance.InsuranceApplication;
 import org.example.insurance.InsuranceApplyList;
 import org.example.insurance.InsuranceCompanyList;
-import org.example.planTeam.design.model.insurance.InsuranceList;
 import org.example.planTeam.Status;
 import org.example.underwriteTeam.model.UnderwritePolicy;
 import org.example.underwriteTeam.model.UnderwritePolicyListImpl;
@@ -22,7 +21,7 @@ import org.example.underwriteTeam.view.UnderwriteView;
 public class UnderwriteTeam extends Team {
 
     private final InsuranceCompanyList insuranceCompanyList;
-    private final InsuranceList insuranceApplyList;
+    private final InsuranceApplyList insuranceApplyList;
     private final UnderwritePolicyListImpl underwritePolicyListImpl;
 
     public UnderwriteTeam(InsuranceCompanyList insuranceCompanyList,
@@ -41,17 +40,17 @@ public class UnderwriteTeam extends Team {
     public ResponseDto process(RequestDto request) {
         String result = request.get(UnderwriteView.UNDERWRITING_RESULT);
         ResponseDto responseDto = new ResponseDto();
-//        Insurance insurance = insuranceApplyList.findFirst();
-//        if (Objects.equals(result, "N") && insurance != null) {
-//            insuranceApplyList.remove(insurance);
-//        }
-//        responseDto.add(UnderwriteView.UNDERWRITING_RESULT, result);
-//        if (insurance != null) {
-//            responseDto.add(UnderwriteView.FINISH_INSURANCE_CUSTOMER_NAME,
-//                insurance.getSubscriberName());
-//            responseDto.add(UnderwriteView.FINISH_INSURANCE_ID,
-//                String.valueOf(insurance.getInsuranceID()));
-//        }
+        InsuranceApplication insuranceApplication = insuranceApplyList.findFirst();
+        if (Objects.equals(result, "N") && insuranceApplication != null) {
+            insuranceApplyList.remove(insuranceApplication);
+        }
+        responseDto.add(UnderwriteView.UNDERWRITING_RESULT, result);
+        if (insuranceApplication != null) {
+            responseDto.add(UnderwriteView.FINISH_INSURANCE_CUSTOMER_NAME,
+                insuranceApplication.getSubscriberName());
+            responseDto.add(UnderwriteView.FINISH_INSURANCE_ID,
+                String.valueOf(insuranceApplication.getInsuranceApplicationID()));
+        }
         return responseDto;
     }
 
@@ -93,10 +92,10 @@ public class UnderwriteTeam extends Team {
 
     private ResponseDto findFirstInsurance() {
         ResponseDto responseDto = new ResponseDto();
-//        Insurance insurance = insuranceApplyList.findFirst();
-//        if (insurance != null) {
-//            responseDto.add(UnderwriteView.FIRST_INSURANCE_APPLY, insurance.toString());
-//        }
+        InsuranceApplication insuranceApplication = insuranceApplyList.findFirst();
+        if (insuranceApplication != null) {
+            responseDto.add(UnderwriteView.FIRST_INSURANCE_APPLY, insuranceApplication.toString());
+        }
         return responseDto;
     }
 }

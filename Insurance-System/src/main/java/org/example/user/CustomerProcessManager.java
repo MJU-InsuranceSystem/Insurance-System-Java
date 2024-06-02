@@ -3,14 +3,13 @@ package org.example.user;
 import org.example.common.AuthUtil;
 import org.example.common.dto.RequestDto;
 import org.example.contract.ContractList;
-import org.example.domain.insurance.Insurance;
+import org.example.domain.insurance.InsuranceApplication;
 import org.example.insurance.InsuranceApplyList;
 import org.example.insurance.InsuranceType;
-import org.example.planTeam.design.model.insurance.InsuranceList;
 
 public class CustomerProcessManager {
 
-    private final InsuranceList insuranceApplyList;
+    private final InsuranceApplyList insuranceApplyList;
 
     public CustomerProcessManager(InsuranceApplyList insuranceApplyList) {
         this.insuranceApplyList = insuranceApplyList;
@@ -22,7 +21,7 @@ public class CustomerProcessManager {
     }
 
     public void applyInsurance(RequestDto requestDto) {
-        Insurance insurance = new Insurance();
+        InsuranceApplication insuranceApplication = new InsuranceApplication();
         int insuranceId = Integer.parseInt(requestDto.get(CustomerView.INSURANCE_ID));
         String subscriberName = requestDto.get(CustomerView.SUBSCRIBER_NAME);
         String details = requestDto.get(CustomerView.DETAIL);
@@ -30,13 +29,13 @@ public class CustomerProcessManager {
         int monthPayment = Integer.parseInt(requestDto.get(CustomerView.MONTH_PAYMENT));
         int insuranceNumber = Integer.parseInt(requestDto.get(CustomerView.INSURANCE_NUMBER));
         InsuranceType insuranceType = InsuranceType.findByNumber(insuranceNumber);
-        insurance.setInsuranceID(insuranceId);
-        insurance.setSubscriberName(subscriberName);
-        insurance.setDetails(details);
-        insurance.setAccountNumber(accountNumber);
-        insurance.setMonthPaymentFee(monthPayment);
-        insurance.setInsuranceType(insuranceType);
-        insuranceApplyList.add(insurance);
+        insuranceApplication.setInsuranceApplicationID(insuranceId);
+        insuranceApplication.setSubscriberName(subscriberName);
+        insuranceApplication.setDetails(details);
+        insuranceApplication.setAccountNumber(accountNumber);
+        insuranceApplication.setMonthPaymentFee(monthPayment);
+        insuranceApplication.setInsuranceType(insuranceType);
+        insuranceApplyList.add(insuranceApplication);
     }
 
     public void payInsurancePremium(RequestDto requestDto) {

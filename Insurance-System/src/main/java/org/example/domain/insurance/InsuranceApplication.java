@@ -1,18 +1,15 @@
 package org.example.domain.insurance;
 
 import org.example.insurance.InsuranceType;
-import org.example.rewardSupportTeam.Reward;
 /**
  * @author USER
  * @version 1.0
  */
-public class Insurance {
+public class InsuranceApplication {
 
-    private int insuranceID;
+    private int insuranceApplicationID;
     private String subscriberName;
     private int monthPaymentFee;
-    private String restrictionRegulation;
-    private Reward reward;
     private InsuranceType insuranceType;
     private String details;
     private String accountNumber;
@@ -25,8 +22,8 @@ public class Insurance {
         return accountNumber;
     }
 
-    public int getInsuranceID() {
-        return insuranceID;
+    public int getInsuranceApplicationID() {
+        return insuranceApplicationID;
     }
 
     public String getSubscriberName() {
@@ -37,20 +34,12 @@ public class Insurance {
         return monthPaymentFee;
     }
 
-    public String getRestrictionRegulation() {
-        return restrictionRegulation;
-    }
-
-    public org.example.rewardSupportTeam.Reward getReward() {
-        return reward;
-    }
-
     public InsuranceType getInsuranceType() {
         return insuranceType;
     }
 
-    public void setInsuranceID(int insuranceID) {
-        this.insuranceID = insuranceID;
+    public void setInsuranceApplicationID(int insuranceApplicationID) {
+        this.insuranceApplicationID = insuranceApplicationID;
     }
 
     public void setSubscriberName(String subscriberName) {
@@ -59,14 +48,6 @@ public class Insurance {
 
     public void setMonthPaymentFee(int monthPaymentFee) {
         this.monthPaymentFee = monthPaymentFee;
-    }
-
-    public void setRestrictionRegulation(String restrictionRegulation) {
-        this.restrictionRegulation = restrictionRegulation;
-    }
-
-    public void setReward(Reward reward) {
-        this.reward = reward;
     }
 
     public void setInsuranceType(InsuranceType insuranceType) {
@@ -83,13 +64,11 @@ public class Insurance {
 
     @Override
     public String toString() {
-        return "insuranceID=" + insuranceID + "\n" +
+        return "insuranceID=" + insuranceApplicationID + "\n" +
             "insuranceType=" + insuranceType + "\n" +
             "subscriberName='" + subscriberName + "\n" +
             "accountNumber='" + accountNumber + "\n" +
             "monthPaymentFee=" + monthPaymentFee + "\n" +
-            "details='" + details + "\n" +
-            "restrictionRegulation='" + restrictionRegulation + "\n" +
-            "reward=" + reward + "\n";
+            "details='" + details + "\n";
     }
 }

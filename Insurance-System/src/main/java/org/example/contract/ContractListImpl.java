@@ -2,7 +2,7 @@ package org.example.contract;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.example.domain.insurance.Insurance;
+import org.example.domain.insurance.InsuranceApplication;
 
 /**
  * @author USER
@@ -24,7 +24,7 @@ public class ContractListImpl implements ContractList {
   }
 
   @Override
-  public Insurance findById(int contractId) {
+  public InsuranceApplication findById(int contractId) {
     return null;
   }
 

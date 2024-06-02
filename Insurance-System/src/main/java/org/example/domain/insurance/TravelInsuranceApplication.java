@@ -5,13 +5,13 @@ package org.example.domain.insurance;
  * @version 1.0
  *
  */
-public class TravelInsurance extends Insurance {
+public class TravelInsuranceApplication extends InsuranceApplication {
 
 	private String destination;
 	private int numberOfTravelers;
 	private String travelPeriod;
 
-	public TravelInsurance(){
+	public TravelInsuranceApplication(){
 
 	}
 
