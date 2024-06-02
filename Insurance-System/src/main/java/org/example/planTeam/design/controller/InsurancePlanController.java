@@ -9,6 +9,7 @@ import org.example.planTeam.inspection.InsuranceInspectionView;
 import org.example.planTeam.design.usecase.DesignUseCase;
 import org.example.planTeam.design.view.InsurancePlanView;
 
+import static org.example.planTeam.design.model.insurance.InsuranceConstant.ENTITY_KIND;
 import static org.example.planTeam.design.model.proposal.ProposalConstant.DESIGN_TEAM_NAME;
 import static org.example.planTeam.design.model.proposal.ProposalConstant.KIND;
 import static org.example.planTeam.design.model.proposal.ProposalConstant.PROPOSAL;
@@ -66,7 +67,7 @@ public class InsurancePlanController implements TeamController {
                 RequestDto requestDto = new RequestDto();
                 ResponseDto responseDto;
                 requestDto.add("객체리스트", "전체");
-                requestDto.add(KIND, PROPOSAL);
+                requestDto.add(ENTITY_KIND, PROPOSAL);
 
                 requestDto = insurancePlanView.selectProposal(
                     insurancePlanTeam.retrieve(requestDto));
