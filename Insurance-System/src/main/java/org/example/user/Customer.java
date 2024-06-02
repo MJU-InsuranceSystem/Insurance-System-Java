@@ -1,8 +1,12 @@
 package org.example.user;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import org.example.contract.Contract;
 import org.example.auth.AuthGuideMessage;
+import org.example.contract.ContractList;
+import org.example.contract.ContractListImpl;
 
 /**
  * @author USER
@@ -12,7 +16,7 @@ public class Customer extends User {
 
     private int familyHistory;
     private IncomeInfo IncomeInfo;
-    private Contract m_ontract;
+    private ContractList contractList = new ContractListImpl();
 
     public Customer() {
 
@@ -73,4 +77,11 @@ public class Customer extends User {
 
     }
 
+    public ContractList getContractList() {
+        return contractList;
+    }
+
+    public void setContractList(ContractList contractList) {
+        this.contractList = contractList;
+    }
 }

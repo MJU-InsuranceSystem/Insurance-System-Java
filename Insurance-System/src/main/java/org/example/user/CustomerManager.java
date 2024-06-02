@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public class CustomerManager {
 
-    private static final CustomerManager CUSTOMER_MANAGER = new CustomerManager();
+    public static final CustomerManager CUSTOMER_MANAGER = new CustomerManager();
     private final List<Customer> customers = new ArrayList<>();
 
     private CustomerManager() {
@@ -34,4 +34,10 @@ public class CustomerManager {
             .findFirst();
     }
 
+    public Optional<Customer> findByName(String name) {
+        return customers.stream()
+                .filter(
+                        customer -> customer.getName().equals(name)
+                ).findFirst();
+    }
 }

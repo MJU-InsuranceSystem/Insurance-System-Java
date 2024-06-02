@@ -3,7 +3,11 @@ package org.example.user;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
+
 import org.example.common.dto.RequestDto;
+import org.example.contract.Contract;
+import org.example.contract.ContractList;
 import org.example.insurance.InsuranceType;
 
 public class CustomerView {
@@ -120,5 +124,11 @@ public class CustomerView {
 
   private void print(String message) {
     System.out.print(message);
+  }
+
+  public void retrieveContract(ContractList contractList) {
+    contractList.getContracts().stream()
+            .map(Contract::toString)
+            .forEach(System.out::println);
   }
 }
