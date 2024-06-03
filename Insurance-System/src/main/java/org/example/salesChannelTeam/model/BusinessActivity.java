@@ -1,4 +1,4 @@
-package org.example.salesChannelTeam;
+package org.example.salesChannelTeam.model;
 /**
  * @author USER
  * @version 1.0

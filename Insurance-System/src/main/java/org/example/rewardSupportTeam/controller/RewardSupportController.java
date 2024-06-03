@@ -25,8 +25,7 @@ public class RewardSupportController implements TeamController {
         executeUsecase(usecase);
     }
 
-    private void
-    executeUsecase(RewardSupportUseCase usecase) {
+    private void executeUsecase(RewardSupportUseCase usecase) {
         switch (usecase) {
             case SUBMIT_ACCIDENT -> {
                 RequestDto requestDto = rewardSupportView.submitAccident();
