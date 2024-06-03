@@ -4,19 +4,23 @@ import org.example.common.AuthUtil;
 import org.example.common.dto.RequestDto;
 import org.example.contract.ContractList;
 import org.example.domain.insurance.InsuranceApplication;
-import org.example.insurance.InsuranceApplyList;
-import org.example.insurance.InsuranceType;
+import org.example.insurance.*;
+
+import static org.example.user.CustomerView.CHARGE_ANSWER;
 
 public class CustomerProcessManager {
 
     private final InsuranceApplyList insuranceApplyList;
+    private final InsuranceChargeCustomerApplyList insuranceChargeCustomerApplyList;
 
-    public CustomerProcessManager(InsuranceApplyList insuranceApplyList) {
+    public CustomerProcessManager(InsuranceApplyList insuranceApplyList, InsuranceChargeCustomerApplyList insuranceChargeCustomerApplyList) {
         this.insuranceApplyList = insuranceApplyList;
+        this.insuranceChargeCustomerApplyList = insuranceChargeCustomerApplyList;
     }
 
     public ContractList retrieveContract() {
         Customer loginUser = (Customer) AuthUtil.user;
+        System.out.println(loginUser.getName());
         return loginUser.getContractList();
     }
 
@@ -29,6 +33,7 @@ public class CustomerProcessManager {
         int monthPayment = Integer.parseInt(requestDto.get(CustomerView.MONTH_PAYMENT));
         int insuranceNumber = Integer.parseInt(requestDto.get(CustomerView.INSURANCE_NUMBER));
         InsuranceType insuranceType = InsuranceType.findByNumber(insuranceNumber);
+
         insuranceApplication.setInsuranceApplicationID(insuranceId);
         insuranceApplication.setSubscriberName(subscriberName);
         insuranceApplication.setDetails(details);
@@ -39,9 +44,14 @@ public class CustomerProcessManager {
     }
 
     public void payInsurancePremium(RequestDto requestDto) {
+
     }
 
     public void requireInsuranceBenefit(RequestDto requestDto) {
+        if (requestDto.get(CHARGE_ANSWER).equals("Y") || requestDto.get(CHARGE_ANSWER).equals("y")) {
+            Customer loginUser = (Customer) AuthUtil.user;
+            insuranceChargeCustomerApplyList.add(loginUser);
+        }
     }
 
     public void applyFireInsurance(RequestDto requestDto) {

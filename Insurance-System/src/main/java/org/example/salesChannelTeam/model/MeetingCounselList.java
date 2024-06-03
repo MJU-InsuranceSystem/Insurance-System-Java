@@ -1,9 +1,10 @@
-package org.example.salesChannelTeam;
+package org.example.salesChannelTeam.model;
+
 /**
  * @author USER
  * @version 1.0
  */
-public interface BusinessActivityList {
+public interface MeetingCounselList {
 
 	public void add();
 

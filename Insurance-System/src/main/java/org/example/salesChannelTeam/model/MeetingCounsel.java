@@ -1,4 +1,4 @@
-package org.example.salesChannelTeam;
+package org.example.salesChannelTeam.model;
 
 /**
  * @author USER
@@ -7,7 +7,7 @@ package org.example.salesChannelTeam;
 public class MeetingCounsel {
 
 	private org.example.user.Customer Customer;
-	private RequestMeetingInfo RequestMeetingInfo;
+	private org.example.salesChannelTeam.model.RequestMeetingInfo RequestMeetingInfo;
 	public RequestMeetingInfo m_RequestMeetingInfo;
 
 	public MeetingCounsel(){

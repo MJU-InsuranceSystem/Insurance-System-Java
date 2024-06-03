@@ -10,7 +10,11 @@ public class CustomerManager {
     private final List<Customer> customers = new ArrayList<>();
 
     private CustomerManager() {
-
+        Customer customer = new Customer();
+        customer.id = String.valueOf(2);
+        customer.password = String.valueOf(2);
+        customer.userType = UserType.CUSTOMER;
+        customers.add(customer);
     }
 
     public static CustomerManager getInstance() {

@@ -3,11 +3,18 @@ package org.example.rewardSupportTeam;
 import org.example.Team;
 import org.example.common.dto.RequestDto;
 import org.example.common.dto.ResponseDto;
+import org.example.contract.Contract;
+import org.example.contract.ContractList;
+import org.example.domain.insurance.InsuranceApplication;
+import org.example.insurance.InsuranceChargeCustomerApplyList;
 import org.example.planTeam.Status;
 import org.example.rewardSupportTeam.model.Accident;
 import org.example.rewardSupportTeam.model.AccidentList;
 import org.example.rewardSupportTeam.model.ClaimInsurance;
 import org.example.rewardSupportTeam.model.litigationInfoList;
+import org.example.user.Customer;
+
+import java.util.List;
 
 import static org.example.rewardSupportTeam.view.RewardSupportView.*;
 
@@ -17,13 +24,17 @@ import static org.example.rewardSupportTeam.view.RewardSupportView.*;
  */
 public class RewardSupportTeam extends Team {
 
-    public AccidentList accidentList;
-    public litigationInfoList litigationInfoList;
+    private final AccidentList accidentList;
+    private final litigationInfoList litigationInfoList;
+
+    private final InsuranceChargeCustomerApplyList insuranceChargeCustomerApplyList;
 
 
-    public RewardSupportTeam(AccidentList accidentList, litigationInfoList litigationInfoList) {
+    public RewardSupportTeam(AccidentList accidentList, litigationInfoList litigationInfoList, InsuranceChargeCustomerApplyList insuranceChargeCustomerApplyList) {
         this.accidentList = accidentList;
         this.litigationInfoList = litigationInfoList;
+        this.insuranceChargeCustomerApplyList = insuranceChargeCustomerApplyList;
+
     }
 
     public void finalize() throws Throwable {
@@ -40,7 +51,15 @@ public class RewardSupportTeam extends Team {
         ResponseDto responseDto = new ResponseDto();
         if (request.get(JUDGE_ANSWER).equals("Y") || request.get(JUDGE_ANSWER).equals("y")) {
             // 면부책을 판단한다
-            // list에 정보가 다 있고 계약에서 어떤 보험에 가입했는지에 따라 면부책 판단을 내려주면 될듯
+            // list에 정보가 다 있고 계약에서 어떤 보험에 가입했는지에 따라 면부책 판단을 내려주면 될 듯
+            Customer applyUser = insuranceChargeCustomerApplyList.findFirst();
+            if (applyUser == null) {
+                responseDto.add(Status.key(), Status.FAIL.getStatus());
+                return responseDto;
+            }
+            List<Contract> tempList = applyUser.getContractList().getContracts();
+
+
             responseDto.add(Status.key(), Status.SUCCESS.getStatus());
         } else if (request.get(JUDGE_ANSWER).equals("N") || request.get(JUDGE_ANSWER).equals("n")) {
             responseDto.add(Status.key(), Status.FAIL.getStatus());

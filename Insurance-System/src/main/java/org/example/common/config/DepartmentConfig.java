@@ -8,6 +8,8 @@ import org.example.business.education.view.EducationView;
 import org.example.contract.ContractListImpl;
 import org.example.contract.ContractManagementTeam;
 import org.example.insurance.InsuranceApplyListImpl;
+import org.example.insurance.InsuranceChargeCustomerApplyList;
+import org.example.insurance.InsuranceChargeCustomerApplyListImpl;
 import org.example.insurance.InsuranceCompanyList;
 import org.example.planTeam.design.InsurancePlanTeam;
 import org.example.planTeam.design.controller.InsurancePlanController;
@@ -40,7 +42,7 @@ public class DepartmentConfig {
 
     public static UnderwriteController underwriteController() {
         return new UnderwriteController(underwriteTeam(), underwriteView(),
-            contractManagementTeam());
+                contractManagementTeam());
     }
 
     private static UnderwriteView underwriteView() {
@@ -49,7 +51,7 @@ public class DepartmentConfig {
 
     private static UnderwriteTeam underwriteTeam() {
         return new UnderwriteTeam(new InsuranceCompanyList(), new InsuranceApplyListImpl(),
-            new UnderwritePolicyListImpl());
+                new UnderwritePolicyListImpl());
     }
 
     private static ContractManagementTeam contractManagementTeam() {
@@ -66,8 +68,8 @@ public class DepartmentConfig {
 
     public static TeamController designInspectionController() {
         return new InsurancePlanController(designTeamView(), insuranceInspectionTeamView(),
-            designInspectionTeam(),
-            insuranceInspectionTeam());
+                designInspectionTeam(),
+                insuranceInspectionTeam());
     }
 
     private static InsuranceInspectionView insuranceInspectionTeamView() {
@@ -84,7 +86,7 @@ public class DepartmentConfig {
 
     private static InsurancePlanTeam designInspectionTeam() {
         return new InsurancePlanTeam(designPlanList(), proposalList(), insuranceList(),
-            authrizationInsuranceList());
+                authrizationInsuranceList());
     }
 
     private static DesignPlanList designPlanList() {
@@ -113,7 +115,7 @@ public class DepartmentConfig {
     }
 
     private static RewardSupportTeam rewardSupportTeam() {
-        return new RewardSupportTeam(accidentList(), litigationInfoList());
+        return new RewardSupportTeam(accidentList(), litigationInfoList(), insuranceChargeCustomerApplyList());
     }
 
     private static AccidentList accidentList() {
@@ -122,5 +124,9 @@ public class DepartmentConfig {
 
     private static litigationInfoList litigationInfoList() {
         return new litigationInfoListImpl();
+    }
+
+    private static InsuranceChargeCustomerApplyList insuranceChargeCustomerApplyList() {
+        return new InsuranceChargeCustomerApplyListImpl();
     }
 }

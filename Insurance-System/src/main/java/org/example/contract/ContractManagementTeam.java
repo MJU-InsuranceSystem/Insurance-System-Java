@@ -38,11 +38,13 @@ public class ContractManagementTeam extends Team {
         int insuranceId = Integer.parseInt(request.get(UnderwriteView.FINISH_INSURANCE_ID));
         InsuranceApplication insuranceApplication = insuranceApplyList.findById(insuranceId);
         String customerName = request.get(UnderwriteView.FINISH_INSURANCE_CUSTOMER_NAME);
+
         Contract contract = new Contract();
         contract.setInsurance(insuranceApplication);
         contract.setManagerName("모델들이 하는 모델링");
         contract.setCustomerName(customerName);
         applyCustomer.getContractList().add(contract);
+
         ResponseDto responseDto = new ResponseDto();
         responseDto.add(UnderwriteView.CONTRACT_INFO, contract.toString());
         return responseDto;

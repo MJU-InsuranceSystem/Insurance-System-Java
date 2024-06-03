@@ -1,6 +1,6 @@
 package org.example.salesChannelTeam;
 
-import org.example.salesChannelTeam.*;
+import org.example.salesChannelTeam.model.*;
 import org.example.user.Customer;
 
 /**
