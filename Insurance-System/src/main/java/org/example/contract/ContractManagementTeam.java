@@ -10,10 +10,14 @@ import org.example.insurance.InsuranceApplyList;
 import org.example.underwriteTeam.view.UnderwriteView;
 import org.example.user.Customer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ContractManagementTeam extends Team {
 
     private final ContractList contractList;
     private final InsuranceApplyList insuranceApplyList;
+
 
     public ContractManagementTeam(ContractList contractList, InsuranceApplyList insuranceApplyList) {
         this.contractList = contractList;
@@ -44,6 +48,7 @@ public class ContractManagementTeam extends Team {
         contract.setManagerName("모델들이 하는 모델링");
         contract.setCustomerName(customerName);
         applyCustomer.getContractList().add(contract);
+        insuranceApplyList.remove(insuranceApplication);
 
         ResponseDto responseDto = new ResponseDto();
         responseDto.add(UnderwriteView.CONTRACT_INFO, contract.toString());
@@ -58,5 +63,9 @@ public class ContractManagementTeam extends Team {
     @Override
     public ResponseDto retrieve(RequestDto request) {
         return null;
+    }
+
+    public ContractList retrieveContracts() {
+        return contractList;
     }
 }

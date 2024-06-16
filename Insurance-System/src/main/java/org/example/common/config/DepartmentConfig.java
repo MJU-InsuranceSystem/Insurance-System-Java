@@ -5,8 +5,7 @@ import org.example.TeamController;
 import org.example.business.education.BusinessEducationTeam;
 import org.example.business.education.controller.EducationController;
 import org.example.business.education.view.EducationView;
-import org.example.contract.ContractListImpl;
-import org.example.contract.ContractManagementTeam;
+import org.example.contract.*;
 import org.example.insurance.InsuranceApplyListImpl;
 import org.example.insurance.InsuranceChargeCustomerApplyList;
 import org.example.insurance.InsuranceChargeCustomerApplyListImpl;
@@ -128,5 +127,13 @@ public class DepartmentConfig {
 
     private static InsuranceChargeCustomerApplyList insuranceChargeCustomerApplyList() {
         return new InsuranceChargeCustomerApplyListImpl();
+    }
+
+    public static ContractManagementController contractManagementController() {
+        return new ContractManagementController(contractManagementView(), contractManagementTeam());
+    }
+
+    public static ContractManagementView contractManagementView() {
+        return new ContractManagementView();
     }
 }

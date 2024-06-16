@@ -34,9 +34,9 @@ public class Contract {
 
 	@Override
 	public String toString() {
-		return
-				"customerName = " + customerName + '\n' +
-				"insurance ID = " + insuranceApplication.getInsuranceApplicationID() + '\n' +
-				"managerName = " + managerName ;
+		return "customerName = " + customerName + '\n' +
+						"insurance ID = " + insuranceApplication.getInsuranceApplicationID() + '\n' +
+						"insurance Type = " + insuranceApplication.getInsuranceType() + '\n' +
+						"managerName = " + managerName ;
 	}
 }
