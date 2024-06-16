@@ -14,9 +14,7 @@ import org.example.contract.ContractListImpl;
  */
 public class Customer extends User {
 
-    private int familyHistory;
-    private IncomeInfo IncomeInfo;
-    private ContractList contractList = new ContractListImpl();
+    private List<Contract> contractList = new ArrayList<>();
 
     public Customer() {
 
@@ -77,11 +75,11 @@ public class Customer extends User {
 
     }
 
-    public ContractList getContractList() {
+    public List<Contract> getContractList() {
         return contractList;
     }
 
-    public void setContractList(ContractList contractList) {
+    public void setContractList(List<Contract> contractList) {
         this.contractList = contractList;
     }
 }

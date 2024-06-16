@@ -14,6 +14,8 @@ public interface ContractList {
 
   void remove(Contract contract);
 
+  void removeById(int contractId);
+
   InsuranceApplication findById(int contractId);
 
   List<Contract> getContracts();

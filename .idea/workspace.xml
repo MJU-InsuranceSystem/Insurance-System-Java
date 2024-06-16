@@ -4,26 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60b7dd1d-e35f-4bce-9822-4388716c7c36" name="Changes" comment="Refactor : 코드 구조 통일">
-      <change afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/insurance/InsuranceChargeCustomerApplyList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/insurance/InsuranceChargeCustomerApplyListImpl.java" afterDir="false" />
+    <list default="true" id="60b7dd1d-e35f-4bce-9822-4388716c7c36" name="Changes" comment="feat : 계약 삭제 기능">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/common/config/DepartmentConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/common/config/DepartmentConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/common/config/MainSystemConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/common/config/MainSystemConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/contract/ContractManagementTeam.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/contract/ContractManagementTeam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/domain/insurance/LifeInsuranceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/domain/insurance/LifeInsuranceApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/rewardSupportTeam/RewardSupportTeam.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/rewardSupportTeam/RewardSupportTeam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/rewardSupportTeam/controller/RewardSupportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/rewardSupportTeam/controller/RewardSupportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/salesChannelTeam/BusinessActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/salesChannelTeam/model/BusinessActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/salesChannelTeam/BusinessActivityList.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/salesChannelTeam/model/BusinessActivityList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/salesChannelTeam/BusinessActivityListImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/salesChannelTeam/model/BusinessActivityListImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/salesChannelTeam/MeetingCounsel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/salesChannelTeam/model/MeetingCounsel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/salesChannelTeam/MeetingCounselList.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/salesChannelTeam/model/MeetingCounselList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/salesChannelTeam/MeetingCounselListImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/salesChannelTeam/model/MeetingCounselListImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/salesChannelTeam/PolicyPost.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/salesChannelTeam/model/PolicyPost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/salesChannelTeam/RequestMeetingInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/salesChannelTeam/model/RequestMeetingInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/salesChannelTeam/SalesChannelTeam.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/salesChannelTeam/SalesChannelTeam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/user/CustomerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/user/CustomerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/user/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/user/Customer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/user/CustomerProcessManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/user/CustomerProcessManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/user/CustomerView.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/user/CustomerView.java" afterDir="false" />
     </list>
@@ -36,6 +21,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -70,22 +56,31 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.Insurance-System [:Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/hansang-yun/git/Insurance-System&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Insurance-System [:Main.main()].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/hansang-yun/git/Insurance-System",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.example.contract" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.main.Main" />
@@ -127,6 +122,9 @@
       <workItem from="1716727226412" duration="793000" />
       <workItem from="1716805556087" duration="449000" />
       <workItem from="1717378784327" duration="5304000" />
+      <workItem from="1718454865412" duration="45000" />
+      <workItem from="1718521240542" duration="598000" />
+      <workItem from="1718522682447" duration="9387000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor : 코드 구조 통일">
       <option name="closed" value="true" />
@@ -136,7 +134,23 @@
       <option name="project" value="LOCAL" />
       <updated>1717349954632</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feat : 모든 계약 조회 기능">
+      <option name="closed" value="true" />
+      <created>1718532114726</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1718532114726</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feat : 계약 삭제 기능">
+      <option name="closed" value="true" />
+      <created>1718534340617</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1718534340618</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -155,6 +169,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Refactor : 코드 구조 통일" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor : 코드 구조 통일" />
+    <MESSAGE value="feat : 모든 계약 조회 기능" />
+    <MESSAGE value="feat : 계약 삭제 기능" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat : 계약 삭제 기능" />
   </component>
 </project>

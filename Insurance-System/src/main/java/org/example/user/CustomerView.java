@@ -135,8 +135,8 @@ public class CustomerView {
         System.out.print(message);
     }
 
-    public void retrieveContract(ContractList contractList) {
-        contractList.getContracts().stream()
+    public void retrieveContract(List<Contract> contractList) {
+        contractList.stream()
                 .map(Contract::toString)
                 .forEach(System.out::println);
     }

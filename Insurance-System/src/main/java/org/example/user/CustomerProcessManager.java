@@ -2,9 +2,12 @@ package org.example.user;
 
 import org.example.common.AuthUtil;
 import org.example.common.dto.RequestDto;
+import org.example.contract.Contract;
 import org.example.contract.ContractList;
 import org.example.domain.insurance.InsuranceApplication;
 import org.example.insurance.*;
+
+import java.util.List;
 
 import static org.example.user.CustomerView.CHARGE_ANSWER;
 
@@ -18,9 +21,8 @@ public class CustomerProcessManager {
         this.insuranceChargeCustomerApplyList = insuranceChargeCustomerApplyList;
     }
 
-    public ContractList retrieveContract() {
+    public List<Contract> retrieveContract() {
         Customer loginUser = (Customer) AuthUtil.user;
-        System.out.println(loginUser.getName());
         return loginUser.getContractList();
     }
 
