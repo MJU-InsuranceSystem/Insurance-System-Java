@@ -31,7 +31,7 @@ public class CustomerProcessManager {
     private final InsurancePremiumPaymentCustomerList insurancePremiumPaymentCustomerList;
     private final AccidentList accidentList;
 
-    public CustomerProcessManager(InsuranceApplyList insuranceApplyList, InsuranceChargeCustomerApplyList insuranceChargeCustomerApplyList, AccidentList accidentList) {
+    public CustomerProcessManager(InsuranceApplyList insuranceApplyList, InsuranceChargeCustomerApplyList insuranceChargeCustomerApplyList, AccidentList accidentList, InsurancePremiumPaymentCustomerList insurancePremiumPaymentCustomerList) {
         this.insuranceApplyList = insuranceApplyList;
         this.insuranceChargeCustomerApplyList = insuranceChargeCustomerApplyList;
         this.accidentList = accidentList;

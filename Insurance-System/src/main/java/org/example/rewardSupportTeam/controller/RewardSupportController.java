@@ -46,7 +46,6 @@ public class RewardSupportController implements TeamController {
                 RequestDto requestDto = rewardSupportView.manageLawsuit();
 
             }
-
             case CHECK_NOT_PAID_CUSTOMER -> {
                 ResponseDto responseDto = rewardSupportTeam.getNotPaidCustomer();
                 rewardSupportView.showNotPaidCustomer(responseDto);

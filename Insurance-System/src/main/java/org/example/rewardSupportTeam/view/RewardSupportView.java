@@ -44,9 +44,9 @@ public class RewardSupportView extends DepartmentView {
     }
 
     public void completeJudgeFault(ResponseDto responseDto) {
-        if (responseDto.get(Status.key()).equals(Status.SUCCESS.getStatus())) {
+        if (responseDto.get(Status.getKey()).equals(Status.SUCCESS.getStatus())) {
             println("면/부책 판단에 성공하셨습니다.");
-        } else if (responseDto.get(Status.key()).equals(Status.FAIL.getStatus())) {
+        } else if (responseDto.get(Status.getKey()).equals(Status.FAIL.getStatus())) {
             println("면/부책 판단을 취소하였습니다.");
         } else if (responseDto.get(Status.getKey()).equals(Status.EMPTY.getStatus())) {
             println("고객으로부터 보험금 신청 접수가 된 것이 없습니다.");

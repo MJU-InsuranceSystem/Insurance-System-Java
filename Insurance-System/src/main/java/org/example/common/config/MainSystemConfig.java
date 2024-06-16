@@ -38,7 +38,7 @@ public class MainSystemConfig {
     }
 
     private CustomerProcessManager customerProcessManager() {
-        return new CustomerProcessManager(new InsuranceApplyListImpl(), new InsuranceChargeCustomerApplyListImpl(), new AccidentListImpl());
+        return new CustomerProcessManager(new InsuranceApplyListImpl(), new InsuranceChargeCustomerApplyListImpl(), new AccidentListImpl(), new InsurancePremiumPaymentCustomerListImpl());
     }
 
     private WorkerSystem workerSystem() {
