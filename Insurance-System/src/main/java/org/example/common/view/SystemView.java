@@ -4,21 +4,23 @@ import java.util.Map;
 
 public interface SystemView {
 
-  void introduce();
+    void introduce();
 
-  int selectAuthOption();
+    int selectAuthOption();
 
-  Map<String, String> getLoginInfo();
+    Map<String, String> getLoginInfo();
 
-  Map<String, String> getSignUpInfo();
+    Map<String, String> getSignUpInfo();
 
-  void successLogin();
+    void successLogin();
 
-  void successSignUp();
+    void successSignUp();
 
-  void exitSystem();
+    void exitSystem();
 
-  int selectTeam();
+    int selectTeam();
 
-  int selectCustomerProcess();
+    int selectCustomerProcess();
+
+    void showError(String message);
 }

@@ -5,11 +5,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
-import org.example.Department;
-import org.example.auth.AuthGuideMessage;
-import org.example.user.CustomerProcess;
+import org.example.team.Department;
+import org.example.user.auth.AuthGuideMessage;
+import org.example.user.customer.CustomerProcess;
 
 public class InsuranceSystemView implements SystemView {
+
     @Override
     public void introduce() {
         println("안녕하세요. MJU 보험사 시스템입니다.");
@@ -40,6 +41,11 @@ public class InsuranceSystemView implements SystemView {
             println(process.getProcessNumber() + "번 :" + process.getDescription());
         }
         return writeInt();
+    }
+
+    @Override
+    public void showError(String message) {
+        println(message);
     }
 
     @Override
@@ -92,7 +98,7 @@ public class InsuranceSystemView implements SystemView {
     private String writeString() {
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-          return br.readLine();
+            return br.readLine();
         } catch (IOException e) {
             throw new IllegalArgumentException("잘못 입력하였습니다.");
         }

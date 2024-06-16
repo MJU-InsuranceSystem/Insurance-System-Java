@@ -1,6 +1,8 @@
 package org.example.common.controller;
 
-import org.example.auth.AuthController;
+import org.example.user.customer.CustomerSystem;
+import org.example.user.worker.WorkerSystem;
+import org.example.user.auth.AuthController;
 import org.example.user.User;
 import org.example.common.view.SystemView;
 
@@ -14,7 +16,7 @@ public class FrontController {
     private static boolean PROGRAM_TRIGGER = false;
 
     public FrontController(SystemView systemView, AuthController authController,
-                           CustomerSystem customerSystem, WorkerSystem workerSystem) {
+        CustomerSystem customerSystem, WorkerSystem workerSystem) {
         this.systemView = systemView;
         this.authController = authController;
         this.customerSystem = customerSystem;
@@ -38,7 +40,7 @@ public class FrontController {
                     default -> throw new IllegalArgumentException("올바른 유저 유형을 찾을 수 없습니다.");
                 }
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                systemView.showError(e.getMessage());
             }
         }
     }

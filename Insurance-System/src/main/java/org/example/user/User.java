@@ -2,14 +2,14 @@ package org.example.user;
 
 public abstract class User {
 
-    String name;
-    String age;
-    String sex;
-    String phoneNumber;
-    String id;
-    String password;
-    boolean loginStatus;
-    UserType userType;
+    public String name;
+    public String age;
+    public String sex;
+    public String phoneNumber;
+    public String id;
+    public String password;
+    protected boolean loginStatus;
+    public UserType userType;
 
     public String getName() {
         return name;

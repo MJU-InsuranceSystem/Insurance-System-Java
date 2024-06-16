@@ -1,19 +1,18 @@
 package org.example.common.config;
 
-import org.example.auth.AuthController;
-import org.example.common.controller.CustomerSystem;
+import org.example.user.auth.AuthController;
+import org.example.user.customer.CustomerSystem;
 import org.example.common.controller.FrontController;
-import org.example.common.controller.WorkerSystem;
+import org.example.user.worker.WorkerSystem;
 import org.example.common.view.InsuranceSystemView;
 import org.example.common.view.SystemView;
-import org.example.insurance.InsuranceApplyListImpl;
-import org.example.insurance.InsuranceChargeCustomerApplyListImpl;
-import org.example.rewardSupportTeam.model.InsurancePremiumPaymentCustomerList;
-import org.example.rewardSupportTeam.model.AccidentListImpl;
-import org.example.planTeam.design.model.insurance.InsuranceListImpl;
-import org.example.rewardSupportTeam.model.InsurancePremiumPaymentCustomerListImpl;
-import org.example.user.CustomerProcessManager;
-import org.example.user.CustomerView;
+import org.example.insurance.apply.InsuranceApplyListImpl;
+import org.example.insurance.apply.InsuranceChargeCustomerApplyListImpl;
+import org.example.team.rewardSupport.model.AccidentListImpl;
+import org.example.insurance.InsuranceListImpl;
+import org.example.team.rewardSupport.model.InsurancePremiumPaymentCustomerListImpl;
+import org.example.user.customer.CustomerProcessManager;
+import org.example.user.customer.CustomerView;
 
 public class MainSystemConfig {
 
