@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
+
 import org.example.common.dto.RequestDto;
 import org.example.common.dto.ResponseDto;
 import org.example.contract.Contract;
@@ -154,23 +155,27 @@ public class CustomerView {
         requestDto.add(CHARGE_ANSWER, writeString());
         return requestDto;
     }
+
     public void retrieveContract(List<Contract> contractList) {
         contractList.stream()
-            .map(Contract::toString)
-            .forEach(System.out::println);
+                .map(Contract::toString)
+                .forEach(System.out::println);
     }
 
     public void completeSubmitAccident(ResponseDto responseDto) {
         if (responseDto.get(Status.getKey()).equals(Status.SUCCESS.getStatus())) {
-            println("성공적으로 사고가 접수되었습니다.");
+            println("보험금 청구 신청이 완료되었습니다.");
+        } else if (responseDto.get(Status.getKey()).equals(Status.INPUT_EMPTY.getStatus())) {
+            println("내용중 비어있는 입력안이 존재합니다.");
         } else {
-            println("사고 접수에 실패하였습니다. 다시 시도해주세요.");
+            println("보험금 청구 신청에 실패했습니다. 다시 시도해주세요.");
         }
     }
 
     public void emptyInsuranceInfo() {
         println("해당 보험은 현재 준비되어 있지 않습니다.");
     }
+
     private String writeString() {
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -198,7 +203,7 @@ public class CustomerView {
     }
 
     public boolean showAccountOfInsurance(ResponseDto responseDto) {
-        if(responseDto.get(CHECK_PAID).equals("Y")) {
+        if (responseDto.get(CHECK_PAID).equals("Y")) {
             println("이미 납부하였습니다.");
             return false;
         }
