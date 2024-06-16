@@ -25,6 +25,7 @@ public class RewardSupportTeam extends Team {
     private final AccidentList accidentList;
     private final litigationInfoList litigationInfoList;
 
+
     private final InsuranceChargeCustomerApplyList insuranceChargeCustomerApplyList;
 
 
@@ -32,7 +33,6 @@ public class RewardSupportTeam extends Team {
         this.accidentList = accidentList;
         this.litigationInfoList = litigationInfoList;
         this.insuranceChargeCustomerApplyList = insuranceChargeCustomerApplyList;
-
     }
 
     public void finalize() throws Throwable {
@@ -50,14 +50,18 @@ public class RewardSupportTeam extends Team {
         if (request.get(JUDGE_ANSWER).equals("Y") || request.get(JUDGE_ANSWER).equals("y")) {
             // 면부책을 판단한다
             // list에 정보가 다 있고 계약에서 어떤 보험에 가입했는지에 따라 면부책 판단을 내려주면 될 듯
-            Customer applyUser = insuranceChargeCustomerApplyList.findFirst();
-            if (applyUser == null) {
+//            Customer applyUser = insuranceChargeCustomerApplyList.findFirst();
+//
+//            if (applyUser == null) {
+//                responseDto.add(Status.getKey(), Status.FAIL.getStatus());
+//                return responseDto;
+//            }
+//            List<Contract> tempList = applyUser.getContractList().getContracts();
+            Accident accident = accidentList.read(1);
+            if (accident == null) {
                 responseDto.add(Status.getKey(), Status.FAIL.getStatus());
                 return responseDto;
             }
-            List<Contract> tempList = applyUser.getContractList().getContracts();
-
-
             responseDto.add(Status.getKey(), Status.SUCCESS.getStatus());
         } else if (request.get(JUDGE_ANSWER).equals("N") || request.get(JUDGE_ANSWER).equals("n")) {
             responseDto.add(Status.getKey(), Status.FAIL.getStatus());
@@ -69,28 +73,33 @@ public class RewardSupportTeam extends Team {
 
     @Override
     public ResponseDto register(RequestDto request) {
-        Accident accident = new Accident();
-        accident.setContent(request.get(ACCIDENT_CONTENT));
-        accident.setCustomerName(request.get(ACCIDENT_NAME));
-
-        ClaimInsurance claimInsurance = new ClaimInsurance();
-        claimInsurance.setAccount(request.get(CLAIMINSURANCE_ACCOUNT));
-        claimInsurance.setAddress(request.get(CLAIMINSURANCE_ADDRESS));
-        claimInsurance.setPhoneNumber(request.get(CLAIMINSURANCE_PHONENUMBER));
-        claimInsurance.setResidentNumber(request.get(CLAIMINSURANCE_RESIDENTNUMBER));
-        claimInsurance.setSupportingFile(request.get(CLAIMINSURANCE_SUPPORTINGFILE));
-
-        accident.setClaimInsurance(claimInsurance);
-
         ResponseDto responseDto = new ResponseDto();
-        if (!accidentList.add(accident)) {
-            responseDto.add(Status.getKey(), Status.FAIL.getStatus());
+
+        if (!insuranceChargeCustomerApplyList.isEmpty()) {
+            Accident accident = new Accident();
+            accident.setContent(request.get(ACCIDENT_CONTENT));
+            accident.setCustomerName(request.get(ACCIDENT_NAME));
+
+            ClaimInsurance claimInsurance = new ClaimInsurance();
+            claimInsurance.setAccount(request.get(CLAIMINSURANCE_ACCOUNT));
+            claimInsurance.setAddress(request.get(CLAIMINSURANCE_ADDRESS));
+            claimInsurance.setPhoneNumber(request.get(CLAIMINSURANCE_PHONENUMBER));
+            claimInsurance.setResidentNumber(request.get(CLAIMINSURANCE_RESIDENTNUMBER));
+            claimInsurance.setSupportingFile(request.get(CLAIMINSURANCE_SUPPORTINGFILE));
+
+            accident.setClaimInsurance(claimInsurance);
+
+            if (!accidentList.add(accident)) {
+                responseDto.add(Status.getKey(), Status.FAIL.getStatus());
+                return responseDto;
+            }
+            responseDto.add(Status.getKey(), Status.SUCCESS.getStatus());
             return responseDto;
         }
-
-        responseDto.add(Status.getKey(), Status.SUCCESS.getStatus());
+        responseDto.add(Status.getKey(), Status.EMPTY.getStatus());
         return responseDto;
     }
+
 
     @Override
     public ResponseDto remove(RequestDto request) {

@@ -8,15 +8,16 @@ import org.example.rewardSupportTeam.RewardSupportTeam;
 import org.example.rewardSupportTeam.usecase.RewardSupportUseCase;
 import org.example.rewardSupportTeam.view.RewardSupportView;
 
+import static org.example.rewardSupportTeam.usecase.RewardSupportUseCase.JUDGE_FAULT;
+
 public class RewardSupportController implements TeamController {
     private final RewardSupportView rewardSupportView;
     private final RewardSupportTeam rewardSupportTeam;
-    private final InsuranceChargeCustomerApplyList insuranceChargeCustomerApplyList;
+
 
     public RewardSupportController(RewardSupportView rewardSupportView, RewardSupportTeam rewardSupportTeam, InsuranceChargeCustomerApplyList insuranceChargeCustomerApplyList) {
         this.rewardSupportView = rewardSupportView;
         this.rewardSupportTeam = rewardSupportTeam;
-        this.insuranceChargeCustomerApplyList = insuranceChargeCustomerApplyList;
     }
 
     @Override
@@ -30,11 +31,9 @@ public class RewardSupportController implements TeamController {
     private void executeUsecase(RewardSupportUseCase usecase) {
         switch (usecase) {
             case SUBMIT_ACCIDENT -> {
-                if (!insuranceChargeCustomerApplyList.isEmpty()) {
-                    RequestDto requestDto = rewardSupportView.submitAccident();
-                    ResponseDto responseDto = rewardSupportTeam.register(requestDto);
-                    rewardSupportView.completeSubmitAccident(responseDto);
-                }
+                RequestDto requestDto = rewardSupportView.submitAccident();
+                ResponseDto responseDto = rewardSupportTeam.register(requestDto);
+                rewardSupportView.completeSubmitAccident(responseDto);
             }
             case JUDGE_FAULT -> {
                 RequestDto requestDto = rewardSupportView.judgeFault();
