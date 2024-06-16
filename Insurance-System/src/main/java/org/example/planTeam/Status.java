@@ -4,6 +4,7 @@ public enum Status {
     SUCCESS("200"),
     FAIL("400"),
     INPUT_INVALID("invalid"),
+    INPUT_EMPTY("input_empty"),
     EMPTY("empty");
     private final String status;
     private static final String KEY = "status";

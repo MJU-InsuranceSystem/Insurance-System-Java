@@ -4,11 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+    <list default="true" id="60b7dd1d-e35f-4bce-9822-4388716c7c36" name="Changes" comment="fix : 계약 조회 오류 해결">
+      <change afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/rewardSupportTeam/model/InsurancePremiumPaymentCustomerList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/rewardSupportTeam/model/InsurancePremiumPaymentCustomerListImpl.java" afterDir="false" />
     <list default="true" id="60b7dd1d-e35f-4bce-9822-4388716c7c36" name="Changes" comment="Feat : 보험금 지급하기">
+    <list default="true" id="60b7dd1d-e35f-4bce-9822-4388716c7c36" name="Changes" comment="Fix : 면부책 버그 수정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/rewardSupportTeam/RewardSupportTeam.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/rewardSupportTeam/RewardSupportTeam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/rewardSupportTeam/controller/RewardSupportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/rewardSupportTeam/controller/RewardSupportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/rewardSupportTeam/view/RewardSupportView.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/rewardSupportTeam/view/RewardSupportView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/common/config/DepartmentConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/common/config/DepartmentConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/common/config/MainSystemConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/common/config/MainSystemConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/common/controller/CustomerSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/common/controller/CustomerSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/contract/ContractManagementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/contract/ContractManagementController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/contract/ContractManagementUsecase.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/contract/ContractManagementUsecase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/rewardSupportTeam/Reward.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/rewardSupportTeam/model/Reward.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/common/config/MainSystemConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/common/config/MainSystemConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/common/controller/CustomerSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/common/controller/CustomerSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/planTeam/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/planTeam/Status.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/common/view/InsuranceSystemView.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/common/view/InsuranceSystemView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +30,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -112,13 +124,17 @@
       <workItem from="1716726433033" duration="59000" />
       <workItem from="1716727226412" duration="793000" />
       <workItem from="1716805556087" duration="449000" />
+      <workItem from="1717378784327" duration="5304000" />
+      <workItem from="1718454865412" duration="45000" />
+      <workItem from="1718521240542" duration="598000" />
+      <workItem from="1718522682447" duration="9387000" />
       <workItem from="1717378784327" duration="5432000" />
       <workItem from="1717394149057" duration="536000" />
       <workItem from="1717399417039" duration="2605000" />
       <workItem from="1718444932153" duration="245000" />
       <workItem from="1718458596213" duration="1534000" />
       <workItem from="1718526530098" duration="167000" />
-      <workItem from="1718530858301" duration="8081000" />
+      <workItem from="1718530858301" duration="20903000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor : 코드 구조 통일">
       <option name="closed" value="true" />
@@ -160,7 +176,32 @@
       <option name="project" value="LOCAL" />
       <updated>1718538655355</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Feat : 보험금 지급하기">
+      <option name="closed" value="true" />
+      <created>1718539417456</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1718539417456</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Refactor : 고객이 사건정보 입력 및 면부책 판단">
+      <option name="closed" value="true" />
+      <created>1718554316165</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1718554316165</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Fix : 면부책 버그 수정">
+      <option name="closed" value="true" />
+      <created>1718556022370</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1718556022370</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -179,10 +220,16 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Refactor : 코드 구조 통일" />
+    <MESSAGE value="feat : 모든 계약 조회 기능" />
+    <MESSAGE value="feat : 계약 삭제 기능" />
+    <MESSAGE value="fix : 계약 조회 오류 해결" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix : 계약 조회 오류 해결" />
     <MESSAGE value="Feat : 보상지원팀 게약 가져오기" />
     <MESSAGE value="Feat : user에서 보상금 신청 리스트 구현" />
     <MESSAGE value="Feat : 면부책을 판단한다" />
     <MESSAGE value="Feat : 보험금 지급하기" />
-    <option name="LAST_COMMIT_MESSAGE" value="Feat : 보험금 지급하기" />
+    <MESSAGE value="Refactor : 고객이 사건정보 입력 및 면부책 판단" />
+    <MESSAGE value="Fix : 면부책 버그 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix : 면부책 버그 수정" />
   </component>
 </project>

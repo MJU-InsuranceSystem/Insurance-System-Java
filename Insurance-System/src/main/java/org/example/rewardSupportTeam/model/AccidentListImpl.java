@@ -7,16 +7,15 @@ import java.util.stream.IntStream;
 /**
  * @author USER
  * @version 1.0
- *
  */
 public class AccidentListImpl implements AccidentList {
     public Accident accident;
-    private final ArrayList<Accident> accidentList;
-    private int generatorId;
+    private static final ArrayList<Accident> accidentList = new ArrayList<>();
+    private int generatorId = 0;
 
-    public AccidentListImpl() {
-        this.accidentList = new ArrayList<>();
-    }
+//    public AccidentListImpl() {
+//        this.accidentList = new ArrayList<>();
+//    }
 
     public void finalize() throws Throwable {
     }

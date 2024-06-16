@@ -45,4 +45,8 @@ public class CustomerManager {
                         customer -> customer.getName().equals(name)
                 ).findFirst();
     }
+
+    public List<Customer> getCustomerList() {
+        return customers;
+    }
 }

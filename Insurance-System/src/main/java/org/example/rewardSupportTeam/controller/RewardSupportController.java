@@ -18,6 +18,7 @@ public class RewardSupportController implements TeamController {
     public RewardSupportController(RewardSupportView rewardSupportView, RewardSupportTeam rewardSupportTeam, InsuranceChargeCustomerApplyList insuranceChargeCustomerApplyList) {
         this.rewardSupportView = rewardSupportView;
         this.rewardSupportTeam = rewardSupportTeam;
+
     }
 
     @Override
@@ -30,11 +31,7 @@ public class RewardSupportController implements TeamController {
 
     private void executeUsecase(RewardSupportUseCase usecase) {
         switch (usecase) {
-            case SUBMIT_ACCIDENT -> {
-                RequestDto requestDto = rewardSupportView.submitAccident();
-                ResponseDto responseDto = rewardSupportTeam.register(requestDto);
-                rewardSupportView.completeSubmitAccident(responseDto);
-            }
+
             case JUDGE_FAULT -> {
                 RequestDto requestDto = rewardSupportView.judgeFault();
                 ResponseDto responseDto = rewardSupportTeam.process(requestDto);
@@ -44,6 +41,14 @@ public class RewardSupportController implements TeamController {
                 RequestDto requestDto = rewardSupportView.payInsurance();
                 ResponseDto responseDto = rewardSupportTeam.retrieve(requestDto);
                 rewardSupportView.completePayInsurance(responseDto);
+            }
+            case MANAGE_LAWSUIT -> {
+                RequestDto requestDto = rewardSupportView.manageLawsuit();
+
+            }
+            case CHECK_NOT_PAID_CUSTOMER -> {
+                ResponseDto responseDto = rewardSupportTeam.getNotPaidCustomer();
+                rewardSupportView.showNotPaidCustomer(responseDto);
             }
             default -> throw new IllegalArgumentException("해당하는 usecase가 없습니다.");
         }

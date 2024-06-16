@@ -17,39 +17,23 @@ public class RewardSupportView extends DepartmentView {
     public static final String CLAIMINSURANCE_RESIDENTNUMBER = "residentNumber";
     public static final String CLAIMINSURANCE_SUPPORTINGFILE = "supportingFile";
     //judgeAnswer
-    public static final String JUDGE_ANSWER = "judge_answer";
+    public static final String JUDGE_ANSWER = "answer";
+    public static final String NOT_PAID_CUSTOMER = "notPaidCustomer";
     public static final String PAY_ANSWER = "pay_answer";
+    public static final String ACCIDENT_ANSWER = "accidet_answer";
 
     public RequestDto submitAccident() {
         RequestDto requestDto = new RequestDto();
-        println("면/부책 판단을 위한 '사건 정보'를 입력해주세요.");
-        print("사고 내용 : ");
-        requestDto.add(ACCIDENT_CONTENT, writeString());
-        print("고객 이름 : ");
-        requestDto.add(ACCIDENT_NAME, writeString());
-
-        println("면/부책 판단을 위한 '보험금 청구정보'를 입력해주세요.");
-        print("계좌 : ");
-        requestDto.add(CLAIMINSURANCE_ACCOUNT, writeString());
-        print("주소 : ");
-        requestDto.add(CLAIMINSURANCE_ADDRESS, writeString());
-        print("전화번호 : ");
-        requestDto.add(CLAIMINSURANCE_PHONENUMBER, writeString());
-        print("주민번호 : ");
-        requestDto.add(CLAIMINSURANCE_RESIDENTNUMBER, writeString());
-        print("증빙 서류 : ");
-        requestDto.add(CLAIMINSURANCE_SUPPORTINGFILE, writeString());
+        println("고객의 사건을 접수하시겠습니까? (Y/N)");
+        requestDto.add(ACCIDENT_ANSWER, writeString());
         return requestDto;
     }
 
     public void completeSubmitAccident(ResponseDto responseDto) {
         if (responseDto.get(Status.getKey()).equals(Status.SUCCESS.getStatus())) {
             println("성공적으로 사고가 접수되었습니다.");
-        } else if (responseDto.get(Status.getKey()).equals(Status.EMPTY.getStatus())) {
-            println("고객으로부터 보험금 신청 접수가 된 것이 없습니다.");
-        } else {
-            println("사고 접수에 실패하였습니다. 다시 시도해주세요.");
         }
+        println("고객으로부터 보험금 신청 접수가 된 것이 없습니다.");
     }
 
     public RequestDto judgeFault() {
@@ -64,9 +48,16 @@ public class RewardSupportView extends DepartmentView {
             println("면/부책 판단에 성공하셨습니다.");
         } else if (responseDto.get(Status.getKey()).equals(Status.FAIL.getStatus())) {
             println("면/부책 판단을 취소하였습니다.");
+        } else if (responseDto.get(Status.getKey()).equals(Status.EMPTY.getStatus())) {
+            println("고객으로부터 보험금 신청 접수가 된 것이 없습니다.");
         } else {
             println("잘못된 입력값입니다. 다시 시도해주세요.");
         }
+    }
+
+    public void showNotPaidCustomer(ResponseDto responseDto) {
+        String notPaidCustomers = responseDto.get(NOT_PAID_CUSTOMER);
+        System.out.println("미납자 목록 : " + notPaidCustomers);
     }
 
     public RequestDto payInsurance() {
@@ -82,5 +73,14 @@ public class RewardSupportView extends DepartmentView {
         } else {
             println("보험금 지급에 실패하였습니다");
         }
+    }
+
+    public RequestDto manageLawsuit() {
+        RequestDto requestDto = new RequestDto();
+        println("소송 관리 메뉴 입니다. 원하는 번호를 입력해주세요");
+        println("1. 소송을 등록한다");
+
+        requestDto.add(JUDGE_ANSWER, writeString());
+        return requestDto;
     }
 }

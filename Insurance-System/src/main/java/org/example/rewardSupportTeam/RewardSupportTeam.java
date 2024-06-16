@@ -1,18 +1,20 @@
 package org.example.rewardSupportTeam;
 
 import org.example.Team;
+import org.example.common.controller.CustomerSystem;
 import org.example.common.dto.RequestDto;
 import org.example.common.dto.ResponseDto;
 import org.example.contract.Contract;
 import org.example.insurance.InsuranceChargeCustomerApplyList;
 import org.example.planTeam.Status;
-import org.example.rewardSupportTeam.model.Accident;
-import org.example.rewardSupportTeam.model.AccidentList;
-import org.example.rewardSupportTeam.model.ClaimInsurance;
-import org.example.rewardSupportTeam.model.litigationInfoList;
+import org.example.rewardSupportTeam.model.*;
+import org.example.rewardSupportTeam.view.RewardSupportView;
 import org.example.user.Customer;
+import org.example.user.CustomerManager;
+import org.example.user.CustomerView;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.example.rewardSupportTeam.view.RewardSupportView.*;
 
@@ -26,14 +28,15 @@ public class RewardSupportTeam extends Team {
     private final litigationInfoList litigationInfoList;
 
     private final InsuranceChargeCustomerApplyList insuranceChargeCustomerApplyList;
+    private final InsurancePremiumPaymentCustomerList insurancePremiumPaymentCustomerList;
 
     private static boolean judgmentResult = false;
 
-    public RewardSupportTeam(AccidentList accidentList, litigationInfoList litigationInfoList, InsuranceChargeCustomerApplyList insuranceChargeCustomerApplyList) {
+    public RewardSupportTeam(AccidentList accidentList, litigationInfoList litigationInfoList, InsuranceChargeCustomerApplyList insuranceChargeCustomerApplyList, InsurancePremiumPaymentCustomerList insurancePremiumPaymentCustomerList) {
         this.accidentList = accidentList;
         this.litigationInfoList = litigationInfoList;
         this.insuranceChargeCustomerApplyList = insuranceChargeCustomerApplyList;
-
+        this.insurancePremiumPaymentCustomerList = insurancePremiumPaymentCustomerList;
     }
 
     public void finalize() throws Throwable {
@@ -48,20 +51,13 @@ public class RewardSupportTeam extends Team {
     @Override
     public ResponseDto process(RequestDto request) {
         ResponseDto responseDto = new ResponseDto();
+
         if (request.get(JUDGE_ANSWER).equals("Y") || request.get(JUDGE_ANSWER).equals("y")) {
             // 면부책을 판단한다
-            // list에 정보가 다 있고 계약에서 어떤 보험에 가입했는지에 따라 면부책 판단을 내려주면 될 듯
-//            Customer applyUser = insuranceChargeCustomerApplyList.findFirst();
-//
-//            if (applyUser == null) {
-//                responseDto.add(Status.getKey(), Status.FAIL.getStatus());
-//                return responseDto;
-//            }
-//            List<Contract> tempList = applyUser.getContractList().getContracts();
             Accident accident = accidentList.read(0);
             if (accident == null) {
                 judgmentResult = false;
-                responseDto.add(Status.getKey(), Status.FAIL.getStatus());
+                responseDto.add(Status.getKey(), Status.EMPTY.getStatus());
                 return responseDto;
             }
             judgmentResult = true;
@@ -77,29 +73,6 @@ public class RewardSupportTeam extends Team {
     @Override
     public ResponseDto register(RequestDto request) {
         ResponseDto responseDto = new ResponseDto();
-
-        if (!insuranceChargeCustomerApplyList.isEmpty()) {
-            Accident accident = new Accident();
-            accident.setContent(request.get(ACCIDENT_CONTENT));
-            accident.setCustomerName(request.get(ACCIDENT_NAME));
-
-            ClaimInsurance claimInsurance = new ClaimInsurance();
-            claimInsurance.setAccount(request.get(CLAIMINSURANCE_ACCOUNT));
-            claimInsurance.setAddress(request.get(CLAIMINSURANCE_ADDRESS));
-            claimInsurance.setPhoneNumber(request.get(CLAIMINSURANCE_PHONENUMBER));
-            claimInsurance.setResidentNumber(request.get(CLAIMINSURANCE_RESIDENTNUMBER));
-            claimInsurance.setSupportingFile(request.get(CLAIMINSURANCE_SUPPORTINGFILE));
-
-            accident.setClaimInsurance(claimInsurance);
-
-            if (!accidentList.add(accident)) {
-                responseDto.add(Status.getKey(), Status.FAIL.getStatus());
-                return responseDto;
-            }
-            responseDto.add(Status.getKey(), Status.SUCCESS.getStatus());
-            return responseDto;
-        }
-        responseDto.add(Status.getKey(), Status.EMPTY.getStatus());
         return responseDto;
     }
 
@@ -116,6 +89,25 @@ public class RewardSupportTeam extends Team {
             return responseDto;
         }
         responseDto.add(Status.getKey(), Status.FAIL.getStatus());
+        return responseDto;
+    }
+
+    public ResponseDto getNotPaidCustomer() {
+        List<Customer> paidCustomers = insurancePremiumPaymentCustomerList.getAll();
+        List<Customer> allCustomers = CustomerManager.getInstance().getCustomerList();
+        List<Customer> unpaidCustomers = allCustomers.stream()
+                .filter(customer -> !paidCustomers.contains(customer))
+                .toList();
+        String notPaidCustomers = unpaidCustomers.stream()
+                .map(Customer::getName)
+                .collect(Collectors.joining("\n"));
+
+        ResponseDto responseDto = new ResponseDto();
+        if(!unpaidCustomers.isEmpty()) {
+            responseDto.add(NOT_PAID_CUSTOMER, notPaidCustomers);
+        } else {
+            responseDto.add(NOT_PAID_CUSTOMER, "모든 고객이 납부하였습니다.");
+        }
         return responseDto;
     }
 }
