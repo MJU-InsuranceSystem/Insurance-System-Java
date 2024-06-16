@@ -65,8 +65,9 @@ public class RewardSupportView extends DepartmentView {
         System.out.println("미납자 목록 : " + notPaidCustomers);
     }
 
-    public RequestVO payInsurance() {
+    public RequestVO payInsurance(ResponseVO tempResponseVO) {
         RequestVO requestVO = new RequestVO();
+        println(tempResponseVO.get(PAY_ANSWER));
         println("고객에게 보험금을 지급하시겠습니까? (Y/N) ");
         requestVO.add(PAY_ANSWER, writeString());
         return requestVO;
