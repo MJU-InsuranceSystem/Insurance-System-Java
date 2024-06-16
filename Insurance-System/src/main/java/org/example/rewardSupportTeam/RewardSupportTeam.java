@@ -90,6 +90,10 @@ public class RewardSupportTeam extends Team {
         }
 
         if (judgmentResult) {
+            judgmentResult = false;
+            Accident accident = accidentList.read(0);
+            responseDto.add(ACCIDENT_NAME, accident.getCustomerName());
+            responseDto.add(CLAIMINSURANCE_ACCOUNT, accident.getClaimInsurance().getAccount());
             responseDto.add(Status.getKey(), Status.SUCCESS.getStatus());
             return responseDto;
         }
