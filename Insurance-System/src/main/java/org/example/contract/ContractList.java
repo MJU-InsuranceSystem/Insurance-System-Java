@@ -21,4 +21,6 @@ public interface ContractList {
   List<Contract> getContracts();
 
   void update(Contract contract);
+
+  boolean isEmpty();
 }

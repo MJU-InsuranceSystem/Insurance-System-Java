@@ -50,4 +50,9 @@ public class ContractListImpl implements ContractList {
       }
     }
   }
+
+  @Override
+  public boolean isEmpty() {
+    return CONTRACTS.isEmpty();
+  }
 }

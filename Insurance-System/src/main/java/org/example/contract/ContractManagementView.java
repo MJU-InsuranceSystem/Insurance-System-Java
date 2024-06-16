@@ -8,9 +8,13 @@ public class ContractManagementView extends DepartmentView {
     public static final String CONTRACT_ID = "contractId";
 
     public void retrieveContracts(ContractList contractList) {
+        if(contractList.isEmpty()) {
+            println("계약이 존재하지 않습니다.");
+        }
         contractList.getContracts().stream()
                 .map(Contract::toString)
                 .forEach(System.out::println);
+        successTask();
     }
 
     public RequestVO requireDeleteContractNumber() {
