@@ -7,6 +7,9 @@ import org.example.business.education.controller.EducationController;
 import org.example.business.education.model.EducationListImpl;
 import org.example.business.education.view.EducationView;
 import org.example.contract.*;
+import org.example.customerManageTeam.CustomerManageTeam;
+import org.example.customerManageTeam.controller.CustomerManagementController;
+import org.example.customerManageTeam.view.CustomerManagementView;
 import org.example.insurance.InsuranceApplyListImpl;
 import org.example.insurance.InsuranceChargeCustomerApplyList;
 import org.example.insurance.InsuranceChargeCustomerApplyListImpl;
@@ -30,6 +33,9 @@ import org.example.underwriteTeam.UnderwriteTeam;
 import org.example.underwriteTeam.controller.UnderwriteController;
 import org.example.underwriteTeam.model.UnderwritePolicyListImpl;
 import org.example.underwriteTeam.view.UnderwriteView;
+import org.example.workerManagementTeam.WorkerManagementTeam;
+import org.example.workerManagementTeam.controller.WorkerManagementController;
+import org.example.workerManagementTeam.view.WorkerManagementView;
 
 public class DepartmentConfig {
 
@@ -40,6 +46,30 @@ public class DepartmentConfig {
     public static UnderwriteController underwriteController() {
         return new UnderwriteController(underwriteTeam(), underwriteView(),
                 contractManagementTeam());
+    }
+
+    public static CustomerManagementController customerManagementController() {
+        return new CustomerManagementController(customerManageTeam(), customerManagementView());
+    }
+
+    public static CustomerManageTeam customerManageTeam() {
+        return new CustomerManageTeam();
+    }
+
+    public static CustomerManagementView customerManagementView() {
+        return new CustomerManagementView();
+    }
+
+    public static WorkerManagementController workerManagementController() {
+        return new WorkerManagementController(workerManagementTeam(), workerManagementView());
+    }
+
+    public static WorkerManagementTeam workerManagementTeam() {
+        return new WorkerManagementTeam();
+    }
+
+    public static WorkerManagementView workerManagementView() {
+        return new WorkerManagementView();
     }
 
     private static UnderwriteView underwriteView() {

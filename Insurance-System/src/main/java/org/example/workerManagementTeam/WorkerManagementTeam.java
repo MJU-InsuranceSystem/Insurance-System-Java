@@ -1,25 +1,22 @@
-package org.example.business.manager;
+package org.example.workerManagementTeam;
 
 import org.example.Team;
 import org.example.common.dto.RequestDto;
 import org.example.common.dto.ResponseDto;
+import org.example.user.Customer;
+import org.example.user.CustomerList;
+import org.example.user.Worker;
+import org.example.user.WorkerList;
 
-import java.util.function.Function;
+import java.util.List;
 
 /**
  * @author USER
  * @version 1.0
  */
-public class EmployeeManagementTeam extends Team {
+public class WorkerManagementTeam extends Team {
 
-	public OperationPolicyListImpl m_OperationPolicyListImpl;
-	public OperationPolicy m_OperationPolicy;
-	public EmployeeListImpl m_EmployeeListImpl;
-	public Employee m_Employee;
-
-	public EmployeeManagementTeam(){
-
-	}
+	private final WorkerList workerList = WorkerList.getInstance();
 
 	@Override
 	public ResponseDto manage(RequestDto request) {
@@ -45,4 +42,9 @@ public class EmployeeManagementTeam extends Team {
 	public ResponseDto retrieve(RequestDto request) {
 		return null;
 	}
+
+	public List<Worker> retrieveWorkerInfo() {
+		return workerList.getWorkerList();
+	}
+
 }
