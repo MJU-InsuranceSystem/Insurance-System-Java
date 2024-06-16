@@ -47,7 +47,7 @@ public class CustomerSystem {
             }
             case PAY_INSURANCE_PREMIUM -> {
                 ResponseDto responseDto = customerProcessManager.getAccountOfInsurance();
-                if(customerView.showAccountOfInsurance(responseDto)) {
+                if (customerView.showAccountOfInsurance(responseDto)) {
                     RequestDto requestDto = customerView.payInsurancePremiumInfo();
                     customerProcessManager.payInsurancePremium(requestDto);
                     customerView.successTask();

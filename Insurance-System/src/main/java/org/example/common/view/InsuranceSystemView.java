@@ -25,6 +25,7 @@ public class InsuranceSystemView implements SystemView {
     @Override
     public int selectTeam() {
         println("직원용 보험사 시스템입니다. 작업하실 팀을 고르세요");
+        println("0번 : 종료하기");
         for (Department department : Department.values()) {
             println(department.getOrder() + "번 :" + department.getName());
         }
