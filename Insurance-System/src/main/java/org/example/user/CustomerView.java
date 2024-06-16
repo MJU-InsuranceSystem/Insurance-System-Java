@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
+
+
 import org.example.common.dto.RequestVO;
 import org.example.common.dto.ResponseVO;
 import org.example.contract.Contract;
@@ -165,11 +167,14 @@ public class CustomerView {
         successTask();
     }
 
+
     public void completeSubmitAccident(ResponseVO responseVO) {
         if (responseVO.get(Status.getKey()).equals(Status.SUCCESS.getStatus())) {
-            println("성공적으로 사고가 접수되었습니다.");
+            println("보험금 청구 신청이 완료되었습니다.");
+        } else if (responseVO.get(Status.getKey()).equals(Status.INPUT_EMPTY.getStatus())) {
+            println("내용중 비어있는 입력안이 존재합니다.");
         } else {
-            println("사고 접수에 실패하였습니다. 다시 시도해주세요.");
+            println("보험금 청구 신청에 실패했습니다. 다시 시도해주세요.");
         }
     }
 
