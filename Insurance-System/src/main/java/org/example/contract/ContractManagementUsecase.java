@@ -8,8 +8,7 @@ import java.util.Arrays;
 public enum ContractManagementUsecase implements Usecase {
 
     ALL_CONTRACT_RETRIEVE(1, "모든 계약 조회"),
-    CONTRACT_DELETE(2, "계약 삭제"),
-    CHECK_INSURANCE_ACCOUNT(3, "보험급 납부 확인");
+    CONTRACT_DELETE(2, "계약 삭제");
 
     private final int order;
     private final String description;

@@ -4,6 +4,7 @@ import org.example.common.dto.RequestDto;
 import org.example.common.dto.ResponseDto;
 import org.example.common.view.SystemView;
 import org.example.contract.ContractList;
+import org.example.contract.ContractManagementTeam;
 import org.example.insurance.InsuranceType;
 import org.example.user.CustomerProcess;
 import org.example.user.CustomerProcessManager;
@@ -45,9 +46,12 @@ public class CustomerSystem {
                 customerView.successTask();
             }
             case PAY_INSURANCE_PREMIUM -> {
-                RequestDto requestDto = customerView.payInsurancePremiumInfo();
-                customerProcessManager.payInsurancePremium(requestDto);
-                customerView.successTask();
+                ResponseDto responseDto = customerProcessManager.getAccountOfInsurance();
+                if(customerView.showAccountOfInsurance(responseDto)) {
+                    RequestDto requestDto = customerView.payInsurancePremiumInfo();
+                    customerProcessManager.payInsurancePremium(requestDto);
+                    customerView.successTask();
+                }
             }
             case REQUIRE_INSURANCE_BENEFIT -> {
                 RequestDto requestDto = customerView.requireInsuranceBenefitInfo();
