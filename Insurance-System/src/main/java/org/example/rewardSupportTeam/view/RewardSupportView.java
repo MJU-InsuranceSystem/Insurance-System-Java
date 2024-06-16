@@ -22,6 +22,9 @@ public class RewardSupportView extends DepartmentView {
     public static final String PAY_ANSWER = "pay_answer";
     public static final String ACCIDENT_ANSWER = "accidet_answer";
 
+    public static final String ALL = "전체";
+    public static final String ENTITY_LIST = "객체리스트";
+
     public RequestDto submitAccident() {
         RequestDto requestDto = new RequestDto();
         println("고객의 사건을 접수하시겠습니까? (Y/N)");
@@ -36,8 +39,10 @@ public class RewardSupportView extends DepartmentView {
         println("고객으로부터 보험금 신청 접수가 된 것이 없습니다.");
     }
 
-    public RequestDto judgeFault() {
+    public RequestDto judgeFault(ResponseDto responseDto) {
         RequestDto requestDto = new RequestDto();
+
+        println(responseDto.get(ENTITY_LIST));
         println("면/부책을 판단하시겠습니까? (Y/N) ");
         requestDto.add(JUDGE_ANSWER, writeString());
         return requestDto;

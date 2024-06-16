@@ -5,8 +5,11 @@ import org.example.common.dto.RequestDto;
 import org.example.common.dto.ResponseDto;
 import org.example.insurance.InsuranceChargeCustomerApplyList;
 import org.example.rewardSupportTeam.RewardSupportTeam;
+import org.example.rewardSupportTeam.model.Accident;
 import org.example.rewardSupportTeam.usecase.RewardSupportUseCase;
 import org.example.rewardSupportTeam.view.RewardSupportView;
+
+import java.util.List;
 
 import static org.example.rewardSupportTeam.usecase.RewardSupportUseCase.JUDGE_FAULT;
 
@@ -31,9 +34,10 @@ public class RewardSupportController implements TeamController {
 
     private void executeUsecase(RewardSupportUseCase usecase) {
         switch (usecase) {
-
             case JUDGE_FAULT -> {
-                RequestDto requestDto = rewardSupportView.judgeFault();
+                RequestDto tempRequest = new RequestDto();
+                ResponseDto tempResponseDto = rewardSupportTeam.retrieve(tempRequest);
+                RequestDto requestDto = rewardSupportView.judgeFault(tempResponseDto);
                 ResponseDto responseDto = rewardSupportTeam.process(requestDto);
                 rewardSupportView.completeJudgeFault(responseDto);
             }

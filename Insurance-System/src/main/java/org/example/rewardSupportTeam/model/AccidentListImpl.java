@@ -2,6 +2,7 @@ package org.example.rewardSupportTeam.model;
 
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.IntStream;
 
 /**
@@ -49,6 +50,10 @@ public class AccidentListImpl implements AccidentList {
                 .filter(accident -> accident.getAccidentID() == accidentID)
                 .findFirst()
                 .orElse(null);
+    }
+
+    public List<Accident> getAllAccidents() {
+        return new ArrayList<>(accidentList);
     }
 
     private int generateId() {
