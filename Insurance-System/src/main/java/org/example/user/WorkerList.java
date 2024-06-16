@@ -13,6 +13,8 @@ public class WorkerList {
         Worker worker = new Worker();
         worker.id = String.valueOf(1);
         worker.password = String.valueOf(1);
+        worker.age = "24";
+        worker.phoneNumber = "010-2222-2222";
         worker.userType = UserType.WORKER;
         workers.add(worker);
     }
