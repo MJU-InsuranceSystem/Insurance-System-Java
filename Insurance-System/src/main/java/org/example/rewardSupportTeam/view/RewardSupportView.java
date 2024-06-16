@@ -17,7 +17,8 @@ public class RewardSupportView extends DepartmentView {
     public static final String CLAIMINSURANCE_RESIDENTNUMBER = "residentNumber";
     public static final String CLAIMINSURANCE_SUPPORTINGFILE = "supportingFile";
     //judgeAnswer
-    public static final String JUDGE_ANSWER = "answer";
+    public static final String JUDGE_ANSWER = "judge_answer";
+    public static final String PAY_ANSWER = "pay_answer";
 
     public RequestDto submitAccident() {
         RequestDto requestDto = new RequestDto();
@@ -64,5 +65,19 @@ public class RewardSupportView extends DepartmentView {
         } else {
             println("잘못된 입력값입니다. 다시 시도해주세요.");
         }
+    }
+
+    public RequestDto payInsurance() {
+        RequestDto requestDto = new RequestDto();
+        println("고객에게 보험금을 지급하시겠습니까? (Y/N) ");
+        requestDto.add(PAY_ANSWER, writeString());
+        return requestDto;
+    }
+
+    public void completePayInsurance(ResponseDto responseDto) {
+        if (responseDto.get(Status.getKey()).equals(Status.SUCCESS.getStatus())) {
+            println("보험금 지급에 성공하였습니다.");
+        }
+        println("보험금 지급에 실패하였습니다");
     }
 }

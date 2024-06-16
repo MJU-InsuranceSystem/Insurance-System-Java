@@ -24,10 +24,9 @@ public class RewardSupportTeam extends Team {
 
     private final AccidentList accidentList;
     private final litigationInfoList litigationInfoList;
-
-
     private final InsuranceChargeCustomerApplyList insuranceChargeCustomerApplyList;
 
+    private static boolean judgmentResult = false;
 
     public RewardSupportTeam(AccidentList accidentList, litigationInfoList litigationInfoList, InsuranceChargeCustomerApplyList insuranceChargeCustomerApplyList) {
         this.accidentList = accidentList;
@@ -59,9 +58,11 @@ public class RewardSupportTeam extends Team {
 //            List<Contract> tempList = applyUser.getContractList().getContracts();
             Accident accident = accidentList.read(1);
             if (accident == null) {
+                judgmentResult = false;
                 responseDto.add(Status.getKey(), Status.FAIL.getStatus());
                 return responseDto;
             }
+            judgmentResult = true;
             responseDto.add(Status.getKey(), Status.SUCCESS.getStatus());
         } else if (request.get(JUDGE_ANSWER).equals("N") || request.get(JUDGE_ANSWER).equals("n")) {
             responseDto.add(Status.getKey(), Status.FAIL.getStatus());
@@ -108,6 +109,12 @@ public class RewardSupportTeam extends Team {
 
     @Override
     public ResponseDto retrieve(RequestDto request) {
-        return null;
+        ResponseDto responseDto = new ResponseDto();
+        if (judgmentResult) {
+            responseDto.add(Status.getKey(), Status.SUCCESS.getStatus());
+            return responseDto;
+        }
+        responseDto.add(Status.getKey(), Status.FAIL.getStatus());
+        return responseDto;
     }
 }
