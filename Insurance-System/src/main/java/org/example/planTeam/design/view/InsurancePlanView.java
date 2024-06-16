@@ -3,6 +3,7 @@ package org.example.planTeam.design.view;
 import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGNPLAN;
 import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGN_MANAGER;
 import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGN_TITLE;
+import static org.example.planTeam.design.model.designPlan.DesignConstant.READ_INSURANCE_RESULT;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.ALL;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.ENTITY;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.ENTITY_KIND;
@@ -197,6 +198,30 @@ public class InsurancePlanView extends DepartmentView {
     public void completeCreateDesignPlan(ResponseDto responseDto) {
         if (responseDto.get(Status.getKey()).equals(Status.SUCCESS.getStatus())) {
             System.out.println("설계안 대로 보험 상품 생성을 완성하였습니다.!");
+        }
+    }
+
+    public RequestDto requestInsurances() {
+        RequestDto requestDto = new RequestDto();
+        println("모든 보험 상품들을 조회하시겠습니까? (Y/N)");
+        requestDto.add(READ_INSURANCE_RESULT, writeString());
+        requestDto.add(ENTITY_LIST, ALL);
+        requestDto.add(ENTITY_KIND, INSURANCE);
+        return requestDto;
+    }
+
+    public void denyShowInsurances() {
+        println("모든 보험 상품 조회를 거부하였습니다.");
+    }
+
+    public void showAllInsurance(ResponseDto responseDto) {
+        println("모든 상품 정보를 나열합니다.");
+        println("====================");
+        for (int i = 0; i < 10; i++) {
+            if (responseDto.get(String.valueOf(i)) == null) {
+                break;
+            }
+            println(responseDto.get(String.valueOf(i)) + "\n");
         }
     }
 }

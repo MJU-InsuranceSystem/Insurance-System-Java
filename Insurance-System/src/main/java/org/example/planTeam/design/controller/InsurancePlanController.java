@@ -7,10 +7,12 @@ import static org.example.planTeam.design.model.insurance.InsuranceConstant.ENTI
 import static org.example.planTeam.design.model.proposal.ProposalConstant.DESIGN_TEAM_NAME;
 import static org.example.planTeam.design.model.proposal.ProposalConstant.PROPOSAL;
 
+import java.util.Objects;
 import org.example.Team;
 import org.example.TeamController;
 import org.example.common.dto.RequestDto;
 import org.example.common.dto.ResponseDto;
+import org.example.planTeam.design.model.designPlan.DesignConstant;
 import org.example.planTeam.design.usecase.DesignUseCase;
 import org.example.planTeam.design.view.InsurancePlanView;
 import org.example.planTeam.inspection.InsuranceInspectionView;
@@ -73,7 +75,13 @@ public class InsurancePlanController implements TeamController {
                 insurancePlanView.completeCreateDesignPlan(responseDto);
             }
             case MANAGE_INSURANCE -> {
-
+                RequestDto requestDto = insurancePlanView.requestInsurances();
+                if (Objects.equals(requestDto.get(DesignConstant.READ_INSURANCE_RESULT), "Y")) {
+                    ResponseDto responseDto = insurancePlanTeam.retrieve(requestDto);
+                    insurancePlanView.showAllInsurance(responseDto);
+                    return;
+                }
+                insurancePlanView.denyShowInsurances();
             }
             default -> throw new IllegalArgumentException("해당 유스케이스 번호는 존재하지 않습니다.");
         }
