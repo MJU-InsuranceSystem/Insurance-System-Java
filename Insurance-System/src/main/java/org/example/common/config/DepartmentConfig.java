@@ -107,7 +107,7 @@ public class DepartmentConfig {
 
     // reward
     public static RewardSupportController rewardSupportController() {
-        return new RewardSupportController(rewardSupportView(), rewardSupportTeam());
+        return new RewardSupportController(rewardSupportView(), rewardSupportTeam(), new InsuranceChargeCustomerApplyListImpl());
     }
 
     private static RewardSupportView rewardSupportView() {

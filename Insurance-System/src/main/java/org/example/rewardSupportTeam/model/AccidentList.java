@@ -4,16 +4,15 @@ package org.example.rewardSupportTeam.model;
 /**
  * @author USER
  * @version 1.0
- *
  */
 public interface AccidentList {
 
-	public boolean add(Accident accident);
+    boolean add(Accident accident);
 
-	public boolean delete(int accidentID);
+    boolean delete(int accidentID);
 
-	public Accident read(int accidentID);
+    Accident read(int accidentID);
 
-	public Accident update(int accidentID, Accident accident);
+    Accident update(int accidentID, Accident accident);
 
 }
