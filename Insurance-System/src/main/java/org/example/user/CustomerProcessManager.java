@@ -85,8 +85,9 @@ public class CustomerProcessManager {
                     return responseDto;
                 }
             }
+            boolean check = accidentList.add(accident);
 
-            if (!accidentList.add(accident)) {
+            if (!check) {
                 responseDto.add(Status.getKey(), Status.FAIL.getStatus());
                 return responseDto;
             }

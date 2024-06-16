@@ -70,29 +70,6 @@ public class RewardSupportTeam extends Team {
     @Override
     public ResponseDto register(RequestDto request) {
         ResponseDto responseDto = new ResponseDto();
-//
-//        if (!insuranceChargeCustomerApplyList.isEmpty()) {
-//            Accident accident = new Accident();
-//            accident.setContent(request.get(ACCIDENT_CONTENT));
-//            accident.setCustomerName(request.get(ACCIDENT_NAME));
-//
-//            ClaimInsurance claimInsurance = new ClaimInsurance();
-//            claimInsurance.setAccount(request.get(CLAIMINSURANCE_ACCOUNT));
-//            claimInsurance.setAddress(request.get(CLAIMINSURANCE_ADDRESS));
-//            claimInsurance.setPhoneNumber(request.get(CLAIMINSURANCE_PHONENUMBER));
-//            claimInsurance.setResidentNumber(request.get(CLAIMINSURANCE_RESIDENTNUMBER));
-//            claimInsurance.setSupportingFile(request.get(CLAIMINSURANCE_SUPPORTINGFILE));
-//
-//            accident.setClaimInsurance(claimInsurance);
-//
-//            if (!accidentList.add(accident)) {
-//                responseDto.add(Status.getKey(), Status.FAIL.getStatus());
-//                return responseDto;
-//            }
-//            responseDto.add(Status.getKey(), Status.SUCCESS.getStatus());
-//            return responseDto;
-//        }
-//        responseDto.add(Status.getKey(), Status.EMPTY.getStatus());
         return responseDto;
     }
 

@@ -16,8 +16,6 @@ public class RequestDto {
     }
 
     public Map<String, String> getTotalInfo() {
-        requestInfo.forEach(
-            (key, value) -> System.out.println("Key: " + key + ", Value: " + value));
         return this.requestInfo;
     }
 }
