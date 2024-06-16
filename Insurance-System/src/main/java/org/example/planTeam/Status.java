@@ -18,7 +18,7 @@ public enum Status {
         return status;
     }
 
-    public static String key() {
+    public static String getKey() {
         return KEY;
     }
 }

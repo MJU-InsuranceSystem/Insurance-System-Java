@@ -1,10 +1,12 @@
 package org.example.business.education.controller;
 
+import java.util.Objects;
 import org.example.TeamController;
 import org.example.business.education.BusinessEducationTeam;
 import org.example.business.education.usecase.EducationUseCase;
 import org.example.business.education.view.EducationView;
 import org.example.common.dto.RequestDto;
+import org.example.common.dto.ResponseDto;
 
 public class EducationController implements TeamController {
 
@@ -18,23 +20,30 @@ public class EducationController implements TeamController {
 
   @Override
   public void process() {
-//    educationView.intro();
-//    int selectNumber = educationView.selectUseCase();
-//    EducationUseCase useCase = EducationUseCase.findByNumber(selectNumber);
-//    RequestDto requestDto = showUsecaseRequireInfo(useCase);
-//    businessEducationTeam.process(selectNumber, requestDto);
+    educationView.intro();
+    int selectNumber = educationView.selectUsecase(EducationUseCase.class);
+    EducationUseCase useCase = EducationUseCase.findByNumber(selectNumber);
+    processUsecase(useCase);
   }
 
-  private RequestDto showUsecaseRequireInfo(EducationUseCase useCase) {
+  private void processUsecase(EducationUseCase useCase) {
     switch (useCase) {
       case MANAGE_EDUCATION -> {
-        return educationView.manageEducation();
+        RequestDto requestDto = educationView.manageEducation();
+        if(Objects.equals(requestDto.get(EducationView.MANAGE_RESPONSE_RESULT), "Y")) {
+          ResponseDto responseDto = businessEducationTeam.retrieve(requestDto);
+          educationView.showAllEducationName(responseDto);
+          return;
+        }
+        educationView.deny();
       }
       case PREPARE_EDUCATION -> {
-        return educationView.prepareEducation();
+        RequestDto requestDto = educationView.prepareEducation();
+        ResponseDto responseDto = businessEducationTeam.register(requestDto);
+        educationView.completeMessage(responseDto);
       }
       case MANAGE_EDUCATION_STUDENT -> {
-        return educationView.manageEducationStudent();
+        RequestDto requestDto = educationView.manageEducationStudent();
       }
       default -> throw new IllegalArgumentException("해당 유스케이스 번호는 존재하지 않습니다.");
     }

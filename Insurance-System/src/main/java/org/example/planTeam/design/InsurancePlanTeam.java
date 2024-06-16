@@ -13,7 +13,6 @@ import org.example.planTeam.design.model.proposal.Proposal;
 import org.example.planTeam.design.model.proposal.Proposal.ProposalBuilder;
 import org.example.planTeam.design.model.proposal.ProposalList;
 import org.example.planTeam.design.model.reward.Reward;
-import org.example.planTeam.inspection.InsuranceInspectionTeam;
 
 import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGNPLAN;
 import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGN_CONTENT;
@@ -76,7 +75,7 @@ public class InsurancePlanTeam extends Team {
                     authrizationInsuranceList.add(insurance);
                     if (!Objects.isNull(authrizationInsuranceList.findById(
                         Integer.parseInt(request.get(INSURANCE_ID))))) {
-                        responseDto.add(Status.key(), Status.SUCCESS.getStatus());
+                        responseDto.add(Status.getKey(), Status.SUCCESS.getStatus());
                         return responseDto;
                     }
                 }
@@ -99,7 +98,7 @@ public class InsurancePlanTeam extends Team {
                     .reward(request.get(REWARD)).build();
 
                 proposalList.add(proposal);
-                responseDto.add(Status.key(), Status.SUCCESS.getStatus());
+                responseDto.add(Status.getKey(), Status.SUCCESS.getStatus());
                 return responseDto;
             }
             case INSURANCE -> {
@@ -119,7 +118,7 @@ public class InsurancePlanTeam extends Team {
 
                 this.insuranceList.add(insurance);
 
-                responseDto.add(Status.key(), Status.SUCCESS.getStatus());
+                responseDto.add(Status.getKey(), Status.SUCCESS.getStatus());
                 return responseDto;
             }
             case DESIGNPLAN -> {
@@ -130,7 +129,7 @@ public class InsurancePlanTeam extends Team {
                 designPlan.setContent(request.get(DESIGN_CONTENT));
                 designPlan.setManager(request.get(DESIGN_MANAGER));
                 designPlanList.add(designPlan);
-                responseDto.add(Status.key(), Status.SUCCESS.getStatus());
+                responseDto.add(Status.getKey(), Status.SUCCESS.getStatus());
                 return responseDto;
             }
             default -> {

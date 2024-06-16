@@ -1,20 +1,19 @@
 package org.example.planTeam.design.controller;
 
 
-import org.example.Team;
-import org.example.TeamController;
-import org.example.common.dto.RequestDto;
-import org.example.common.dto.ResponseDto;
-import org.example.planTeam.inspection.InsuranceInspectionView;
-import org.example.planTeam.design.usecase.DesignUseCase;
-import org.example.planTeam.design.view.InsurancePlanView;
-
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.ALL;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.ENTITY_KIND;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.ENTITY_LIST;
 import static org.example.planTeam.design.model.proposal.ProposalConstant.DESIGN_TEAM_NAME;
-import static org.example.planTeam.design.model.proposal.ProposalConstant.KIND;
 import static org.example.planTeam.design.model.proposal.ProposalConstant.PROPOSAL;
+
+import org.example.Team;
+import org.example.TeamController;
+import org.example.common.dto.RequestDto;
+import org.example.common.dto.ResponseDto;
+import org.example.planTeam.design.usecase.DesignUseCase;
+import org.example.planTeam.design.view.InsurancePlanView;
+import org.example.planTeam.inspection.InsuranceInspectionView;
 
 public class InsurancePlanController implements TeamController {
 
@@ -39,8 +38,6 @@ public class InsurancePlanController implements TeamController {
         int selectInt = this.insurancePlanView.selectUsecase(DesignUseCase.class);
         DesignUseCase useCase = DesignUseCase.findByNumber(selectInt);
         startProcess(useCase);
-
-
     }
 
     private void startProcess(DesignUseCase useCase) {
@@ -81,6 +78,4 @@ public class InsurancePlanController implements TeamController {
             default -> throw new IllegalArgumentException("해당 유스케이스 번호는 존재하지 않습니다.");
         }
     }
-
-
 }

@@ -1,15 +1,12 @@
 package org.example.planTeam.design.view;
 
-import java.util.Arrays;
 import org.example.common.view.DepartmentView;
 import org.example.common.dto.RequestDto;
 import org.example.common.dto.ResponseDto;
 import org.example.insurance.InsuranceType;
 import org.example.planTeam.Status;
-import org.example.planTeam.design.model.proposal.Proposal;
 import org.example.planTeam.design.model.reward.RewardConstant;
 
-import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGNPLAN;
 import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGN_CONTENT;
 import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGN_MANAGER;
 import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGN_TITLE;
@@ -91,7 +88,7 @@ public class InsurancePlanView extends DepartmentView {
     }
 
     public void completeCreateProposal(ResponseDto responseDto) {
-        if (responseDto.get(Status.key()).equals(Status.SUCCESS.getStatus())) {
+        if (responseDto.get(Status.getKey()).equals(Status.SUCCESS.getStatus())) {
             System.out.println("상품 기획이 완료 되었습니다.");
         } else {
             System.out.println("나중에 responseDTO에 에러메시지 상태를 담도록 만들어야겠당.");
@@ -151,7 +148,7 @@ public class InsurancePlanView extends DepartmentView {
     }
 
     public void createInsurance(ResponseDto responseDto) {
-        if (responseDto.get(Status.key()).equals(Status.SUCCESS.getStatus())) {
+        if (responseDto.get(Status.getKey()).equals(Status.SUCCESS.getStatus())) {
             System.out.println("보험 생성이 완료되었습니다.");
         }
     }
@@ -178,7 +175,7 @@ public class InsurancePlanView extends DepartmentView {
     }
 
     public void showAuthrizationResult(ResponseDto responseDto) {
-        switch (responseDto.get(Status.key())) {
+        switch (responseDto.get(Status.getKey())) {
             case Status.SUCCESS_NUMBER -> {
                 System.out.println("보험에 대한 인가가 통과되었습니다.");
             }
@@ -212,7 +209,7 @@ public class InsurancePlanView extends DepartmentView {
     }
 
     public void completeCreateDesignPlan(ResponseDto responseDto) {
-        if (responseDto.get(Status.key()).equals(Status.SUCCESS.getStatus())) {
+        if (responseDto.get(Status.getKey()).equals(Status.SUCCESS.getStatus())) {
             System.out.println("설계안이 등록되었습니다!");
         }
     }

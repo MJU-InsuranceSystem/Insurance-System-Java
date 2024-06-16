@@ -1,23 +1,21 @@
 package org.example.business.education;
 
+import java.util.List;
 import org.example.Team;
 import org.example.business.education.model.Education;
 import org.example.business.education.model.EducationListImpl;
+import org.example.business.education.view.EducationView;
 import org.example.common.dto.RequestDto;
 import org.example.common.dto.ResponseDto;
+import org.example.planTeam.Status;
 
-/**
- * @author USER
- * @version 1.0
- * @created 21-5-2024 ���� 11:14:31
- */
+
 public class BusinessEducationTeam extends Team {
 
-	public Education m_Education;
-	public EducationListImpl m_EducationListImpl;
+	public EducationListImpl educationListImpl;
 
-	public BusinessEducationTeam(){
-
+	public BusinessEducationTeam(EducationListImpl educationListImpl) {
+		this.educationListImpl = educationListImpl;
 	}
 
 	@Override
@@ -32,7 +30,18 @@ public class BusinessEducationTeam extends Team {
 
 	@Override
 	public ResponseDto register(RequestDto request) {
-		return null;
+		Education education = new Education();
+		education.setName(request.get(EducationView.EDUCATION_NAME));
+		education.setContent(request.get(EducationView.EDUCATION_CONTENTS));
+		education.setLocation(request.get(EducationView.EDUCATION_LOCATION));
+		education.setTextbook(request.get(EducationView.EDUCATION_TEXTBOOK));
+		education.setTeacherName(request.get(EducationView.EDUCATION_TEACHER));
+		education.setSchedule(request.get(EducationView.EDUCATION_SCHEDULE));
+		educationListImpl.add(education);
+
+		ResponseDto responseDto = new ResponseDto();
+		responseDto.add(Status.getKey(), Status.SUCCESS.getStatus());
+		return responseDto;
 	}
 
 	@Override
@@ -42,7 +51,14 @@ public class BusinessEducationTeam extends Team {
 
 	@Override
 	public ResponseDto retrieve(RequestDto request) {
-		return null;
+		List<Education> educations = educationListImpl.findAll();
+		ResponseDto responseDto = new ResponseDto();
+		StringBuilder sb = new StringBuilder();
+		for (Education education : educations) {
+			sb.append(education.getName()).append("\n");
+		}
+		responseDto.add(EducationView.ALL_EDUCATION, sb.toString());
+		return responseDto;
 	}
 
 

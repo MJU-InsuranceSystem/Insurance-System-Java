@@ -37,7 +37,7 @@ public class UnderwriteView extends DepartmentView {
 
   public void complete(ResponseDto responseDto) {
     println("업무 수행을 완료하였습니다.");
-    println("상태 코드 : " + responseDto.get(Status.key()));
+    println("상태 코드 : " + responseDto.get(Status.getKey()));
   }
 
   public RequestDto performUnderwriting(String insuranceApplyInfo) {
