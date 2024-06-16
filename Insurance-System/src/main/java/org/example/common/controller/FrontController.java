@@ -16,7 +16,7 @@ public class FrontController {
     private static boolean PROGRAM_TRIGGER = false;
 
     public FrontController(SystemView systemView, AuthController authController,
-                           CustomerSystem customerSystem, WorkerSystem workerSystem) {
+        CustomerSystem customerSystem, WorkerSystem workerSystem) {
         this.systemView = systemView;
         this.authController = authController;
         this.customerSystem = customerSystem;
@@ -40,7 +40,7 @@ public class FrontController {
                     default -> throw new IllegalArgumentException("올바른 유저 유형을 찾을 수 없습니다.");
                 }
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                systemView.showError(e.getMessage());
             }
         }
     }
