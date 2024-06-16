@@ -4,8 +4,6 @@ import org.example.Team;
 import org.example.common.dto.RequestDto;
 import org.example.common.dto.ResponseDto;
 import org.example.contract.Contract;
-import org.example.contract.ContractList;
-import org.example.domain.insurance.InsuranceApplication;
 import org.example.insurance.InsuranceChargeCustomerApplyList;
 import org.example.planTeam.Status;
 import org.example.rewardSupportTeam.model.Accident;
@@ -54,17 +52,17 @@ public class RewardSupportTeam extends Team {
             // list에 정보가 다 있고 계약에서 어떤 보험에 가입했는지에 따라 면부책 판단을 내려주면 될 듯
             Customer applyUser = insuranceChargeCustomerApplyList.findFirst();
             if (applyUser == null) {
-                responseDto.add(Status.key(), Status.FAIL.getStatus());
+                responseDto.add(Status.getKey(), Status.FAIL.getStatus());
                 return responseDto;
             }
             List<Contract> tempList = applyUser.getContractList();
 
 
-            responseDto.add(Status.key(), Status.SUCCESS.getStatus());
+            responseDto.add(Status.getKey(), Status.SUCCESS.getStatus());
         } else if (request.get(JUDGE_ANSWER).equals("N") || request.get(JUDGE_ANSWER).equals("n")) {
-            responseDto.add(Status.key(), Status.FAIL.getStatus());
+            responseDto.add(Status.getKey(), Status.FAIL.getStatus());
         } else {
-            responseDto.add(Status.key(), Status.INPUT_INVALID.getStatus());
+            responseDto.add(Status.getKey(), Status.INPUT_INVALID.getStatus());
         }
         return responseDto;
     }
@@ -86,11 +84,11 @@ public class RewardSupportTeam extends Team {
 
         ResponseDto responseDto = new ResponseDto();
         if (!accidentList.add(accident)) {
-            responseDto.add(Status.key(), Status.FAIL.getStatus());
+            responseDto.add(Status.getKey(), Status.FAIL.getStatus());
             return responseDto;
         }
 
-        responseDto.add(Status.key(), Status.SUCCESS.getStatus());
+        responseDto.add(Status.getKey(), Status.SUCCESS.getStatus());
         return responseDto;
     }
 

@@ -4,6 +4,7 @@ import org.example.Team;
 import org.example.TeamController;
 import org.example.business.education.BusinessEducationTeam;
 import org.example.business.education.controller.EducationController;
+import org.example.business.education.model.EducationListImpl;
 import org.example.business.education.view.EducationView;
 import org.example.contract.*;
 import org.example.insurance.InsuranceApplyListImpl;
@@ -62,7 +63,7 @@ public class DepartmentConfig {
     }
 
     private static BusinessEducationTeam businessEducationTeam() {
-        return new BusinessEducationTeam();
+        return new BusinessEducationTeam(new EducationListImpl());
     }
 
     public static TeamController designInspectionController() {
