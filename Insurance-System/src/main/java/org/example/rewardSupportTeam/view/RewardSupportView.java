@@ -42,7 +42,7 @@ public class RewardSupportView extends DepartmentView {
     }
 
     public void completeSubmitAccident(ResponseDto responseDto) {
-        if (responseDto.get(Status.key()).equals(Status.SUCCESS.getStatus())) {
+        if (responseDto.get(Status.getKey()).equals(Status.SUCCESS.getStatus())) {
             println("성공적으로 사고가 접수되었습니다.");
         } else {
             println("사고 접수에 실패하였습니다. 다시 시도해주세요.");
@@ -57,9 +57,9 @@ public class RewardSupportView extends DepartmentView {
     }
 
     public void completeJudgeFault(ResponseDto responseDto) {
-        if (responseDto.get(Status.key()).equals(Status.SUCCESS.getStatus())) {
+        if (responseDto.get(Status.getKey()).equals(Status.SUCCESS.getStatus())) {
             println("면/부책 판단에 성공하셨습니다.");
-        } else if (responseDto.get(Status.key()).equals(Status.FAIL.getStatus())) {
+        } else if (responseDto.get(Status.getKey()).equals(Status.FAIL.getStatus())) {
             println("면/부책 판단을 취소하였습니다.");
         } else {
             println("잘못된 입력값입니다. 다시 시도해주세요.");
