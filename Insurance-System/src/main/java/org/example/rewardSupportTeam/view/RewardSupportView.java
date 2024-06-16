@@ -74,7 +74,8 @@ public class RewardSupportView extends DepartmentView {
 
     public void completePayInsurance(ResponseDto responseDto) {
         if (responseDto.get(Status.getKey()).equals(Status.SUCCESS.getStatus())) {
-            println("보험금 지급에 성공하였습니다.");
+            println(responseDto.get(ACCIDENT_NAME) +"님의 " + responseDto.get(CLAIMINSURANCE_ACCOUNT) + " 계좌로 입금 하였습니다.");
+            println("최종 보험금 지급에 성공하였습니다.");
         } else {
             println("보험금 지급에 실패하였습니다");
         }
