@@ -3,6 +3,7 @@ package org.example.rewardSupportTeam.controller;
 import org.example.TeamController;
 import org.example.common.dto.RequestDto;
 import org.example.common.dto.ResponseDto;
+import org.example.insurance.InsuranceChargeCustomerApplyList;
 import org.example.rewardSupportTeam.RewardSupportTeam;
 import org.example.rewardSupportTeam.usecase.RewardSupportUseCase;
 import org.example.rewardSupportTeam.view.RewardSupportView;
@@ -10,11 +11,12 @@ import org.example.rewardSupportTeam.view.RewardSupportView;
 public class RewardSupportController implements TeamController {
     private final RewardSupportView rewardSupportView;
     private final RewardSupportTeam rewardSupportTeam;
+    private final InsuranceChargeCustomerApplyList insuranceChargeCustomerApplyList;
 
-    public RewardSupportController(RewardSupportView rewardSupportView, RewardSupportTeam rewardSupportTeam) {
+    public RewardSupportController(RewardSupportView rewardSupportView, RewardSupportTeam rewardSupportTeam, InsuranceChargeCustomerApplyList insuranceChargeCustomerApplyList) {
         this.rewardSupportView = rewardSupportView;
         this.rewardSupportTeam = rewardSupportTeam;
-
+        this.insuranceChargeCustomerApplyList = insuranceChargeCustomerApplyList;
     }
 
     @Override
@@ -28,9 +30,11 @@ public class RewardSupportController implements TeamController {
     private void executeUsecase(RewardSupportUseCase usecase) {
         switch (usecase) {
             case SUBMIT_ACCIDENT -> {
-                RequestDto requestDto = rewardSupportView.submitAccident();
-                ResponseDto responseDto = rewardSupportTeam.register(requestDto);
-                rewardSupportView.completeSubmitAccident(responseDto);
+                if (!insuranceChargeCustomerApplyList.isEmpty()) {
+                    RequestDto requestDto = rewardSupportView.submitAccident();
+                    ResponseDto responseDto = rewardSupportTeam.register(requestDto);
+                    rewardSupportView.completeSubmitAccident(responseDto);
+                }
             }
             case JUDGE_FAULT -> {
                 RequestDto requestDto = rewardSupportView.judgeFault();
