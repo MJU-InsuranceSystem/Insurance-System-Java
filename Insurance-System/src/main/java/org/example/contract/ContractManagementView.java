@@ -1,6 +1,6 @@
 package org.example.contract;
 
-import org.example.common.dto.RequestDto;
+import org.example.common.dto.RequestVO;
 import org.example.common.view.DepartmentView;
 
 public class ContractManagementView extends DepartmentView {
@@ -13,11 +13,11 @@ public class ContractManagementView extends DepartmentView {
                 .forEach(System.out::println);
     }
 
-    public RequestDto requireDeleteContractNumber() {
-        RequestDto requestDto = new RequestDto();
+    public RequestVO requireDeleteContractNumber() {
+        RequestVO requestVO = new RequestVO();
         print("파기할 계약 번호 : ");
-        requestDto.add(CONTRACT_ID, writeString());
-        return requestDto;
+        requestVO.add(CONTRACT_ID, writeString());
+        return requestVO;
     }
 
     public void successTask() {

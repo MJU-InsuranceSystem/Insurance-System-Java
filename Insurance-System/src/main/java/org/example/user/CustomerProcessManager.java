@@ -13,8 +13,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import org.example.common.AuthUtil;
-import org.example.common.dto.RequestDto;
-import org.example.common.dto.ResponseDto;
+import org.example.common.dto.RequestVO;
+import org.example.common.dto.ResponseVO;
 import org.example.contract.Contract;
 import org.example.domain.insurance.InsuranceApplication;
 import org.example.insurance.InsuranceApplyList;
@@ -45,13 +45,13 @@ public class CustomerProcessManager {
         return loginUser.getContractList();
     }
 
-    public void applyInsurance(RequestDto requestDto, Insurance insurance) {
+    public void applyInsurance(RequestVO requestVO, Insurance insurance) {
         InsuranceApplication insuranceApplication = new InsuranceApplication();
-        int insuranceApplicationId = Integer.parseInt(requestDto.get(CustomerView.INSURANCE_APPLICATION_ID));
-        String subscriberName = requestDto.get(CustomerView.SUBSCRIBER_NAME);
-        String personalInfo = requestDto.get(CustomerView.PERSONAL_INFO);
-        String familyHistory = requestDto.get(CustomerView.FAMILY_HISTORY);
-        String requestInsurance = requestDto.get(CustomerView.REQUEST_INSURANCE);
+        int insuranceApplicationId = Integer.parseInt(requestVO.get(CustomerView.INSURANCE_APPLICATION_ID));
+        String subscriberName = requestVO.get(CustomerView.SUBSCRIBER_NAME);
+        String personalInfo = requestVO.get(CustomerView.PERSONAL_INFO);
+        String familyHistory = requestVO.get(CustomerView.FAMILY_HISTORY);
+        String requestInsurance = requestVO.get(CustomerView.REQUEST_INSURANCE);
 
         insuranceApplication.setInsuranceApplicationID(insuranceApplicationId);
         insuranceApplication.setSubscriberName(subscriberName);
@@ -62,16 +62,16 @@ public class CustomerProcessManager {
         insuranceApplyList.add(insuranceApplication);
     }
 
-    public void payInsurancePremium(RequestDto requestDto) {
+    public void payInsurancePremium(RequestVO requestVO) {
         Customer customer = (Customer) AuthUtil.user;
-        String premiumAnswer = requestDto.get(CustomerView.PREMIUM_ANSWER);
+        String premiumAnswer = requestVO.get(CustomerView.PREMIUM_ANSWER);
         if(premiumAnswer.equals("Y") || premiumAnswer.equals("y")) {
                insurancePremiumPaymentCustomerList.add(customer);
         }
     }
 
-    public ResponseDto requireInsuranceBenefit(RequestDto request) {
-        ResponseDto responseDto = new ResponseDto();
+    public ResponseVO requireInsuranceBenefit(RequestVO request) {
+        ResponseVO responseVO = new ResponseVO();
 
         if (request.get(CHARGE_ANSWER).equals("Y") || request.get(CHARGE_ANSWER).equals("y")) {
             Customer loginUser = (Customer) AuthUtil.user;
@@ -92,44 +92,44 @@ public class CustomerProcessManager {
 
             for (Map.Entry<String, String> entry : request.getTotalInfo().entrySet()) {
                 if (entry.getValue() == null) {
-                    responseDto.add(Status.getKey(), Status.INPUT_EMPTY.getStatus());
-                    return responseDto;
+                    responseVO.add(Status.getKey(), Status.INPUT_EMPTY.getStatus());
+                    return responseVO;
                 }
             }
             boolean check = accidentList.add(accident);
 
             if (!check) {
-                responseDto.add(Status.getKey(), Status.FAIL.getStatus());
-                return responseDto;
+                responseVO.add(Status.getKey(), Status.FAIL.getStatus());
+                return responseVO;
             }
-            responseDto.add(Status.getKey(), Status.SUCCESS.getStatus());
-            return responseDto;
+            responseVO.add(Status.getKey(), Status.SUCCESS.getStatus());
+            return responseVO;
         }
-        responseDto.add(Status.getKey(), Status.FAIL.getStatus());
-        return responseDto;
+        responseVO.add(Status.getKey(), Status.FAIL.getStatus());
+        return responseVO;
     }
 
-    public void applyFireInsurance(RequestDto requestDto) {
+    public void applyFireInsurance(RequestVO requestVO) {
     }
 
-    public void applyLifeInsurance(RequestDto requestDto) {
+    public void applyLifeInsurance(RequestVO requestVO) {
     }
 
-    public void applyTravelInsurance(RequestDto requestDto) {
+    public void applyTravelInsurance(RequestVO requestVO) {
     }
 
-    public void applyCarInsurance(RequestDto requestDto) {
+    public void applyCarInsurance(RequestVO requestVO) {
     }
 
-    public void applyCancerInsurance(RequestDto requestDto) {
+    public void applyCancerInsurance(RequestVO requestVO) {
     }
 
-    public ResponseDto getAccountOfInsurance() {
+    public ResponseVO getAccountOfInsurance() {
         Customer customer = (Customer) AuthUtil.user;
-        ResponseDto responseDto = new ResponseDto();
+        ResponseVO responseVO = new ResponseVO();
         if(insurancePremiumPaymentCustomerList.contains(customer)) {
-            responseDto.add(CustomerView.CHECK_PAID, "Y");
-            return responseDto;
+            responseVO.add(CustomerView.CHECK_PAID, "Y");
+            return responseVO;
         }
         List<Contract> contracts = customer.getContractList();
 
@@ -141,9 +141,9 @@ public class CustomerProcessManager {
                 .mapToInt(contract -> contract.getInsuranceApplication().getInsurance().getReward().getMonthPaymentFee())
                 .sum();
 
-        responseDto.add(CustomerView.CHECK_PAID, "N");
-        responseDto.add(CustomerView.SUBSCRIBE_INSURANCE, insurances);
-        responseDto.add(CustomerView.TOTAL_ACCOUNT, String.valueOf(totalAccount));
-        return responseDto;
+        responseVO.add(CustomerView.CHECK_PAID, "N");
+        responseVO.add(CustomerView.SUBSCRIBE_INSURANCE, insurances);
+        responseVO.add(CustomerView.TOTAL_ACCOUNT, String.valueOf(totalAccount));
+        return responseVO;
     }
 }

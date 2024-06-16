@@ -3,7 +3,7 @@ package org.example.common.dto;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ResponseDto {
+public class RequestVO {
 
     private final Map<String, String> requestInfo = new HashMap<>();
 
@@ -17,5 +17,9 @@ public class ResponseDto {
 
     public Map<String, String> getTotalInfo() {
         return this.requestInfo;
+    }
+
+    public boolean isEmpty() {
+        return requestInfo.isEmpty();
     }
 }

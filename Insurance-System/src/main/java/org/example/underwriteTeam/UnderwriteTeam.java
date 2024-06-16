@@ -3,8 +3,8 @@ package org.example.underwriteTeam;
 import java.util.List;
 import java.util.Objects;
 import org.example.Team;
-import org.example.common.dto.RequestDto;
-import org.example.common.dto.ResponseDto;
+import org.example.common.dto.RequestVO;
+import org.example.common.dto.ResponseVO;
 import org.example.domain.insurance.InsuranceApplication;
 import org.example.insurance.InsuranceApplyList;
 import org.example.insurance.InsuranceCompanyList;
@@ -33,31 +33,31 @@ public class UnderwriteTeam extends Team {
     }
 
     @Override
-    public ResponseDto manage(RequestDto request) {
+    public ResponseVO manage(RequestVO request) {
         return null;
     }
 
     @Override
-    public ResponseDto process(RequestDto request) {
+    public ResponseVO process(RequestVO request) {
         String result = request.get(UnderwriteView.UNDERWRITING_RESULT);
         int applicationId = Integer.parseInt(request.get(UnderwriteView.SELECT_APPLICATION_ID));
-        ResponseDto responseDto = new ResponseDto();
+        ResponseVO responseVO = new ResponseVO();
         InsuranceApplication insuranceApplication = insuranceApplyList.findById(applicationId);
         if (Objects.equals(result, "N") && insuranceApplication != null) {
             insuranceApplyList.remove(insuranceApplication);
         }
-        responseDto.add(UnderwriteView.UNDERWRITING_RESULT, result);
+        responseVO.add(UnderwriteView.UNDERWRITING_RESULT, result);
         if (insuranceApplication != null) {
-            responseDto.add(UnderwriteView.FINISH_INSURANCE_CUSTOMER_NAME,
+            responseVO.add(UnderwriteView.FINISH_INSURANCE_CUSTOMER_NAME,
                 insuranceApplication.getSubscriberName());
-            responseDto.add(UnderwriteView.FINISH_INSURANCE_ID,
+            responseVO.add(UnderwriteView.FINISH_INSURANCE_ID,
                 String.valueOf(insuranceApplication.getInsuranceApplicationID()));
         }
-        return responseDto;
+        return responseVO;
     }
 
     @Override
-    public ResponseDto register(RequestDto request) {
+    public ResponseVO register(RequestVO request) {
         UnderwritePolicy underwritePolicy = new UnderwritePolicy();
         int policyId = Integer.parseInt(request.get(UnderwriteView.POLICY_NUMBER));
         String policyName = request.get(UnderwriteView.POLICY_NAME);
@@ -72,18 +72,18 @@ public class UnderwriteTeam extends Team {
         underwritePolicy.setSubscriptionInfo(subscription);
         underwritePolicyListImpl.add(underwritePolicy);
 
-        ResponseDto responseDto = new ResponseDto();
-        responseDto.add(Status.getKey(), Status.SUCCESS.getStatus());
-        return responseDto;
+        ResponseVO responseVO = new ResponseVO();
+        responseVO.add(Status.getKey(), Status.SUCCESS.getStatus());
+        return responseVO;
     }
 
     @Override
-    public ResponseDto remove(RequestDto request) {
+    public ResponseVO remove(RequestVO request) {
         return null;
     }
 
     @Override
-    public ResponseDto retrieve(RequestDto request) {
+    public ResponseVO retrieve(RequestVO request) {
         String applicationId = request.get(UnderwriteView.SELECT_APPLICATION_ID);
         if (applicationId != null) {
             return findById(applicationId);
@@ -97,23 +97,23 @@ public class UnderwriteTeam extends Team {
         throw new IllegalArgumentException("해당하는 유스케이스는 없습니다.");
     }
 
-    private ResponseDto findById(String applicationId) {
-        ResponseDto responseDto = new ResponseDto();
+    private ResponseVO findById(String applicationId) {
+        ResponseVO responseVO = new ResponseVO();
         InsuranceApplication insuranceApplication = insuranceApplyList.findById(Integer.parseInt(applicationId));
-        responseDto.add(UnderwriteView.ONE_SELECT_INSURANCE, insuranceApplication.toString());
-        return responseDto;
+        responseVO.add(UnderwriteView.ONE_SELECT_INSURANCE, insuranceApplication.toString());
+        return responseVO;
     }
 
-    private ResponseDto findAllInsurance() {
-        ResponseDto responseDto = new ResponseDto();
+    private ResponseVO findAllInsurance() {
+        ResponseVO responseVO = new ResponseVO();
         List<InsuranceApplication> insuranceApplications = insuranceApplyList.findAll();
         if (!insuranceApplications.isEmpty()) {
             StringBuilder insuranceInfoBuilder = new StringBuilder();
             for(InsuranceApplication insuranceApplication : insuranceApplications){
                 insuranceInfoBuilder.append("보험 ID : " + insuranceApplication.getInsuranceApplicationID()).append('\n');
             }
-            responseDto.add(UnderwriteView.ALL_INSURANCE_APPLY, insuranceInfoBuilder.toString());
+            responseVO.add(UnderwriteView.ALL_INSURANCE_APPLY, insuranceInfoBuilder.toString());
         }
-        return responseDto;
+        return responseVO;
     }
 }

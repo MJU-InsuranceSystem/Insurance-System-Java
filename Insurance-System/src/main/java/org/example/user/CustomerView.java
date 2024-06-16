@@ -4,8 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
-import org.example.common.dto.RequestDto;
-import org.example.common.dto.ResponseDto;
+import org.example.common.dto.RequestVO;
+import org.example.common.dto.ResponseVO;
 import org.example.contract.Contract;
 import org.example.insurance.InsuranceType;
 import org.example.planTeam.Status;
@@ -50,9 +50,9 @@ public class CustomerView {
         return writeInt();
     }
 
-    public RequestDto requireInsuranceInfo(List<Insurance> selectInsurances) {
-        RequestDto requestDto = new RequestDto();
-        requestDto.add(INSURANCE_APPLICATION_ID, String.valueOf(++INSURANCE_COUNT));
+    public RequestVO requireInsuranceInfo(List<Insurance> selectInsurances) {
+        RequestVO requestVO = new RequestVO();
+        requestVO.add(INSURANCE_APPLICATION_ID, String.valueOf(++INSURANCE_COUNT));
         println("아래는 선택한 보험의 정보입니다.");
         println(">>");
         for (Insurance insurance : selectInsurances) {
@@ -60,99 +60,99 @@ public class CustomerView {
         }
         println("=================================");
         print("위 보험 중 원하시는 보험 ID를 고르세요 : ");
-        requestDto.add(INSURANCE_NUMBER, writeString());
+        requestVO.add(INSURANCE_NUMBER, writeString());
         print("보험 가입자 이름 : ");
-        requestDto.add(SUBSCRIBER_NAME, writeString());
+        requestVO.add(SUBSCRIBER_NAME, writeString());
         print("개인 정보(건강 상태, 과거 의료 기록, 현재 병력, 만성 질환 여부, 직업 및 취업 상황) : ");
-        requestDto.add(PERSONAL_INFO, writeString());
+        requestVO.add(PERSONAL_INFO, writeString());
         print("가입하려는 보험 상품(보장 범위, 가입 기간, 부가 보험): ");
-        requestDto.add(REQUEST_INSURANCE, writeString());
+        requestVO.add(REQUEST_INSURANCE, writeString());
         print("가족력(유전적 질병 여부, 가족 내 의료 기록) : ");
-        requestDto.add(FAMILY_HISTORY, writeString());
+        requestVO.add(FAMILY_HISTORY, writeString());
         print("금융 상태(보험금 납부 능력, 재정 상태, 기존 보험상품 가입여부) : ");
-        requestDto.add(FINANCE_STATUS, writeString());
-        return requestDto;
+        requestVO.add(FINANCE_STATUS, writeString());
+        return requestVO;
     }
 
-    public RequestDto requireFireInfo() {
-        RequestDto requestDto = new RequestDto();
+    public RequestVO requireFireInfo() {
+        RequestVO requestVO = new RequestVO();
         println("화재 보험을 선택하였습니다. 화재 보험 가입에 필요한 정보를 입력해 주세요");
-        requestDto.add(INSURANCE_NUMBER, "1");
+        requestVO.add(INSURANCE_NUMBER, "1");
         print("화재 보험 가입자 이름 : ");
-        requestDto.add(SUBSCRIBER_NAME, writeString());
+        requestVO.add(SUBSCRIBER_NAME, writeString());
         print("화재 보험 정보 : ");
-        requestDto.add(FIRE_INFO, writeString());
+        requestVO.add(FIRE_INFO, writeString());
         print("계좌 번호 : ");
-        requestDto.add(FAMILY_HISTORY, writeString());
-        return requestDto;
+        requestVO.add(FAMILY_HISTORY, writeString());
+        return requestVO;
     }
 
-    public RequestDto requireLifeInfo() {
-        RequestDto requestDto = new RequestDto();
+    public RequestVO requireLifeInfo() {
+        RequestVO requestVO = new RequestVO();
         println("생명 보험을 선택하였습니다. 생명 보험 가입에 필요한 정보를 입력해 주세요");
-        requestDto.add(INSURANCE_NUMBER, "2");
+        requestVO.add(INSURANCE_NUMBER, "2");
         print("생명 보험 가입자 이름 : ");
-        requestDto.add(SUBSCRIBER_NAME, writeString());
+        requestVO.add(SUBSCRIBER_NAME, writeString());
         print("생명 보험 정보 : ");
-        requestDto.add(FIRE_INFO, writeString());
+        requestVO.add(FIRE_INFO, writeString());
         print("계좌 번호 : ");
-        requestDto.add(FAMILY_HISTORY, writeString());
-        return requestDto;
+        requestVO.add(FAMILY_HISTORY, writeString());
+        return requestVO;
     }
 
-    public RequestDto requireTravelInfo() {
-        RequestDto requestDto = new RequestDto();
+    public RequestVO requireTravelInfo() {
+        RequestVO requestVO = new RequestVO();
 
-        return requestDto;
+        return requestVO;
     }
 
-    public RequestDto requireCarInfo() {
-        RequestDto requestDto = new RequestDto();
+    public RequestVO requireCarInfo() {
+        RequestVO requestVO = new RequestVO();
 
-        return requestDto;
+        return requestVO;
     }
 
-    public RequestDto requireCancerInfo() {
-        RequestDto requestDto = new RequestDto();
+    public RequestVO requireCancerInfo() {
+        RequestVO requestVO = new RequestVO();
 
-        return requestDto;
+        return requestVO;
     }
 
-    public RequestDto payInsurancePremiumInfo() {
-        RequestDto requestDto = new RequestDto();
+    public RequestVO payInsurancePremiumInfo() {
+        RequestVO requestVO = new RequestVO();
         println("보험료를 납부하시곘습니까? (Y/N) ");
-        requestDto.add(PREMIUM_ANSWER, writeString());
-        return requestDto;
+        requestVO.add(PREMIUM_ANSWER, writeString());
+        return requestVO;
     }
 
-    public RequestDto requireInsuranceBenefitInfo() {
-        RequestDto requestDto = new RequestDto();
+    public RequestVO requireInsuranceBenefitInfo() {
+        RequestVO requestVO = new RequestVO();
 
         println("보험금 청구를 위한 '사건 정보'를 입력해주세요.");
         print("사고 내용 : ");
-        requestDto.add(ACCIDENT_CONTENT, writeString());
+        requestVO.add(ACCIDENT_CONTENT, writeString());
         print("고객 이름 : ");
-        requestDto.add(ACCIDENT_NAME, writeString());
+        requestVO.add(ACCIDENT_NAME, writeString());
 
         println("보험금 청구를 위한 '보험금 청구정보'를 입력해주세요.");
         print("계좌 : ");
-        requestDto.add(CLAIMINSURANCE_ACCOUNT, writeString());
+        requestVO.add(CLAIMINSURANCE_ACCOUNT, writeString());
         print("주소 : ");
-        requestDto.add(CLAIMINSURANCE_ADDRESS, writeString());
+        requestVO.add(CLAIMINSURANCE_ADDRESS, writeString());
         print("전화번호 : ");
-        requestDto.add(CLAIMINSURANCE_PHONENUMBER, writeString());
+        requestVO.add(CLAIMINSURANCE_PHONENUMBER, writeString());
         print("주민번호 : ");
-        requestDto.add(CLAIMINSURANCE_RESIDENTNUMBER, writeString());
+        requestVO.add(CLAIMINSURANCE_RESIDENTNUMBER, writeString());
         print("증빙 서류 : ");
-        requestDto.add(CLAIMINSURANCE_SUPPORTINGFILE, writeString());
+        requestVO.add(CLAIMINSURANCE_SUPPORTINGFILE, writeString());
 
         println("");
         println("개인정보처리 동의서\n" +
                 "본인은 '보험사'이(가) 제공하는 서비스 이용을 위해 성명, 연락처 등의 개인정보를 수집·이용하는 것에 동의합니다.");
         println("");
         println("보험금을 청구하시곘습니까? (Y/N) ");
-        requestDto.add(CHARGE_ANSWER, writeString());
-        return requestDto;
+        requestVO.add(CHARGE_ANSWER, writeString());
+        return requestVO;
     }
     public void retrieveContract(List<Contract> contractList) {
         if(contractList.isEmpty()) {
@@ -165,8 +165,8 @@ public class CustomerView {
         successTask();
     }
 
-    public void completeSubmitAccident(ResponseDto responseDto) {
-        if (responseDto.get(Status.getKey()).equals(Status.SUCCESS.getStatus())) {
+    public void completeSubmitAccident(ResponseVO responseVO) {
+        if (responseVO.get(Status.getKey()).equals(Status.SUCCESS.getStatus())) {
             println("성공적으로 사고가 접수되었습니다.");
         } else {
             println("사고 접수에 실패하였습니다. 다시 시도해주세요.");
@@ -202,13 +202,13 @@ public class CustomerView {
         System.out.print(message);
     }
 
-    public boolean showAccountOfInsurance(ResponseDto responseDto) {
-        if(responseDto.get(CHECK_PAID).equals("Y")) {
+    public boolean showAccountOfInsurance(ResponseVO responseVO) {
+        if(responseVO.get(CHECK_PAID).equals("Y")) {
             println("이미 납부하였습니다.");
             return false;
         }
-        String insurances = responseDto.get(SUBSCRIBE_INSURANCE);
-        int totalAccount = Integer.parseInt(responseDto.get(TOTAL_ACCOUNT));
+        String insurances = responseVO.get(SUBSCRIBE_INSURANCE);
+        int totalAccount = Integer.parseInt(responseVO.get(TOTAL_ACCOUNT));
         println("가입한 보험 : " + insurances);
         println("납부할 금액 : " + totalAccount);
         return true;

@@ -3,8 +3,8 @@ package org.example.contract;
 import static org.example.user.CustomerList.CUSTOMER_MANAGER;
 
 import org.example.Team;
-import org.example.common.dto.RequestDto;
-import org.example.common.dto.ResponseDto;
+import org.example.common.dto.RequestVO;
+import org.example.common.dto.ResponseVO;
 import org.example.domain.insurance.InsuranceApplication;
 import org.example.insurance.InsuranceApplyList;
 import org.example.underwriteTeam.view.UnderwriteView;
@@ -23,17 +23,17 @@ public class ContractManagementTeam extends Team {
     }
 
     @Override
-    public ResponseDto manage(RequestDto request) {
+    public ResponseVO manage(RequestVO request) {
         return null;
     }
 
     @Override
-    public ResponseDto process(RequestDto request) {
+    public ResponseVO process(RequestVO request) {
         return null;
     }
 
     @Override
-    public ResponseDto register(RequestDto request) {
+    public ResponseVO register(RequestVO request) {
         Customer applyCustomer = CUSTOMER_MANAGER.findByName(
                 request.get(UnderwriteView.FINISH_INSURANCE_CUSTOMER_NAME))
             .orElseThrow(NullPointerException::new);
@@ -50,18 +50,18 @@ public class ContractManagementTeam extends Team {
         contractList.add(contract);
         insuranceApplyList.remove(insuranceApplication);
 
-        ResponseDto responseDto = new ResponseDto();
-        responseDto.add(UnderwriteView.CONTRACT_INFO, contract.toString());
-        return responseDto;
+        ResponseVO responseVO = new ResponseVO();
+        responseVO.add(UnderwriteView.CONTRACT_INFO, contract.toString());
+        return responseVO;
     }
 
     @Override
-    public ResponseDto remove(RequestDto request) {
+    public ResponseVO remove(RequestVO request) {
         return null;
     }
 
     @Override
-    public ResponseDto retrieve(RequestDto request) {
+    public ResponseVO retrieve(RequestVO request) {
         return null;
     }
 
@@ -69,8 +69,8 @@ public class ContractManagementTeam extends Team {
         return contractList;
     }
 
-    public void deleteContract(RequestDto requestDto) {
-        int contractId = Integer.parseInt(requestDto.get(ContractManagementView.CONTRACT_ID));
+    public void deleteContract(RequestVO requestVO) {
+        int contractId = Integer.parseInt(requestVO.get(ContractManagementView.CONTRACT_ID));
         contractList.removeById(contractId);
     }
 }

@@ -7,8 +7,8 @@ import java.util.function.Function;
 import org.example.Team;
 import org.example.business.education.view.EducationView;
 import org.example.common.usecase.Usecase;
-import org.example.common.dto.RequestDto;
-import org.example.common.dto.ResponseDto;
+import org.example.common.dto.RequestVO;
+import org.example.common.dto.ResponseVO;
 
 public enum EducationUseCase implements Usecase {
 
@@ -22,14 +22,14 @@ public enum EducationUseCase implements Usecase {
     private final int order;
     private final String description;
 
-    private final Function<EducationView, RequestDto> action;
-    private final BiFunction<Team, RequestDto, ResponseDto> teamAction;
-    private final BiConsumer<EducationView, ResponseDto> showResult;
+    private final Function<EducationView, RequestVO> action;
+    private final BiFunction<Team, RequestVO, ResponseVO> teamAction;
+    private final BiConsumer<EducationView, ResponseVO> showResult;
 
 
-    EducationUseCase(int order, String description, Function<EducationView, RequestDto> action,
-        BiFunction<Team, RequestDto, ResponseDto> teamAction,
-        BiConsumer<EducationView, ResponseDto> showResult) {
+    EducationUseCase(int order, String description, Function<EducationView, RequestVO> action,
+        BiFunction<Team, RequestVO, ResponseVO> teamAction,
+        BiConsumer<EducationView, ResponseVO> showResult) {
         this.order = order;
         this.description = description;
         this.action = action;
@@ -45,16 +45,16 @@ public enum EducationUseCase implements Usecase {
         return order;
     }
 
-    public RequestDto viewAction(EducationView educationView) {
+    public RequestVO viewAction(EducationView educationView) {
         return action.apply(educationView);
     }
 
-    public ResponseDto teamAction(Team team, RequestDto responseDto) {
+    public ResponseVO teamAction(Team team, RequestVO responseDto) {
         return teamAction.apply(team, responseDto);
     }
 
-    public void showResult(EducationView view, ResponseDto responseDto) {
-        this.showResult.accept(view, responseDto);
+    public void showResult(EducationView view, ResponseVO responseVO) {
+        this.showResult.accept(view, responseVO);
     }
 
     public static EducationUseCase findByNumber(int selectNumber) {
