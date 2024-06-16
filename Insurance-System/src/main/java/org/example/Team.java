@@ -1,7 +1,7 @@
 package org.example;
 
-import org.example.common.dto.RequestDto;
-import org.example.common.dto.ResponseDto;
+import org.example.common.dto.RequestVO;
+import org.example.common.dto.ResponseVO;
 
 /**
  * @author yoon
@@ -16,15 +16,15 @@ public abstract class Team {
 
     }
 
-    public abstract ResponseDto manage(RequestDto request);
+    public abstract ResponseVO manage(RequestVO request);
 
-    public abstract ResponseDto process(RequestDto request);
+    public abstract ResponseVO process(RequestVO request);
 
-    public abstract ResponseDto register(RequestDto request);
+    public abstract ResponseVO register(RequestVO request);
 
-    public abstract ResponseDto remove(RequestDto request);
+    public abstract ResponseVO remove(RequestVO request);
 
-    public abstract ResponseDto retrieve(RequestDto request);
+    public abstract ResponseVO retrieve(RequestVO request);
 
 
 }

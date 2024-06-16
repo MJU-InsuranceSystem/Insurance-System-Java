@@ -10,8 +10,8 @@ import static org.example.planTeam.design.model.proposal.ProposalConstant.PROPOS
 import java.util.Objects;
 import org.example.Team;
 import org.example.TeamController;
-import org.example.common.dto.RequestDto;
-import org.example.common.dto.ResponseDto;
+import org.example.common.dto.RequestVO;
+import org.example.common.dto.ResponseVO;
 import org.example.planTeam.design.model.designPlan.DesignConstant;
 import org.example.planTeam.design.usecase.DesignUseCase;
 import org.example.planTeam.design.view.InsurancePlanView;
@@ -45,40 +45,40 @@ public class InsurancePlanController implements TeamController {
     private void startProcess(DesignUseCase useCase) {
         switch (useCase) {
             case ASK_INSURANCE_AUTHORIZATION -> {
-                RequestDto requestDto = insurancePlanView.requestAuthorization();
-                ResponseDto responseDto = insurancePlanTeam.retrieve(requestDto);
-                requestDto = insurancePlanView.requestAuthorization(responseDto);
-                responseDto = insurancePlanTeam.retrieve(requestDto);
+                RequestVO requestVO = insurancePlanView.requestAuthorization();
+                ResponseVO responseVO = insurancePlanTeam.retrieve(requestVO);
+                requestVO = insurancePlanView.requestAuthorization(responseVO);
+                responseVO = insurancePlanTeam.retrieve(requestVO);
 
-                requestDto = insuranceInspectionView.authorizationInsurance(responseDto);
-                responseDto = insurancePlanTeam.process(requestDto);
-                insurancePlanView.showAuthrizationResult(responseDto);
+                requestVO = insuranceInspectionView.authorizationInsurance(responseVO);
+                responseVO = insurancePlanTeam.process(requestVO);
+                insurancePlanView.showAuthrizationResult(responseVO);
             }
             case PLAN_INSURANCE -> {
-                RequestDto requestDto = insurancePlanView.createProposal();
-                ResponseDto responseDto = insurancePlanTeam.register(requestDto);
-                insurancePlanView.completeCreateProposal(responseDto);
+                RequestVO requestVO = insurancePlanView.createProposal();
+                ResponseVO responseVO = insurancePlanTeam.register(requestVO);
+                insurancePlanView.completeCreateProposal(responseVO);
             }
             case DESIGN_INSURANCE -> {
-                RequestDto requestDto = new RequestDto();
-                ResponseDto responseDto;
-                requestDto.add(ENTITY_LIST, ALL);
-                requestDto.add(ENTITY_KIND, PROPOSAL);
+                RequestVO requestVO = new RequestVO();
+                ResponseVO responseVO;
+                requestVO.add(ENTITY_LIST, ALL);
+                requestVO.add(ENTITY_KIND, PROPOSAL);
 
-                requestDto = insurancePlanView.selectProposal(insurancePlanTeam.retrieve(requestDto));
-                responseDto = insurancePlanTeam.retrieve(requestDto);
-                requestDto = insurancePlanView.createDesign(responseDto);
-                RequestDto requestInsuranceDto = insurancePlanView.createInsurance();
+                requestVO = insurancePlanView.selectProposal(insurancePlanTeam.retrieve(requestVO));
+                responseVO = insurancePlanTeam.retrieve(requestVO);
+                requestVO = insurancePlanView.createDesign(responseVO);
+                RequestVO requestInsuranceDto = insurancePlanView.createInsurance();
 
                 insurancePlanTeam.register(requestInsuranceDto);
-                responseDto = insurancePlanTeam.register(requestDto);
-                insurancePlanView.completeCreateDesignPlan(responseDto);
+                responseVO = insurancePlanTeam.register(requestVO);
+                insurancePlanView.completeCreateDesignPlan(responseVO);
             }
             case MANAGE_INSURANCE -> {
-                RequestDto requestDto = insurancePlanView.requestInsurances();
-                if (Objects.equals(requestDto.get(DesignConstant.READ_INSURANCE_RESULT), "Y")) {
-                    ResponseDto responseDto = insurancePlanTeam.retrieve(requestDto);
-                    insurancePlanView.showAllInsurance(responseDto);
+                RequestVO requestVO = insurancePlanView.requestInsurances();
+                if (Objects.equals(requestVO.get(DesignConstant.READ_INSURANCE_RESULT), "Y")) {
+                    ResponseVO responseVO = insurancePlanTeam.retrieve(requestVO);
+                    insurancePlanView.showAllInsurance(responseVO);
                     return;
                 }
                 insurancePlanView.denyShowInsurances();

@@ -1,11 +1,10 @@
 package org.example.rewardSupportTeam;
 
 import org.example.Team;
-import org.example.common.dto.RequestDto;
-import org.example.common.dto.ResponseDto;
+import org.example.common.dto.RequestVO;
+import org.example.common.dto.ResponseVO;
 import org.example.insurance.InsuranceChargeCustomerApplyList;
 import org.example.planTeam.Status;
-import org.example.planTeam.design.model.insurance.Insurance;
 import org.example.rewardSupportTeam.model.*;
 import org.example.user.Customer;
 import org.example.user.CustomerList;
@@ -41,67 +40,67 @@ public class RewardSupportTeam extends Team {
     }
 
     @Override
-    public ResponseDto manage(RequestDto request) {
+    public ResponseVO manage(RequestVO request) {
         return null;
     }
 
     @Override
-    public ResponseDto process(RequestDto request) {
-        ResponseDto responseDto = new ResponseDto();
+    public ResponseVO process(RequestVO request) {
+        ResponseVO responseVO = new ResponseVO();
 
         if (request.get(JUDGE_ANSWER).equals("Y") || request.get(JUDGE_ANSWER).equals("y")) {
             // 면부책을 판단한다
             Accident accident = accidentList.read(0);
             if (accident == null) {
                 judgmentResult = false;
-                responseDto.add(Status.getKey(), Status.EMPTY.getStatus());
-                return responseDto;
+                responseVO.add(Status.getKey(), Status.EMPTY.getStatus());
+                return responseVO;
             }
             judgmentResult = true;
-            responseDto.add(Status.getKey(), Status.SUCCESS.getStatus());
+            responseVO.add(Status.getKey(), Status.SUCCESS.getStatus());
         } else if (request.get(JUDGE_ANSWER).equals("N") || request.get(JUDGE_ANSWER).equals("n")) {
-            responseDto.add(Status.getKey(), Status.FAIL.getStatus());
+            responseVO.add(Status.getKey(), Status.FAIL.getStatus());
         } else {
-            responseDto.add(Status.getKey(), Status.INPUT_INVALID.getStatus());
+            responseVO.add(Status.getKey(), Status.INPUT_INVALID.getStatus());
         }
-        return responseDto;
+        return responseVO;
     }
 
     @Override
-    public ResponseDto register(RequestDto request) {
-        ResponseDto responseDto = new ResponseDto();
-        return responseDto;
+    public ResponseVO register(RequestVO request) {
+        ResponseVO responseVO = new ResponseVO();
+        return responseVO;
     }
 
     @Override
-    public ResponseDto remove(RequestDto request) {
+    public ResponseVO remove(RequestVO request) {
         return null;
     }
 
     @Override
-    public ResponseDto retrieve(RequestDto request) {
-        ResponseDto responseDto = new ResponseDto();
+    public ResponseVO retrieve(RequestVO request) {
+        ResponseVO responseVO = new ResponseVO();
 
         if (request.isEmpty()) {
             for (Accident accident : accidentList.getAllAccidents()) {
-                responseDto.add(ENTITY_LIST, accident.toString());
+                responseVO.add(ENTITY_LIST, accident.toString());
             }
-            return responseDto;
+            return responseVO;
         }
 
         if (judgmentResult) {
             judgmentResult = false;
             Accident accident = accidentList.read(0);
-            responseDto.add(ACCIDENT_NAME, accident.getCustomerName());
-            responseDto.add(CLAIMINSURANCE_ACCOUNT, accident.getClaimInsurance().getAccount());
-            responseDto.add(Status.getKey(), Status.SUCCESS.getStatus());
-            return responseDto;
+            responseVO.add(ACCIDENT_NAME, accident.getCustomerName());
+            responseVO.add(CLAIMINSURANCE_ACCOUNT, accident.getClaimInsurance().getAccount());
+            responseVO.add(Status.getKey(), Status.SUCCESS.getStatus());
+            return responseVO;
         }
-        responseDto.add(Status.getKey(), Status.FAIL.getStatus());
-        return responseDto;
+        responseVO.add(Status.getKey(), Status.FAIL.getStatus());
+        return responseVO;
     }
 
-    public ResponseDto getNotPaidCustomer() {
+    public ResponseVO getNotPaidCustomer() {
         List<Customer> paidCustomers = insurancePremiumPaymentCustomerList.getAll();
         List<Customer> allCustomers = CustomerList.getInstance().getCustomerList();
         List<Customer> unpaidCustomers = allCustomers.stream()
@@ -111,12 +110,12 @@ public class RewardSupportTeam extends Team {
                 .map(Customer::getName)
                 .collect(Collectors.joining("\n"));
 
-        ResponseDto responseDto = new ResponseDto();
+        ResponseVO responseVO = new ResponseVO();
         if (!unpaidCustomers.isEmpty()) {
-            responseDto.add(NOT_PAID_CUSTOMER, notPaidCustomers);
+            responseVO.add(NOT_PAID_CUSTOMER, notPaidCustomers);
         } else {
-            responseDto.add(NOT_PAID_CUSTOMER, "모든 고객이 납부하였습니다.");
+            responseVO.add(NOT_PAID_CUSTOMER, "모든 고객이 납부하였습니다.");
         }
-        return responseDto;
+        return responseVO;
     }
 }

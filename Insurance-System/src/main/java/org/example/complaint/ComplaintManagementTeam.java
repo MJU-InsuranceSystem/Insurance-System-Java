@@ -1,8 +1,8 @@
 package org.example.complaint;
 
 import org.example.Team;
-import org.example.common.dto.RequestDto;
-import org.example.common.dto.ResponseDto;
+import org.example.common.dto.RequestVO;
+import org.example.common.dto.ResponseVO;
 import org.example.complaint.model.Complaint;
 import org.example.complaint.model.ComplaintList;
 import org.example.complaint.model.ComplaintListImpl;
@@ -23,27 +23,27 @@ public class ComplaintManagementTeam extends Team {
 	}
 
 	@Override
-	public ResponseDto manage(RequestDto request) {
+	public ResponseVO manage(RequestVO request) {
 		return null;
 	}
 
 	@Override
-	public ResponseDto process(RequestDto request) {
+	public ResponseVO process(RequestVO request) {
 		return null;
 	}
 
 	@Override
-	public ResponseDto register(RequestDto request) {
+	public ResponseVO register(RequestVO request) {
 		return null;
 	}
 
 	@Override
-	public ResponseDto remove(RequestDto request) {
+	public ResponseVO remove(RequestVO request) {
 		return null;
 	}
 
 	@Override
-	public ResponseDto retrieve(RequestDto request) {
+	public ResponseVO retrieve(RequestVO request) {
 		return null;
 	}
 

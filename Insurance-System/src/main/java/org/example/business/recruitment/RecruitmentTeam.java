@@ -1,10 +1,8 @@
 package org.example.business.recruitment;
 
 import org.example.Team;
-import org.example.common.dto.RequestDto;
-import org.example.common.dto.ResponseDto;
-
-import java.util.function.Function;
+import org.example.common.dto.RequestVO;
+import org.example.common.dto.ResponseVO;
 
 /**
  * @author USER
@@ -21,27 +19,27 @@ public class RecruitmentTeam extends Team {
 	}
 
 	@Override
-	public ResponseDto manage(RequestDto request) {
+	public ResponseVO manage(RequestVO request) {
 		return null;
 	}
 
 	@Override
-	public ResponseDto process(RequestDto request) {
+	public ResponseVO process(RequestVO request) {
 		return null;
 	}
 
 	@Override
-	public ResponseDto register(RequestDto request) {
+	public ResponseVO register(RequestVO request) {
 		return null;
 	}
 
 	@Override
-	public ResponseDto remove(RequestDto request) {
+	public ResponseVO remove(RequestVO request) {
 		return null;
 	}
 
 	@Override
-	public ResponseDto retrieve(RequestDto request) {
+	public ResponseVO retrieve(RequestVO request) {
 		return null;
 	}
 }

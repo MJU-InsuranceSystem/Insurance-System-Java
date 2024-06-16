@@ -5,8 +5,8 @@ import org.example.TeamController;
 import org.example.business.education.BusinessEducationTeam;
 import org.example.business.education.usecase.EducationUseCase;
 import org.example.business.education.view.EducationView;
-import org.example.common.dto.RequestDto;
-import org.example.common.dto.ResponseDto;
+import org.example.common.dto.RequestVO;
+import org.example.common.dto.ResponseVO;
 
 public class EducationController implements TeamController {
 
@@ -29,21 +29,21 @@ public class EducationController implements TeamController {
   private void processUsecase(EducationUseCase useCase) {
     switch (useCase) {
       case MANAGE_EDUCATION -> {
-        RequestDto requestDto = educationView.manageEducation();
-        if(Objects.equals(requestDto.get(EducationView.MANAGE_RESPONSE_RESULT), "Y")) {
-          ResponseDto responseDto = businessEducationTeam.retrieve(requestDto);
-          educationView.showAllEducationName(responseDto);
+        RequestVO requestVO = educationView.manageEducation();
+        if(Objects.equals(requestVO.get(EducationView.MANAGE_RESPONSE_RESULT), "Y")) {
+          ResponseVO responseVO = businessEducationTeam.retrieve(requestVO);
+          educationView.showAllEducationName(responseVO);
           return;
         }
         educationView.deny();
       }
       case PREPARE_EDUCATION -> {
-        RequestDto requestDto = educationView.prepareEducation();
-        ResponseDto responseDto = businessEducationTeam.register(requestDto);
-        educationView.completeMessage(responseDto);
+        RequestVO requestVO = educationView.prepareEducation();
+        ResponseVO responseVO = businessEducationTeam.register(requestVO);
+        educationView.completeMessage(responseVO);
       }
       case MANAGE_EDUCATION_STUDENT -> {
-        RequestDto requestDto = educationView.manageEducationStudent();
+        RequestVO requestVO = educationView.manageEducationStudent();
       }
       default -> throw new IllegalArgumentException("해당 유스케이스 번호는 존재하지 않습니다.");
     }

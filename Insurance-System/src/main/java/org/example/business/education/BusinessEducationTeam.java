@@ -5,8 +5,8 @@ import org.example.Team;
 import org.example.business.education.model.Education;
 import org.example.business.education.model.EducationListImpl;
 import org.example.business.education.view.EducationView;
-import org.example.common.dto.RequestDto;
-import org.example.common.dto.ResponseDto;
+import org.example.common.dto.RequestVO;
+import org.example.common.dto.ResponseVO;
 import org.example.planTeam.Status;
 
 
@@ -19,17 +19,17 @@ public class BusinessEducationTeam extends Team {
 	}
 
 	@Override
-	public ResponseDto manage(RequestDto request) {
+	public ResponseVO manage(RequestVO request) {
 		return null;
 	}
 
 	@Override
-	public ResponseDto process(RequestDto request) {
+	public ResponseVO process(RequestVO request) {
 		return null;
 	}
 
 	@Override
-	public ResponseDto register(RequestDto request) {
+	public ResponseVO register(RequestVO request) {
 		Education education = new Education();
 		education.setName(request.get(EducationView.EDUCATION_NAME));
 		education.setContent(request.get(EducationView.EDUCATION_CONTENTS));
@@ -39,26 +39,26 @@ public class BusinessEducationTeam extends Team {
 		education.setSchedule(request.get(EducationView.EDUCATION_SCHEDULE));
 		educationListImpl.add(education);
 
-		ResponseDto responseDto = new ResponseDto();
-		responseDto.add(Status.getKey(), Status.SUCCESS.getStatus());
-		return responseDto;
+		ResponseVO responseVO = new ResponseVO();
+		responseVO.add(Status.getKey(), Status.SUCCESS.getStatus());
+		return responseVO;
 	}
 
 	@Override
-	public ResponseDto remove(RequestDto request) {
+	public ResponseVO remove(RequestVO request) {
 		return null;
 	}
 
 	@Override
-	public ResponseDto retrieve(RequestDto request) {
+	public ResponseVO retrieve(RequestVO request) {
 		List<Education> educations = educationListImpl.findAll();
-		ResponseDto responseDto = new ResponseDto();
+		ResponseVO responseVO = new ResponseVO();
 		StringBuilder sb = new StringBuilder();
 		for (Education education : educations) {
 			sb.append(education.getName()).append("\n");
 		}
-		responseDto.add(EducationView.ALL_EDUCATION, sb.toString());
-		return responseDto;
+		responseVO.add(EducationView.ALL_EDUCATION, sb.toString());
+		return responseVO;
 	}
 
 

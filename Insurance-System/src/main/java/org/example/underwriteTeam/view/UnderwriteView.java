@@ -1,7 +1,7 @@
 package org.example.underwriteTeam.view;
 
-import org.example.common.dto.RequestDto;
-import org.example.common.dto.ResponseDto;
+import org.example.common.dto.RequestVO;
+import org.example.common.dto.ResponseVO;
 import org.example.common.view.DepartmentView;
 import org.example.planTeam.Status;
 
@@ -21,47 +21,47 @@ public class UnderwriteView extends DepartmentView {
   public static final String SELECT_APPLICATION_ID = "selectApplicationId";
   public static final String ONE_SELECT_INSURANCE = "oneSelectInsurance";
 
-  public RequestDto createPolicy() {
-    RequestDto requestDto = new RequestDto();
+  public RequestVO createPolicy() {
+    RequestVO requestVO = new RequestVO();
     println("인수 정책을 수립하기 위한 정보를 입력해주세요.");
     print("정책 번호 : ");
-    requestDto.add(POLICY_NUMBER, writeString());
+    requestVO.add(POLICY_NUMBER, writeString());
     print("정책 이름 : ");
-    requestDto.add(POLICY_NAME, writeString());
+    requestVO.add(POLICY_NAME, writeString());
     print("위험 평가 기준 : ");
-    requestDto.add(POLICY_RISK, writeString());
+    requestVO.add(POLICY_RISK, writeString());
     print("보험료 책정 기준 : ");
-    requestDto.add(POLICY_PREMIUM, writeString());
+    requestVO.add(POLICY_PREMIUM, writeString());
     print("가입 심사 기준 : ");
-    requestDto.add(POLICY_SUBSCRIPTION, writeString());
-    return requestDto;
+    requestVO.add(POLICY_SUBSCRIPTION, writeString());
+    return requestVO;
   }
 
-  public void complete(ResponseDto responseDto) {
+  public void complete(ResponseVO responseVO) {
     println("업무 수행을 완료하였습니다.");
-    println("상태 코드 : " + responseDto.get(Status.getKey()));
+    println("상태 코드 : " + responseVO.get(Status.getKey()));
   }
 
-  public RequestDto performUnderwriting(ResponseDto responseDto) {
-    RequestDto requestDto = new RequestDto();
+  public RequestVO performUnderwriting(ResponseVO responseVO) {
+    RequestVO requestVO = new RequestVO();
     println("인수 심사할 보험의 정보는 아래와 같습니다.");
-    println(responseDto.get(ONE_SELECT_INSURANCE));
+    println(responseVO.get(ONE_SELECT_INSURANCE));
     print("인수를 허가하겠습니까?(Y/N) :");
-    requestDto.add(UNDERWRITING_RESULT, writeString());
-    return requestDto;
+    requestVO.add(UNDERWRITING_RESULT, writeString());
+    return requestVO;
   }
 
-  public RequestDto requireCoUnderwriting() {
-    RequestDto requestDto = new RequestDto();
-    return requestDto;
+  public RequestVO requireCoUnderwriting() {
+    RequestVO requestVO = new RequestVO();
+    return requestVO;
   }
 
-  public void showCreatePolicyResult(ResponseDto responseDto) {
+  public void showCreatePolicyResult(ResponseVO responseVO) {
     println("인수 정책 수립을 성공적으로 수행하였습니다.");
   }
 
-  public void showPerformUnderwritingResult(ResponseDto responseDto) {
-    String result = responseDto.get(UnderwriteView.UNDERWRITING_RESULT);
+  public void showPerformUnderwritingResult(ResponseVO responseVO) {
+    String result = responseVO.get(UnderwriteView.UNDERWRITING_RESULT);
     switch (result) {
       case "Y" -> {
         println("인수가 허가되어 계약을 등록하였습니다");
@@ -75,10 +75,10 @@ public class UnderwriteView extends DepartmentView {
     }
   }
 
-  public void showRequireCoUnderwritingResult(ResponseDto responseDto) {
+  public void showRequireCoUnderwritingResult(ResponseVO responseVO) {
   }
 
-  public void showContractResult(ResponseDto contractResult) {
+  public void showContractResult(ResponseVO contractResult) {
     println("등록된 계약의 정보는 아래와 같습니다.");
     println(contractResult.get(CONTRACT_INFO));
   }
