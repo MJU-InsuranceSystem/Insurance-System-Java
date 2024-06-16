@@ -155,9 +155,14 @@ public class CustomerView {
         return requestDto;
     }
     public void retrieveContract(List<Contract> contractList) {
+        if(contractList.isEmpty()) {
+            println("가입한 보험이 없습니다.");
+            return;
+        }
         contractList.stream()
             .map(Contract::toString)
             .forEach(System.out::println);
+        successTask();
     }
 
     public void completeSubmitAccident(ResponseDto responseDto) {
