@@ -14,7 +14,8 @@ public class EducationView extends DepartmentView {
     public static final String EDUCATION_TEACHER = "teacher";
     public static final String EDUCATION_CONTENTS = "contents";
     public static final String EDUCATION_TEXTBOOK = "textbook";
-
+    public static final String MANAGE_RESPONSE_RESULT = "manageResponseReuslt";
+    public static final String ALL_EDUCATION = "alleducation";
 
     public void intro() {
         println("안녕하세요. 영업 교육팀입니다.");
@@ -22,11 +23,14 @@ public class EducationView extends DepartmentView {
 
     public void completeMessage(ResponseDto responseDto) {
         println("성공적으로 업무를 완료하였습니다");
-        println("상태 메시지 : " + responseDto.get(Status.key()));
+        println("상태 메시지 : " + responseDto.get(Status.getKey()));
     }
 
     public RequestDto manageEducation() {
-        return null;
+        RequestDto requestDto = new RequestDto();
+        println("현재 만들어진 모든 교육을 조회하겠습니까? (Y/N)");
+        requestDto.add(MANAGE_RESPONSE_RESULT, writeString());
+        return requestDto;
     }
 
     public RequestDto prepareEducation() {
@@ -49,5 +53,15 @@ public class EducationView extends DepartmentView {
 
     public RequestDto manageEducationStudent() {
         return null;
+    }
+
+    public void deny() {
+        println("해당 업무가 거절되었습니다.");
+    }
+
+    public void showAllEducationName(ResponseDto responseDto) {
+        println("모든 교육 제목");
+        println("================");
+        println(responseDto.get(ALL_EDUCATION));
     }
 }

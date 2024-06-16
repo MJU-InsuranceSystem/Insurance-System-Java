@@ -1,20 +1,5 @@
 package org.example.planTeam.design;
 
-import java.util.Objects;
-import org.example.Team;
-import org.example.common.dto.RequestDto;
-import org.example.common.dto.ResponseDto;
-import org.example.planTeam.design.model.designPlan.DesignPlan;
-import org.example.planTeam.design.model.insurance.InsuranceList;
-import org.example.planTeam.Status;
-import org.example.planTeam.design.model.designPlan.DesignPlanList;
-import org.example.planTeam.design.model.insurance.Insurance;
-import org.example.planTeam.design.model.proposal.Proposal;
-import org.example.planTeam.design.model.proposal.Proposal.ProposalBuilder;
-import org.example.planTeam.design.model.proposal.ProposalList;
-import org.example.planTeam.design.model.reward.Reward;
-import org.example.planTeam.inspection.InsuranceInspectionTeam;
-
 import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGNPLAN;
 import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGN_CONTENT;
 import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGN_MANAGER;
@@ -29,11 +14,34 @@ import static org.example.planTeam.design.model.insurance.InsuranceConstant.ONE;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.RESPONSIBLE_PERSON;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.RESTRICTION_REGULATION;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.SUBSCRIBER_RIGHTS_AND_OBLIGATION;
-import static org.example.planTeam.design.model.proposal.ProposalConstant.*;
+import static org.example.planTeam.design.model.proposal.ProposalConstant.INSURANCE_KIND;
+import static org.example.planTeam.design.model.proposal.ProposalConstant.Insurance_Payment;
+import static org.example.planTeam.design.model.proposal.ProposalConstant.KIND;
+import static org.example.planTeam.design.model.proposal.ProposalConstant.MARKET_RESEARCH;
+import static org.example.planTeam.design.model.proposal.ProposalConstant.PRODUCT_OVERVIEW;
+import static org.example.planTeam.design.model.proposal.ProposalConstant.PROPOSAL;
+import static org.example.planTeam.design.model.proposal.ProposalConstant.PROPOSAL_TITLE;
+import static org.example.planTeam.design.model.proposal.ProposalConstant.REWARD;
+import static org.example.planTeam.design.model.proposal.ProposalConstant.SALE_STRATEGY;
+import static org.example.planTeam.design.model.proposal.ProposalConstant.SALE_TARGET;
 import static org.example.planTeam.design.model.reward.RewardConstant.INSURANCE_RATE;
 import static org.example.planTeam.design.model.reward.RewardConstant.MAX_REWARD;
 import static org.example.planTeam.design.model.reward.RewardConstant.MONTH_PAYMENT_FEE;
 import static org.example.user.CustomerView.INSURANCE_ID;
+
+import java.util.Objects;
+import org.example.Team;
+import org.example.common.dto.RequestDto;
+import org.example.common.dto.ResponseDto;
+import org.example.planTeam.Status;
+import org.example.planTeam.design.model.designPlan.DesignPlan;
+import org.example.planTeam.design.model.designPlan.DesignPlanList;
+import org.example.planTeam.design.model.insurance.Insurance;
+import org.example.planTeam.design.model.insurance.InsuranceList;
+import org.example.planTeam.design.model.proposal.Proposal;
+import org.example.planTeam.design.model.proposal.Proposal.ProposalBuilder;
+import org.example.planTeam.design.model.proposal.ProposalList;
+import org.example.planTeam.design.model.reward.Reward;
 
 /**
  * @author USER
@@ -43,9 +51,7 @@ public class InsurancePlanTeam extends Team {
 
     private final DesignPlanList designPlanList;
     private final ProposalList proposalList;
-
     private final InsuranceList insuranceList;
-
     private final InsuranceList authrizationInsuranceList;
 
 
@@ -76,7 +82,7 @@ public class InsurancePlanTeam extends Team {
                     authrizationInsuranceList.add(insurance);
                     if (!Objects.isNull(authrizationInsuranceList.findById(
                         Integer.parseInt(request.get(INSURANCE_ID))))) {
-                        responseDto.add(Status.key(), Status.SUCCESS.getStatus());
+                        responseDto.add(Status.getKey(), Status.SUCCESS.getStatus());
                         return responseDto;
                     }
                 }
@@ -99,7 +105,7 @@ public class InsurancePlanTeam extends Team {
                     .reward(request.get(REWARD)).build();
 
                 proposalList.add(proposal);
-                responseDto.add(Status.key(), Status.SUCCESS.getStatus());
+                responseDto.add(Status.getKey(), Status.SUCCESS.getStatus());
                 return responseDto;
             }
             case INSURANCE -> {
@@ -119,7 +125,7 @@ public class InsurancePlanTeam extends Team {
 
                 this.insuranceList.add(insurance);
 
-                responseDto.add(Status.key(), Status.SUCCESS.getStatus());
+                responseDto.add(Status.getKey(), Status.SUCCESS.getStatus());
                 return responseDto;
             }
             case DESIGNPLAN -> {
@@ -130,7 +136,7 @@ public class InsurancePlanTeam extends Team {
                 designPlan.setContent(request.get(DESIGN_CONTENT));
                 designPlan.setManager(request.get(DESIGN_MANAGER));
                 designPlanList.add(designPlan);
-                responseDto.add(Status.key(), Status.SUCCESS.getStatus());
+                responseDto.add(Status.getKey(), Status.SUCCESS.getStatus());
                 return responseDto;
             }
             default -> {

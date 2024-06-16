@@ -43,4 +43,9 @@ public class InsuranceChargeCustomerApplyListImpl implements InsuranceChargeCust
     public void update(Customer customer) {
 
     }
+
+    @Override
+    public boolean isEmpty() {
+        return INSURANCE_CHARGE_APPLICATIONS.isEmpty();
+    }
 }

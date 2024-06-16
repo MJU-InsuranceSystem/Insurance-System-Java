@@ -55,8 +55,8 @@ public class CustomerSystem {
             }
             case REQUIRE_INSURANCE_BENEFIT -> {
                 RequestDto requestDto = customerView.requireInsuranceBenefitInfo();
-                customerProcessManager.requireInsuranceBenefit(requestDto);
-                customerView.successTask();
+                ResponseDto responseDto = customerProcessManager.requireInsuranceBenefit(requestDto);
+                customerView.completeSubmitAccident(responseDto);
             }
             case RETRIEVE_CONTRACT -> {
                 customerView.retrieveContract(customerProcessManager.retrieveContract());

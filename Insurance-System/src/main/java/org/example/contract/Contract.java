@@ -9,6 +9,8 @@ public class Contract {
 	private InsuranceApplication insuranceApplication;
 	private String managerName;
 
+	private int 월납부액;
+
 	public String getCustomerName() {
 		return customerName;
 	}

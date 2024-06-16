@@ -5,8 +5,6 @@ import org.example.common.controller.CustomerSystem;
 import org.example.common.dto.RequestDto;
 import org.example.common.dto.ResponseDto;
 import org.example.contract.Contract;
-import org.example.contract.ContractList;
-import org.example.domain.insurance.InsuranceApplication;
 import org.example.insurance.InsuranceChargeCustomerApplyList;
 import org.example.planTeam.Status;
 import org.example.rewardSupportTeam.model.*;
@@ -32,6 +30,7 @@ public class RewardSupportTeam extends Team {
     private final InsuranceChargeCustomerApplyList insuranceChargeCustomerApplyList;
     private final InsurancePremiumPaymentCustomerList insurancePremiumPaymentCustomerList;
 
+    private static boolean judgmentResult = false;
 
     public RewardSupportTeam(AccidentList accidentList, litigationInfoList litigationInfoList, InsuranceChargeCustomerApplyList insuranceChargeCustomerApplyList, InsurancePremiumPaymentCustomerList insurancePremiumPaymentCustomerList) {
         this.accidentList = accidentList;
@@ -52,48 +51,51 @@ public class RewardSupportTeam extends Team {
     @Override
     public ResponseDto process(RequestDto request) {
         ResponseDto responseDto = new ResponseDto();
+
         if (request.get(JUDGE_ANSWER).equals("Y") || request.get(JUDGE_ANSWER).equals("y")) {
             // 면부책을 판단한다
-            // list에 정보가 다 있고 계약에서 어떤 보험에 가입했는지에 따라 면부책 판단을 내려주면 될 듯
-            Customer applyUser = insuranceChargeCustomerApplyList.findFirst();
-            if (applyUser == null) {
-                responseDto.add(Status.key(), Status.FAIL.getStatus());
+            Accident accident = accidentList.read(0);
+            if (accident == null) {
+                judgmentResult = false;
+                responseDto.add(Status.getKey(), Status.EMPTY.getStatus());
                 return responseDto;
             }
-            List<Contract> tempList = applyUser.getContractList();
-
-
-            responseDto.add(Status.key(), Status.SUCCESS.getStatus());
+            judgmentResult = true;
+            responseDto.add(Status.getKey(), Status.SUCCESS.getStatus());
         } else if (request.get(JUDGE_ANSWER).equals("N") || request.get(JUDGE_ANSWER).equals("n")) {
-            responseDto.add(Status.key(), Status.FAIL.getStatus());
+            responseDto.add(Status.getKey(), Status.FAIL.getStatus());
         } else {
-            responseDto.add(Status.key(), Status.INPUT_INVALID.getStatus());
+            responseDto.add(Status.getKey(), Status.INPUT_INVALID.getStatus());
         }
         return responseDto;
     }
 
     @Override
     public ResponseDto register(RequestDto request) {
-        Accident accident = new Accident();
-        accident.setContent(request.get(ACCIDENT_CONTENT));
-        accident.setCustomerName(request.get(ACCIDENT_NAME));
-
-        ClaimInsurance claimInsurance = new ClaimInsurance();
-        claimInsurance.setAccount(request.get(CLAIMINSURANCE_ACCOUNT));
-        claimInsurance.setAddress(request.get(CLAIMINSURANCE_ADDRESS));
-        claimInsurance.setPhoneNumber(request.get(CLAIMINSURANCE_PHONENUMBER));
-        claimInsurance.setResidentNumber(request.get(CLAIMINSURANCE_RESIDENTNUMBER));
-        claimInsurance.setSupportingFile(request.get(CLAIMINSURANCE_SUPPORTINGFILE));
-
-        accident.setClaimInsurance(claimInsurance);
-
         ResponseDto responseDto = new ResponseDto();
-        if (!accidentList.add(accident)) {
-            responseDto.add(Status.key(), Status.FAIL.getStatus());
-            return responseDto;
-        }
-
-        responseDto.add(Status.key(), Status.SUCCESS.getStatus());
+//
+//        if (!insuranceChargeCustomerApplyList.isEmpty()) {
+//            Accident accident = new Accident();
+//            accident.setContent(request.get(ACCIDENT_CONTENT));
+//            accident.setCustomerName(request.get(ACCIDENT_NAME));
+//
+//            ClaimInsurance claimInsurance = new ClaimInsurance();
+//            claimInsurance.setAccount(request.get(CLAIMINSURANCE_ACCOUNT));
+//            claimInsurance.setAddress(request.get(CLAIMINSURANCE_ADDRESS));
+//            claimInsurance.setPhoneNumber(request.get(CLAIMINSURANCE_PHONENUMBER));
+//            claimInsurance.setResidentNumber(request.get(CLAIMINSURANCE_RESIDENTNUMBER));
+//            claimInsurance.setSupportingFile(request.get(CLAIMINSURANCE_SUPPORTINGFILE));
+//
+//            accident.setClaimInsurance(claimInsurance);
+//
+//            if (!accidentList.add(accident)) {
+//                responseDto.add(Status.getKey(), Status.FAIL.getStatus());
+//                return responseDto;
+//            }
+//            responseDto.add(Status.getKey(), Status.SUCCESS.getStatus());
+//            return responseDto;
+//        }
+//        responseDto.add(Status.getKey(), Status.EMPTY.getStatus());
         return responseDto;
     }
 
@@ -104,7 +106,13 @@ public class RewardSupportTeam extends Team {
 
     @Override
     public ResponseDto retrieve(RequestDto request) {
-        return null;
+        ResponseDto responseDto = new ResponseDto();
+        if (judgmentResult) {
+            responseDto.add(Status.getKey(), Status.SUCCESS.getStatus());
+            return responseDto;
+        }
+        responseDto.add(Status.getKey(), Status.FAIL.getStatus());
+        return responseDto;
     }
 
     public ResponseDto getNotPaidCustomer() {

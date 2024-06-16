@@ -8,12 +8,12 @@ package org.example.business.education.model;
  */
 public interface EducationList {
 
-	public void add();
+	void add(Education education);
 
-	public void delete();
+	void delete(Education education);
 
-	public Object read();
+	Education read(int educationId);
 
-	public void update();
+	void update(Education education);
 
 }

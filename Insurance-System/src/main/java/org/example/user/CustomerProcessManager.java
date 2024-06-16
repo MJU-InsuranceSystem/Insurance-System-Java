@@ -9,12 +9,18 @@ import org.example.domain.insurance.InsuranceApplication;
 import org.example.insurance.*;
 import org.example.planTeam.design.model.insurance.Insurance;
 import org.example.rewardSupportTeam.model.InsurancePremiumPaymentCustomerList;
+import org.example.planTeam.Status;
+import org.example.rewardSupportTeam.model.Accident;
+import org.example.rewardSupportTeam.model.AccidentList;
+import org.example.rewardSupportTeam.model.ClaimInsurance;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.Map;
 
+import static org.example.rewardSupportTeam.view.RewardSupportView.*;
 import static org.example.user.CustomerView.CHARGE_ANSWER;
 import static org.example.user.CustomerView.PREMIUM_ANSWER;
 
@@ -23,11 +29,12 @@ public class CustomerProcessManager {
     private final InsuranceApplyList insuranceApplyList;
     private final InsuranceChargeCustomerApplyList insuranceChargeCustomerApplyList;
     private final InsurancePremiumPaymentCustomerList insurancePremiumPaymentCustomerList;
+    private final AccidentList accidentList;
 
-
-    public CustomerProcessManager(InsuranceApplyList insuranceApplyList, InsuranceChargeCustomerApplyList insuranceChargeCustomerApplyList, InsurancePremiumPaymentCustomerList insurancePremiumPaymentCustomerList) {
+    public CustomerProcessManager(InsuranceApplyList insuranceApplyList, InsuranceChargeCustomerApplyList insuranceChargeCustomerApplyList, AccidentList accidentList) {
         this.insuranceApplyList = insuranceApplyList;
         this.insuranceChargeCustomerApplyList = insuranceChargeCustomerApplyList;
+        this.accidentList = accidentList;
         this.insurancePremiumPaymentCustomerList = insurancePremiumPaymentCustomerList;
     }
 
@@ -63,11 +70,42 @@ public class CustomerProcessManager {
         }
     }
 
-    public void requireInsuranceBenefit(RequestDto requestDto) {
-        if (requestDto.get(CHARGE_ANSWER).equals("Y") || requestDto.get(CHARGE_ANSWER).equals("y")) {
+    public ResponseDto requireInsuranceBenefit(RequestDto request) {
+        ResponseDto responseDto = new ResponseDto();
+
+        if (request.get(CHARGE_ANSWER).equals("Y") || request.get(CHARGE_ANSWER).equals("y")) {
             Customer loginUser = (Customer) AuthUtil.user;
             insuranceChargeCustomerApplyList.add(loginUser);
+
+            Accident accident = new Accident();
+            accident.setContent(request.get(ACCIDENT_CONTENT));
+            accident.setCustomerName(request.get(ACCIDENT_NAME));
+
+            ClaimInsurance claimInsurance = new ClaimInsurance();
+            claimInsurance.setAccount(request.get(CLAIMINSURANCE_ACCOUNT));
+            claimInsurance.setAddress(request.get(CLAIMINSURANCE_ADDRESS));
+            claimInsurance.setPhoneNumber(request.get(CLAIMINSURANCE_PHONENUMBER));
+            claimInsurance.setResidentNumber(request.get(CLAIMINSURANCE_RESIDENTNUMBER));
+            claimInsurance.setSupportingFile(request.get(CLAIMINSURANCE_SUPPORTINGFILE));
+
+            accident.setClaimInsurance(claimInsurance);
+
+            for (Map.Entry<String, String> entry : request.getTotalInfo().entrySet()) {
+                if (entry.getValue() == null) {
+                    responseDto.add(Status.getKey(), Status.INPUT_EMPTY.getStatus());
+                    return responseDto;
+                }
+            }
+
+            if (!accidentList.add(accident)) {
+                responseDto.add(Status.getKey(), Status.FAIL.getStatus());
+                return responseDto;
+            }
+            responseDto.add(Status.getKey(), Status.SUCCESS.getStatus());
+            return responseDto;
         }
+        responseDto.add(Status.getKey(), Status.FAIL.getStatus());
+        return responseDto;
     }
 
     public void applyFireInsurance(RequestDto requestDto) {

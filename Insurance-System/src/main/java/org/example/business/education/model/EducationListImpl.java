@@ -1,5 +1,6 @@
 package org.example.business.education.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,31 +9,38 @@ import java.util.List;
  */
 public class EducationListImpl implements EducationList {
 
-	private List<Education> educations;
-	public Education m_Education;
+	private final List<Education> educations = new ArrayList<>();
+	{
+		for (int i = 1; i < 5 ; i++) {
+			Education education = new Education();
+			education.setName(i + " 번째 교육 제목");
+			educations.add(education);
+		}
+	}
+	@Override
+	public void add(Education education) {
+		if (education != null) {
+			educations.add(education);
+			return;
+		}
+		throw new NullPointerException("해당 교육이 Null 값입니다.");
+	}
 
-	public EducationListImpl(){
+	@Override
+	public void delete(Education education) {
 
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-
-	public void add(){
-
-	}
-
-	public void delete(){
-
-	}
-
-	public Object read(){
+	@Override
+	public Education read(int educationId) {
 		return null;
 	}
 
-	public void update(){
+	@Override
+	public void update(Education education) {
 
 	}
-
+	public List<Education> findAll() {
+		return educations;
+	}
 }

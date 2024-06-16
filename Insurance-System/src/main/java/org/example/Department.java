@@ -14,16 +14,15 @@ public enum Department {
     RECRUITMENT_TEAM(6, null, "채용 관리 팀"),
     SALARY_MANAGEMENT_TEAM(7, null, "급여 관리 팀"),
     REWARD_SUPPORT_TEAM(8, DepartmentConfig.rewardSupportController(), "보상 지원 팀"),
-
     CONTRACT_MANAGEMENT_TEAM(9, DepartmentConfig.contractManagementController(), "계약 관리 팀")
     ;
     private final int order;
-    private final TeamController teamView;
+    private final TeamController teamController;
     private final String name;
 
     Department(int order, TeamController teamController, String name) {
         this.order = order;
-        this.teamView = teamController;
+        this.teamController = teamController;
         this.name = name;
     }
 
@@ -39,7 +38,7 @@ public enum Department {
     }
 
     public TeamController getTeamController() {
-        return teamView;
+        return teamController;
     }
 
     public String getName() {

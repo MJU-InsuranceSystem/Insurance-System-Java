@@ -15,4 +15,6 @@ public interface InsuranceChargeCustomerApplyList {
     Customer findFirst();
 
     void update(Customer insurance);
+
+    boolean isEmpty();
 }

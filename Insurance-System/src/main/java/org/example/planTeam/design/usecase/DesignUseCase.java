@@ -7,9 +7,8 @@ import java.util.Arrays;
 public enum DesignUseCase implements Usecase {
     PLAN_INSURANCE(1, "상품을 기획한다."),
     DESIGN_INSURANCE(2, "상품을 설계한다."),
-    CREATE_INSURANCE(3, "보험 상품을 만들다."),
-    ASK_INSURANCE_AUTHORIZATION(4, "상품 인가를 요청한다."),
-    MANAGE_INSURANCE(5, "상품을 사후 관리하다.");
+    ASK_INSURANCE_AUTHORIZATION(3, "상품 인가를 요청한다."),
+    MANAGE_INSURANCE(4, "상품을 사후 관리하다.");
     private final int order;
     private final String description;
 

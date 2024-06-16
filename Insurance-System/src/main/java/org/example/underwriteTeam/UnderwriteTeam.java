@@ -71,7 +71,7 @@ public class UnderwriteTeam extends Team {
         underwritePolicyListImpl.add(underwritePolicy);
 
         ResponseDto responseDto = new ResponseDto();
-        responseDto.add(Status.key(), Status.SUCCESS.getStatus());
+        responseDto.add(Status.getKey(), Status.SUCCESS.getStatus());
         return responseDto;
     }
 
