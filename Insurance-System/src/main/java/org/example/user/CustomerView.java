@@ -121,17 +121,14 @@ public class CustomerView {
 
     public RequestDto requireInsuranceBenefitInfo() {
         RequestDto requestDto = new RequestDto();
-        println("개인정보처리 동의서\n" +
-                "\n" +
-                "본인은 '보험사'이(가) 제공하는 서비스 이용을 위해 성명, 연락처 등의 개인정보를 수집·이용하는 것에 동의합니다.");
 
-        println("면/부책 판단을 위한 '사건 정보'를 입력해주세요.");
+        println("보험금 청구를 위한 '사건 정보'를 입력해주세요.");
         print("사고 내용 : ");
         requestDto.add(ACCIDENT_CONTENT, writeString());
         print("고객 이름 : ");
         requestDto.add(ACCIDENT_NAME, writeString());
 
-        println("면/부책 판단을 위한 '보험금 청구정보'를 입력해주세요.");
+        println("보험금 청구를 위한 '보험금 청구정보'를 입력해주세요.");
         print("계좌 : ");
         requestDto.add(CLAIMINSURANCE_ACCOUNT, writeString());
         print("주소 : ");
@@ -144,7 +141,9 @@ public class CustomerView {
         requestDto.add(CLAIMINSURANCE_SUPPORTINGFILE, writeString());
 
         println("");
-
+        println("개인정보처리 동의서\n" +
+                "본인은 '보험사'이(가) 제공하는 서비스 이용을 위해 성명, 연락처 등의 개인정보를 수집·이용하는 것에 동의합니다.");
+        println("");
         println("보험금을 청구하시곘습니까? (Y/N) ");
         requestDto.add(CHARGE_ANSWER, writeString());
         return requestDto;

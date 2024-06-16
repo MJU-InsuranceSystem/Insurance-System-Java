@@ -14,6 +14,9 @@ public class WorkerSystem {
     public void process() {
         while (true) {
             int selectTeamNumber = systemView.selectTeam();
+            if (selectTeamNumber == 0) {
+                break;
+            }
             Department.findTeamByNumber(selectTeamNumber).getTeamController().process();
         }
     }
