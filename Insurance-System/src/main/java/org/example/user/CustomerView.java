@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
+
+import org.example.common.AuthUtil;
 import org.example.common.dto.RequestVO;
 import org.example.common.dto.ResponseVO;
 import org.example.contract.Contract;
@@ -61,8 +63,8 @@ public class CustomerView {
         println("=================================");
         print("위 보험 중 원하시는 보험 ID를 고르세요 : ");
         requestVO.add(INSURANCE_NUMBER, writeString());
-        print("보험 가입자 이름 : ");
-        requestVO.add(SUBSCRIBER_NAME, writeString());
+        Customer customer = (Customer) AuthUtil.user;
+        requestVO.add(SUBSCRIBER_NAME, customer.name);
         print("개인 정보(건강 상태, 과거 의료 기록, 현재 병력, 만성 질환 여부, 직업 및 취업 상황) : ");
         requestVO.add(PERSONAL_INFO, writeString());
         print("가입하려는 보험 상품(보장 범위, 가입 기간, 부가 보험): ");
