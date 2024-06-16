@@ -18,4 +18,8 @@ public class RequestDto {
     public Map<String, String> getTotalInfo() {
         return this.requestInfo;
     }
+
+    public boolean isEmpty() {
+        return requestInfo.isEmpty();
+    }
 }

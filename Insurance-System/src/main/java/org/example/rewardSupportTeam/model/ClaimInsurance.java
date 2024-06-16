@@ -61,4 +61,14 @@ public class ClaimInsurance {
 
     }
 
+    @Override
+    public String toString() {
+        return "\n" + "계좌 : " + account + "\n" +
+                "주소 : " + address + "\n" +
+                "전화번호 : " + phoneNumber + "\n" +
+                "주민번호 : " + residentNumber + "\n" +
+                "증빙 서류 : " + supportingFile + "\n" +
+                "--------------------------------------------" + "\n";
+    }
+
 }
