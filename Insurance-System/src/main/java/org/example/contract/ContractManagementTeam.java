@@ -17,6 +17,7 @@ public class ContractManagementTeam extends Team {
 
     private final ContractList contractList;
     private final InsuranceApplyList insuranceApplyList;
+    private static int order = 0;
 
 
     public ContractManagementTeam(ContractList contractList, InsuranceApplyList insuranceApplyList) {
@@ -44,6 +45,7 @@ public class ContractManagementTeam extends Team {
         String customerName = request.get(UnderwriteView.FINISH_INSURANCE_CUSTOMER_NAME);
 
         Contract contract = new Contract();
+        contract.setContractId(order++);
         contract.setInsurance(insuranceApplication);
         contract.setManagerName("모델들이 하는 모델링");
         contract.setCustomerName(customerName);
@@ -67,5 +69,10 @@ public class ContractManagementTeam extends Team {
 
     public ContractList retrieveContracts() {
         return contractList;
+    }
+
+    public void deleteContract(RequestDto requestDto) {
+        int contractId = Integer.parseInt(requestDto.get(ContractManagementView.CONTRACT_ID));
+        contractList.removeById(contractId);
     }
 }

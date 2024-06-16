@@ -1,6 +1,7 @@
 package org.example.contract;
 
 import org.example.TeamController;
+import org.example.common.dto.RequestDto;
 import org.example.underwriteTeam.usecase.UnderwriteUsecase;
 
 public class ContractManagementController implements TeamController {
@@ -27,7 +28,9 @@ public class ContractManagementController implements TeamController {
                 contractManagementView.retrieveContracts(contractManagementTeam.retrieveContracts());
             }
             case CONTRACT_DELETE -> {
-
+                RequestDto requestDto = contractManagementView.requireDeleteContractNumber();
+                contractManagementTeam.deleteContract(requestDto);
+                contractManagementView.successTask();
             }
             case CHECK_INSURANCE_ACCOUNT -> {
 

@@ -4,16 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60b7dd1d-e35f-4bce-9822-4388716c7c36" name="Changes" comment="Refactor : 코드 구조 통일">
-      <change afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/contract/ContractManagementController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/contract/ContractManagementUsecase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/contract/ContractManagementView.java" afterDir="false" />
+    <list default="true" id="60b7dd1d-e35f-4bce-9822-4388716c7c36" name="Changes" comment="feat : 모든 계약 조회 기능">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/Department.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/common/config/DepartmentConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/common/config/DepartmentConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/contract/Contract.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/contract/Contract.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/contract/ContractList.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/contract/ContractList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/contract/ContractListImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/contract/ContractListImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/contract/ContractManagementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/contract/ContractManagementController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/contract/ContractManagementTeam.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/contract/ContractManagementTeam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/user/CustomerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/user/CustomerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/contract/ContractManagementView.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/contract/ContractManagementView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/user/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Insurance-System/src/main/java/org/example/user/Customer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +126,7 @@
       <workItem from="1717378784327" duration="5304000" />
       <workItem from="1718454865412" duration="45000" />
       <workItem from="1718521240542" duration="598000" />
-      <workItem from="1718522682447" duration="6048000" />
+      <workItem from="1718522682447" duration="8265000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor : 코드 구조 통일">
       <option name="closed" value="true" />
@@ -137,7 +136,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717349954632</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feat : 모든 계약 조회 기능">
+      <option name="closed" value="true" />
+      <created>1718532114726</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1718532114726</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -156,6 +163,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Refactor : 코드 구조 통일" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor : 코드 구조 통일" />
+    <MESSAGE value="feat : 모든 계약 조회 기능" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat : 모든 계약 조회 기능" />
   </component>
 </project>

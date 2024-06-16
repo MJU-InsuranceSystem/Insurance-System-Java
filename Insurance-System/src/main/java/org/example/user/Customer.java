@@ -13,9 +13,7 @@ import org.example.contract.ContractListImpl;
  * @version 1.0
  */
 public class Customer extends User {
-
-    private int familyHistory;
-    private IncomeInfo IncomeInfo;
+    
     private ContractList contractList = new ContractListImpl();
 
     public Customer() {
