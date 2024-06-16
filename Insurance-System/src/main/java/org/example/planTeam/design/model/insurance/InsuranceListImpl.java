@@ -12,7 +12,13 @@ import java.util.Objects;
 public class InsuranceListImpl implements InsuranceList {
 
     private static final List<Insurance> insurances = new ArrayList<>();
-
+    {
+        Insurance insurance = new Insurance();
+        insurance.setInsuranceId(String.valueOf(0));
+        insurance.setInsuranceName("화재보험입니다.");
+        insurance.setInsuranceType(String.valueOf(1));
+        insurances.add(insurance);
+    }
 
     @Override
     public void add(Insurance insurance) {
@@ -50,8 +56,7 @@ public class InsuranceListImpl implements InsuranceList {
     }
 
     @Override
-    public List<Insurance> getList() {
-
+    public List<Insurance> findAll() {
         return insurances;
     }
 }

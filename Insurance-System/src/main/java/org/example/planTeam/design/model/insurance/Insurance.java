@@ -87,7 +87,7 @@ public class Insurance {
 
     @Override
     public String toString() {
-        return "보험 이름: " + insuranceName + " 책임자: " + responsiblePerson
+        return "보험 ID: "+ insuranceId +" 보험 이름: " + insuranceName + " 책임자: " + responsiblePerson
             + " 보상 최대액: " + reward.getMaxReward() + " 보험료 : " + reward.getMonthPaymentFee();
     }
 

@@ -38,12 +38,19 @@ public class UnderwriteController implements TeamController {
         underwriteView.showCreatePolicyResult(responseDto);
       }
       case PERFORM_UNDERWRITING -> {
-        String insuranceInfo = findFirstInsuranceInfo(usecase.getOrder());
+        String insuranceInfo = findAllInsuranceInfo(usecase.getOrder());
         if (insuranceInfo == null) {
           underwriteView.inNotExistInsuranceApply();
+          return;
         }
-        RequestDto requestDto = underwriteView.performUnderwriting(insuranceInfo);
-        ResponseDto responseDto = underwriteTeam.process(requestDto);
+        int applicationId = underwriteView.selectApplicationId(insuranceInfo);
+        RequestDto requestDto = new RequestDto();
+        requestDto.add(UnderwriteView.SELECT_APPLICATION_ID, String.valueOf(applicationId));
+        ResponseDto selectInsuranceInfo = underwriteTeam.retrieve(requestDto);
+        RequestDto underwritingResult = underwriteView.performUnderwriting(selectInsuranceInfo);
+        underwritingResult.add(UnderwriteView.SELECT_APPLICATION_ID, String.valueOf(applicationId));
+
+        ResponseDto responseDto = underwriteTeam.process(underwritingResult);
         if (Objects.equals(responseDto.get(UnderwriteView.UNDERWRITING_RESULT), "Y")) {
           ResponseDto contractResult = registerContract(responseDto);
           underwriteView.showContractResult(contractResult);
@@ -68,10 +75,10 @@ public class UnderwriteController implements TeamController {
     return contractManagementTeam.register(requestDto);
   }
 
-  private String findFirstInsuranceInfo(int order) {
+  private String findAllInsuranceInfo(int order) {
     RequestDto requestDto = new RequestDto();
     requestDto.add(UnderwriteView.USECASE_NUMBER, String.valueOf(order));
     ResponseDto responseDto = underwriteTeam.retrieve(requestDto);
-    return responseDto.get(UnderwriteView.FIRST_INSURANCE_APPLY);
+    return responseDto.get(UnderwriteView.ALL_INSURANCE_APPLY);
   }
 }

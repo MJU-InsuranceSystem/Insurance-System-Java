@@ -30,7 +30,7 @@ public class ContractListImpl implements ContractList {
   public InsuranceApplication findById(int contractId) {
     for (Contract contract : CONTRACTS) {
       if (contract.getContractId() == contractId) {
-        return contract.getInsurance();
+        return contract.getInsuranceApplication();
       }
     }
     return null;

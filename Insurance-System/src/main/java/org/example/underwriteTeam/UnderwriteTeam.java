@@ -1,5 +1,6 @@
 package org.example.underwriteTeam;
 
+import java.util.List;
 import java.util.Objects;
 import org.example.Team;
 import org.example.common.dto.RequestDto;
@@ -39,8 +40,9 @@ public class UnderwriteTeam extends Team {
     @Override
     public ResponseDto process(RequestDto request) {
         String result = request.get(UnderwriteView.UNDERWRITING_RESULT);
+        int applicationId = Integer.parseInt(request.get(UnderwriteView.SELECT_APPLICATION_ID));
         ResponseDto responseDto = new ResponseDto();
-        InsuranceApplication insuranceApplication = insuranceApplyList.findFirst();
+        InsuranceApplication insuranceApplication = insuranceApplyList.findById(applicationId);
         if (Objects.equals(result, "N") && insuranceApplication != null) {
             insuranceApplyList.remove(insuranceApplication);
         }
@@ -82,19 +84,35 @@ public class UnderwriteTeam extends Team {
 
     @Override
     public ResponseDto retrieve(RequestDto request) {
+        String applicationId = request.get(UnderwriteView.SELECT_APPLICATION_ID);
+        if (applicationId != null) {
+            return findById(applicationId);
+        }
+
         int usecaseNumber = Integer.parseInt(request.get(UnderwriteView.USECASE_NUMBER));
         UnderwriteUsecase usecase = UnderwriteUsecase.findByNumber(usecaseNumber);
         if (usecase == UnderwriteUsecase.PERFORM_UNDERWRITING) {
-            return findFirstInsurance();
+            return findAllInsurance();
         }
         throw new IllegalArgumentException("해당하는 유스케이스는 없습니다.");
     }
 
-    private ResponseDto findFirstInsurance() {
+    private ResponseDto findById(String applicationId) {
         ResponseDto responseDto = new ResponseDto();
-        InsuranceApplication insuranceApplication = insuranceApplyList.findFirst();
-        if (insuranceApplication != null) {
-            responseDto.add(UnderwriteView.FIRST_INSURANCE_APPLY, insuranceApplication.toString());
+        InsuranceApplication insuranceApplication = insuranceApplyList.findById(Integer.parseInt(applicationId));
+        responseDto.add(UnderwriteView.ONE_SELECT_INSURANCE, insuranceApplication.toString());
+        return responseDto;
+    }
+
+    private ResponseDto findAllInsurance() {
+        ResponseDto responseDto = new ResponseDto();
+        List<InsuranceApplication> insuranceApplications = insuranceApplyList.findAll();
+        if (!insuranceApplications.isEmpty()) {
+            StringBuilder insuranceInfoBuilder = new StringBuilder();
+            for(InsuranceApplication insuranceApplication : insuranceApplications){
+                insuranceInfoBuilder.append("보험 ID : " + insuranceApplication.getInsuranceApplicationID()).append('\n');
+            }
+            responseDto.add(UnderwriteView.ALL_INSURANCE_APPLY, insuranceInfoBuilder.toString());
         }
         return responseDto;
     }

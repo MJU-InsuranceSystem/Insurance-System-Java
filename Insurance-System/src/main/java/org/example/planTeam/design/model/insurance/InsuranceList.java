@@ -20,5 +20,5 @@ public interface InsuranceList {
 
     void update(Insurance insurance);
 
-    List<Insurance> getList();
+    List<Insurance> findAll();
 }

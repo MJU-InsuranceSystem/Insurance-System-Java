@@ -1,6 +1,7 @@
 package org.example.domain.insurance;
 
-import org.example.insurance.InsuranceType;
+import org.example.planTeam.design.model.insurance.Insurance;
+
 /**
  * @author USER
  * @version 1.0
@@ -9,19 +10,10 @@ public class InsuranceApplication {
 
     private int insuranceApplicationID;
     private String subscriberName;
-    private int monthPaymentFee;
-    private InsuranceType insuranceType;
-    private String details;
-    private String accountNumber;
-
-    public String getDetails() {
-        return details;
-    }
-
-    public String getAccountNumber() {
-        return accountNumber;
-    }
-
+    private String personalInfo;
+    private String familyHistory;
+    private String requestInsurance;
+    private Insurance insurance;
     public int getInsuranceApplicationID() {
         return insuranceApplicationID;
     }
@@ -30,14 +22,21 @@ public class InsuranceApplication {
         return subscriberName;
     }
 
-    public int getMonthPaymentFee() {
-        return monthPaymentFee;
+    public String getPersonalInfo() {
+        return personalInfo;
     }
 
-    public InsuranceType getInsuranceType() {
-        return insuranceType;
+    public String getFamilyHistory() {
+        return familyHistory;
     }
 
+    public String getRequestInsurance() {
+        return requestInsurance;
+    }
+
+    public Insurance getInsurance() {
+        return insurance;
+    }
     public void setInsuranceApplicationID(int insuranceApplicationID) {
         this.insuranceApplicationID = insuranceApplicationID;
     }
@@ -46,29 +45,31 @@ public class InsuranceApplication {
         this.subscriberName = subscriberName;
     }
 
-    public void setMonthPaymentFee(int monthPaymentFee) {
-        this.monthPaymentFee = monthPaymentFee;
+    public void setPersonalInfo(String personalInfo) {
+        this.personalInfo = personalInfo;
     }
 
-    public void setInsuranceType(InsuranceType insuranceType) {
-        this.insuranceType = insuranceType;
+    public void setFamilyHistory(String familyHistory) {
+        this.familyHistory = familyHistory;
     }
 
-    public void setDetails(String details) {
-        this.details = details;
+    public void setRequestInsurance(String requestInsurance) {
+        this.requestInsurance = requestInsurance;
     }
 
-    public void setAccountNumber(String accountNumber) {
-        this.accountNumber = accountNumber;
+    public void setInsurance(Insurance insurance) {
+        this.insurance = insurance;
     }
 
     @Override
     public String toString() {
-        return "insuranceID=" + insuranceApplicationID + "\n" +
-            "insuranceType=" + insuranceType + "\n" +
-            "subscriberName='" + subscriberName + "\n" +
-            "accountNumber='" + accountNumber + "\n" +
-            "monthPaymentFee=" + monthPaymentFee + "\n" +
-            "details='" + details + "\n";
+        return "신청된 보험 정보" + '\n'+
+            "신청 보험 ID : " + insuranceApplicationID + '\n'+
+            "가입 신청자 이름 : " + subscriberName + '\n' +
+            "개인 신상 정보 : " + personalInfo + '\n' +
+            "가족력 : " + familyHistory + '\n' +
+            "금융 상태 : " + requestInsurance + '\n' +
+            "보험 종류 : " + insurance.getInsuranceType().getDescription() + '\n' +
+            "======================================";
     }
 }

@@ -27,7 +27,7 @@ import static org.example.planTeam.design.model.proposal.ProposalConstant.SALE_T
 import static org.example.planTeam.design.model.reward.RewardConstant.INSURANCE_RATE;
 import static org.example.planTeam.design.model.reward.RewardConstant.MAX_REWARD;
 import static org.example.planTeam.design.model.reward.RewardConstant.MONTH_PAYMENT_FEE;
-import static org.example.user.CustomerView.INSURANCE_ID;
+import static org.example.user.CustomerView.INSURANCE_NUMBER;
 
 import java.util.Objects;
 import org.example.Team;
@@ -75,13 +75,13 @@ public class InsurancePlanTeam extends Team {
             case "인가" -> {
                 if (request.get("인가응답").equalsIgnoreCase("y")) {
                     Insurance insurance = insuranceList.findById(
-                        Integer.parseInt(request.get(INSURANCE_ID)));
+                        Integer.parseInt(request.get(INSURANCE_NUMBER)));
                     insurance.setDate(request.get("날짜"));
                     insurance.setAuthorizedPerson(request.get("책임자이름"));
                     insurance.setReason(request.get("reason"));
                     authrizationInsuranceList.add(insurance);
                     if (!Objects.isNull(authrizationInsuranceList.findById(
-                        Integer.parseInt(request.get(INSURANCE_ID))))) {
+                        Integer.parseInt(request.get(INSURANCE_NUMBER))))) {
                         responseDto.add(Status.getKey(), Status.SUCCESS.getStatus());
                         return responseDto;
                     }
@@ -110,7 +110,7 @@ public class InsurancePlanTeam extends Team {
             }
             case INSURANCE -> {
                 Insurance insurance = new Insurance();
-                insurance.setInsuranceId(Integer.toString(this.insuranceList.getList().size()));
+                insurance.setInsuranceId(Integer.toString(this.insuranceList.findAll().size()));
                 insurance.setInsuranceType(request.get(INSURANCE_KIND));
                 insurance.setInsuranceName(request.get(INSURANCE_NAME));
                 insurance.setResponsiblePerson(request.get(RESPONSIBLE_PERSON));
@@ -158,7 +158,7 @@ public class InsurancePlanTeam extends Team {
             case ALL -> {
                 switch (request.get(ENTITY_KIND)) {
                     case INSURANCE -> {
-                        for (Insurance insurance : insuranceList.getList()) {
+                        for (Insurance insurance : insuranceList.findAll()) {
                             responseDto.add(insurance.getInsuranceId(), insurance.toString());
                         }
                     }
@@ -177,7 +177,7 @@ public class InsurancePlanTeam extends Team {
                     case INSURANCE -> {
                         Insurance insurance = insuranceList.findById(
                             Integer.parseInt(request.get("선택번호")));
-                        responseDto.add(INSURANCE_ID, insurance.getInsuranceId());
+                        responseDto.add(INSURANCE_NUMBER, insurance.getInsuranceId());
                         responseDto.add(INSURANCE_NAME, insurance.getInsuranceName());
                         responseDto.add(INSURANCE_KIND,
                             insurance.getInsuranceType().getDescription());

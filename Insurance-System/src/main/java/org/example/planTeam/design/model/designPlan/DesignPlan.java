@@ -1,9 +1,6 @@
 package org.example.planTeam.design.model.designPlan;
 
-import org.example.insurance.InsuranceType;
 import org.example.planTeam.design.model.SaleTarget;
-import org.example.planTeam.design.model.proposal.Proposal;
-import org.example.planTeam.design.model.reward.Reward;
 
 /**
  * @author USER
@@ -59,14 +56,6 @@ public class DesignPlan {
 
     public void setProposal(org.example.planTeam.design.model.proposal.Proposal proposal) {
         Proposal = proposal;
-    }
-
-//    public org.example.planTeam.design.model.reward.Reward getReward() {
-//        return Reward;
-//    }
-
-    public void setReward(org.example.planTeam.design.model.reward.Reward reward) {
-//        Reward = reward;/
     }
 
     public SaleTarget getSaleTarget() {
