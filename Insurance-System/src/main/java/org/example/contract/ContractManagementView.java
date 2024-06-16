@@ -10,6 +10,7 @@ public class ContractManagementView extends DepartmentView {
     public void retrieveContracts(ContractList contractList) {
         if(contractList.isEmpty()) {
             println("계약이 존재하지 않습니다.");
+            return;
         }
         contractList.getContracts().stream()
                 .map(Contract::toString)
