@@ -6,14 +6,18 @@ package org.example.planTeam.design.model.proposal;
  */
 public class Proposal {
 
-    private final int proposalId;
-    private final String title;
-    private final String productOverview;
-    private final String marketResearch;
-    private final String insurancePayment;
-    private final String saleStrategy;
-    private final String saleTarget;
-    private final String reward;
+    private int proposalId;
+    private String title;
+    private String productOverview;
+    private String marketResearch;
+    private String insurancePayment;
+    private String saleStrategy;
+    private String saleTarget;
+    private String reward;
+
+    public Proposal() {
+
+    }
 
     private Proposal(ProposalBuilder proposalBuilder) {
         this.proposalId = proposalBuilder.proposalId;
@@ -120,6 +124,37 @@ public class Proposal {
         return reward;
     }
 
+    public void setProposalId(int proposalId) {
+        this.proposalId = proposalId;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setProductOverview(String productOverview) {
+        this.productOverview = productOverview;
+    }
+
+    public void setMarketResearch(String marketResearch) {
+        this.marketResearch = marketResearch;
+    }
+
+    public void setInsurancePayment(String insurancePayment) {
+        this.insurancePayment = insurancePayment;
+    }
+
+    public void setSaleStrategy(String saleStrategy) {
+        this.saleStrategy = saleStrategy;
+    }
+
+    public void setSaleTarget(String saleTarget) {
+        this.saleTarget = saleTarget;
+    }
+
+    public void setReward(String reward) {
+        this.reward = reward;
+    }
     @Override
     public String toString() {
         return "title: " + title + " productOverview: "

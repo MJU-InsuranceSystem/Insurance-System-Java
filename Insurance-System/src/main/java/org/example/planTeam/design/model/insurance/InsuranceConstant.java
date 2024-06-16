@@ -2,6 +2,7 @@ package org.example.planTeam.design.model.insurance;
 
 public class InsuranceConstant {
 
+    public static final String INSURANCE_KIND = "insuranceKind";
     public static final String INSURANCE_NAME = "insuranceName";
     public static final String RESPONSIBLE_PERSON = "responsiblePerson";
     public static final String RESTRICTION_REGULATION = "restrictionRegulation";

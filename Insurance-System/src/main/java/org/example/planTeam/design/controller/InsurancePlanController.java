@@ -42,11 +42,6 @@ public class InsurancePlanController implements TeamController {
 
     private void startProcess(DesignUseCase useCase) {
         switch (useCase) {
-            case CREATE_INSURANCE -> {
-                RequestDto requestDto = insurancePlanView.createInsurance();
-                ResponseDto responseDto = insurancePlanTeam.register(requestDto);
-                insurancePlanView.createInsurance(responseDto);
-            }
             case ASK_INSURANCE_AUTHORIZATION -> {
                 RequestDto requestDto = insurancePlanView.requestAuthorization();
                 ResponseDto responseDto = insurancePlanTeam.retrieve(requestDto);
@@ -68,12 +63,17 @@ public class InsurancePlanController implements TeamController {
                 requestDto.add(ENTITY_LIST, ALL);
                 requestDto.add(ENTITY_KIND, PROPOSAL);
 
-                requestDto = insurancePlanView.selectProposal(
-                    insurancePlanTeam.retrieve(requestDto));
+                requestDto = insurancePlanView.selectProposal(insurancePlanTeam.retrieve(requestDto));
                 responseDto = insurancePlanTeam.retrieve(requestDto);
                 requestDto = insurancePlanView.createDesign(responseDto);
+                RequestDto requestInsuranceDto = insurancePlanView.createInsurance();
+
+                insurancePlanTeam.register(requestInsuranceDto);
                 responseDto = insurancePlanTeam.register(requestDto);
                 insurancePlanView.completeCreateDesignPlan(responseDto);
+            }
+            case MANAGE_INSURANCE -> {
+
             }
             default -> throw new IllegalArgumentException("해당 유스케이스 번호는 존재하지 않습니다.");
         }
