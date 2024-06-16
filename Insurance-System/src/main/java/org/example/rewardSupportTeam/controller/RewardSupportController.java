@@ -1,17 +1,12 @@
 package org.example.rewardSupportTeam.controller;
 
 import org.example.TeamController;
-import org.example.common.dto.RequestDto;
-import org.example.common.dto.ResponseDto;
+import org.example.common.dto.RequestVO;
+import org.example.common.dto.ResponseVO;
 import org.example.insurance.InsuranceChargeCustomerApplyList;
 import org.example.rewardSupportTeam.RewardSupportTeam;
-import org.example.rewardSupportTeam.model.Accident;
 import org.example.rewardSupportTeam.usecase.RewardSupportUseCase;
 import org.example.rewardSupportTeam.view.RewardSupportView;
-
-import java.util.List;
-
-import static org.example.rewardSupportTeam.usecase.RewardSupportUseCase.JUDGE_FAULT;
 
 public class RewardSupportController implements TeamController {
     private final RewardSupportView rewardSupportView;
@@ -35,24 +30,24 @@ public class RewardSupportController implements TeamController {
     private void executeUsecase(RewardSupportUseCase usecase) {
         switch (usecase) {
             case JUDGE_FAULT -> {
-                RequestDto tempRequest = new RequestDto();
-                ResponseDto tempResponseDto = rewardSupportTeam.retrieve(tempRequest);
-                RequestDto requestDto = rewardSupportView.judgeFault(tempResponseDto);
-                ResponseDto responseDto = rewardSupportTeam.process(requestDto);
-                rewardSupportView.completeJudgeFault(responseDto);
+                RequestVO tempRequest = new RequestVO();
+                ResponseVO tempResponseVO = rewardSupportTeam.retrieve(tempRequest);
+                RequestVO requestVO = rewardSupportView.judgeFault(tempResponseVO);
+                ResponseVO responseVO = rewardSupportTeam.process(requestVO);
+                rewardSupportView.completeJudgeFault(responseVO);
             }
             case PAY_INSURANCE -> {
-                RequestDto requestDto = rewardSupportView.payInsurance();
-                ResponseDto responseDto = rewardSupportTeam.retrieve(requestDto);
-                rewardSupportView.completePayInsurance(responseDto);
+                RequestVO requestVO = rewardSupportView.payInsurance();
+                ResponseVO responseVO = rewardSupportTeam.retrieve(requestVO);
+                rewardSupportView.completePayInsurance(responseVO);
             }
             case MANAGE_LAWSUIT -> {
-                RequestDto requestDto = rewardSupportView.manageLawsuit();
+                RequestVO requestVO = rewardSupportView.manageLawsuit();
 
             }
             case CHECK_NOT_PAID_CUSTOMER -> {
-                ResponseDto responseDto = rewardSupportTeam.getNotPaidCustomer();
-                rewardSupportView.showNotPaidCustomer(responseDto);
+                ResponseVO responseVO = rewardSupportTeam.getNotPaidCustomer();
+                rewardSupportView.showNotPaidCustomer(responseVO);
             }
             default -> throw new IllegalArgumentException("해당하는 usecase가 없습니다.");
         }

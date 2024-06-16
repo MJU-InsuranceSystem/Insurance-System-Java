@@ -1,8 +1,7 @@
 package org.example.contract;
 
 import org.example.TeamController;
-import org.example.common.dto.RequestDto;
-import org.example.underwriteTeam.usecase.UnderwriteUsecase;
+import org.example.common.dto.RequestVO;
 
 public class ContractManagementController implements TeamController {
 
@@ -28,8 +27,8 @@ public class ContractManagementController implements TeamController {
                 contractManagementView.retrieveContracts(contractManagementTeam.retrieveContracts());
             }
             case CONTRACT_DELETE -> {
-                RequestDto requestDto = contractManagementView.requireDeleteContractNumber();
-                contractManagementTeam.deleteContract(requestDto);
+                RequestVO requestVO = contractManagementView.requireDeleteContractNumber();
+                contractManagementTeam.deleteContract(requestVO);
                 contractManagementView.successTask();
             }
             default -> throw new IllegalArgumentException("해당하는 usecase가 없습니다.");

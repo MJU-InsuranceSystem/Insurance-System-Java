@@ -2,8 +2,8 @@ package org.example.underwriteTeam.controller;
 
 import java.util.Objects;
 import org.example.TeamController;
-import org.example.common.dto.RequestDto;
-import org.example.common.dto.ResponseDto;
+import org.example.common.dto.RequestVO;
+import org.example.common.dto.ResponseVO;
 import org.example.contract.ContractManagementTeam;
 import org.example.underwriteTeam.UnderwriteTeam;
 import org.example.underwriteTeam.usecase.UnderwriteUsecase;
@@ -33,9 +33,9 @@ public class UnderwriteController implements TeamController {
   private void executeUsecase(UnderwriteUsecase usecase) {
     switch (usecase) {
       case ESTABLISH_UNDERWRITING_POLICY -> {
-        RequestDto requestDto = underwriteView.createPolicy();
-        ResponseDto responseDto = underwriteTeam.register(requestDto);
-        underwriteView.showCreatePolicyResult(responseDto);
+        RequestVO requestVO = underwriteView.createPolicy();
+        ResponseVO responseVO = underwriteTeam.register(requestVO);
+        underwriteView.showCreatePolicyResult(responseVO);
       }
       case PERFORM_UNDERWRITING -> {
         String insuranceInfo = findAllInsuranceInfo(usecase.getOrder());
@@ -44,41 +44,41 @@ public class UnderwriteController implements TeamController {
           return;
         }
         int applicationId = underwriteView.selectApplicationId(insuranceInfo);
-        RequestDto requestDto = new RequestDto();
-        requestDto.add(UnderwriteView.SELECT_APPLICATION_ID, String.valueOf(applicationId));
-        ResponseDto selectInsuranceInfo = underwriteTeam.retrieve(requestDto);
-        RequestDto underwritingResult = underwriteView.performUnderwriting(selectInsuranceInfo);
+        RequestVO requestVO = new RequestVO();
+        requestVO.add(UnderwriteView.SELECT_APPLICATION_ID, String.valueOf(applicationId));
+        ResponseVO selectInsuranceInfo = underwriteTeam.retrieve(requestVO);
+        RequestVO underwritingResult = underwriteView.performUnderwriting(selectInsuranceInfo);
         underwritingResult.add(UnderwriteView.SELECT_APPLICATION_ID, String.valueOf(applicationId));
 
-        ResponseDto responseDto = underwriteTeam.process(underwritingResult);
-        if (Objects.equals(responseDto.get(UnderwriteView.UNDERWRITING_RESULT), "Y")) {
-          ResponseDto contractResult = registerContract(responseDto);
+        ResponseVO responseVO = underwriteTeam.process(underwritingResult);
+        if (Objects.equals(responseVO.get(UnderwriteView.UNDERWRITING_RESULT), "Y")) {
+          ResponseVO contractResult = registerContract(responseVO);
           underwriteView.showContractResult(contractResult);
         }
-        underwriteView.showPerformUnderwritingResult(responseDto);
+        underwriteView.showPerformUnderwritingResult(responseVO);
       }
       case REQUIRE_CO_UNDERWRITING -> {
-        RequestDto requestDto = underwriteView.requireCoUnderwriting();
-        ResponseDto responseDto = underwriteTeam.retrieve(requestDto);
-        underwriteView.showRequireCoUnderwritingResult(responseDto);
+        RequestVO requestVO = underwriteView.requireCoUnderwriting();
+        ResponseVO responseVO = underwriteTeam.retrieve(requestVO);
+        underwriteView.showRequireCoUnderwritingResult(responseVO);
       }
       default -> throw new IllegalArgumentException("해당하는 usecase가 없습니다.");
     }
   }
 
-  private ResponseDto registerContract(ResponseDto responseDto) {
-    String insuranceId = responseDto.get(UnderwriteView.FINISH_INSURANCE_ID);
-    String customerName = responseDto.get(UnderwriteView.FINISH_INSURANCE_CUSTOMER_NAME);
-    RequestDto requestDto = new RequestDto();
-    requestDto.add(UnderwriteView.FINISH_INSURANCE_ID, insuranceId);
-    requestDto.add(UnderwriteView.FINISH_INSURANCE_CUSTOMER_NAME, customerName);
-    return contractManagementTeam.register(requestDto);
+  private ResponseVO registerContract(ResponseVO responseVO) {
+    String insuranceId = responseVO.get(UnderwriteView.FINISH_INSURANCE_ID);
+    String customerName = responseVO.get(UnderwriteView.FINISH_INSURANCE_CUSTOMER_NAME);
+    RequestVO requestVO = new RequestVO();
+    requestVO.add(UnderwriteView.FINISH_INSURANCE_ID, insuranceId);
+    requestVO.add(UnderwriteView.FINISH_INSURANCE_CUSTOMER_NAME, customerName);
+    return contractManagementTeam.register(requestVO);
   }
 
   private String findAllInsuranceInfo(int order) {
-    RequestDto requestDto = new RequestDto();
-    requestDto.add(UnderwriteView.USECASE_NUMBER, String.valueOf(order));
-    ResponseDto responseDto = underwriteTeam.retrieve(requestDto);
-    return responseDto.get(UnderwriteView.ALL_INSURANCE_APPLY);
+    RequestVO requestVO = new RequestVO();
+    requestVO.add(UnderwriteView.USECASE_NUMBER, String.valueOf(order));
+    ResponseVO responseVO = underwriteTeam.retrieve(requestVO);
+    return responseVO.get(UnderwriteView.ALL_INSURANCE_APPLY);
   }
 }

@@ -2,8 +2,8 @@ package org.example.common.controller;
 
 import java.util.List;
 import java.util.Objects;
-import org.example.common.dto.RequestDto;
-import org.example.common.dto.ResponseDto;
+import org.example.common.dto.RequestVO;
+import org.example.common.dto.ResponseVO;
 import org.example.common.view.SystemView;
 import org.example.insurance.InsuranceType;
 import org.example.planTeam.design.model.insurance.Insurance;
@@ -50,30 +50,29 @@ public class CustomerSystem {
                 List<Insurance> insurances = insuranceList.findAll();
                 List<Insurance> selectInsurances = classifyInsurance(insurances, insuranceType);
                 if(!selectInsurances.isEmpty()){
-                    RequestDto requestDto = customerView.requireInsuranceInfo(selectInsurances);
-                    Insurance insurance = insuranceList.findById(Integer.parseInt(requestDto.get(CustomerView.INSURANCE_NUMBER)));
-                    customerProcessManager.applyInsurance(requestDto, insurance);
+                    RequestVO requestVO = customerView.requireInsuranceInfo(selectInsurances);
+                    Insurance insurance = insuranceList.findById(Integer.parseInt(requestVO.get(CustomerView.INSURANCE_NUMBER)));
+                    customerProcessManager.applyInsurance(requestVO, insurance);
                     customerView.successTask();
                     return;
                 }
                 customerView.emptyInsuranceInfo();
             }
             case PAY_INSURANCE_PREMIUM -> {
-                ResponseDto responseDto = customerProcessManager.getAccountOfInsurance();
-                if (customerView.showAccountOfInsurance(responseDto)) {
-                    RequestDto requestDto = customerView.payInsurancePremiumInfo();
-                    customerProcessManager.payInsurancePremium(requestDto);
+                ResponseVO responseVO = customerProcessManager.getAccountOfInsurance();
+                if (customerView.showAccountOfInsurance(responseVO)) {
+                    RequestVO requestVO = customerView.payInsurancePremiumInfo();
+                    customerProcessManager.payInsurancePremium(requestVO);
                     customerView.successTask();
                 }
             }
             case REQUIRE_INSURANCE_BENEFIT -> {
-                RequestDto requestDto = customerView.requireInsuranceBenefitInfo();
-                ResponseDto responseDto = customerProcessManager.requireInsuranceBenefit(requestDto);
-                customerView.completeSubmitAccident(responseDto);
+                RequestVO requestVO = customerView.requireInsuranceBenefitInfo();
+                ResponseVO responseVO = customerProcessManager.requireInsuranceBenefit(requestVO);
+                customerView.completeSubmitAccident(responseVO);
             }
             case RETRIEVE_CONTRACT -> {
                 customerView.retrieveContract(customerProcessManager.retrieveContract());
-                customerView.successTask();
             }
             default -> throw new IllegalArgumentException("선택하신 업무가 존재하지 않습니다");
         }
@@ -90,24 +89,24 @@ public class CustomerSystem {
         InsuranceType insuranceType = InsuranceType.findByNumber(insuranceNumber);
         switch (insuranceType) {
             case FIRE -> {
-                RequestDto requestDto = customerView.requireFireInfo();
-                customerProcessManager.applyFireInsurance(requestDto);
+                RequestVO requestVO = customerView.requireFireInfo();
+                customerProcessManager.applyFireInsurance(requestVO);
             }
             case LIFE -> {
-                RequestDto requestDto = customerView.requireLifeInfo();
-                customerProcessManager.applyLifeInsurance(requestDto);
+                RequestVO requestVO = customerView.requireLifeInfo();
+                customerProcessManager.applyLifeInsurance(requestVO);
             }
             case TRAVEL -> {
-                RequestDto requestDto = customerView.requireTravelInfo();
-                customerProcessManager.applyTravelInsurance(requestDto);
+                RequestVO requestVO = customerView.requireTravelInfo();
+                customerProcessManager.applyTravelInsurance(requestVO);
             }
             case CAR -> {
-                RequestDto requestDto = customerView.requireCarInfo();
-                customerProcessManager.applyCarInsurance(requestDto);
+                RequestVO requestVO = customerView.requireCarInfo();
+                customerProcessManager.applyCarInsurance(requestVO);
             }
             case CANCER -> {
-                RequestDto requestDto = customerView.requireCancerInfo();
-                customerProcessManager.applyCancerInsurance(requestDto);
+                RequestVO requestVO = customerView.requireCancerInfo();
+                customerProcessManager.applyCancerInsurance(requestVO);
             }
             default -> throw new IllegalArgumentException("해당 번호의 보험은 존재하지 않습니다.");
         }

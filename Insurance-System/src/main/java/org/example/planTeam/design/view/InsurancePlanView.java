@@ -24,8 +24,8 @@ import static org.example.planTeam.design.model.proposal.ProposalConstant.REWARD
 import static org.example.planTeam.design.model.proposal.ProposalConstant.SALE_STRATEGY;
 import static org.example.planTeam.design.model.proposal.ProposalConstant.SALE_TARGET;
 
-import org.example.common.dto.RequestDto;
-import org.example.common.dto.ResponseDto;
+import org.example.common.dto.RequestVO;
+import org.example.common.dto.ResponseVO;
 import org.example.common.view.DepartmentView;
 import org.example.insurance.InsuranceType;
 import org.example.planTeam.Status;
@@ -39,16 +39,16 @@ public class InsurancePlanView extends DepartmentView {
     }
 
 
-    public RequestDto manageProposal() {
+    public RequestVO manageProposal() {
         return null;
     }
 
-    public RequestDto modifyProposal() {
+    public RequestVO modifyProposal() {
         return null;
     }
 
-    public RequestDto createProposal() {
-        RequestDto designRequest = new RequestDto();
+    public RequestVO createProposal() {
+        RequestVO designRequest = new RequestVO();
         designRequest.add(KIND, PROPOSAL);
 
         println("상품 기획서 제목을 입력하세요.");
@@ -76,37 +76,37 @@ public class InsurancePlanView extends DepartmentView {
 
     }
 
-    private RequestDto askSubmit(RequestDto requestDto) {
+    private RequestVO askSubmit(RequestVO requestVO) {
         println("제출하시겠습니까?\ny/n");
-        return writeString().equalsIgnoreCase("y") ? yes(requestDto) : no();
+        return writeString().equalsIgnoreCase("y") ? yes(requestVO) : no();
     }
 
 
-    public RequestDto no() {
+    public RequestVO no() {
         return null;
     }
 
-    public RequestDto yes(RequestDto request) {
+    public RequestVO yes(RequestVO request) {
         println("제출이 완료되었습니다.");
         return request;
     }
 
 
-    public void completeObect(RequestDto requestDto) {
+    public void completeObect(RequestVO requestVO) {
         System.out.println("완성");
     }
 
-    public void completeCreateProposal(ResponseDto responseDto) {
-        if (responseDto.get(Status.getKey()).equals(Status.SUCCESS.getStatus())) {
+    public void completeCreateProposal(ResponseVO responseVO) {
+        if (responseVO.get(Status.getKey()).equals(Status.SUCCESS.getStatus())) {
             System.out.println("상품 기획이 완료 되었습니다.");
         } else {
             System.out.println("나중에 responseDTO에 에러메시지 상태를 담도록 만들어야겠당.");
         }
     }
 
-    public RequestDto createInsurance() {
-        RequestDto requestDto = new RequestDto();
-        requestDto.add(KIND, INSURANCE);
+    public RequestVO createInsurance() {
+        RequestVO requestVO = new RequestVO();
+        requestVO.add(KIND, INSURANCE);
         println("지금 부터 설계하고자 하는 보험 상품에 대한 정보를 입력해주세요.");
         println("보험 종류를 선택하세요.");
         for (InsuranceType insuranceType : InsuranceType.values()) {
@@ -114,114 +114,114 @@ public class InsurancePlanView extends DepartmentView {
         }
 
         String insuranceKind = writeIntToString(InsuranceType.values().length);
-        requestDto.add(INSURANCE_KIND, insuranceKind);
+        requestVO.add(INSURANCE_KIND, insuranceKind);
         println("보험 이름을 입력하세요.");
-        requestDto.add(INSURANCE_NAME, writeString());
+        requestVO.add(INSURANCE_NAME, writeString());
         println("만든 사람의 이름을 입력하세요.");
-        requestDto.add(RESPONSIBLE_PERSON, writeString());
+        requestVO.add(RESPONSIBLE_PERSON, writeString());
         println("보험에 포함되는 보상 최대 액을 입력하세요.");
-        requestDto.add(RewardConstant.MAX_REWARD, writeString());
+        requestVO.add(RewardConstant.MAX_REWARD, writeString());
         println("계약시에 제약사항을 입력해주세요.");
-        requestDto.add(RESTRICTION_REGULATION, writeString());
+        requestVO.add(RESTRICTION_REGULATION, writeString());
         println("매달 내야하는 보험료를 입력해주세요.");
-        requestDto.add(RewardConstant.MONTH_PAYMENT_FEE, writeString());
+        requestVO.add(RewardConstant.MONTH_PAYMENT_FEE, writeString());
         println("보험요율을 입력해주세요.");
-        requestDto.add(RewardConstant.INSURANCE_RATE, writeString());
+        requestVO.add(RewardConstant.INSURANCE_RATE, writeString());
         println("보험 가입자의 권리와 의무를 입력해주세요.");
-        requestDto.add(SUBSCRIBER_RIGHTS_AND_OBLIGATION, writeString());
+        requestVO.add(SUBSCRIBER_RIGHTS_AND_OBLIGATION, writeString());
 
-        return requestDto;
+        return requestVO;
     }
 
-    public RequestDto designProduct() {
+    public RequestVO designProduct() {
         return null;
     }
 
-    public void createInsurance(ResponseDto responseDto) {
-        if (responseDto.get(Status.getKey()).equals(Status.SUCCESS.getStatus())) {
+    public void createInsurance(ResponseVO responseVO) {
+        if (responseVO.get(Status.getKey()).equals(Status.SUCCESS.getStatus())) {
             System.out.println("보험 생성이 완료되었습니다.");
         }
     }
 
-    public RequestDto requestAuthorization() {
-        RequestDto requestDto = new RequestDto();
+    public RequestVO requestAuthorization() {
+        RequestVO requestVO = new RequestVO();
         System.out.println("만들어진 보험 리스트입니다.\n인가 요청을 할 보험 번호를 입력하세요.");
-        requestDto.add(ENTITY_LIST, ALL);
-        requestDto.add(ENTITY_KIND, INSURANCE);
-        return requestDto;
+        requestVO.add(ENTITY_LIST, ALL);
+        requestVO.add(ENTITY_KIND, INSURANCE);
+        return requestVO;
     }
 
-    public RequestDto requestAuthorization(ResponseDto responseDto) {
-        RequestDto requestDto = new RequestDto();
-        requestDto.add(KIND, "인가요청");
+    public RequestVO requestAuthorization(ResponseVO responseVO) {
+        RequestVO requestVO = new RequestVO();
+        requestVO.add(KIND, "인가요청");
 
-        responseDto.getTotalInfo().forEach(
+        responseVO.getTotalInfo().forEach(
             (key, value) -> System.out.println("보험 번호: " + key + " " + value));
-        requestDto.add(ENTITY_LIST, ONE);
-        requestDto.add("선택번호",
-            writeIntToString(responseDto.getTotalInfo().size()));
-        requestDto.add(ENTITY_KIND, INSURANCE);
-        return requestDto;
+        requestVO.add(ENTITY_LIST, ONE);
+        requestVO.add("선택번호",
+            writeIntToString(responseVO.getTotalInfo().size()));
+        requestVO.add(ENTITY_KIND, INSURANCE);
+        return requestVO;
     }
 
-    public void showAuthrizationResult(ResponseDto responseDto) {
-        switch (responseDto.get(Status.getKey())) {
+    public void showAuthrizationResult(ResponseVO responseVO) {
+        switch (responseVO.get(Status.getKey())) {
             case Status.SUCCESS_NUMBER -> {
                 System.out.println("보험에 대한 인가가 통과되었습니다.");
             }
         }
     }
 
-    public RequestDto selectProposal(ResponseDto responseDto) {
-        RequestDto requestDto = new RequestDto();
-        responseDto.getTotalInfo().forEach(
+    public RequestVO selectProposal(ResponseVO responseVO) {
+        RequestVO requestVO = new RequestVO();
+        responseVO.getTotalInfo().forEach(
             (key, value) -> System.out.println("기획안 번호: " + key + " " + value));
         println("만들어진 기획안 리스트입니다.\n설계할 기획안 번호를 입력하세요. ");
-        requestDto.add("객체리스트", "한개");
-        requestDto.add(ENTITY_KIND, PROPOSAL);
-        requestDto.add("선택번호", writeIntToString(responseDto.getTotalInfo().size()));
-        return requestDto;
+        requestVO.add("객체리스트", "한개");
+        requestVO.add(ENTITY_KIND, PROPOSAL);
+        requestVO.add("선택번호", writeIntToString(responseVO.getTotalInfo().size()));
+        return requestVO;
     }
 
-    public RequestDto createDesign(ResponseDto responseDto) {
-        RequestDto requestDto = new RequestDto();
-        requestDto.add(KIND, DESIGNPLAN);
-        println(responseDto.get(ENTITY));
+    public RequestVO createDesign(ResponseVO responseVO) {
+        RequestVO requestVO = new RequestVO();
+        requestVO.add(KIND, DESIGNPLAN);
+        println(responseVO.get(ENTITY));
         println("설계안 제목을 입력해주세요.");
-        requestDto.add(DESIGN_TITLE, writeString());
+        requestVO.add(DESIGN_TITLE, writeString());
         println("설계안 책임자를 입력해주세요.");
-        requestDto.add(DESIGN_MANAGER, writeString());
-        requestDto.add("기획서번호", responseDto.get(ENTITY).split(" ")[0]);
-        return requestDto;
+        requestVO.add(DESIGN_MANAGER, writeString());
+        requestVO.add("기획서번호", responseVO.get(ENTITY).split(" ")[0]);
+        return requestVO;
     }
 
-    public void completeCreateDesignPlan(ResponseDto responseDto) {
-        if (responseDto.get(Status.getKey()).equals(Status.SUCCESS.getStatus())) {
+    public void completeCreateDesignPlan(ResponseVO responseVO) {
+        if (responseVO.get(Status.getKey()).equals(Status.SUCCESS.getStatus())) {
             System.out.println("설계안 대로 보험 상품 생성을 완성하였습니다.!");
         }
     }
 
-    public RequestDto requestInsurances() {
-        RequestDto requestDto = new RequestDto();
+    public RequestVO requestInsurances() {
+        RequestVO requestVO = new RequestVO();
         println("모든 보험 상품들을 조회하시겠습니까? (Y/N)");
-        requestDto.add(READ_INSURANCE_RESULT, writeString());
-        requestDto.add(ENTITY_LIST, ALL);
-        requestDto.add(ENTITY_KIND, INSURANCE);
-        return requestDto;
+        requestVO.add(READ_INSURANCE_RESULT, writeString());
+        requestVO.add(ENTITY_LIST, ALL);
+        requestVO.add(ENTITY_KIND, INSURANCE);
+        return requestVO;
     }
 
     public void denyShowInsurances() {
         println("모든 보험 상품 조회를 거부하였습니다.");
     }
 
-    public void showAllInsurance(ResponseDto responseDto) {
+    public void showAllInsurance(ResponseVO responseVO) {
         println("모든 상품 정보를 나열합니다.");
         println("====================");
         for (int i = 0; i < 10; i++) {
-            if (responseDto.get(String.valueOf(i)) == null) {
+            if (responseVO.get(String.valueOf(i)) == null) {
                 break;
             }
-            println(responseDto.get(String.valueOf(i)) + "\n");
+            println(responseVO.get(String.valueOf(i)) + "\n");
         }
     }
 }

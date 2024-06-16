@@ -3,8 +3,6 @@ package org.example.common.view;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import org.example.common.dto.RequestDto;
-import org.example.common.dto.ResponseDto;
 import org.example.common.usecase.Usecase;
 
 public class DepartmentView {

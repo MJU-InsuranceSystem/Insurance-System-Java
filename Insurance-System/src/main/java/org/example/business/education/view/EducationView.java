@@ -1,8 +1,8 @@
 package org.example.business.education.view;
 
 
-import org.example.common.dto.RequestDto;
-import org.example.common.dto.ResponseDto;
+import org.example.common.dto.RequestVO;
+import org.example.common.dto.ResponseVO;
 import org.example.common.view.DepartmentView;
 import org.example.planTeam.Status;
 
@@ -21,37 +21,37 @@ public class EducationView extends DepartmentView {
         println("안녕하세요. 영업 교육팀입니다.");
     }
 
-    public void completeMessage(ResponseDto responseDto) {
+    public void completeMessage(ResponseVO responseVO) {
         println("성공적으로 업무를 완료하였습니다");
-        println("상태 메시지 : " + responseDto.get(Status.getKey()));
+        println("상태 메시지 : " + responseVO.get(Status.getKey()));
     }
 
-    public RequestDto manageEducation() {
-        RequestDto requestDto = new RequestDto();
+    public RequestVO manageEducation() {
+        RequestVO requestVO = new RequestVO();
         println("현재 만들어진 모든 교육을 조회하겠습니까? (Y/N)");
-        requestDto.add(MANAGE_RESPONSE_RESULT, writeString());
-        return requestDto;
+        requestVO.add(MANAGE_RESPONSE_RESULT, writeString());
+        return requestVO;
     }
 
-    public RequestDto prepareEducation() {
-        RequestDto requestDto = new RequestDto();
+    public RequestVO prepareEducation() {
+        RequestVO requestVO = new RequestVO();
         println("교육을 추가하기 전 정보를 입력해주세요");
         print("교육 이름 :");
-        requestDto.add(EDUCATION_NAME, writeString());
+        requestVO.add(EDUCATION_NAME, writeString());
         print("교육 장소 :");
-        requestDto.add(EDUCATION_LOCATION, writeString());
+        requestVO.add(EDUCATION_LOCATION, writeString());
         print("교육 일자 :");
-        requestDto.add(EDUCATION_SCHEDULE, writeString());
+        requestVO.add(EDUCATION_SCHEDULE, writeString());
         print("교육 내용 :");
-        requestDto.add(EDUCATION_CONTENTS, writeString());
+        requestVO.add(EDUCATION_CONTENTS, writeString());
         print("강사 이름 :");
-        requestDto.add(EDUCATION_TEACHER, writeString());
+        requestVO.add(EDUCATION_TEACHER, writeString());
         print("교재 이름 :");
-        requestDto.add(EDUCATION_TEXTBOOK, writeString());
-        return requestDto;
+        requestVO.add(EDUCATION_TEXTBOOK, writeString());
+        return requestVO;
     }
 
-    public RequestDto manageEducationStudent() {
+    public RequestVO manageEducationStudent() {
         return null;
     }
 
@@ -59,9 +59,9 @@ public class EducationView extends DepartmentView {
         println("해당 업무가 거절되었습니다.");
     }
 
-    public void showAllEducationName(ResponseDto responseDto) {
+    public void showAllEducationName(ResponseVO responseVO) {
         println("모든 교육 제목");
         println("================");
-        println(responseDto.get(ALL_EDUCATION));
+        println(responseVO.get(ALL_EDUCATION));
     }
 }

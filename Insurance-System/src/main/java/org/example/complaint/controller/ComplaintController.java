@@ -1,7 +1,7 @@
 package org.example.complaint.controller;
 
 import org.example.TeamController;
-import org.example.common.dto.RequestDto;
+import org.example.common.dto.RequestVO;
 import org.example.complaint.ComplaintManagementTeam;
 import org.example.complaint.usecase.ComplaintUseCase;
 import org.example.complaint.view.ComplaintView;
@@ -21,11 +21,11 @@ public class ComplaintController implements TeamController {
         complaintView.intro("민원 관리");
         int selectNumber = complaintView.selectUsecase(ComplaintUseCase.class);
         ComplaintUseCase useCase = ComplaintUseCase.findByNumber(selectNumber);
-        RequestDto requestDto = showUseCaseRequireInfo(useCase);
-        complaintManagementTeam.register(requestDto);
+        RequestVO requestVO = showUseCaseRequireInfo(useCase);
+        complaintManagementTeam.register(requestVO);
     }
 
-    private RequestDto showUseCaseRequireInfo(ComplaintUseCase useCase) {
+    private RequestVO showUseCaseRequireInfo(ComplaintUseCase useCase) {
         switch (useCase) {
             case REGISTER_COMPLAINT -> {
                 return complaintView.registerComplaint();
