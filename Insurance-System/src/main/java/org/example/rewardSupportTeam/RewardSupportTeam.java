@@ -69,6 +69,14 @@ public class RewardSupportTeam extends Team {
     @Override
     public ResponseVO register(RequestVO request) {
         ResponseVO responseVO = new ResponseVO();
+
+        if (judgmentResult) {
+            String showJudge = "면부책 판단에 통과하였습니다.";
+            responseVO.add(PAY_ANSWER, showJudge);
+        } else {
+            String showJudge = "면부책 판단에 탈락하였습니다.";
+            responseVO.add(PAY_ANSWER, showJudge);
+        }
         return responseVO;
     }
 

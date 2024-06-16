@@ -37,7 +37,9 @@ public class RewardSupportController implements TeamController {
                 rewardSupportView.completeJudgeFault(responseVO);
             }
             case PAY_INSURANCE -> {
-                RequestVO requestVO = rewardSupportView.payInsurance();
+                RequestVO tempRequest = new RequestVO();
+                ResponseVO tempResponseVO = rewardSupportTeam.register(tempRequest);
+                RequestVO requestVO = rewardSupportView.payInsurance(tempResponseVO);
                 ResponseVO responseVO = rewardSupportTeam.retrieve(requestVO);
                 rewardSupportView.completePayInsurance(responseVO);
             }
