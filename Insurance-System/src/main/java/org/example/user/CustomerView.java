@@ -5,8 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 
-import org.example.common.dto.RequestDto;
-import org.example.common.dto.ResponseDto;
+
 import org.example.common.dto.RequestVO;
 import org.example.common.dto.ResponseVO;
 import org.example.contract.Contract;
@@ -168,10 +167,8 @@ public class CustomerView {
         successTask();
     }
 
+
     public void completeSubmitAccident(ResponseVO responseVO) {
-        if (responseVO.get(Status.getKey()).equals(Status.SUCCESS.getStatus())) {
-            println("성공적으로 사고가 접수되었습니다.");
-    public void completeSubmitAccident(ResponseDto responseDto) {
         if (responseVO.get(Status.getKey()).equals(Status.SUCCESS.getStatus())) {
             println("보험금 청구 신청이 완료되었습니다.");
         } else if (responseVO.get(Status.getKey()).equals(Status.INPUT_EMPTY.getStatus())) {
