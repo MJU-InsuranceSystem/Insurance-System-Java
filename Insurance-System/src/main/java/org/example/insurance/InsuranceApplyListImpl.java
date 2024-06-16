@@ -46,4 +46,9 @@ public class InsuranceApplyListImpl implements InsuranceApplyList{
     public void update(InsuranceApplication insurance) {
 
     }
+
+    @Override
+    public List<InsuranceApplication> findAll() {
+        return INSURANCE_APPLICATIONS;
+    }
 }

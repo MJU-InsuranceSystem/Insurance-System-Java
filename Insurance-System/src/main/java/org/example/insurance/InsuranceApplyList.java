@@ -1,5 +1,6 @@
 package org.example.insurance;
 
+import java.util.List;
 import org.example.domain.insurance.InsuranceApplication;
 
 public interface InsuranceApplyList {
@@ -14,4 +15,6 @@ public interface InsuranceApplyList {
   InsuranceApplication findFirst();
 
   void update(InsuranceApplication insurance);
+
+  List<InsuranceApplication> findAll();
 }

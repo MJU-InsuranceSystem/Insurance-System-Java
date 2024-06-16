@@ -7,10 +7,10 @@ import org.example.common.controller.WorkerSystem;
 import org.example.common.view.InsuranceSystemView;
 import org.example.common.view.SystemView;
 import org.example.insurance.InsuranceApplyListImpl;
-import org.example.insurance.InsuranceChargeCustomerApplyList;
 import org.example.insurance.InsuranceChargeCustomerApplyListImpl;
 import org.example.rewardSupportTeam.model.InsurancePremiumPaymentCustomerList;
 import org.example.rewardSupportTeam.model.AccidentListImpl;
+import org.example.planTeam.design.model.insurance.InsuranceListImpl;
 import org.example.rewardSupportTeam.model.InsurancePremiumPaymentCustomerListImpl;
 import org.example.user.CustomerProcessManager;
 import org.example.user.CustomerView;
@@ -29,8 +29,9 @@ public class MainSystemConfig {
         return new AuthController(systemView());
     }
 
+
     private CustomerSystem customerSystem() {
-        return new CustomerSystem(systemView(), customerView(), customerProcessManager());
+    return new CustomerSystem(systemView(), customerView(), customerProcessManager(), new InsuranceListImpl());
     }
 
     private CustomerView customerView() {

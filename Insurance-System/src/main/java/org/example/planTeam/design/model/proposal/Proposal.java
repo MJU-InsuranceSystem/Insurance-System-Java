@@ -157,10 +157,10 @@ public class Proposal {
     }
     @Override
     public String toString() {
-        return "title: " + title + " productOverview: "
-            + productOverview + " marketResearch: " + marketResearch + " insurancePayment"
-            + insurancePayment + " saleStrategy: " + saleStrategy + " saleTarget: " + saleTarget
-            + " reward: " + reward;
+        return "기획서 제목: " + title + " 개요: "
+            + productOverview + " 시장 조사: " + marketResearch + " 보험료"
+            + insurancePayment + " 판매 전략: " + saleStrategy + " 예상 판매 대상: " + saleTarget
+            + " 보상: " + reward;
     }
 
     public String toEntity() {

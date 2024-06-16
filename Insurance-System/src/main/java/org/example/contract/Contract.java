@@ -9,8 +9,6 @@ public class Contract {
 	private InsuranceApplication insuranceApplication;
 	private String managerName;
 
-	private int 월납부액;
-
 	public String getCustomerName() {
 		return customerName;
 	}
@@ -23,7 +21,7 @@ public class Contract {
 		this.contractId = contractId;
 	}
 
-	public InsuranceApplication getInsurance() {
+	public InsuranceApplication getInsuranceApplication() {
 		return insuranceApplication;
 	}
 
@@ -48,7 +46,7 @@ public class Contract {
 		return  "contract ID = " + contractId +"\n" +
 				"customer Name = " + customerName + '\n' +
 				"insurance ID = " + insuranceApplication.getInsuranceApplicationID() + '\n' +
-				"insurance Type = " + insuranceApplication.getInsuranceType() + '\n' +
+				"insurance Type = " + insuranceApplication.getInsurance().getInsuranceType() + '\n' +
 				"managerName = " + managerName ;
 	}
 }

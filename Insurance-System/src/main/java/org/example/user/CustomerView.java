@@ -4,23 +4,23 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
-
 import org.example.common.dto.RequestDto;
 import org.example.common.dto.ResponseDto;
 import org.example.contract.Contract;
-import org.example.contract.ContractList;
 import org.example.insurance.InsuranceType;
 import org.example.planTeam.Status;
+import org.example.planTeam.design.model.insurance.Insurance;
 
 public class CustomerView {
 
-    public static final String INSURANCE_ID = "id";
+    public static final String INSURANCE_APPLICATION_ID = "applicationId";
     public static final String INSURANCE_NUMBER = "number";
     public static final String FIRE_INFO = "fireInfo";
     public static final String SUBSCRIBER_NAME = "name";
-    public static final String ACCOUNT_NUMBER = "accountNumber";
-    public static final String DETAIL = "detail";
-    public static final String MONTH_PAYMENT = "monthPayment";
+    public static final String FAMILY_HISTORY = "accountNumber";
+    public static final String FINANCE_STATUS = "financeStatus";
+    public static final String PERSONAL_INFO = "personalInfo";
+    public static final String REQUEST_INSURANCE = "requestInsurance";
     private static int INSURANCE_COUNT = 0;
     public static final String CHARGE_ANSWER = "chargeAnswer";
     public static final String SUBSCRIBE_INSURANCE = "insurances";
@@ -43,28 +43,34 @@ public class CustomerView {
     }
 
     public int selectInsuranceNumber() {
+        println("보험 종류를 먼저 선택해 주세요");
         for (InsuranceType insuranceType : InsuranceType.values()) {
             println(insuranceType.getInsuranceNumber() + ". : " + insuranceType.getDescription());
         }
         return writeInt();
     }
 
-    public RequestDto requireInsuranceInfo() {
+    public RequestDto requireInsuranceInfo(List<Insurance> selectInsurances) {
         RequestDto requestDto = new RequestDto();
-        requestDto.add(INSURANCE_ID, String.valueOf(++INSURANCE_COUNT));
-        println("보험 종류를 먼저 선택해 주세요");
-        for (InsuranceType insuranceType : InsuranceType.values()) {
-            println(insuranceType.getInsuranceNumber() + ". : " + insuranceType.getDescription());
+        requestDto.add(INSURANCE_APPLICATION_ID, String.valueOf(++INSURANCE_COUNT));
+        println("아래는 선택한 보험의 정보입니다.");
+        println(">>");
+        for (Insurance insurance : selectInsurances) {
+            println(insurance.toString());
         }
+        println("=================================");
+        print("위 보험 중 원하시는 보험 ID를 고르세요 : ");
         requestDto.add(INSURANCE_NUMBER, writeString());
         print("보험 가입자 이름 : ");
         requestDto.add(SUBSCRIBER_NAME, writeString());
-        print("보험 세부사항 : ");
-        requestDto.add(DETAIL, writeString());
-        print("월 보험료 : ");
-        requestDto.add(MONTH_PAYMENT, writeString());
-        print("계좌 번호 : ");
-        requestDto.add(ACCOUNT_NUMBER, writeString());
+        print("개인 정보(건강 상태, 과거 의료 기록, 현재 병력, 만성 질환 여부, 직업 및 취업 상황) : ");
+        requestDto.add(PERSONAL_INFO, writeString());
+        print("가입하려는 보험 상품(보장 범위, 가입 기간, 부가 보험): ");
+        requestDto.add(REQUEST_INSURANCE, writeString());
+        print("가족력(유전적 질병 여부, 가족 내 의료 기록) : ");
+        requestDto.add(FAMILY_HISTORY, writeString());
+        print("금융 상태(보험금 납부 능력, 재정 상태, 기존 보험상품 가입여부) : ");
+        requestDto.add(FINANCE_STATUS, writeString());
         return requestDto;
     }
 
@@ -77,7 +83,7 @@ public class CustomerView {
         print("화재 보험 정보 : ");
         requestDto.add(FIRE_INFO, writeString());
         print("계좌 번호 : ");
-        requestDto.add(ACCOUNT_NUMBER, writeString());
+        requestDto.add(FAMILY_HISTORY, writeString());
         return requestDto;
     }
 
@@ -90,7 +96,7 @@ public class CustomerView {
         print("생명 보험 정보 : ");
         requestDto.add(FIRE_INFO, writeString());
         print("계좌 번호 : ");
-        requestDto.add(ACCOUNT_NUMBER, writeString());
+        requestDto.add(FAMILY_HISTORY, writeString());
         return requestDto;
     }
 
@@ -148,6 +154,11 @@ public class CustomerView {
         requestDto.add(CHARGE_ANSWER, writeString());
         return requestDto;
     }
+    public void retrieveContract(List<Contract> contractList) {
+        contractList.stream()
+            .map(Contract::toString)
+            .forEach(System.out::println);
+    }
 
     public void completeSubmitAccident(ResponseDto responseDto) {
         if (responseDto.get(Status.getKey()).equals(Status.SUCCESS.getStatus())) {
@@ -157,6 +168,9 @@ public class CustomerView {
         }
     }
 
+    public void emptyInsuranceInfo() {
+        println("해당 보험은 현재 준비되어 있지 않습니다.");
+    }
     private String writeString() {
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -181,12 +195,6 @@ public class CustomerView {
 
     private void print(String message) {
         System.out.print(message);
-    }
-
-    public void retrieveContract(List<Contract> contractList) {
-        contractList.stream()
-                .map(Contract::toString)
-                .forEach(System.out::println);
     }
 
     public boolean showAccountOfInsurance(ResponseDto responseDto) {

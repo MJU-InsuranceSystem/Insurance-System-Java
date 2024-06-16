@@ -13,11 +13,13 @@ public class UnderwriteView extends DepartmentView {
   public static final String POLICY_RISK = "riskAssessmentCriteria";
   public static final String POLICY_PREMIUM = "premiumCalculationCriteria";
   public static final String POLICY_SUBSCRIPTION = "subscriptionReviewCriteria";
-  public static final String FIRST_INSURANCE_APPLY = "firstInsurance";
+  public static final String ALL_INSURANCE_APPLY = "allInsurance";
   public static final String UNDERWRITING_RESULT = "underwritingResult";
   public static final String FINISH_INSURANCE_ID = "finishInsuranceId";
   public static final String FINISH_INSURANCE_CUSTOMER_NAME = "finishInsuranceName";
   public static final String CONTRACT_INFO = "contractInfo";
+  public static final String SELECT_APPLICATION_ID = "selectApplicationId";
+  public static final String ONE_SELECT_INSURANCE = "oneSelectInsurance";
 
   public RequestDto createPolicy() {
     RequestDto requestDto = new RequestDto();
@@ -40,11 +42,10 @@ public class UnderwriteView extends DepartmentView {
     println("상태 코드 : " + responseDto.get(Status.getKey()));
   }
 
-  public RequestDto performUnderwriting(String insuranceApplyInfo) {
+  public RequestDto performUnderwriting(ResponseDto responseDto) {
     RequestDto requestDto = new RequestDto();
     println("인수 심사할 보험의 정보는 아래와 같습니다.");
-    println(insuranceApplyInfo);
-    println("===============");
+    println(responseDto.get(ONE_SELECT_INSURANCE));
     print("인수를 허가하겠습니까?(Y/N) :");
     requestDto.add(UNDERWRITING_RESULT, writeString());
     return requestDto;
@@ -84,5 +85,11 @@ public class UnderwriteView extends DepartmentView {
 
   public void inNotExistInsuranceApply() {
     println("인수 심사할 대상이 존재하지 않습니다.");
+  }
+
+  public int selectApplicationId(String insuranceInfo) {
+    println("아래의 가입신청 보험리스트 중 보험ID를 선택하세요");
+    print(insuranceInfo);
+    return writeInt();
   }
 }
