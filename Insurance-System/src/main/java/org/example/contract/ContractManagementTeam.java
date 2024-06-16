@@ -1,6 +1,6 @@
 package org.example.contract;
 
-import static org.example.user.CustomerManager.CUSTOMER_MANAGER;
+import static org.example.user.CustomerList.CUSTOMER_MANAGER;
 
 import org.example.Team;
 import org.example.common.dto.RequestDto;
@@ -9,9 +9,6 @@ import org.example.domain.insurance.InsuranceApplication;
 import org.example.insurance.InsuranceApplyList;
 import org.example.underwriteTeam.view.UnderwriteView;
 import org.example.user.Customer;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ContractManagementTeam extends Team {
 

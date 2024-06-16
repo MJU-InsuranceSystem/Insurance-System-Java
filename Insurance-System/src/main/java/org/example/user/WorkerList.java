@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class WorkerManager {
+public class WorkerList {
 
-    private static final WorkerManager WORKER_MANAGER = new WorkerManager();
+    private static final WorkerList WORKER_MANAGER = new WorkerList();
     private final List<Worker> workers = new ArrayList<>();
 
-    private WorkerManager() {
+    private WorkerList() {
         Worker worker = new Worker();
         worker.id = String.valueOf(1);
         worker.password = String.valueOf(1);
@@ -17,7 +17,7 @@ public class WorkerManager {
         workers.add(worker);
     }
 
-    public static WorkerManager getInstance() {
+    public static WorkerList getInstance() {
         return WORKER_MANAGER;
     }
 
@@ -34,5 +34,9 @@ public class WorkerManager {
         return workers.stream()
             .filter(worker -> worker.getId().equals(id) && worker.getPassword().equals(password))
             .findFirst();
+    }
+
+    public List<Worker> getWorkerList() {
+        return workers;
     }
 }

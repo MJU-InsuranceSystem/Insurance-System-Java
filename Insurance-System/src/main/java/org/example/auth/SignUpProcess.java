@@ -2,21 +2,21 @@ package org.example.auth;
 
 import java.util.Map;
 import org.example.user.Customer;
-import org.example.user.CustomerManager;
+import org.example.user.CustomerList;
 import org.example.user.User;
 import org.example.user.UserType;
 import org.example.user.Worker;
-import org.example.user.WorkerManager;
+import org.example.user.WorkerList;
 import org.example.common.view.SystemView;
 
 public class SignUpProcess implements Process {
 
-    private final CustomerManager customerManager;
-    private final WorkerManager workerManager;
+    private final CustomerList customerList;
+    private final WorkerList workerList;
 
-    public SignUpProcess(CustomerManager customerManager, WorkerManager workerManager) {
-        this.customerManager = customerManager;
-        this.workerManager = workerManager;
+    public SignUpProcess(CustomerList customerList, WorkerList workerList) {
+        this.customerList = customerList;
+        this.workerList = workerList;
     }
 
     @Override
@@ -32,12 +32,12 @@ public class SignUpProcess implements Process {
         switch (userType) {
             case CUSTOMER -> {
                 Customer customer = Customer.create(signUpInfo);
-                customerManager.add(customer);
+                customerList.add(customer);
                 return customer;
             }
             case WORKER -> {
                 Worker worker = Worker.create(signUpInfo);
-                workerManager.add(worker);
+                workerList.add(worker);
                 return worker;
             }
             default -> {

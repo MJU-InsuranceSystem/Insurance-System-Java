@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class CustomerManager {
+public class CustomerList {
 
-    public static final CustomerManager CUSTOMER_MANAGER = new CustomerManager();
+    public static final CustomerList CUSTOMER_MANAGER = new CustomerList();
     private final List<Customer> customers = new ArrayList<>();
 
-    private CustomerManager() {
+    private CustomerList() {
         Customer customer = new Customer();
         customer.id = String.valueOf(2);
         customer.password = String.valueOf(2);
@@ -18,7 +18,7 @@ public class CustomerManager {
         customers.add(customer);
     }
 
-    public static CustomerManager getInstance() {
+    public static CustomerList getInstance() {
         return CUSTOMER_MANAGER;
     }
 

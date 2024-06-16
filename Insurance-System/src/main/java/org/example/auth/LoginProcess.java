@@ -3,19 +3,19 @@ package org.example.auth;
 import java.util.Map;
 
 import org.example.common.AuthUtil;
-import org.example.user.CustomerManager;
+import org.example.user.CustomerList;
 import org.example.user.User;
-import org.example.user.WorkerManager;
+import org.example.user.WorkerList;
 import org.example.common.view.SystemView;
 
 public class LoginProcess implements Process {
 
-    private final CustomerManager customerManager;
-    private final WorkerManager workerManager;
+    private final CustomerList customerList;
+    private final WorkerList workerList;
 
-    public LoginProcess(CustomerManager customerManager, WorkerManager workerManager) {
-        this.customerManager = customerManager;
-        this.workerManager = workerManager;
+    public LoginProcess(CustomerList customerList, WorkerList workerList) {
+        this.customerList = customerList;
+        this.workerList = workerList;
     }
 
     @Override
@@ -35,11 +35,11 @@ public class LoginProcess implements Process {
     }
 
     private User findUser(String id, String password) {
-        if (workerManager.isExistByIdAndPassword(id, password)) {
-            return workerManager.findByIdAndPassword(id, password).get();
+        if (workerList.isExistByIdAndPassword(id, password)) {
+            return workerList.findByIdAndPassword(id, password).get();
         }
-        if (customerManager.isExistByIdAndPassword(id, password)) {
-            return customerManager.findByIdAndPassword(id, password).get();
+        if (customerList.isExistByIdAndPassword(id, password)) {
+            return customerList.findByIdAndPassword(id, password).get();
         }
         throw new IllegalArgumentException("아이디 또는 비밀번호가 틀렸습니다");
     }

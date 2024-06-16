@@ -1,17 +1,14 @@
 package org.example.rewardSupportTeam;
 
 import org.example.Team;
-import org.example.common.controller.CustomerSystem;
 import org.example.common.dto.RequestDto;
 import org.example.common.dto.ResponseDto;
-import org.example.contract.Contract;
 import org.example.insurance.InsuranceChargeCustomerApplyList;
 import org.example.planTeam.Status;
+import org.example.planTeam.design.model.insurance.Insurance;
 import org.example.rewardSupportTeam.model.*;
-import org.example.rewardSupportTeam.view.RewardSupportView;
 import org.example.user.Customer;
-import org.example.user.CustomerManager;
-import org.example.user.CustomerView;
+import org.example.user.CustomerList;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -84,6 +81,14 @@ public class RewardSupportTeam extends Team {
     @Override
     public ResponseDto retrieve(RequestDto request) {
         ResponseDto responseDto = new ResponseDto();
+
+        if (request.isEmpty()) {
+            for (Accident accident : accidentList.getAllAccidents()) {
+                responseDto.add(ENTITY_LIST, accident.toString());
+            }
+            return responseDto;
+        }
+
         if (judgmentResult) {
             responseDto.add(Status.getKey(), Status.SUCCESS.getStatus());
             return responseDto;
@@ -94,7 +99,7 @@ public class RewardSupportTeam extends Team {
 
     public ResponseDto getNotPaidCustomer() {
         List<Customer> paidCustomers = insurancePremiumPaymentCustomerList.getAll();
-        List<Customer> allCustomers = CustomerManager.getInstance().getCustomerList();
+        List<Customer> allCustomers = CustomerList.getInstance().getCustomerList();
         List<Customer> unpaidCustomers = allCustomers.stream()
                 .filter(customer -> !paidCustomers.contains(customer))
                 .toList();
@@ -103,7 +108,7 @@ public class RewardSupportTeam extends Team {
                 .collect(Collectors.joining("\n"));
 
         ResponseDto responseDto = new ResponseDto();
-        if(!unpaidCustomers.isEmpty()) {
+        if (!unpaidCustomers.isEmpty()) {
             responseDto.add(NOT_PAID_CUSTOMER, notPaidCustomers);
         } else {
             responseDto.add(NOT_PAID_CUSTOMER, "모든 고객이 납부하였습니다.");

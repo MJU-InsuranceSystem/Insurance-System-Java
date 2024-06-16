@@ -54,4 +54,12 @@ public class Accident {
 
     }
 
+    @Override
+    public String toString() {
+        return "Accident ID: " + accidentID + "\n" +
+                "사고 내용: " + content + "\n" +
+                "고객 이름: " + customerName + "\n" +
+                "사고 정보: " + (claimInsurance != null ? claimInsurance.toString() : "null");
+    }
+
 }
