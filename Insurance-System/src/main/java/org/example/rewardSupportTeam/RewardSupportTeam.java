@@ -57,7 +57,7 @@ public class RewardSupportTeam extends Team {
                 responseDto.add(Status.key(), Status.FAIL.getStatus());
                 return responseDto;
             }
-            List<Contract> tempList = applyUser.getContractList().getContracts();
+            List<Contract> tempList = applyUser.getContractList();
 
 
             responseDto.add(Status.key(), Status.SUCCESS.getStatus());
