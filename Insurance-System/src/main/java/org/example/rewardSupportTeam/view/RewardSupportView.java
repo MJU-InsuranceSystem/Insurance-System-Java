@@ -18,6 +18,7 @@ public class RewardSupportView extends DepartmentView {
     public static final String CLAIMINSURANCE_SUPPORTINGFILE = "supportingFile";
     //judgeAnswer
     public static final String JUDGE_ANSWER = "answer";
+    public static final String NOT_PAID_CUSTOMER = "notPaidCustomer";
 
     public RequestDto submitAccident() {
         RequestDto requestDto = new RequestDto();
@@ -64,5 +65,10 @@ public class RewardSupportView extends DepartmentView {
         } else {
             println("잘못된 입력값입니다. 다시 시도해주세요.");
         }
+    }
+
+    public void showNotPaidCustomer(ResponseDto responseDto) {
+        String notPaidCustomers = responseDto.get(NOT_PAID_CUSTOMER);
+        System.out.println("미납자 목록 : " + notPaidCustomers);
     }
 }

@@ -32,9 +32,6 @@ public class ContractManagementController implements TeamController {
                 contractManagementTeam.deleteContract(requestDto);
                 contractManagementView.successTask();
             }
-            case CHECK_INSURANCE_ACCOUNT -> {
-
-            }
             default -> throw new IllegalArgumentException("해당하는 usecase가 없습니다.");
         }
     }

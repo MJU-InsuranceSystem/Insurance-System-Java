@@ -37,6 +37,10 @@ public class RewardSupportController implements TeamController {
                 ResponseDto responseDto = rewardSupportTeam.process(requestDto);
                 rewardSupportView.completeJudgeFault(responseDto);
             }
+            case CHECK_NOT_PAID_CUSTOMER -> {
+                ResponseDto responseDto = rewardSupportTeam.getNotPaidCustomer();
+                rewardSupportView.showNotPaidCustomer(responseDto);
+            }
             default -> throw new IllegalArgumentException("해당하는 usecase가 없습니다.");
         }
     }
