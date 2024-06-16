@@ -24,10 +24,7 @@ import org.example.planTeam.inspection.InsuranceInspectionTeam;
 import org.example.planTeam.inspection.InsuranceInspectionView;
 import org.example.rewardSupportTeam.RewardSupportTeam;
 import org.example.rewardSupportTeam.controller.RewardSupportController;
-import org.example.rewardSupportTeam.model.AccidentList;
-import org.example.rewardSupportTeam.model.AccidentListImpl;
-import org.example.rewardSupportTeam.model.litigationInfoList;
-import org.example.rewardSupportTeam.model.litigationInfoListImpl;
+import org.example.rewardSupportTeam.model.*;
 import org.example.rewardSupportTeam.view.RewardSupportView;
 import org.example.underwriteTeam.UnderwriteTeam;
 import org.example.underwriteTeam.controller.UnderwriteController;
@@ -115,7 +112,7 @@ public class DepartmentConfig {
     }
 
     private static RewardSupportTeam rewardSupportTeam() {
-        return new RewardSupportTeam(accidentList(), litigationInfoList(), insuranceChargeCustomerApplyList());
+        return new RewardSupportTeam(accidentList(), litigationInfoList(), insuranceChargeCustomerApplyList(), insurancePremiumPaymentCustomerList());
     }
 
     private static AccidentList accidentList() {
@@ -128,6 +125,10 @@ public class DepartmentConfig {
 
     private static InsuranceChargeCustomerApplyList insuranceChargeCustomerApplyList() {
         return new InsuranceChargeCustomerApplyListImpl();
+    }
+
+    private static InsurancePremiumPaymentCustomerList insurancePremiumPaymentCustomerList() {
+        return new InsurancePremiumPaymentCustomerListImpl();
     }
 
     public static ContractManagementController contractManagementController() {

@@ -18,6 +18,7 @@ public class RewardSupportController implements TeamController {
     public RewardSupportController(RewardSupportView rewardSupportView, RewardSupportTeam rewardSupportTeam, InsuranceChargeCustomerApplyList insuranceChargeCustomerApplyList) {
         this.rewardSupportView = rewardSupportView;
         this.rewardSupportTeam = rewardSupportTeam;
+
     }
 
     @Override
@@ -45,7 +46,10 @@ public class RewardSupportController implements TeamController {
                 RequestDto requestDto = rewardSupportView.manageLawsuit();
 
             }
-
+            case CHECK_NOT_PAID_CUSTOMER -> {
+                ResponseDto responseDto = rewardSupportTeam.getNotPaidCustomer();
+                rewardSupportView.showNotPaidCustomer(responseDto);
+            }
             default -> throw new IllegalArgumentException("해당하는 usecase가 없습니다.");
         }
     }

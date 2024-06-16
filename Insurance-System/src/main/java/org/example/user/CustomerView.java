@@ -23,6 +23,10 @@ public class CustomerView {
     public static final String MONTH_PAYMENT = "monthPayment";
     private static int INSURANCE_COUNT = 0;
     public static final String CHARGE_ANSWER = "chargeAnswer";
+    public static final String SUBSCRIBE_INSURANCE = "insurances";
+    public static final String TOTAL_ACCOUNT = "totalAccount";
+    public static final String PREMIUM_ANSWER = "premiumAnswer";
+    public static final String CHECK_PAID = "checkPaid";
 
     // 보험금 청구 정보
     public static final String ACCIDENT_CONTENT = "content";
@@ -110,7 +114,8 @@ public class CustomerView {
 
     public RequestDto payInsurancePremiumInfo() {
         RequestDto requestDto = new RequestDto();
-
+        println("보험료를 납부하시곘습니까? (Y/N) ");
+        requestDto.add(PREMIUM_ANSWER, writeString());
         return requestDto;
     }
 
@@ -183,5 +188,17 @@ public class CustomerView {
         contractList.stream()
                 .map(Contract::toString)
                 .forEach(System.out::println);
+    }
+
+    public boolean showAccountOfInsurance(ResponseDto responseDto) {
+        if(responseDto.get(CHECK_PAID).equals("Y")) {
+            println("이미 납부하였습니다.");
+            return false;
+        }
+        String insurances = responseDto.get(SUBSCRIBE_INSURANCE);
+        int totalAccount = Integer.parseInt(responseDto.get(TOTAL_ACCOUNT));
+        println("가입한 보험 : " + insurances);
+        println("납부할 금액 : " + totalAccount);
+        return true;
     }
 }
