@@ -73,7 +73,6 @@ public class CustomerSystem {
             }
             case RETRIEVE_CONTRACT -> {
                 customerView.retrieveContract(customerProcessManager.retrieveContract());
-                customerView.successTask();
             }
             default -> throw new IllegalArgumentException("선택하신 업무가 존재하지 않습니다");
         }
