@@ -5,9 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
-import org.example.Department;
-import org.example.auth.AuthGuideMessage;
-import org.example.user.CustomerProcess;
+import org.example.team.Department;
+import org.example.user.auth.AuthGuideMessage;
+import org.example.user.customer.CustomerProcess;
 
 public class InsuranceSystemView implements SystemView {
     @Override
