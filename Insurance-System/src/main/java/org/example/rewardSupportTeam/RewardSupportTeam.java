@@ -7,6 +7,7 @@ import org.example.common.dto.ResponseDto;
 import org.example.contract.Contract;
 import org.example.insurance.InsuranceChargeCustomerApplyList;
 import org.example.planTeam.Status;
+import org.example.planTeam.design.model.insurance.Insurance;
 import org.example.rewardSupportTeam.model.*;
 import org.example.rewardSupportTeam.view.RewardSupportView;
 import org.example.user.Customer;
@@ -84,6 +85,14 @@ public class RewardSupportTeam extends Team {
     @Override
     public ResponseDto retrieve(RequestDto request) {
         ResponseDto responseDto = new ResponseDto();
+
+        if (request.isEmpty()) {
+            for (Accident accident : accidentList.getAllAccidents()) {
+                responseDto.add(ENTITY_LIST, accident.toString());
+            }
+            return responseDto;
+        }
+
         if (judgmentResult) {
             responseDto.add(Status.getKey(), Status.SUCCESS.getStatus());
             return responseDto;
@@ -103,7 +112,7 @@ public class RewardSupportTeam extends Team {
                 .collect(Collectors.joining("\n"));
 
         ResponseDto responseDto = new ResponseDto();
-        if(!unpaidCustomers.isEmpty()) {
+        if (!unpaidCustomers.isEmpty()) {
             responseDto.add(NOT_PAID_CUSTOMER, notPaidCustomers);
         } else {
             responseDto.add(NOT_PAID_CUSTOMER, "모든 고객이 납부하였습니다.");

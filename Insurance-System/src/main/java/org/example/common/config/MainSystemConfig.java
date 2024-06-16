@@ -10,8 +10,8 @@ import org.example.insurance.InsuranceApplyListImpl;
 import org.example.insurance.InsuranceChargeCustomerApplyList;
 import org.example.insurance.InsuranceChargeCustomerApplyListImpl;
 import org.example.rewardSupportTeam.model.InsurancePremiumPaymentCustomerList;
-import org.example.rewardSupportTeam.model.InsurancePremiumPaymentCustomerListImpl;
 import org.example.rewardSupportTeam.model.AccidentListImpl;
+import org.example.rewardSupportTeam.model.InsurancePremiumPaymentCustomerListImpl;
 import org.example.user.CustomerProcessManager;
 import org.example.user.CustomerView;
 
@@ -38,7 +38,8 @@ public class MainSystemConfig {
     }
 
     private CustomerProcessManager customerProcessManager() {
-        return new CustomerProcessManager(new InsuranceApplyListImpl(), new InsuranceChargeCustomerApplyListImpl(), new AccidentListImpl(), new InsurancePremiumPaymentCustomerListImpl());
+        return new CustomerProcessManager(new InsuranceApplyListImpl(), new InsuranceChargeCustomerApplyListImpl(), new AccidentListImpl(), new InsurancePremiumPaymentCustomerListImpl() {
+        });
     }
 
     private WorkerSystem workerSystem() {
