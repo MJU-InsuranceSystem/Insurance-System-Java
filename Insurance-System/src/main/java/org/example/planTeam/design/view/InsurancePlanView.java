@@ -1,13 +1,6 @@
 package org.example.planTeam.design.view;
 
-import org.example.common.view.DepartmentView;
-import org.example.common.dto.RequestDto;
-import org.example.common.dto.ResponseDto;
-import org.example.insurance.InsuranceType;
-import org.example.planTeam.Status;
-import org.example.planTeam.design.model.reward.RewardConstant;
-
-import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGN_CONTENT;
+import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGNPLAN;
 import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGN_MANAGER;
 import static org.example.planTeam.design.model.designPlan.DesignConstant.DESIGN_TITLE;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.ALL;
@@ -15,12 +8,27 @@ import static org.example.planTeam.design.model.insurance.InsuranceConstant.ENTI
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.ENTITY_KIND;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.ENTITY_LIST;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.INSURANCE;
+import static org.example.planTeam.design.model.insurance.InsuranceConstant.INSURANCE_KIND;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.INSURANCE_NAME;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.ONE;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.RESPONSIBLE_PERSON;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.RESTRICTION_REGULATION;
 import static org.example.planTeam.design.model.insurance.InsuranceConstant.SUBSCRIBER_RIGHTS_AND_OBLIGATION;
-import static org.example.planTeam.design.model.proposal.ProposalConstant.*;
+import static org.example.planTeam.design.model.proposal.ProposalConstant.Insurance_Payment;
+import static org.example.planTeam.design.model.proposal.ProposalConstant.KIND;
+import static org.example.planTeam.design.model.proposal.ProposalConstant.MARKET_RESEARCH;
+import static org.example.planTeam.design.model.proposal.ProposalConstant.PROPOSAL;
+import static org.example.planTeam.design.model.proposal.ProposalConstant.PROPOSAL_TITLE;
+import static org.example.planTeam.design.model.proposal.ProposalConstant.REWARD;
+import static org.example.planTeam.design.model.proposal.ProposalConstant.SALE_STRATEGY;
+import static org.example.planTeam.design.model.proposal.ProposalConstant.SALE_TARGET;
+
+import org.example.common.dto.RequestDto;
+import org.example.common.dto.ResponseDto;
+import org.example.common.view.DepartmentView;
+import org.example.insurance.InsuranceType;
+import org.example.planTeam.Status;
+import org.example.planTeam.design.model.reward.RewardConstant;
 
 
 public class InsurancePlanView extends DepartmentView {
@@ -98,6 +106,7 @@ public class InsurancePlanView extends DepartmentView {
     public RequestDto createInsurance() {
         RequestDto requestDto = new RequestDto();
         requestDto.add(KIND, INSURANCE);
+        println("지금 부터 설계하고자 하는 보험 상품에 대한 정보를 입력해주세요.");
         println("보험 종류를 선택하세요.");
         for (InsuranceType insuranceType : InsuranceType.values()) {
             println(insuranceType.getInsuranceNumber() + "번 " + insuranceType.getDescription());
@@ -120,26 +129,6 @@ public class InsurancePlanView extends DepartmentView {
         println("보험 가입자의 권리와 의무를 입력해주세요.");
         requestDto.add(SUBSCRIBER_RIGHTS_AND_OBLIGATION, writeString());
 
-        switch (InsuranceType.findByNumber(Integer.parseInt(insuranceKind))) {
-            case FIRE -> {
-
-            }
-            case LIFE -> {
-
-            }
-
-            case TRAVEL -> {
-
-            }
-            case CAR -> {
-                println("적용되는 차 종류를 입력해주세요.");
-                // car enum으로 써서 선택하기.
-//                requestDto.add();
-            }
-            case CANCER -> {
-
-            }
-        }
         return requestDto;
     }
 
@@ -195,22 +184,19 @@ public class InsurancePlanView extends DepartmentView {
 
     public RequestDto createDesign(ResponseDto responseDto) {
         RequestDto requestDto = new RequestDto();
+        requestDto.add(KIND, DESIGNPLAN);
         println(responseDto.get(ENTITY));
         println("설계안 제목을 입력해주세요.");
         requestDto.add(DESIGN_TITLE, writeString());
-        println("설계안 내용을 입력해주세요.");
-        requestDto.add(DESIGN_CONTENT, writeString());
         println("설계안 책임자를 입력해주세요.");
         requestDto.add(DESIGN_MANAGER, writeString());
-
         requestDto.add("기획서번호", responseDto.get(ENTITY).split(" ")[0]);
-        requestDto.add(KIND, "설계안");
         return requestDto;
     }
 
     public void completeCreateDesignPlan(ResponseDto responseDto) {
         if (responseDto.get(Status.getKey()).equals(Status.SUCCESS.getStatus())) {
-            System.out.println("설계안이 등록되었습니다!");
+            System.out.println("설계안 대로 보험 상품 생성을 완성하였습니다.!");
         }
     }
 }
