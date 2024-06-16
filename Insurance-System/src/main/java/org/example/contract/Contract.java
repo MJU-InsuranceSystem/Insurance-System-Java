@@ -4,6 +4,7 @@ import org.example.domain.insurance.InsuranceApplication;
 
 public class Contract {
 
+	private int contractId;
 	private String customerName;
 	private InsuranceApplication insuranceApplication;
 	private String managerName;
@@ -12,6 +13,14 @@ public class Contract {
 
 	public String getCustomerName() {
 		return customerName;
+	}
+
+	public int getContractId() {
+		return contractId;
+	}
+
+	public void setContractId(int contractId) {
+		this.contractId = contractId;
 	}
 
 	public InsuranceApplication getInsurance() {
@@ -36,9 +45,10 @@ public class Contract {
 
 	@Override
 	public String toString() {
-		return
-				"customerName = " + customerName + '\n' +
+		return  "contract ID = " + contractId +"\n" +
+				"customer Name = " + customerName + '\n' +
 				"insurance ID = " + insuranceApplication.getInsuranceApplicationID() + '\n' +
+				"insurance Type = " + insuranceApplication.getInsuranceType() + '\n' +
 				"managerName = " + managerName ;
 	}
 }

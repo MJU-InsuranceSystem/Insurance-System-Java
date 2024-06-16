@@ -13,6 +13,7 @@ public class CustomerManager {
         Customer customer = new Customer();
         customer.id = String.valueOf(2);
         customer.password = String.valueOf(2);
+        customer.name = "test";
         customer.userType = UserType.CUSTOMER;
         customers.add(customer);
     }

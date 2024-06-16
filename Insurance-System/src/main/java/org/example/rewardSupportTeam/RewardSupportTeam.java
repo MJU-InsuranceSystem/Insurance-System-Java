@@ -24,6 +24,7 @@ public class RewardSupportTeam extends Team {
 
     private final AccidentList accidentList;
     private final litigationInfoList litigationInfoList;
+
     private final InsuranceChargeCustomerApplyList insuranceChargeCustomerApplyList;
 
     private static boolean judgmentResult = false;
@@ -32,6 +33,7 @@ public class RewardSupportTeam extends Team {
         this.accidentList = accidentList;
         this.litigationInfoList = litigationInfoList;
         this.insuranceChargeCustomerApplyList = insuranceChargeCustomerApplyList;
+
     }
 
     public void finalize() throws Throwable {
@@ -100,7 +102,6 @@ public class RewardSupportTeam extends Team {
         responseDto.add(Status.getKey(), Status.EMPTY.getStatus());
         return responseDto;
     }
-
 
     @Override
     public ResponseDto remove(RequestDto request) {
