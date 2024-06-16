@@ -30,11 +30,7 @@ public class RewardSupportController implements TeamController {
 
     private void executeUsecase(RewardSupportUseCase usecase) {
         switch (usecase) {
-            case SUBMIT_ACCIDENT -> {
-                RequestDto requestDto = rewardSupportView.submitAccident();
-                ResponseDto responseDto = rewardSupportTeam.register(requestDto);
-                rewardSupportView.completeSubmitAccident(responseDto);
-            }
+
             case JUDGE_FAULT -> {
                 RequestDto requestDto = rewardSupportView.judgeFault();
                 ResponseDto responseDto = rewardSupportTeam.process(requestDto);
@@ -45,6 +41,11 @@ public class RewardSupportController implements TeamController {
                 ResponseDto responseDto = rewardSupportTeam.retrieve(requestDto);
                 rewardSupportView.completePayInsurance(responseDto);
             }
+            case MANAGE_LAWSUIT -> {
+                RequestDto requestDto = rewardSupportView.manageLawsuit();
+
+            }
+
             default -> throw new IllegalArgumentException("해당하는 usecase가 없습니다.");
         }
     }

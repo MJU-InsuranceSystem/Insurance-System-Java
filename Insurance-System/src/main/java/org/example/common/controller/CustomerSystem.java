@@ -1,6 +1,7 @@
 package org.example.common.controller;
 
 import org.example.common.dto.RequestDto;
+import org.example.common.dto.ResponseDto;
 import org.example.common.view.SystemView;
 import org.example.contract.ContractList;
 import org.example.insurance.InsuranceType;
@@ -50,8 +51,8 @@ public class CustomerSystem {
             }
             case REQUIRE_INSURANCE_BENEFIT -> {
                 RequestDto requestDto = customerView.requireInsuranceBenefitInfo();
-                customerProcessManager.requireInsuranceBenefit(requestDto);
-                customerView.successTask();
+                ResponseDto responseDto = customerProcessManager.requireInsuranceBenefit(requestDto);
+                customerView.completeSubmitAccident(responseDto);
             }
             case RETRIEVE_CONTRACT -> {
                 customerView.retrieveContract(customerProcessManager.retrieveContract());

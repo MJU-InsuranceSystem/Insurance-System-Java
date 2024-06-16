@@ -6,10 +6,9 @@ import java.util.Arrays;
 
 public enum RewardSupportUseCase implements Usecase {
 
-    SUBMIT_ACCIDENT(1, "사고 접수하기"),
-    JUDGE_FAULT(2, "면/부책을 판단하기"),
-    PAY_INSURANCE(3,"보험금 지급하기");
-//    EXECUTE_LAWSUIT(3, "소송업무를 처리한다.");
+    JUDGE_FAULT(1, "면/부책을 판단하기"),
+    PAY_INSURANCE(2, "보험금 지급하기"),
+    MANAGE_LAWSUIT(3, "소송업무 처리하기");
 
     private final int order;
     private final String description;

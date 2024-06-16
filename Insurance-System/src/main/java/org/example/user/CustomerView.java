@@ -6,9 +6,11 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 import org.example.common.dto.RequestDto;
+import org.example.common.dto.ResponseDto;
 import org.example.contract.Contract;
 import org.example.contract.ContractList;
 import org.example.insurance.InsuranceType;
+import org.example.planTeam.Status;
 
 public class CustomerView {
 
@@ -21,6 +23,16 @@ public class CustomerView {
     public static final String MONTH_PAYMENT = "monthPayment";
     private static int INSURANCE_COUNT = 0;
     public static final String CHARGE_ANSWER = "chargeAnswer";
+
+    // 보험금 청구 정보
+    public static final String ACCIDENT_CONTENT = "content";
+    public static final String ACCIDENT_NAME = "name";
+    // claimInsurance
+    public static final String CLAIMINSURANCE_ACCOUNT = "account";
+    public static final String CLAIMINSURANCE_ADDRESS = "address";
+    public static final String CLAIMINSURANCE_PHONENUMBER = "phoneNumber";
+    public static final String CLAIMINSURANCE_RESIDENTNUMBER = "residentNumber";
+    public static final String CLAIMINSURANCE_SUPPORTINGFILE = "supportingFile";
 
     public void successTask() {
         println("업무 수행을 완료하였습니다.");
@@ -104,9 +116,41 @@ public class CustomerView {
 
     public RequestDto requireInsuranceBenefitInfo() {
         RequestDto requestDto = new RequestDto();
+        println("개인정보처리 동의서\n" +
+                "\n" +
+                "본인은 '보험사'이(가) 제공하는 서비스 이용을 위해 성명, 연락처 등의 개인정보를 수집·이용하는 것에 동의합니다.");
+
+        println("면/부책 판단을 위한 '사건 정보'를 입력해주세요.");
+        print("사고 내용 : ");
+        requestDto.add(ACCIDENT_CONTENT, writeString());
+        print("고객 이름 : ");
+        requestDto.add(ACCIDENT_NAME, writeString());
+
+        println("면/부책 판단을 위한 '보험금 청구정보'를 입력해주세요.");
+        print("계좌 : ");
+        requestDto.add(CLAIMINSURANCE_ACCOUNT, writeString());
+        print("주소 : ");
+        requestDto.add(CLAIMINSURANCE_ADDRESS, writeString());
+        print("전화번호 : ");
+        requestDto.add(CLAIMINSURANCE_PHONENUMBER, writeString());
+        print("주민번호 : ");
+        requestDto.add(CLAIMINSURANCE_RESIDENTNUMBER, writeString());
+        print("증빙 서류 : ");
+        requestDto.add(CLAIMINSURANCE_SUPPORTINGFILE, writeString());
+
+        println("");
+
         println("보험금을 청구하시곘습니까? (Y/N) ");
         requestDto.add(CHARGE_ANSWER, writeString());
         return requestDto;
+    }
+
+    public void completeSubmitAccident(ResponseDto responseDto) {
+        if (responseDto.get(Status.getKey()).equals(Status.SUCCESS.getStatus())) {
+            println("성공적으로 사고가 접수되었습니다.");
+        } else {
+            println("사고 접수에 실패하였습니다. 다시 시도해주세요.");
+        }
     }
 
     private String writeString() {
