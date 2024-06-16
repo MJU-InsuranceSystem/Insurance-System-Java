@@ -1,12 +1,12 @@
 package org.example.auth;
 
 import java.util.Arrays;
-import org.example.user.CustomerManager;
-import org.example.user.WorkerManager;
+import org.example.user.CustomerList;
+import org.example.user.WorkerList;
 
 public enum AuthProcessType {
-  LOGIN(1, new LoginProcess(CustomerManager.getInstance(), WorkerManager.getInstance())),
-  SIGN_UP(2, new SignUpProcess(CustomerManager.getInstance(), WorkerManager.getInstance()));
+  LOGIN(1, new LoginProcess(CustomerList.getInstance(), WorkerList.getInstance())),
+  SIGN_UP(2, new SignUpProcess(CustomerList.getInstance(), WorkerList.getInstance()));
 
   private final int processNumber;
   private final Process process;
