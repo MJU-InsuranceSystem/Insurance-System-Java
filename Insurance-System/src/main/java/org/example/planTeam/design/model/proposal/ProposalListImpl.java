@@ -8,8 +8,8 @@ import java.util.List;
  * @version 1.0
  */
 public class ProposalListImpl implements ProposalList {
-    private final List<Proposal> proposalList = new ArrayList<>();;
-    {
+    private static final List<Proposal> proposalList = new ArrayList<>();;
+    static {
         for (int i = 0; i <4; i++) {
             Proposal proposal = new Proposal();
             proposal.setProposalId(i);
