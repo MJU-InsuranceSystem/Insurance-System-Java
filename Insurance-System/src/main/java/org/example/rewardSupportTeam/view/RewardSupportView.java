@@ -45,6 +45,8 @@ public class RewardSupportView extends DepartmentView {
     public void completeSubmitAccident(ResponseDto responseDto) {
         if (responseDto.get(Status.getKey()).equals(Status.SUCCESS.getStatus())) {
             println("성공적으로 사고가 접수되었습니다.");
+        } else if (responseDto.get(Status.getKey()).equals(Status.EMPTY.getStatus())) {
+            println("고객으로부터 보험금 신청 접수가 된 것이 없습니다.");
         } else {
             println("사고 접수에 실패하였습니다. 다시 시도해주세요.");
         }
@@ -77,7 +79,8 @@ public class RewardSupportView extends DepartmentView {
     public void completePayInsurance(ResponseDto responseDto) {
         if (responseDto.get(Status.getKey()).equals(Status.SUCCESS.getStatus())) {
             println("보험금 지급에 성공하였습니다.");
+        } else {
+            println("보험금 지급에 실패하였습니다");
         }
-        println("보험금 지급에 실패하였습니다");
     }
 }

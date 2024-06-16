@@ -40,7 +40,6 @@ public class RewardSupportController implements TeamController {
                 ResponseDto responseDto = rewardSupportTeam.process(requestDto);
                 rewardSupportView.completeJudgeFault(responseDto);
             }
-
             case PAY_INSURANCE -> {
                 RequestDto requestDto = rewardSupportView.payInsurance();
                 ResponseDto responseDto = rewardSupportTeam.retrieve(requestDto);

@@ -56,7 +56,7 @@ public class RewardSupportTeam extends Team {
 //                return responseDto;
 //            }
 //            List<Contract> tempList = applyUser.getContractList().getContracts();
-            Accident accident = accidentList.read(1);
+            Accident accident = accidentList.read(0);
             if (accident == null) {
                 judgmentResult = false;
                 responseDto.add(Status.getKey(), Status.FAIL.getStatus());
