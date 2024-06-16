@@ -1,6 +1,8 @@
 package org.example.common.controller;
 
-import org.example.auth.AuthController;
+import org.example.user.customer.CustomerSystem;
+import org.example.user.worker.WorkerSystem;
+import org.example.user.auth.AuthController;
 import org.example.user.User;
 import org.example.common.view.SystemView;
 
