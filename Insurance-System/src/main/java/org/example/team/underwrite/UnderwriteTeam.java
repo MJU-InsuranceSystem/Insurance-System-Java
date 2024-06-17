@@ -2,6 +2,7 @@ package org.example.team.underwrite;
 
 import java.util.List;
 import java.util.Objects;
+import org.example.common.exception.IsNotExistException;
 import org.example.team.Team;
 import org.example.common.dto.RequestVO;
 import org.example.common.dto.ResponseVO;
@@ -94,7 +95,7 @@ public class UnderwriteTeam extends Team {
         if (usecase == UnderwriteUsecase.PERFORM_UNDERWRITING) {
             return findAllInsurance();
         }
-        throw new IllegalArgumentException("해당하는 유스케이스는 없습니다.");
+        throw new IsNotExistException("해당하는 유스케이스는 없습니다.");
     }
 
     private ResponseVO findById(String applicationId) {

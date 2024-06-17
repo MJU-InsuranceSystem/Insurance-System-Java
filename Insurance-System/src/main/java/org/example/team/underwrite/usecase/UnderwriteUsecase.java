@@ -1,6 +1,7 @@
 package org.example.team.underwrite.usecase;
 
 import java.util.Arrays;
+import org.example.common.exception.IsNotExistException;
 import org.example.common.usecase.Usecase;
 
 public enum UnderwriteUsecase implements Usecase {
@@ -30,6 +31,6 @@ public enum UnderwriteUsecase implements Usecase {
     return Arrays.stream(UnderwriteUsecase.values())
         .filter(usecase -> usecase.getOrder() == selectNumber)
         .findFirst()
-        .orElseThrow(() -> new IllegalArgumentException("해당 유스케이스 번호를 찾을 수 없습니다."));
+        .orElseThrow(() -> new IsNotExistException("해당 유스케이스 번호를 찾을 수 없습니다."));
   }
 }
