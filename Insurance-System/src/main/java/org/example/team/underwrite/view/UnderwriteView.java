@@ -2,6 +2,7 @@ package org.example.team.underwrite.view;
 
 import org.example.common.dto.RequestVO;
 import org.example.common.dto.ResponseVO;
+import org.example.common.exception.NotCorrectFormat;
 import org.example.common.view.DepartmentView;
 import org.example.team.plan.Status;
 
@@ -70,12 +71,16 @@ public class UnderwriteView extends DepartmentView {
         println("인수가 거부되었습니다.");
       }
       default -> {
-        println("잘못된 값을 입력하였습니다.");
+        throw new NotCorrectFormat("잘못된 값을 입력하였습니다.");
       }
     }
   }
 
   public void showRequireCoUnderwritingResult(ResponseVO responseVO) {
+  }
+
+  public void showErrorMessage(String message) {
+    println(message);
   }
 
   public void showContractResult(ResponseVO contractResult) {

@@ -1,6 +1,9 @@
 package org.example.team.underwrite.controller;
 
 import java.util.Objects;
+import org.example.common.exception.EmptyInputException;
+import org.example.common.exception.IsNotExistException;
+import org.example.common.exception.NotCorrectFormat;
 import org.example.team.TeamController;
 import org.example.common.dto.RequestVO;
 import org.example.common.dto.ResponseVO;
@@ -14,7 +17,7 @@ public class UnderwriteController implements TeamController {
   private final UnderwriteTeam underwriteTeam;
   private final UnderwriteView underwriteView;
   private final ContractManagementTeam contractManagementTeam;
-
+  private final String TEAM_NAME = "U/W 팀";
   public UnderwriteController(UnderwriteTeam underwriteTeam, UnderwriteView underwriteView,
       ContractManagementTeam contractManagementTeam) {
     this.underwriteTeam = underwriteTeam;
@@ -24,10 +27,14 @@ public class UnderwriteController implements TeamController {
 
   @Override
   public void process() {
-    underwriteView.intro("U/W 팀");
-    int selectNumber = underwriteView.selectUsecase(UnderwriteUsecase.class);
-    UnderwriteUsecase usecase = UnderwriteUsecase.findByNumber(selectNumber);
-    executeUsecase(usecase);
+    try {
+      underwriteView.intro(TEAM_NAME);
+      int selectNumber = underwriteView.selectUsecase(UnderwriteUsecase.class);
+      UnderwriteUsecase usecase = UnderwriteUsecase.findByNumber(selectNumber);
+      executeUsecase(usecase);
+    } catch (IsNotExistException | NotCorrectFormat | EmptyInputException e) {
+      underwriteView.showErrorMessage(e.getMessage());
+    }
   }
 
   private void executeUsecase(UnderwriteUsecase usecase) {
@@ -40,8 +47,7 @@ public class UnderwriteController implements TeamController {
       case PERFORM_UNDERWRITING -> {
         String insuranceInfo = findAllInsuranceInfo(usecase.getOrder());
         if (insuranceInfo == null) {
-          underwriteView.inNotExistInsuranceApply();
-          return;
+          throw new IsNotExistException("인수 심사할 대상이 존재하지 않습니다.");
         }
         int applicationId = underwriteView.selectApplicationId(insuranceInfo);
         RequestVO requestVO = new RequestVO();
@@ -62,7 +68,7 @@ public class UnderwriteController implements TeamController {
         ResponseVO responseVO = underwriteTeam.retrieve(requestVO);
         underwriteView.showRequireCoUnderwritingResult(responseVO);
       }
-      default -> throw new IllegalArgumentException("해당하는 usecase가 없습니다.");
+      default -> throw new IsNotExistException("해당하는 usecase가 없습니다.");
     }
   }
 
