@@ -67,7 +67,7 @@ public class InsurancePlanTeam extends Team {
                     insurance.setDate(request.get("날짜"));
                     insurance.setAuthorizedPerson(request.get("책임자이름"));
                     insurance.setReason(request.get("reason"));
-                    authrizationInsuranceList.add(insurance);
+//                    authrizationInsuranceList.add(insurance);
                     if (!Objects.isNull(authrizationInsuranceList.findById(
                         Integer.parseInt(request.get(INSURANCE_NUMBER))))) {
                         responseVO.add(Status.getKey(), Status.SUCCESS.getStatus());
@@ -89,7 +89,8 @@ public class InsurancePlanTeam extends Team {
                     .productOverview(request.get(ProposalConstant.PRODUCT_OVERVIEW))
                     .marketResearch(request.get(ProposalConstant.MARKET_RESEARCH))
                     .insurancePayment(request.get(ProposalConstant.Insurance_Payment))
-                    .saleStrategy(request.get(ProposalConstant.SALE_STRATEGY)).saleTarget(request.get(
+                    .saleStrategy(request.get(ProposalConstant.SALE_STRATEGY))
+                    .saleTarget(request.get(
                         ProposalConstant.SALE_TARGET))
                     .reward(request.get(ProposalConstant.REWARD)).build();
 
